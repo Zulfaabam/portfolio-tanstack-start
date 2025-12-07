@@ -50,16 +50,16 @@ export const Route = createRootRouteWithContext<{
       },
     ],
   }),
-  // errorComponent: ({ reset }) => (
-  //   <div className='relative flex min-h-screen w-full items-center bg-dark'>
-  //     <Section
-  //       id='error-root'
-  //       className='flex flex-col items-center justify-center gap-2'
-  //     >
-  //       <ErrorContent reset={() => reset()} />
-  //     </Section>
-  //   </div>
-  // ),
+  errorComponent: ({ reset }) => (
+    <div className='relative flex min-h-screen w-full items-center bg-dark'>
+      <Section
+        id='error-root'
+        className='flex flex-col items-center justify-center gap-2'
+      >
+        <ErrorContent reset={() => reset()} />
+      </Section>
+    </div>
+  ),
   shellComponent: RootLayout,
 });
 

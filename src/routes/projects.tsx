@@ -6,6 +6,10 @@ import { createFileRoute } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import { Project } from 'types';
 
+type ProjectData = Omit<Project, 'tech_stack'> & {
+  tech_stack: { id: number; name: string }[];
+};
+
 export const getProjects = createServerFn({ method: 'GET' }).handler(
   async (): Promise<{ data: Project[]; error: { message: string } | null }> => {
     const supabase = getSupabaseServerClient();
@@ -39,14 +43,12 @@ export const Route = createFileRoute('/projects')({
 function Projects() {
   const { data, error } = Route.useLoaderData();
 
-  const projects = data?.map((d) => ({
+  const projects: ProjectData[] = data?.map((d: Project) => ({
     ...d,
-    tech_stack: d.tech_stack.map(
-      (stack: { id: number; tech_stack: { name: string } }) => ({
-        id: stack.id,
-        name: stack.tech_stack.name,
-      }),
-    ),
+    tech_stack: d.tech_stack.map((stack) => ({
+      id: stack.id,
+      name: stack.tech_stack.name,
+    })),
   }));
 
   return (

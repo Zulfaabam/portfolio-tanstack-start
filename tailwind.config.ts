@@ -24,6 +24,7 @@ export default {
         accent: '#00f9e9',
         fg: '#eaf0f5',
         dark: '#171717',
+        darker: '#141414',
       },
       animation: {
         'spin-slow': 'spin 6s linear infinite',

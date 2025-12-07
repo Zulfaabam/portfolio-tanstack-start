@@ -7,6 +7,7 @@ import {
 } from 'framer-motion';
 import { Link, useMatchRoute } from '@tanstack/react-router';
 import { menu } from '@/lib/consts';
+import { cn } from '@/lib/utils';
 
 export interface Position {
   left: number;
@@ -87,7 +88,9 @@ const SlideNav = () => {
         <Menu key={m.id} setPosition={setPosition}>
           <Link
             to={m.path}
-            className={`${matchRoute({ to: m.path }) ? 'underline decoration-wavy' : ''} transition-all duration-300`}
+            className={cn('transition-all duration-300', {
+              'underline decoration-wavy': matchRoute({ to: m.path }),
+            })}
           >
             {m.title}
           </Link>
@@ -122,7 +125,7 @@ const Menu = ({
           opacity: 1,
         });
       }}
-      className='relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-fg mix-blend-difference md:px-5 md:py-3 md:text-base'
+      className='relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-fg mix-blend-difference md:px-5 md:py-2.5 md:text-sm'
     >
       {children}
     </li>
@@ -135,7 +138,7 @@ const Cursor = ({ position }: { position: Position }) => {
       animate={{
         ...position,
       }}
-      className='absolute z-0 h-7 rounded-full bg-dark md:h-12'
+      className='absolute z-0 h-7 rounded-full bg-dark md:h-10'
     />
   );
 };
