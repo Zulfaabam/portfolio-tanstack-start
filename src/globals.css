@@ -5,9 +5,22 @@
 
 @config '../tailwind.config.ts';
 
+@theme {
+  --color-primary: #76c1ff;
+  --color-secondary: #133d9e;
+  --color-accent: #00f9e9;
+  --color-fg: #eaf0f5;
+  --color-dark: #171717;
+  --color-darker: #141414;
+}
+
 @theme inline {
   --font-outfit: 'Outfit Variable', sans-serif;
   --font-pacifico: 'Pacifico', cursive;
+}
+
+@utility bg-earth-from-space {
+  background-image: url('/earth-from-space.png');
 }
 
 /*

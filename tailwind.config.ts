@@ -11,21 +11,21 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      fontFamily: {
-        outfit: ['var(--font-outfit)'],
-        pacifico: ['var(--font-pacifico)'],
-      },
-      backgroundImage: {
-        'earth-from-space': 'url(/earth-from-space.png)',
-      },
-      colors: {
-        primary: '#76C1FF',
-        secondary: '#133d9e',
-        accent: '#00f9e9',
-        fg: '#eaf0f5',
-        dark: '#171717',
-        darker: '#141414',
-      },
+      // fontFamily: {
+      //   outfit: ['var(--font-outfit)'],
+      //   pacifico: ['var(--font-pacifico)'],
+      // },
+      // backgroundImage: {
+      //   'earth-from-space': 'url(/earth-from-space.png)',
+      // },
+      // colors: {
+      //   primary: '#76C1FF',
+      //   secondary: '#133d9e',
+      //   accent: '#00f9e9',
+      //   fg: '#eaf0f5',
+      //   dark: '#171717',
+      //   darker: '#141414',
+      // },
       animation: {
         'spin-slow': 'spin 6s linear infinite',
         'reverse-spin-slow': 'reverse-spin 6s linear infinite',

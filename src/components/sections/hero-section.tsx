@@ -85,7 +85,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div className='relative flex h-80 w-full bg-dark pb-16'>
+    <div className='relative flex h-80 w-full pb-16'>
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: [0.1, 0.25, 0.4, 0.5, 0.75, 1] }}
@@ -122,8 +122,6 @@ export default function HeroSection() {
           <IconArrowNarrowDownDashed stroke={1.5} className='h-16 w-16' />
         </div> */}
       </motion.div>
-      <ShootingStars />
-      <StarsBackground />
     </div>
   );
 }
