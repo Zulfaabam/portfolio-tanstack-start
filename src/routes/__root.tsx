@@ -51,7 +51,7 @@ export const Route = createRootRouteWithContext<{
     ],
   }),
   errorComponent: ({ reset }) => (
-    <div className='relative flex min-h-screen w-full items-center bg-dark'>
+    <div className='bg-dark relative flex min-h-screen w-full items-center'>
       <Section
         id='error-root'
         className='flex flex-col items-center justify-center gap-2'
@@ -69,7 +69,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body id='root' className='relative font-outfit'>
+      <body id='root' className='font-outfit relative'>
         <Navbar />
         <FloatingSocmed />
         {children}

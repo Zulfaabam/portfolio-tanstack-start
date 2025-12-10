@@ -10,7 +10,7 @@ import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
   errorComponent: ({ reset }) => (
-    <div className='relative flex min-h-screen w-full items-center bg-dark'>
+    <div className='bg-dark relative flex min-h-screen w-full items-center'>
       <Section
         id='error-home'
         className='flex flex-col items-center justify-center gap-2'
@@ -25,16 +25,16 @@ export const Route = createFileRoute('/')({
 function Home() {
   return (
     <div className='relative'>
-      <div className='bg-linear-to-b w-full from-dark via-dark to-black'>
+      <div className='bg-linear-to-b from-dark via-dark w-full to-black'>
         <HeroSection />
         <AboutSection />
-        <ShootingStars />
-        <StarsBackground />
         {/* <FeaturedProjects /> */}
       </div>
-      <div className='w-full bg-black/60 bg-earth-from-space bg-cover bg-no-repeat bg-blend-hard-light'>
+      <div className='bg-earth-from-space w-full bg-black/60 bg-cover bg-no-repeat bg-blend-hard-light'>
         <TellMeSection />
       </div>
+      <ShootingStars />
+      <StarsBackground />
     </div>
   );
 }

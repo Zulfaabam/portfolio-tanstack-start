@@ -10,6 +10,7 @@ import { createServerFn } from '@tanstack/react-start';
 import { useQuery } from '@tanstack/react-query';
 import BentoBox from '../bento-box';
 import { Image } from '@unpic/react';
+import { IconCircleArrowDown } from '@tabler/icons-react';
 
 export const getTechStack = createServerFn({ method: 'GET' }).handler(
   async (): Promise<{
@@ -38,7 +39,7 @@ export default function AboutSection() {
 
   return (
     <Section id='about' className='py-0! space-y-6'>
-      <div className='grid w-full grid-cols-1 grid-rows-2 gap-2 text-fg sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
+      <div className='text-fg grid w-full grid-cols-1 grid-rows-2 gap-2 sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
         <BentoBox className='col-span-9 row-span-2 flex h-[576px] flex-col justify-between'>
           <div className='space-y-6'>
             <Image
@@ -54,8 +55,11 @@ export default function AboutSection() {
               mobile apps using React Native 🤫)
             </p>
           </div>
-          <button className='block self-end rounded-full border border-fg py-1 pl-2 pr-1'>
-            Resume
+          <button className='border-fg flex items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'>
+            Resume{' '}
+            <span>
+              <IconCircleArrowDown size={22} strokeWidth={1.5} />
+            </span>
           </button>
         </BentoBox>
         <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
@@ -72,15 +76,15 @@ export default function AboutSection() {
               </div>
             </div>
           </div>
-          <button className='block self-end rounded-full border border-fg py-1 pl-2 pr-1'>
-            Resume
+          <button className='border-fg block self-end rounded-full border py-1 pl-2 pr-1 text-xs'>
+            Journey{' '}
           </button>
         </BentoBox>
         <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
           <h6>Tech Stack</h6>
         </BentoBox>
       </div>
-      <div className='grid w-full grid-flow-col grid-cols-1 gap-2 text-fg sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
+      <div className='text-fg grid w-full grid-flow-col grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
         <BentoBox className='col-span-3 row-span-1 h-[180px]'>sds</BentoBox>
         <BentoBox className='col-span-3 row-span-1 h-[204px]'>sds</BentoBox>
         <BentoBox className='col-span-3 row-span-1 h-36'>sds</BentoBox>
