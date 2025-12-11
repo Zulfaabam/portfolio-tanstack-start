@@ -1,6 +1,7 @@
+import BentoBox from '@/components/bento-box';
 import ErrorContent from '@/components/error-content';
 import Section from '@/components/section';
-import AboutSection from '@/components/sections/about-section';
+import BentoGridSection from '@/components/sections/bento-grid-section';
 import FeaturedProjects from '@/components/sections/featured-projects';
 import HeroSection from '@/components/sections/hero-section';
 import TellMeSection from '@/components/sections/tell-me-section';
@@ -24,15 +25,12 @@ export const Route = createFileRoute('/')({
 
 function Home() {
   return (
-    <div className='relative'>
+    <div className='relative pb-24'>
       <div className='bg-linear-to-b from-dark via-dark w-full to-black'>
         <HeroSection />
-        <AboutSection />
-        {/* <FeaturedProjects /> */}
+        <BentoGridSection />
       </div>
-      <div className='bg-earth-from-space w-full bg-black/60 bg-cover bg-no-repeat bg-blend-hard-light'>
-        <TellMeSection />
-      </div>
+      <div className='bg-earth-from-space absolute bottom-0 h-96 w-full bg-black/60 bg-cover bg-no-repeat bg-blend-hard-light'></div>
       <ShootingStars />
       <StarsBackground />
     </div>

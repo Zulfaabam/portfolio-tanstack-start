@@ -58,25 +58,21 @@ export default function TechStackBox({ techStack }: TechStackBoxProps) {
       viewport={{ once: true }}
       className={cn(
         'flex flex-col sm:col-span-2 lg:col-start-1 lg:col-end-5',
-        boxClasses,
+        // boxClasses,
       )}
     >
-      <div className='text-center'>
-        <h6 className='text-lg font-medium sm:text-2xl'>My Tech Stack</h6>
-        <p className='text-xs opacity-80 sm:text-sm'>
-          I constantly try to improve
-        </p>
+      {/* <div className='text-center'>
         <p className='text-[10px] opacity-60 sm:text-xs'>
           (Try sorting the stack from the bottom left!)
         </p>
-      </div>
+      </div> */}
       <div className='swapy-container mt-12 flex flex-wrap-reverse justify-center gap-x-1 gap-y-2 px-1 lg:mt-auto'>
         {techStack?.map((tech, idx) => (
           <div data-swapy-slot={idx + 1} key={tech.id}>
             <div data-swapy-item={tech.id}>
               <Chip
                 label={tech.name}
-                className='bg-linear-to-br cursor-pointer bg-opacity-70 from-accent/70 via-[#3BDDF4]/70 to-primary/70 text-xs font-medium text-fg text-opacity-90 sm:text-sm'
+                className='text-fg border-fg cursor-pointer border bg-opacity-70 text-xs font-medium text-opacity-90'
               />
             </div>
           </div>

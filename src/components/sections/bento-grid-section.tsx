@@ -2,15 +2,12 @@ import Section from '../section';
 import { techStack as techStackBackup } from '@/lib/consts';
 import { getSupabaseServerClient } from '@/lib/supabase/server';
 import TechStackBox, { TechStack } from '../about/tech-stack-box';
-import AboutMeBox from '../about/about-me-box';
-import MyJourneyRing from '../about/my-journey-ring';
-import LongDescBox from '../about/long-desc-box';
-import LearningBox from '../about/learning-box';
 import { createServerFn } from '@tanstack/react-start';
 import { useQuery } from '@tanstack/react-query';
 import BentoBox from '../bento-box';
 import { Image } from '@unpic/react';
-import { IconCircleArrowDown } from '@tabler/icons-react';
+import { IconCircleArrowDown, IconCircleArrowRight } from '@tabler/icons-react';
+import FeaturedProjects from './featured-projects';
 
 export const getTechStack = createServerFn({ method: 'GET' }).handler(
   async (): Promise<{
@@ -26,7 +23,7 @@ export const getTechStack = createServerFn({ method: 'GET' }).handler(
   },
 );
 
-export default function AboutSection() {
+export default function BentoGridSection() {
   const { data, error, isLoading } = useQuery({
     queryKey: ['techStack'],
     queryFn: () => getTechStack(),
@@ -76,25 +73,39 @@ export default function AboutSection() {
               </div>
             </div>
           </div>
-          <button className='border-fg block self-end rounded-full border py-1 pl-2 pr-1 text-xs'>
-            Journey{' '}
+          <button className='border-fg flex items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'>
+            Full Journey{' '}
+            <span>
+              <IconCircleArrowRight size={22} strokeWidth={1.5} />
+            </span>
           </button>
         </BentoBox>
         <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
           <h6>Tech Stack</h6>
+          <TechStackBox techStack={techStack} />
         </BentoBox>
       </div>
       <div className='text-fg grid w-full grid-flow-col grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
-        <BentoBox className='col-span-3 row-span-1 h-[180px]'>sds</BentoBox>
-        <BentoBox className='col-span-3 row-span-1 h-[204px]'>sds</BentoBox>
-        <BentoBox className='col-span-3 row-span-1 h-36'>sds</BentoBox>
-        <BentoBox className='col-span-9 row-span-3 h-[576px]'>sds</BentoBox>
+        <BentoBox className='col-span-3 row-span-1 h-[180px]'>
+          <h6>Latest Strava Activity</h6>
+        </BentoBox>
+        <BentoBox className='col-span-3 row-span-1 h-[204px]'>image</BentoBox>
+        <BentoBox className='col-span-3 row-span-1 h-36'>Contact</BentoBox>
+        <BentoBox className='col-span-9 row-span-3 flex h-[576px] flex-col justify-between'>
+          <div>
+            <h6>Featured Projects</h6>
+            <div className='w-full'>
+              <FeaturedProjects />
+            </div>
+          </div>
+          <button className='border-fg flex items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'>
+            Projects{' '}
+            <span>
+              <IconCircleArrowRight size={22} strokeWidth={1.5} />
+            </span>
+          </button>
+        </BentoBox>
       </div>
-      {/* <TechStackBox techStack={techStack} />
-      <AboutMeBox />
-      <MyJourneyRing />
-      <LongDescBox />
-      <LearningBox /> */}
     </Section>
   );
 }
