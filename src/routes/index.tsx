@@ -1,10 +1,7 @@
-import BentoBox from '@/components/bento-box';
 import ErrorContent from '@/components/error-content';
 import Section from '@/components/section';
 import BentoGridSection from '@/components/sections/bento-grid-section';
-import FeaturedProjects from '@/components/sections/featured-projects';
 import HeroSection from '@/components/sections/hero-section';
-import TellMeSection from '@/components/sections/tell-me-section';
 import { ShootingStars } from '@/components/ui/shooting-stars';
 import { StarsBackground } from '@/components/ui/stars-background';
 import { createFileRoute } from '@tanstack/react-router';

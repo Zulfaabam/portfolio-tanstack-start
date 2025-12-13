@@ -72,7 +72,7 @@ export default function TechStackBox({ techStack }: TechStackBoxProps) {
             <div data-swapy-item={tech.id}>
               <Chip
                 label={tech.name}
-                className='text-fg border-fg cursor-pointer border bg-opacity-70 text-xs font-medium text-opacity-90'
+                className='text-fg border-fg bg-darker cursor-pointer border text-xs font-light'
               />
             </div>
           </div>

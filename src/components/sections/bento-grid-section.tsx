@@ -29,7 +29,34 @@ export default function BentoGridSection() {
     queryFn: () => getTechStack(),
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <Section id='about' className='py-0! space-y-6'>
+        <div className='text-fg grid w-full grid-cols-1 grid-rows-2 gap-2 sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
+          <BentoBox className='col-span-9 row-span-2 flex h-[576px] flex-col justify-between'>
+            <div></div>
+          </BentoBox>
+          <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
+            <div></div>
+          </BentoBox>
+          <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
+            <div></div>
+          </BentoBox>
+        </div>
+        <div className='text-fg grid w-full grid-flow-col grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
+          <BentoBox className='col-span-3 row-span-1 h-[180px]'>div</BentoBox>
+          <BentoBox className='col-span-3 row-span-1 h-[204px]'>
+            <div></div>
+          </BentoBox>
+          <BentoBox className='col-span-3 row-span-1 h-36'>
+            <div></div>
+          </BentoBox>
+          <BentoBox className='col-span-9 row-span-3 flex h-[576px] flex-col justify-between'>
+            <div></div>
+          </BentoBox>
+        </div>
+      </Section>
+    );
   if (error) return <p>Error loading tech stack</p>;
 
   const techStack = data?.data ?? techStackBackup;
@@ -62,14 +89,22 @@ export default function BentoGridSection() {
         <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
           <div className='space-y-6'>
             <h6>Journey</h6>
-            <div>
-              <div>
-                <p>dsds</p>
-                <p>sdsdsd</p>
+            <div className='space-y-4'>
+              <div className='space-y-0.5'>
+                <p className='text-sm'>Frontend Dev @ Eksad</p>
+                <div className='text-fg/80 flex items-center gap-2 text-xs'>
+                  <p>Jakarta, Indonesia</p>
+                  <span className='bg-fg/40 h-3 w-px'></span>
+                  <p>2025 - Now</p>
+                </div>
               </div>
-              <div>
-                <p>dsds</p>
-                <p>sdsdsd</p>
+              <div className='space-y-0.5'>
+                <p className='text-sm'>Frontend Dev @ Bukit Vista</p>
+                <div className='text-fg/80 flex h-full items-center gap-2 text-xs'>
+                  <p>Bali, Indonesia</p>
+                  <span className='bg-fg/40 h-3 w-px'></span>
+                  <p>2022 - 2024</p>
+                </div>
               </div>
             </div>
           </div>

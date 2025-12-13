@@ -87,9 +87,9 @@ export default function HeroSection() {
   return (
     <div className='relative z-10 flex h-80 w-full pb-16'>
       <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: [0.1, 0.25, 0.4, 0.5, 0.75, 1] }}
-        transition={{ ease: 'easeInOut' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0.1, 0.25, 0.4, 0.5, 0.75, 1] }}
+        transition={{ ease: 'easeIn' }}
         className='relative w-full'
       >
         <Section id='hero' className='w-full'>

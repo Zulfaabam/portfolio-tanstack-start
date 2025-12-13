@@ -11,7 +11,7 @@ function BentoBox({
   return (
     <div
       className={cn(
-        'bg-darker border-fg z-10 h-fit w-full rounded-3xl border p-4',
+        'bg-darker border-fg/60 hover:border-fg z-10 h-fit w-full rounded-3xl border p-4 transition-all ease-in',
         className,
       )}
     >
