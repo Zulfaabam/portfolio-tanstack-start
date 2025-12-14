@@ -45,7 +45,7 @@ export default function ProjectCard({
               ? 0.2
               : 0.65,
       }}
-      className='min-w-[285px] rounded-2xl bg-fg p-3 shadow-[0_0_5px_1.5px_rgba(234,240,245,1)] lg:w-full lg:p-4'
+      className='bg-fg min-w-[285px] rounded-2xl p-3 shadow-[0_0_5px_1.5px_rgba(234,240,245,1)] lg:w-full lg:p-4'
     >
       <div className='space-y-1 lg:space-y-2'>
         <motion.div
@@ -64,8 +64,8 @@ export default function ProjectCard({
             className='h-full w-full rounded-lg object-cover'
           />
         </motion.div>
-        <h6 className='text-lg font-medium text-dark lg:text-xl'>{title}</h6>
-        <p className='line-clamp-3 h-[60px] text-xs text-dark/80 lg:text-sm'>
+        <h6 className='text-dark text-lg font-medium lg:text-xl'>{title}</h6>
+        <p className='text-dark/80 line-clamp-3 h-[60px] text-xs lg:text-sm'>
           {description}
         </p>
       </div>
@@ -75,7 +75,7 @@ export default function ProjectCard({
             <Chip
               key={tech.id}
               label={tech.name}
-              className='bg-linear-to-br from-dark/70 to-dark text-[10px] text-fg'
+              className='bg-linear-to-br from-dark/70 to-dark text-fg text-[10px]'
             />
           ))}
         </div>
@@ -87,7 +87,7 @@ export default function ProjectCard({
             <motion.a
               whileHover={{ translateY: -3, translateX: 3 }}
               href={github_url}
-              className='flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-dark text-fg lg:h-8 lg:w-8'
+              className='bg-dark text-fg flex h-7 w-7 cursor-pointer items-center justify-center rounded-full lg:h-8 lg:w-8'
               target='_blank'
               rel='noopener noreferrer'
             >
@@ -98,7 +98,7 @@ export default function ProjectCard({
             <motion.a
               whileHover={{ translateY: -3, translateX: 3 }}
               href={live_url}
-              className='flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-dark text-fg lg:h-8 lg:w-8'
+              className='bg-dark text-fg flex h-7 w-7 cursor-pointer items-center justify-center rounded-full lg:h-8 lg:w-8'
               target='_blank'
               rel='noopener noreferrer'
             >

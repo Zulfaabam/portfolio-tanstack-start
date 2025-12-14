@@ -28,15 +28,19 @@ export default function FeaturedProjects() {
     queryFn: () => getFeaturedProjects(),
   });
 
-  const projects = data?.data?.map((d) => ({
-    ...d,
-    tech_stack: d.tech_stack.map(
-      (stack: { id: number; tech_stack: { name: string } }) => ({
-        id: stack.id,
-        name: stack.tech_stack.name,
-      }),
-    ),
-  }));
+  const projects = data?.data
+    ?.sort((a, b) => {
+      return b.created_at!.localeCompare(a.created_at!);
+    })
+    .map((d) => ({
+      ...d,
+      tech_stack: d.tech_stack.map(
+        (stack: { id: number; tech_stack: { name: string } }) => ({
+          id: stack.id,
+          name: stack.tech_stack.name,
+        }),
+      ),
+    }));
 
   return (
     <div className='flex w-full snap-x snap-mandatory gap-3 overflow-x-scroll py-6 pl-1 scrollbar-hide *:snap-center lg:gap-4'>

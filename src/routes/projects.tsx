@@ -27,7 +27,7 @@ export const getProjects = createServerFn({ method: 'GET' }).handler(
 
 export const Route = createFileRoute('/projects')({
   errorComponent: ({ reset }) => (
-    <div className='relative flex min-h-screen w-full items-center bg-dark'>
+    <div className='bg-dark relative flex min-h-screen w-full items-center'>
       <Section
         id='error-projects'
         className='flex flex-col items-center justify-center gap-2'
@@ -43,22 +43,26 @@ export const Route = createFileRoute('/projects')({
 function Projects() {
   const { data, error } = Route.useLoaderData();
 
-  const projects: ProjectData[] = data?.map((d: Project) => ({
-    ...d,
-    tech_stack: d.tech_stack.map((stack) => ({
-      id: stack.id,
-      name: stack.tech_stack.name,
-    })),
-  }));
+  const projects: ProjectData[] = data
+    ?.sort((a, b) => {
+      return b.created_at!.localeCompare(a.created_at!);
+    })
+    ?.map((d: Project) => ({
+      ...d,
+      tech_stack: d.tech_stack.map((stack) => ({
+        id: stack.id,
+        name: stack.tech_stack.name,
+      })),
+    }));
 
   return (
-    <div className='relative min-h-screen w-full bg-dark'>
+    <div className='bg-dark relative min-h-screen w-full'>
       <Section id='projects'>
         <div className='px-4 py-10 md:px-8 lg:px-10 lg:py-20'>
-          <h2 className='mb-4 max-w-4xl text-2xl text-fg md:text-4xl'>
+          <h2 className='text-fg mb-4 max-w-4xl text-2xl md:text-4xl'>
             My Projects
           </h2>
-          <p className='max-w-sm text-sm text-fg md:text-base'>
+          <p className='text-fg max-w-sm text-sm md:text-base'>
             Various projects I built, from day one I learn Frontend Development
             until now. Some I built it solo, some collaborated with other devs
             during my office work. Please take a look.

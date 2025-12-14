@@ -33,8 +33,8 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           My Journey So Far
         </h2>
         <p className='text-fg max-w-sm text-sm md:text-base'>
-          I&apos;ve been working as a Frontend Developer for 3+ years.
-          Here&apos;s my timeline.
+          Here&apos;s my timeline of 3+ years learning, growing, and working as
+          a developer.
         </p>
       </div>
 

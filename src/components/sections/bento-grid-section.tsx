@@ -88,7 +88,7 @@ export default function BentoGridSection() {
         </BentoBox>
         <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
           <div className='space-y-6'>
-            <h6>Journey</h6>
+            <h6 className='font-medium'>Journey</h6>
             <div className='space-y-4'>
               <div className='space-y-0.5'>
                 <p className='text-sm'>Frontend Dev @ Eksad</p>
@@ -116,19 +116,44 @@ export default function BentoGridSection() {
           </button>
         </BentoBox>
         <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
-          <h6>Tech Stack</h6>
+          <h6 className='font-medium'>Tech Stack</h6>
           <TechStackBox techStack={techStack} />
         </BentoBox>
       </div>
       <div className='text-fg grid w-full grid-flow-col grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
-        <BentoBox className='col-span-3 row-span-1 h-[180px]'>
-          <h6>Latest Strava Activity</h6>
+        <BentoBox className='col-span-3 row-span-1 flex h-[180px] flex-col justify-between'>
+          <h6 className='font-medium'>Latest Strava Activity</h6>
+          <div className='space-y-5'>
+            <div className='flex items-start gap-2'>
+              <Image src='/icons/run.svg' width={20} height={20} />
+              <div>
+                <p className='text-sm'>Outdoor Running</p>
+                <p className='text-fg/80 text-[10px]'>
+                  14 Sept 2025 at 6:00 AM
+                </p>
+              </div>
+            </div>
+            <div className='flex justify-around'>
+              <div>
+                <p className='text-fg/80 text-[11px]'>Distance</p>
+                <p className='text-sm font-medium'>5.00 km</p>
+              </div>
+              <div>
+                <p className='text-fg/80 text-[11px]'>Pace</p>
+                <p className='text-sm font-medium'>6:18 /km</p>
+              </div>
+              <div>
+                <p className='text-fg/80 text-[11px]'>Time</p>
+                <p className='text-sm font-medium'>31m 25s</p>
+              </div>
+            </div>
+          </div>
         </BentoBox>
         <BentoBox className='col-span-3 row-span-1 h-[204px]'>image</BentoBox>
         <BentoBox className='col-span-3 row-span-1 h-36'>Contact</BentoBox>
         <BentoBox className='col-span-9 row-span-3 flex h-[576px] flex-col justify-between'>
           <div>
-            <h6>Featured Projects</h6>
+            <h6 className='font-medium'>Featured Projects</h6>
             <div className='w-full'>
               <FeaturedProjects />
             </div>
