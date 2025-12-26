@@ -63,8 +63,8 @@ export default function BentoGridSection() {
 
   return (
     <Section id='about' className='py-0! space-y-6'>
-      <div className='text-fg grid w-full grid-cols-1 grid-rows-2 gap-2 sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
-        <BentoBox className='col-span-9 row-span-2 flex h-[576px] flex-col justify-between'>
+      <div className='text-fg grid w-full grid-flow-row grid-cols-1 grid-rows-4 gap-4 sm:grid-cols-2 sm:grid-rows-3 md:grid-cols-3 lg:grid-cols-12 lg:grid-rows-2 xl:gap-6'>
+        <BentoBox className='col-span-1 row-span-2 flex h-[576px] flex-col justify-between sm:col-span-2 lg:col-span-9'>
           <div className='space-y-6'>
             <Image
               src='/abam-working.jpg'
@@ -72,12 +72,19 @@ export default function BentoGridSection() {
               className='max-h-[356px] w-[736px] rounded-xl object-cover object-[25%_75%]'
             />
             <p className='text-justify'>
+              Name’s Zulfa Fatah Akbar Ahmad. You can call me Abam, Frontend
+              Developer with 3+ years of experience building production-grade
+              web applications using React, Next.js, TypeScript and any other
+              frontend technologies. Passionate about crafting seamless user
+              experiences and writing clean, efficient code.
+            </p>
+            {/* <p className='text-justify'>
               Name’s Zulfa Fatah Akbar Ahmad. You can call me Abam. I have 3+
               years of experience as a Frontend Developer. I build primarily
               with React, Next.js, and TailwindCSS. I build reactive,
               progressive, responsive, and most importantly cool websites (also
               mobile apps using React Native 🤫)
-            </p>
+            </p> */}
           </div>
           <button className='border-fg flex items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'>
             Resume{' '}
@@ -86,7 +93,7 @@ export default function BentoGridSection() {
             </span>
           </button>
         </BentoBox>
-        <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
+        <BentoBox className='col-span-1 row-span-1 flex h-[276px] flex-col justify-between lg:col-span-3'>
           <div className='space-y-6'>
             <h6 className='font-medium'>Journey</h6>
             <div className='space-y-4'>
@@ -115,13 +122,13 @@ export default function BentoGridSection() {
             </span>
           </button>
         </BentoBox>
-        <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
+        <BentoBox className='col-span-1 row-span-1 flex h-[276px] flex-col justify-between lg:col-span-3'>
           <h6 className='font-medium'>Tech Stack</h6>
           <TechStackBox techStack={techStack} />
         </BentoBox>
       </div>
-      <div className='text-fg grid w-full grid-flow-col grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
-        <BentoBox className='col-span-3 row-span-1 flex h-[180px] flex-col justify-between'>
+      <div className='text-fg grid w-full grid-flow-row grid-cols-1 grid-rows-7 gap-4 sm:grid-cols-3 lg:grid-flow-col lg:grid-cols-12 lg:grid-rows-3 xl:gap-6'>
+        <BentoBox className='col-span-1 row-span-1 flex h-[180px] flex-col justify-between lg:col-span-3'>
           <h6 className='font-medium'>Latest Strava Activity</h6>
           <div className='space-y-5'>
             <div className='flex items-start gap-2'>
@@ -149,9 +156,13 @@ export default function BentoGridSection() {
             </div>
           </div>
         </BentoBox>
-        <BentoBox className='col-span-3 row-span-1 h-[204px]'>image</BentoBox>
-        <BentoBox className='col-span-3 row-span-1 h-36'>Contact</BentoBox>
-        <BentoBox className='col-span-9 row-span-3 flex h-[576px] flex-col justify-between'>
+        <BentoBox className='col-span-1 row-span-1 h-[180px] lg:col-span-3 lg:h-[204px]'>
+          image
+        </BentoBox>
+        <BentoBox className='col-span-1 row-span-1 h-[180px] lg:col-span-3 lg:h-36'>
+          Contact
+        </BentoBox>
+        <BentoBox className='col-span-3 row-span-4 flex h-[576px] flex-col justify-between lg:col-span-9 lg:row-span-3'>
           <div>
             <h6 className='font-medium'>Featured Projects</h6>
             <div className='w-full'>
