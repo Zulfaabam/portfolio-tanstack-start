@@ -63,7 +63,7 @@ export default function BentoGridSection() {
 
   return (
     <Section id='about' className='py-0! space-y-6'>
-      <div className='text-fg grid w-full grid-flow-row grid-cols-1 grid-rows-4 gap-4 sm:grid-cols-2 sm:grid-rows-3 md:grid-cols-3 lg:grid-cols-12 lg:grid-rows-2 xl:gap-6'>
+      <div className='text-fg grid w-full grid-flow-row grid-cols-1 grid-rows-4 gap-4 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-3 lg:grid-cols-12 lg:grid-rows-2 xl:gap-6'>
         <BentoBox className='col-span-1 row-span-2 flex h-[576px] flex-col justify-between sm:col-span-2 lg:col-span-9'>
           <div className='space-y-6'>
             <Image
@@ -127,7 +127,7 @@ export default function BentoGridSection() {
           <TechStackBox techStack={techStack} />
         </BentoBox>
       </div>
-      <div className='text-fg grid w-full grid-flow-row grid-cols-1 grid-rows-7 gap-4 sm:grid-cols-3 lg:grid-flow-col lg:grid-cols-12 lg:grid-rows-3 xl:gap-6'>
+      <div className='text-fg grid w-full grid-flow-row auto-rows-min grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-flow-col lg:grid-cols-12 xl:gap-6'>
         <BentoBox className='col-span-1 row-span-1 flex h-[180px] flex-col justify-between lg:col-span-3'>
           <h6 className='font-medium'>Latest Strava Activity</h6>
           <div className='space-y-5'>
