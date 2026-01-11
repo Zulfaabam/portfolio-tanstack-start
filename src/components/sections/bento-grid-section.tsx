@@ -120,8 +120,8 @@ export default function BentoGridSection() {
           <TechStackBox techStack={techStack} />
         </BentoBox>
       </div>
-      <div className='text-fg grid w-full auto-rows-min grid-cols-1 grid-rows-12 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
-        <BentoBox className='col-span-1 row-span-4 flex h-[180px] flex-col justify-between md:col-span-3'>
+      <div className='text-fg grid w-full auto-cols-min grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
+        <BentoBox className='col-span-1 row-span-2 flex h-[180px] flex-col justify-between md:col-span-3'>
           <h6 className='font-medium'>Latest Strava Activity</h6>
           <div className='space-y-5'>
             <div className='flex items-start gap-2'>
@@ -149,13 +149,10 @@ export default function BentoGridSection() {
             </div>
           </div>
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-2 h-[72px] md:col-span-3'>
-          open to work
-        </BentoBox>
-        <BentoBox className='col-span-1 row-span-6 h-[276px] md:col-span-3'>
+        <BentoBox className='col-span-1 row-span-3 h-[276px] md:col-span-3'>
           Pixel Playground
         </BentoBox>
-        <BentoBox className='col-span-3 flex h-[492px] flex-col justify-between md:col-span-6 md:row-span-11'>
+        <BentoBox className='col-span-3 flex h-[492px] flex-col justify-between md:col-span-6 md:row-span-6'>
           <div>
             <h6 className='font-medium'>Featured Projects</h6>
             <div className='w-full'>
@@ -169,10 +166,13 @@ export default function BentoGridSection() {
             </span>
           </button>
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-6 h-[276px] md:col-span-6 lg:col-span-6'>
+        <BentoBox className='row-span-[1.5] col-span-1 h-[72px] md:col-span-3'>
+          open to work
+        </BentoBox>
+        <BentoBox className='col-span-1 row-span-4 h-[276px] md:col-span-6 lg:col-span-6'>
           The Battlestation
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-2 h-[60px] md:col-span-6'>
+        <BentoBox className='col-span-1 row-span-1 h-[60px] md:col-span-6'>
           Contact
         </BentoBox>
       </div>
