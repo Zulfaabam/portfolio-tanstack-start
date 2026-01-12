@@ -8,6 +8,7 @@ import BentoBox from '../bento-box';
 import { Image } from '@unpic/react';
 import { IconCircleArrowDown, IconCircleArrowRight } from '@tabler/icons-react';
 import FeaturedProjects from './featured-projects';
+import PixelPlayground from '../ui/pixel-playground';
 
 export const getTechStack = createServerFn({ method: 'GET' }).handler(
   async (): Promise<{
@@ -24,40 +25,10 @@ export const getTechStack = createServerFn({ method: 'GET' }).handler(
 );
 
 export default function BentoGridSection() {
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading: loadingTechStack } = useQuery({
     queryKey: ['techStack'],
     queryFn: () => getTechStack(),
   });
-
-  if (isLoading)
-    return (
-      <Section id='about' className='py-0! space-y-6'>
-        <div className='text-fg grid w-full grid-cols-1 grid-rows-2 gap-2 sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
-          <BentoBox className='col-span-9 row-span-2 flex h-[576px] flex-col justify-between'>
-            <div></div>
-          </BentoBox>
-          <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
-            <div></div>
-          </BentoBox>
-          <BentoBox className='col-span-3 row-span-1 flex h-[276px] flex-col justify-between'>
-            <div></div>
-          </BentoBox>
-        </div>
-        <div className='text-fg grid w-full grid-flow-col grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-12 xl:gap-6'>
-          <BentoBox className='col-span-3 row-span-1 h-[180px]'>div</BentoBox>
-          <BentoBox className='col-span-3 row-span-1 h-[204px]'>
-            <div></div>
-          </BentoBox>
-          <BentoBox className='col-span-3 row-span-1 h-36'>
-            <div></div>
-          </BentoBox>
-          <BentoBox className='col-span-9 row-span-3 flex h-[576px] flex-col justify-between'>
-            <div></div>
-          </BentoBox>
-        </div>
-      </Section>
-    );
-  if (error) return <p>Error loading tech stack</p>;
 
   const techStack = data?.data ?? techStackBackup;
 
@@ -117,7 +88,8 @@ export default function BentoGridSection() {
         </BentoBox>
         <BentoBox className='col-span-1 row-span-1 flex h-[276px] flex-col justify-between lg:col-span-3'>
           <h6 className='font-medium'>Tech Stack</h6>
-          <TechStackBox techStack={techStack} />
+          {loadingTechStack ? <div className='rounded-xl bg-gray-400 w-8 h-4 animate-pulse'></div> : <TechStackBox techStack={techStack} />}
+          {error && <p>Error loading tech stack</p>}
         </BentoBox>
       </div>
       <div className='text-fg grid w-full auto-cols-min grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
@@ -150,7 +122,7 @@ export default function BentoGridSection() {
           </div>
         </BentoBox>
         <BentoBox className='col-span-1 row-span-3 h-[276px] md:col-span-3'>
-          Pixel Playground
+          <PixelPlayground />
         </BentoBox>
         <BentoBox className='col-span-3 flex h-[492px] flex-col justify-between md:col-span-6 md:row-span-6'>
           <div>
