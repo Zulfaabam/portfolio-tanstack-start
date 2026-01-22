@@ -1,8 +1,6 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { ShootingStars } from '../ui/shooting-stars';
-import { StarsBackground } from '../ui/stars-background';
+import { motion } from 'framer-motion';
+
 import { useEffect, useState } from 'react';
-import { IconArrowNarrowDownDashed } from '@tabler/icons-react';
 import Section from '../section';
 
 export default function HeroSection() {
@@ -102,25 +100,6 @@ export default function HeroSection() {
             </h2>
           </div>
         </Section>
-        {/* <h1 className='relative mx-auto max-w-5xl text-center text-3xl font-medium tracking-tight text-fg md:text-5xl md:leading-tight'>
-          I make web,{' '}
-          <AnimatePresence>
-            <motion.span
-              key={words[wordIndex].id}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0, position: 'absolute' }}
-              transition={{ ease: 'easeInOut' }}
-            >
-              {words[wordIndex].content}
-            </motion.span>
-          </AnimatePresence>{' '}
-          web
-        </h1>
-        <div className='mt-2 flex flex-col items-center text-fg text-opacity-80'>
-          <h6>Get to know me</h6>
-          <IconArrowNarrowDownDashed stroke={1.5} className='h-16 w-16' />
-        </div> */}
       </motion.div>
     </div>
   );

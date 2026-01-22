@@ -1,6 +1,3 @@
-import { Link } from '@tanstack/react-router';
-import Section from '../section';
-import { IconArrowRight } from '@tabler/icons-react';
 import ProjectCard from '../ui/project-card';
 import { getSupabaseServerClient } from '@/lib/supabase/server';
 import { createServerFn } from '@tanstack/react-start';
