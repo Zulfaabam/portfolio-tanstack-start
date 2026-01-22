@@ -9,7 +9,6 @@ import { Image } from '@unpic/react';
 import { IconCircleArrowDown, IconCircleArrowRight } from '@tabler/icons-react';
 import FeaturedProjects from './featured-projects';
 import PixelPlayground from '../ui/pixel-playground';
-import BorderMagicBtn from '../ui/border-magic-btn';
 
 export const getTechStack = createServerFn({ method: 'GET' }).handler(
   async (): Promise<{
