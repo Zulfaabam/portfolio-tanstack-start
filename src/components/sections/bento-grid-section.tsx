@@ -17,7 +17,10 @@ export const getTechStack = createServerFn({ method: 'GET' }).handler(
   }> => {
     const supabase = getSupabaseServerClient();
 
-    const { data, error } = await supabase.from('tech_stack').select('*');
+    const { data, error } = await supabase
+      .from('tech_stack')
+      .select('*')
+      .eq('is_main_tech', true);
 
     if (error) throw new Error(error.message);
     return { data, error };
@@ -113,7 +116,7 @@ export default function BentoGridSection() {
         </BentoBox>
       </div>
       <div className='text-fg grid w-full auto-cols-min grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
-        <BentoBox className='col-span-1 row-span-3 flex h-[276px] flex-col justify-between md:col-span-3'>
+        <BentoBox className='col-span-1 row-span-3 h-[276px] space-y-6 md:col-span-3'>
           <h6 className='font-medium'>Tech Stack</h6>
           {loadingTechStack ? (
             <div className='h-4 w-8 animate-pulse rounded-xl bg-gray-400'></div>

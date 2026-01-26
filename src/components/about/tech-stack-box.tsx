@@ -42,7 +42,7 @@ export default function TechStackBox({ techStack }: TechStackBoxProps) {
           .every((element, index) => element === arr2[index]);
 
       if (checkRightAnswer(sortedStackId)) {
-        console.log('same');
+        console.log('correct');
       }
     });
 
@@ -57,26 +57,25 @@ export default function TechStackBox({ techStack }: TechStackBoxProps) {
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
       className={cn(
-        'flex flex-col sm:col-span-2 lg:col-start-1 lg:col-end-5',
+        'mx-auto flex w-full flex-col gap-2',
         // boxClasses,
       )}
     >
-      {/* <div className='text-center'>
-        <p className='text-[10px] opacity-60 sm:text-xs'>
-          (Try sorting the stack from the bottom left!)
-        </p>
-      </div> */}
-      <div className='swapy-container mt-12 flex flex-wrap-reverse justify-center gap-x-1 gap-y-2 px-1 lg:mt-auto'>
+      <div className='swapy-container mx-auto flex size-40 flex-col justify-between border border-dashed p-1'>
         {techStack?.map((tech, idx) => (
           <div data-swapy-slot={idx + 1} key={tech.id}>
             <div data-swapy-item={tech.id}>
-              <Chip
-                label={tech.name}
-                className='text-fg border-fg bg-darker cursor-pointer border text-xs font-light'
-              />
+              <div className='bg-fg text-darker cursor-pointer py-0.5 text-center'>
+                <p className='text-xs'>{tech.name}</p>
+              </div>
             </div>
           </div>
         ))}
+      </div>
+      <div className='text-center'>
+        <p className='text-fg/80 text-[10px] sm:text-xs'>
+          Try sorting the stack!
+        </p>
       </div>
     </motion.div>
   );
