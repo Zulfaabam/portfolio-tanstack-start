@@ -6,9 +6,14 @@ import { createServerFn } from '@tanstack/react-start';
 import { useQuery } from '@tanstack/react-query';
 import BentoBox from '../bento-box';
 import { Image } from '@unpic/react';
-import { IconCircleArrowDown, IconCircleArrowRight } from '@tabler/icons-react';
+import {
+  IconCircleArrowDown,
+  IconCircleArrowRight,
+  IconCircleArrowUpRight,
+} from '@tabler/icons-react';
 import FeaturedProjects from './featured-projects';
-import PixelPlayground from '../ui/pixel-playground';
+import PixelPlayground from '../pixel-playground';
+import { Link } from '@tanstack/react-router';
 
 export const getTechStack = createServerFn({ method: 'GET' }).handler(
   async (): Promise<{
@@ -58,18 +63,29 @@ export default function BentoGridSection() {
               clean, efficient, and maintainable code.
             </p>
           </div>
-          <a
-            className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'
-            href='/CV_ZULFA.pdf'
-            target='_blank'
-            rel='noopener noreferrer'
-            download
-          >
-            Resume{' '}
-            <span>
-              <IconCircleArrowDown size={22} strokeWidth={1.5} />
-            </span>
-          </a>
+          <div className='ml-auto flex items-center gap-2'>
+            <a
+              className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'
+              href='/CV_ZULFA.pdf'
+              target='_blank'
+              rel='noopener noreferrer'
+              download
+            >
+              Resume{' '}
+              <span>
+                <IconCircleArrowDown size={22} strokeWidth={1.5} />
+              </span>
+            </a>
+            <a
+              className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'
+              href='mailto:zulfafatahakbar@gmail.com'
+            >
+              Let's Talk{' '}
+              <span>
+                <IconCircleArrowUpRight size={22} strokeWidth={1.5} />
+              </span>
+            </a>
+          </div>
         </BentoBox>
         <BentoBox className='col-span-1 row-span-1 flex h-[276px] flex-col justify-between lg:col-span-3'>
           <div className='space-y-6'>
@@ -93,12 +109,15 @@ export default function BentoGridSection() {
               </div>
             </div>
           </div>
-          <button className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'>
+          <Link
+            to='/journey'
+            className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'
+          >
             Full Journey{' '}
             <span>
               <IconCircleArrowRight size={22} strokeWidth={1.5} />
             </span>
-          </button>
+          </Link>
         </BentoBox>
         <BentoBox className='col-span-1 row-span-1 h-[276px] space-y-6 lg:col-span-3'>
           <h6 className='font-medium'>What I'm Up to</h6>
@@ -135,18 +154,33 @@ export default function BentoGridSection() {
               <FeaturedProjects />
             </div>
           </div>
-          <button className='border-fg flex items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'>
+          <Link
+            to='/projects'
+            className='border-fg flex items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'
+          >
             Projects{' '}
             <span>
               <IconCircleArrowRight size={22} strokeWidth={1.5} />
             </span>
-          </button>
+          </Link>
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-4 h-[276px] md:col-span-6 lg:col-span-6'>
-          The Battlestation
+        <BentoBox className='col-span-1 row-span-4 h-[276px] space-y-4 md:col-span-6 lg:col-span-6'>
+          <div className='relative h-full w-full'>
+            <div className='absolute inset-0 rounded-lg bg-black/50' />
+            <Image
+              src='/battlestation.webp'
+              layout='fullWidth'
+              className='h-full w-full select-none rounded-lg object-cover object-[25%_75%]'
+            />
+            <p className='absolute right-3 top-3 text-sm'>The Battlestation</p>
+            <p className='absolute bottom-3 left-3 text-xs'>
+              <span className='font-medium'>PC specs</span>: AMD Ryzen 5 7500F,
+              AMD Radeon RX 6700 XT, 16GB RAM, 1TB Storage
+            </p>
+          </div>
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-1 h-[60px] md:col-span-6'>
-          Contact
+        <BentoBox className='col-span-1 row-span-1 flex h-[60px] items-center justify-end md:col-span-6'>
+          <p className='text-fg/80 text-sm'>Last update: 27 January 2026</p>
         </BentoBox>
       </div>
     </Section>
