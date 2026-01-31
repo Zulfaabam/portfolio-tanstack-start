@@ -9,12 +9,12 @@ import {
   IconCircleArrowDown,
   IconCircleArrowRight,
   IconCircleArrowUpRight,
-  IconReload,
 } from '@tabler/icons-react';
 import FeaturedProjects from '../featured-projects';
-import PixelPlayground from '../pixel-playground';
 import { Link } from '@tanstack/react-router';
 import Signature from '../ui/signature';
+import { DirectionAwareHover } from '../ui/direction-aware-hover';
+import RippleButton from '../ui/ripple-btn';
 
 export default function BentoGridSection() {
   const {
@@ -48,27 +48,29 @@ export default function BentoGridSection() {
             </p>
           </div>
           <div className='ml-auto flex items-center gap-2'>
-            <a
-              className='btn-rounded self-end'
+            <RippleButton
+              as='a'
               href='/CV_ZULFA.pdf'
               target='_blank'
               rel='noopener noreferrer'
               download
+              className='self-end'
             >
-              Resume{' '}
-              <span>
+              <RippleButton.Text>Resume</RippleButton.Text>
+              <RippleButton.Icon>
                 <IconCircleArrowDown size={22} strokeWidth={1.5} />
-              </span>
-            </a>
-            <a
-              className='btn-rounded self-end'
+              </RippleButton.Icon>
+            </RippleButton>
+            <RippleButton
+              as='a'
               href='mailto:zulfafatahakbar@gmail.com'
+              className='self-end'
             >
-              Let's Talk{' '}
-              <span>
+              <RippleButton.Text>Let's Talk</RippleButton.Text>
+              <RippleButton.Icon>
                 <IconCircleArrowUpRight size={22} strokeWidth={1.5} />
-              </span>
-            </a>
+              </RippleButton.Icon>
+            </RippleButton>
           </div>
         </BentoBox>
         <BentoBox className='col-span-1 row-span-1 flex h-[276px] flex-col justify-between lg:col-span-3'>
@@ -93,12 +95,12 @@ export default function BentoGridSection() {
               </div>
             </div>
           </div>
-          <Link to='/journey' className='btn-rounded self-end'>
-            Full Journey{' '}
-            <span>
+          <RippleButton as={Link} to='/journey' className='self-end'>
+            <RippleButton.Text>Full Journey</RippleButton.Text>
+            <RippleButton.Icon>
               <IconCircleArrowRight size={22} strokeWidth={1.5} />
-            </span>
-          </Link>
+            </RippleButton.Icon>
+          </RippleButton>
         </BentoBox>
         <BentoBox className='col-span-1 row-span-1 h-[276px] space-y-6 lg:col-span-3'>
           <h6 className='font-medium'>What I'm Up to</h6>
@@ -118,26 +120,29 @@ export default function BentoGridSection() {
       <div className='text-fg grid w-full auto-cols-min grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
         <BentoBox className='col-span-3 row-span-3 flex h-full flex-col-reverse gap-4 md:col-span-6 md:h-[276px] md:flex-row md:gap-[36px] lg:justify-between'>
           <div className='flex w-full justify-end md:hidden'>
-            <button className='btn-rounded'>
-              Shuffle{' '}
-              <Image
-                src='/icons/reload.svg'
-                alt='reload'
-                width={22}
-                height={22}
-              />
-            </button>
+            <RippleButton>
+              <RippleButton.Text>Shuffle</RippleButton.Text>
+              <RippleButton.Icon>
+                <Image
+                  src='/icons/reload.svg'
+                  alt='reload'
+                  width={22}
+                  height={22}
+                />
+              </RippleButton.Icon>
+            </RippleButton>
           </div>
           <div className='h-[244px] md:h-full md:w-1/2'>
             {loadingTechStack ? (
               <div className='h-4 w-8 animate-pulse rounded-xl bg-gray-400'></div>
+            ) : error ? (
+              <p>Error loading tech stack</p>
             ) : (
               <TechStackBox
                 techStack={techStack}
                 className='h-full *:h-full *:w-full *:lg:w-[218px]'
               />
             )}
-            {error && <p>Error loading tech stack</p>}
           </div>
           <div className='flex flex-col justify-between md:w-1/2'>
             <div className='space-y-6'>
@@ -148,15 +153,17 @@ export default function BentoGridSection() {
                 Try to reorder my tech stack for a surprise!
               </p>
             </div>
-            <button className='btn-rounded md:flex! hidden self-end'>
-              Shuffle{' '}
-              <Image
-                src='/icons/reload.svg'
-                alt='reload'
-                width={22}
-                height={22}
-              />
-            </button>
+            <RippleButton className='md:flex! hidden self-end'>
+              <RippleButton.Text>Shuffle</RippleButton.Text>
+              <RippleButton.Icon>
+                <Image
+                  src='/icons/reload.svg'
+                  alt='reload'
+                  width={22}
+                  height={22}
+                />
+              </RippleButton.Icon>
+            </RippleButton>
           </div>
         </BentoBox>
         {/* <BentoBox className='col-span-1 row-span-3 h-[276px] md:col-span-3'>
@@ -169,26 +176,22 @@ export default function BentoGridSection() {
               <FeaturedProjects />
             </div>
           </div>
-          <Link to='/projects' className='btn-rounded self-end'>
-            Projects{' '}
-            <span>
+          <RippleButton as={Link} to='/projects' className='self-end'>
+            <RippleButton.Text>Projects</RippleButton.Text>
+            <RippleButton.Icon>
               <IconCircleArrowRight size={22} strokeWidth={1.5} />
-            </span>
-          </Link>
+            </RippleButton.Icon>
+          </RippleButton>
         </BentoBox>
         <BentoBox className='col-span-3 row-span-4 h-[276px] space-y-4 md:col-span-6 lg:col-span-6'>
           <div className='relative h-full w-full'>
-            <div className='absolute inset-0 rounded-lg bg-black/50' />
-            <Image
-              src='/battlestation.webp'
-              layout='fullWidth'
-              className='h-full w-full select-none rounded-lg object-cover object-[25%_75%]'
-            />
-            <p className='absolute right-3 top-3 text-sm'>The Battlestation</p>
-            <p className='absolute bottom-3 left-3 text-xs'>
-              <span className='font-medium'>PC specs</span>: AMD Ryzen 5 7500F,
-              AMD Radeon RX 6700 XT, 16GB RAM, 1TB Storage
-            </p>
+            <DirectionAwareHover imageUrl='/battlestation.webp'>
+              <p className='mb-1 font-medium'>The Battlestation</p>
+              <p className='max-w-[430px] text-xs'>
+                <span className='font-medium'>Specs</span>: AMD Ryzen 5 7500F,
+                AMD Radeon RX 6700 XT, 16GB RAM, 1TB Storage
+              </p>
+            </DirectionAwareHover>
           </div>
         </BentoBox>
         <BentoBox className='col-span-3 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'>
