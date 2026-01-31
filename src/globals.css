@@ -1,5 +1,6 @@
 @import '@fontsource-variable/outfit' layer(base);
 @import '@fontsource/pacifico' layer(base);
+@import '@fontsource-variable/pixelify-sans' layer(base);
 
 @import 'tailwindcss';
 
@@ -17,6 +18,7 @@
 @theme inline {
   --font-outfit: 'Outfit Variable', sans-serif;
   --font-pacifico: 'Pacifico', cursive;
+  --font-pixelify-sans: 'Pixelify Sans Variable', system-ui;
 }
 
 @utility bg-earth-from-space {
@@ -42,6 +44,9 @@
 }
 
 @layer components {
+  .btn-rounded {
+    @apply border-fg flex cursor-pointer items-center gap-0.5 rounded-full border py-1 pl-2 pr-1 text-xs md:text-sm;
+  }
   /* .title {
     @apply text-white font-bold text-4xl md:text-5xl lg:text-6xl;
   }

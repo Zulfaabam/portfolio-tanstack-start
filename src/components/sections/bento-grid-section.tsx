@@ -1,28 +1,20 @@
 import Section from '../section';
 import { techStack as techStackBackup } from '@/lib/consts';
-import { getSupabaseServerClient } from '@/lib/supabase/server';
-import TechStackBox, { TechStack } from '../about/tech-stack-box';
-import { createServerFn } from '@tanstack/react-start';
+import TechStackBox from '../tech-stack-box';
 import { useQuery } from '@tanstack/react-query';
+import { getTechStack } from '@/lib/server/tech-stack';
 import BentoBox from '../bento-box';
 import { Image } from '@unpic/react';
-import { IconCircleArrowDown, IconCircleArrowRight } from '@tabler/icons-react';
-import FeaturedProjects from './featured-projects';
-import PixelPlayground from '../ui/pixel-playground';
-
-export const getTechStack = createServerFn({ method: 'GET' }).handler(
-  async (): Promise<{
-    data: TechStack[];
-    error: { message: string } | null;
-  }> => {
-    const supabase = getSupabaseServerClient();
-
-    const { data, error } = await supabase.from('tech_stack').select('*');
-
-    if (error) throw new Error(error.message);
-    return { data, error };
-  },
-);
+import {
+  IconCircleArrowDown,
+  IconCircleArrowRight,
+  IconCircleArrowUpRight,
+} from '@tabler/icons-react';
+import FeaturedProjects from '../featured-projects';
+import { Link } from '@tanstack/react-router';
+import Signature from '../ui/signature';
+import { DirectionAwareHover } from '../ui/direction-aware-hover';
+import RippleButton from '../ui/ripple-btn';
 
 export default function BentoGridSection() {
   const {
@@ -46,7 +38,7 @@ export default function BentoGridSection() {
               layout='fullWidth'
               className='max-h-[356px] w-[736px] rounded-xl object-cover object-[25%_75%]'
             />
-            <p className='text-justify text-sm leading-6'>
+            <p className='text-justify text-[13px] leading-6 md:text-sm'>
               Name’s Zulfa Fatah Akbar Ahmad. You can call me Abam, a Frontend
               Developer with 3+ years of experience building production-grade
               web applications using React, Next.js, TypeScript, TailwindCSS,
@@ -55,18 +47,31 @@ export default function BentoGridSection() {
               clean, efficient, and maintainable code.
             </p>
           </div>
-          <a
-            className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'
-            href='/CV_ZULFA.pdf'
-            target='_blank'
-            rel='noopener noreferrer'
-            download
-          >
-            Resume{' '}
-            <span>
-              <IconCircleArrowDown size={22} strokeWidth={1.5} />
-            </span>
-          </a>
+          <div className='ml-auto flex items-center gap-2'>
+            <RippleButton
+              as='a'
+              href='/CV_ZULFA.pdf'
+              target='_blank'
+              rel='noopener noreferrer'
+              download
+              className='self-end'
+            >
+              <RippleButton.Text>Resume</RippleButton.Text>
+              <RippleButton.Icon>
+                <IconCircleArrowDown size={22} strokeWidth={1.5} />
+              </RippleButton.Icon>
+            </RippleButton>
+            <RippleButton
+              as='a'
+              href='mailto:zulfafatahakbar@gmail.com'
+              className='self-end'
+            >
+              <RippleButton.Text>Let's Talk</RippleButton.Text>
+              <RippleButton.Icon>
+                <IconCircleArrowUpRight size={22} strokeWidth={1.5} />
+              </RippleButton.Icon>
+            </RippleButton>
+          </div>
         </BentoBox>
         <BentoBox className='col-span-1 row-span-1 flex h-[276px] flex-col justify-between lg:col-span-3'>
           <div className='space-y-6'>
@@ -90,12 +95,12 @@ export default function BentoGridSection() {
               </div>
             </div>
           </div>
-          <button className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'>
-            Full Journey{' '}
-            <span>
+          <RippleButton as={Link} to='/journey' className='self-end'>
+            <RippleButton.Text>Full Journey</RippleButton.Text>
+            <RippleButton.Icon>
               <IconCircleArrowRight size={22} strokeWidth={1.5} />
-            </span>
-          </button>
+            </RippleButton.Icon>
+          </RippleButton>
         </BentoBox>
         <BentoBox className='col-span-1 row-span-1 h-[276px] space-y-6 lg:col-span-3'>
           <h6 className='font-medium'>What I'm Up to</h6>
@@ -113,37 +118,40 @@ export default function BentoGridSection() {
         </BentoBox>
       </div>
       <div className='text-fg grid w-full auto-cols-min grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
-        <BentoBox className='col-span-1 row-span-3 flex h-[276px] flex-col justify-between md:col-span-3'>
-          <h6 className='font-medium'>Tech Stack</h6>
-          {loadingTechStack ? (
-            <div className='h-4 w-8 animate-pulse rounded-xl bg-gray-400'></div>
-          ) : (
-            <TechStackBox techStack={techStack} />
-          )}
-          {error && <p>Error loading tech stack</p>}
+        <BentoBox className='col-span-3 row-span-3 flex h-full flex-col-reverse gap-4 md:col-span-6 md:h-[276px] md:flex-row md:gap-[36px] lg:justify-between'>
+          <TechStackBox />
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-3 h-[276px] md:col-span-3'>
+        {/* <BentoBox className='col-span-1 row-span-3 h-[276px] md:col-span-3'>
           <PixelPlayground />
-        </BentoBox>
+        </BentoBox> */}
         <BentoBox className='col-span-3 flex h-[492px] flex-col justify-between md:col-span-6 md:row-span-6'>
-          <div>
+          <div className='space-y-6'>
             <h6 className='font-medium'>Featured Projects</h6>
             <div className='w-full'>
               <FeaturedProjects />
             </div>
           </div>
-          <button className='border-fg flex items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'>
-            Projects{' '}
-            <span>
+          <RippleButton as={Link} to='/projects' className='self-end'>
+            <RippleButton.Text>Projects</RippleButton.Text>
+            <RippleButton.Icon>
               <IconCircleArrowRight size={22} strokeWidth={1.5} />
-            </span>
-          </button>
+            </RippleButton.Icon>
+          </RippleButton>
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-4 h-[276px] md:col-span-6 lg:col-span-6'>
-          The Battlestation
+        <BentoBox className='col-span-3 row-span-4 h-[276px] space-y-4 md:col-span-6 lg:col-span-6'>
+          <div className='relative h-full w-full'>
+            <DirectionAwareHover imageUrl='/battlestation.webp'>
+              <p className='mb-1 font-medium'>The Battlestation</p>
+              <p className='max-w-[430px] text-xs'>
+                <span className='font-medium'>Specs</span>: AMD Ryzen 5 7500F,
+                AMD Radeon RX 6700 XT, 16GB RAM, 1TB Storage
+              </p>
+            </DirectionAwareHover>
+          </div>
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-1 h-[60px] md:col-span-6'>
-          Contact
+        <BentoBox className='col-span-3 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'>
+          <p className='text-fg/80 text-sm'>Last update: 27 January 2026</p>
+          <Signature className='*:fill-fg *:stroke-fg w-10' />
         </BentoBox>
       </div>
     </Section>
