@@ -83,7 +83,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div className='relative z-10 flex h-80 w-full py-16'>
+    <div className='relative z-10 flex h-60 w-full items-center pt-14 md:h-80 md:pt-16 lg:items-start lg:py-16'>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: [0.1, 0.25, 0.4, 0.5, 0.75, 1] }}
@@ -92,7 +92,7 @@ export default function HeroSection() {
       >
         <Section id='hero' className='py-0! w-full'>
           <div className='space-y-2 px-4 py-10 md:px-0 lg:py-20'>
-            <h1 className='font-pacifico text-fg text-2xl md:text-3xl xl:text-6xl'>
+            <h1 className='font-pacifico text-fg text-4xl md:text-5xl xl:text-6xl'>
               Hi, I am Abam
             </h1>
             <h2 className='text-fg/90 text-base lg:text-lg'>

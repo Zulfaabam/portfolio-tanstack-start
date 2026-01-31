@@ -38,7 +38,7 @@ export default function BentoGridSection() {
               layout='fullWidth'
               className='max-h-[356px] w-[736px] rounded-xl object-cover object-[25%_75%]'
             />
-            <p className='text-justify text-sm leading-6'>
+            <p className='text-justify text-[13px] leading-6 md:text-sm'>
               Name’s Zulfa Fatah Akbar Ahmad. You can call me Abam, a Frontend
               Developer with 3+ years of experience building production-grade
               web applications using React, Next.js, TypeScript, TailwindCSS,
@@ -49,7 +49,7 @@ export default function BentoGridSection() {
           </div>
           <div className='ml-auto flex items-center gap-2'>
             <a
-              className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'
+              className='btn-rounded self-end'
               href='/CV_ZULFA.pdf'
               target='_blank'
               rel='noopener noreferrer'
@@ -61,7 +61,7 @@ export default function BentoGridSection() {
               </span>
             </a>
             <a
-              className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'
+              className='btn-rounded self-end'
               href='mailto:zulfafatahakbar@gmail.com'
             >
               Let's Talk{' '}
@@ -93,10 +93,7 @@ export default function BentoGridSection() {
               </div>
             </div>
           </div>
-          <Link
-            to='/journey'
-            className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'
-          >
+          <Link to='/journey' className='btn-rounded self-end'>
             Full Journey{' '}
             <span>
               <IconCircleArrowRight size={22} strokeWidth={1.5} />
@@ -119,19 +116,30 @@ export default function BentoGridSection() {
         </BentoBox>
       </div>
       <div className='text-fg grid w-full auto-cols-min grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
-        <BentoBox className='col-span-1 row-span-3 flex h-[276px] justify-between gap-[36px] md:col-span-6'>
-          <div className='h-full'>
+        <BentoBox className='col-span-3 row-span-3 flex h-full flex-col-reverse gap-4 md:col-span-6 md:h-[276px] md:flex-row md:gap-[36px] lg:justify-between'>
+          <div className='flex w-full justify-end md:hidden'>
+            <button className='btn-rounded'>
+              Shuffle{' '}
+              <Image
+                src='/icons/reload.svg'
+                alt='reload'
+                width={22}
+                height={22}
+              />
+            </button>
+          </div>
+          <div className='h-[244px] md:h-full md:w-1/2'>
             {loadingTechStack ? (
               <div className='h-4 w-8 animate-pulse rounded-xl bg-gray-400'></div>
             ) : (
               <TechStackBox
                 techStack={techStack}
-                className='h-full *:h-full *:w-[218px]'
+                className='h-full *:h-full *:w-full *:lg:w-[218px]'
               />
             )}
             {error && <p>Error loading tech stack</p>}
           </div>
-          <div className='flex flex-col justify-between'>
+          <div className='flex flex-col justify-between md:w-1/2'>
             <div className='space-y-6'>
               <h6 className='font-pixelify-sans font-medium'>
                 Play the Stack!
@@ -140,7 +148,7 @@ export default function BentoGridSection() {
                 Try to reorder my tech stack for a surprise!
               </p>
             </div>
-            <button className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'>
+            <button className='btn-rounded md:flex! hidden self-end'>
               Shuffle{' '}
               <Image
                 src='/icons/reload.svg'
@@ -161,17 +169,14 @@ export default function BentoGridSection() {
               <FeaturedProjects />
             </div>
           </div>
-          <Link
-            to='/projects'
-            className='border-fg flex items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'
-          >
+          <Link to='/projects' className='btn-rounded self-end'>
             Projects{' '}
             <span>
               <IconCircleArrowRight size={22} strokeWidth={1.5} />
             </span>
           </Link>
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-4 h-[276px] space-y-4 md:col-span-6 lg:col-span-6'>
+        <BentoBox className='col-span-3 row-span-4 h-[276px] space-y-4 md:col-span-6 lg:col-span-6'>
           <div className='relative h-full w-full'>
             <div className='absolute inset-0 rounded-lg bg-black/50' />
             <Image
@@ -186,7 +191,7 @@ export default function BentoGridSection() {
             </p>
           </div>
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'>
+        <BentoBox className='col-span-3 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'>
           <p className='text-fg/80 text-sm'>Last update: 27 January 2026</p>
           <Signature className='*:fill-fg *:stroke-fg w-10' />
         </BentoBox>
