@@ -119,52 +119,7 @@ export default function BentoGridSection() {
       </div>
       <div className='text-fg grid w-full auto-cols-min grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
         <BentoBox className='col-span-3 row-span-3 flex h-full flex-col-reverse gap-4 md:col-span-6 md:h-[276px] md:flex-row md:gap-[36px] lg:justify-between'>
-          <div className='flex w-full justify-end md:hidden'>
-            <RippleButton>
-              <RippleButton.Text>Shuffle</RippleButton.Text>
-              <RippleButton.Icon>
-                <Image
-                  src='/icons/reload.svg'
-                  alt='reload'
-                  width={22}
-                  height={22}
-                />
-              </RippleButton.Icon>
-            </RippleButton>
-          </div>
-          <div className='h-[244px] md:h-full md:w-1/2'>
-            {loadingTechStack ? (
-              <div className='h-4 w-8 animate-pulse rounded-xl bg-gray-400'></div>
-            ) : error ? (
-              <p>Error loading tech stack</p>
-            ) : (
-              <TechStackBox
-                techStack={techStack}
-                className='h-full *:h-full *:w-full *:lg:w-[218px]'
-              />
-            )}
-          </div>
-          <div className='flex flex-col justify-between md:w-1/2'>
-            <div className='space-y-6'>
-              <h6 className='font-pixelify-sans font-medium'>
-                Play the Stack!
-              </h6>
-              <p className='text-sm'>
-                Try to reorder my tech stack for a surprise!
-              </p>
-            </div>
-            <RippleButton className='md:flex! hidden self-end'>
-              <RippleButton.Text>Shuffle</RippleButton.Text>
-              <RippleButton.Icon>
-                <Image
-                  src='/icons/reload.svg'
-                  alt='reload'
-                  width={22}
-                  height={22}
-                />
-              </RippleButton.Icon>
-            </RippleButton>
-          </div>
+          <TechStackBox />
         </BentoBox>
         {/* <BentoBox className='col-span-1 row-span-3 h-[276px] md:col-span-3'>
           <PixelPlayground />
