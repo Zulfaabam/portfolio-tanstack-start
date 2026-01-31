@@ -1,4 +1,3 @@
-import ProjectCard from './ui/project-card';
 import { useQuery } from '@tanstack/react-query';
 import { getFeaturedProjects } from '@/lib/server/project';
 import { DirectionAwareHover } from './ui/direction-aware-hover';

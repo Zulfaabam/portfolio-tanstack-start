@@ -1,8 +1,5 @@
 import Section from '../section';
-import { techStack as techStackBackup } from '@/lib/consts';
 import TechStackBox from '../tech-stack-box';
-import { useQuery } from '@tanstack/react-query';
-import { getTechStack } from '@/lib/server/tech-stack';
 import BentoBox from '../bento-box';
 import { Image } from '@unpic/react';
 import {
@@ -17,22 +14,11 @@ import { DirectionAwareHover } from '../ui/direction-aware-hover';
 import RippleButton from '../ui/ripple-btn';
 
 export default function BentoGridSection() {
-  const {
-    data,
-    error,
-    isLoading: loadingTechStack,
-  } = useQuery({
-    queryKey: ['techStack'],
-    queryFn: () => getTechStack(),
-  });
-
-  const techStack = data?.data ?? techStackBackup;
-
   return (
-    <Section id='about' className='py-0! space-y-6'>
+    <Section id='about' className='py-0! space-y-4 xl:space-y-6'>
       <div className='text-fg grid w-full grid-flow-row grid-cols-1 grid-rows-4 gap-4 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-3 lg:grid-cols-12 lg:grid-rows-2 xl:gap-6'>
-        <BentoBox className='col-span-1 row-span-2 flex h-[576px] flex-col justify-between sm:col-span-2 lg:col-span-9'>
-          <div className='space-y-6'>
+        <BentoBox className='col-span-1 row-span-2 flex h-[568px] flex-col justify-between sm:col-span-2 lg:col-span-9 lg:h-[576px]'>
+          <div className='space-y-4 lg:space-y-6'>
             <Image
               src='/abam-working.webp'
               layout='fullWidth'

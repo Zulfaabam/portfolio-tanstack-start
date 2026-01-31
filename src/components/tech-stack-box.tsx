@@ -5,35 +5,23 @@ import { useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import RippleButton from './ui/ripple-btn';
 import { Image } from '@unpic/react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getTechStack } from '@/lib/server/tech-stack';
 import { techStack as techStackBackup } from '@/lib/consts';
 
-export interface TechStack {
-  id: number;
-  name: string;
-}
-
 export interface TechStackBoxProps {
-  // techStack: TechStack[];
   className?: string;
 }
 
-export default function TechStackBox({
-  // techStack,
-  className,
-}: TechStackBoxProps) {
+export default function TechStackBox({ className }: TechStackBoxProps) {
   const {
     data,
     error,
     isLoading: loadingTechStack,
-    refetch,
   } = useQuery({
     queryKey: ['techStack'],
     queryFn: () => getTechStack(),
   });
-
-  const queryClient = useQueryClient();
 
   const techStack = data?.data ?? techStackBackup;
 
@@ -100,7 +88,6 @@ export default function TechStackBox({
 
       if (checkRightAnswer(sortedStackId)) {
         triggerConfetti();
-        console.log('correct');
       }
     });
 
@@ -132,8 +119,8 @@ export default function TechStackBox({
           </RippleButton.Icon>
         </RippleButton>
       </div>
-      <div className='h-full *:h-full *:w-full *:lg:w-[218px]'>
-        <div className='swapy-container mx-auto flex size-40 flex-col justify-between border border-dashed p-1'>
+      <div className='h-[244px] md:w-1/2 lg:h-full'>
+        <div className='swapy-container mx-auto flex size-40 h-full w-full flex-col justify-between border border-dashed p-1 lg:w-[218px]'>
           {techStack?.map((tech, idx) => (
             <div data-swapy-slot={idx + 1} key={tech.id}>
               <div data-swapy-item={tech.id}>
