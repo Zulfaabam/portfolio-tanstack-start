@@ -1,6 +1,6 @@
 import { boxClasses } from '@/lib/consts';
 import { cn } from '@/lib/utils';
-import Chip from '../ui/chip';
+import Chip from './ui/chip';
 import { motion } from 'framer-motion';
 import { createSwapy } from 'swapy';
 import { useEffect } from 'react';
@@ -12,9 +12,13 @@ export interface TechStack {
 
 export interface TechStackBoxProps {
   techStack: TechStack[];
+  className?: string;
 }
 
-export default function TechStackBox({ techStack }: TechStackBoxProps) {
+export default function TechStackBox({
+  techStack,
+  className,
+}: TechStackBoxProps) {
   const sortedStackId = structuredClone(techStack)
     .sort((a, b) => {
       if (a.name < b.name) {
@@ -56,26 +60,18 @@ export default function TechStackBox({ techStack }: TechStackBoxProps) {
       initial={{ y: -10, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
-      className={cn(
-        'mx-auto flex w-full flex-col gap-2',
-        // boxClasses,
-      )}
+      className={cn('mx-auto flex w-full flex-col gap-2', className)}
     >
       <div className='swapy-container mx-auto flex size-40 flex-col justify-between border border-dashed p-1'>
         {techStack?.map((tech, idx) => (
           <div data-swapy-slot={idx + 1} key={tech.id}>
             <div data-swapy-item={tech.id}>
               <div className='bg-fg text-darker cursor-pointer py-0.5 text-center'>
-                <p className='text-xs'>{tech.name}</p>
+                <p className='font-pixelify-sans text-[13px]'>{tech.name}</p>
               </div>
             </div>
           </div>
         ))}
-      </div>
-      <div className='text-center'>
-        <p className='text-fg/80 text-[10px] sm:text-xs'>
-          Try sorting the stack!
-        </p>
       </div>
     </motion.div>
   );

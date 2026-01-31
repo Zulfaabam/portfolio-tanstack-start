@@ -2,7 +2,7 @@ import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 import Chip from './chip';
 import { Image } from '@unpic/react';
 import { motion } from 'framer-motion';
-import { TechStack } from '../about/tech-stack-box';
+import { TechStack } from '../tech-stack-box';
 import { useMatchRoute } from '@tanstack/react-router';
 
 export interface ProjectCardProps {

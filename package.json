@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@fontsource-variable/pixelify-sans": "^5.2.7",
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.86.0",
     "@tabler/icons-react": "^3.35.0",

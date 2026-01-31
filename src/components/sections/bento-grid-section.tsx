@@ -1,36 +1,20 @@
 import Section from '../section';
 import { techStack as techStackBackup } from '@/lib/consts';
-import { getSupabaseServerClient } from '@/lib/supabase/server';
-import TechStackBox, { TechStack } from '../about/tech-stack-box';
-import { createServerFn } from '@tanstack/react-start';
+import TechStackBox from '../tech-stack-box';
 import { useQuery } from '@tanstack/react-query';
+import { getTechStack } from '@/lib/server/tech-stack';
 import BentoBox from '../bento-box';
 import { Image } from '@unpic/react';
 import {
   IconCircleArrowDown,
   IconCircleArrowRight,
   IconCircleArrowUpRight,
+  IconReload,
 } from '@tabler/icons-react';
-import FeaturedProjects from './featured-projects';
+import FeaturedProjects from '../featured-projects';
 import PixelPlayground from '../pixel-playground';
 import { Link } from '@tanstack/react-router';
-
-export const getTechStack = createServerFn({ method: 'GET' }).handler(
-  async (): Promise<{
-    data: TechStack[];
-    error: { message: string } | null;
-  }> => {
-    const supabase = getSupabaseServerClient();
-
-    const { data, error } = await supabase
-      .from('tech_stack')
-      .select('*')
-      .eq('is_main_tech', true);
-
-    if (error) throw new Error(error.message);
-    return { data, error };
-  },
-);
+import Signature from '../ui/signature';
 
 export default function BentoGridSection() {
   const {
@@ -135,20 +119,43 @@ export default function BentoGridSection() {
         </BentoBox>
       </div>
       <div className='text-fg grid w-full auto-cols-min grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
-        <BentoBox className='col-span-1 row-span-3 h-[276px] space-y-6 md:col-span-3'>
-          <h6 className='font-medium'>Tech Stack</h6>
-          {loadingTechStack ? (
-            <div className='h-4 w-8 animate-pulse rounded-xl bg-gray-400'></div>
-          ) : (
-            <TechStackBox techStack={techStack} />
-          )}
-          {error && <p>Error loading tech stack</p>}
+        <BentoBox className='col-span-1 row-span-3 flex h-[276px] justify-between gap-[36px] md:col-span-6'>
+          <div className='h-full'>
+            {loadingTechStack ? (
+              <div className='h-4 w-8 animate-pulse rounded-xl bg-gray-400'></div>
+            ) : (
+              <TechStackBox
+                techStack={techStack}
+                className='h-full *:h-full *:w-[218px]'
+              />
+            )}
+            {error && <p>Error loading tech stack</p>}
+          </div>
+          <div className='flex flex-col justify-between'>
+            <div className='space-y-6'>
+              <h6 className='font-pixelify-sans font-medium'>
+                Play the Stack!
+              </h6>
+              <p className='text-sm'>
+                Try to reorder my tech stack for a surprise!
+              </p>
+            </div>
+            <button className='border-fg flex cursor-pointer items-center gap-0.5 self-end rounded-full border py-1 pl-2 pr-1 text-sm'>
+              Shuffle{' '}
+              <Image
+                src='/icons/reload.svg'
+                alt='reload'
+                width={22}
+                height={22}
+              />
+            </button>
+          </div>
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-3 h-[276px] md:col-span-3'>
+        {/* <BentoBox className='col-span-1 row-span-3 h-[276px] md:col-span-3'>
           <PixelPlayground />
-        </BentoBox>
+        </BentoBox> */}
         <BentoBox className='col-span-3 flex h-[492px] flex-col justify-between md:col-span-6 md:row-span-6'>
-          <div>
+          <div className='space-y-6'>
             <h6 className='font-medium'>Featured Projects</h6>
             <div className='w-full'>
               <FeaturedProjects />
@@ -179,8 +186,9 @@ export default function BentoGridSection() {
             </p>
           </div>
         </BentoBox>
-        <BentoBox className='col-span-1 row-span-1 flex h-[60px] items-center justify-end md:col-span-6'>
+        <BentoBox className='col-span-1 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'>
           <p className='text-fg/80 text-sm'>Last update: 27 January 2026</p>
+          <Signature className='*:fill-fg *:stroke-fg w-10' />
         </BentoBox>
       </div>
     </Section>
