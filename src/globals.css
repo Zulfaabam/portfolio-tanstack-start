@@ -13,6 +13,7 @@
   --color-fg: #eaf0f5;
   --color-dark: #171717;
   --color-darker: #141414;
+  --color-darkest: #0c0c0c;
 }
 
 @theme inline {
