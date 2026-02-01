@@ -23,13 +23,13 @@ export const Route = createFileRoute('/')({
 function Home() {
   return (
     <div className='relative pb-24'>
-      <div className='bg-linear-to-b from-dark via-dark w-full to-black'>
+      <div className='bg-linear-to-b to-darkest w-full from-black via-black'>
         <HeroSection />
         <BentoGridSection />
       </div>
-      <div className='bg-earth-from-space absolute bottom-0 h-96 w-full bg-black/60 bg-cover bg-no-repeat bg-blend-hard-light'></div>
+      <div className='bg-earth-from-space bg-darkest/60 absolute bottom-0 h-96 w-full bg-cover bg-no-repeat bg-blend-hard-light'></div>
       <ShootingStars />
-      <StarsBackground />
+      <StarsBackground starDensity={0.0003} />
     </div>
   );
 }
