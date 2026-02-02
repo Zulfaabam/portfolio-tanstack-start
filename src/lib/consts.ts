@@ -48,15 +48,10 @@ export const menu = [
 ];
 
 export const techStack = [
-  { name: 'JavaScript', id: 1 },
-  { name: 'HTML', id: 2 },
-  { name: 'CSS', id: 3 },
-  { name: 'TypeScript', id: 4 },
-  { name: 'React', id: 5 },
-  { name: 'React Native', id: 6 },
-  { name: 'Redux', id: 7 },
-  { name: 'Next.js', id: 8 },
-  { name: 'TailwindCSS', id: 9 },
+  { name: 'React', id: 1 },
+  { name: 'Next.js', id: 2 },
+  { name: 'TailwindCSS', id: 3 },
+  { name: 'TypeScript', id: 8 },
 ];
 
 export const imgLists = [

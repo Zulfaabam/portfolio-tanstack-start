@@ -27,22 +27,11 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
     },
   });
 
-  console.log('techStack', techStack?.data);
-
-  const sortedStackId = structuredClone(techStack?.data ?? techStackBackup)
-    .sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-      return 0;
-    })
-    .map((d) => d.id.toString());
-
   const shuffle = () => {
-    console.log('shuffle');
+    console.log(
+      'shuffle',
+      techStack?.data?.sort(() => Math.random() - 0.5),
+    );
   };
 
   const triggerConfetti = () => {
@@ -79,18 +68,41 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
   useEffect(() => {
     const container = document.querySelector('.swapy-container');
 
-    const swapy = createSwapy(container, {
+    if (!container) return;
+
+    const swapy = createSwapy(container!, {
       swapMode: 'hover',
     });
 
     swapy.onSwapEnd(({ data }) => {
+      console.log('data', data);
+
+      const sortedStack = structuredClone(
+        data.array.map((d) => d.itemId as string),
+      ).sort((a, b) => {
+        if (a < b) {
+          return -1;
+        }
+        if (a > b) {
+          return 1;
+        }
+        return 0;
+      });
+
       const checkRightAnswer = (arr2: (string | null)[]) =>
         data.array.map((d) => d.itemId).length === arr2.length &&
         data.array
           .map((d) => d.itemId)
           .every((element, index) => element === arr2[index]);
 
-      if (checkRightAnswer(sortedStackId)) {
+      console.log(
+        data.array.map((d) => d.itemId),
+        'sorted',
+        sortedStack,
+      );
+      console.log('result', checkRightAnswer(sortedStack));
+
+      if (checkRightAnswer(sortedStack)) {
         triggerConfetti();
       }
     });
@@ -124,10 +136,10 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
         </RippleButton>
       </div>
       <div className='h-[244px] md:w-1/2 lg:h-full'>
-        <div className='swapy-container mx-auto flex size-40 h-full w-full flex-col justify-between border border-dashed p-1 lg:w-[218px]'>
+        <div className='swapy-container flex h-full w-full flex-col justify-between border border-dashed p-1 lg:w-[218px]'>
           {techStack?.data?.map((tech, idx) => (
             <div data-swapy-slot={idx + 1} key={tech.id}>
-              <div data-swapy-item={tech.id}>
+              <div data-swapy-item={tech.name}>
                 <div className='bg-fg text-darker cursor-pointer py-0.5 text-center'>
                   <p className='font-pixelify-sans text-[13px]'>{tech.name}</p>
                 </div>
