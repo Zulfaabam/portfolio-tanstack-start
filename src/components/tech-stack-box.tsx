@@ -15,17 +15,21 @@ export interface TechStackBoxProps {
 
 export default function TechStackBox({ className }: TechStackBoxProps) {
   const {
-    data,
+    data: techStack,
     error,
     isLoading: loadingTechStack,
   } = useQuery({
     queryKey: ['techStack'],
     queryFn: () => getTechStack(),
+    placeholderData: {
+      data: techStackBackup,
+      error: null,
+    },
   });
 
-  const techStack = data?.data ?? techStackBackup;
+  console.log('techStack', techStack?.data);
 
-  const sortedStackId = structuredClone(techStack)
+  const sortedStackId = structuredClone(techStack?.data ?? techStackBackup)
     .sort((a, b) => {
       if (a.name < b.name) {
         return -1;
@@ -121,7 +125,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
       </div>
       <div className='h-[244px] md:w-1/2 lg:h-full'>
         <div className='swapy-container mx-auto flex size-40 h-full w-full flex-col justify-between border border-dashed p-1 lg:w-[218px]'>
-          {techStack?.map((tech, idx) => (
+          {techStack?.data?.map((tech, idx) => (
             <div data-swapy-slot={idx + 1} key={tech.id}>
               <div data-swapy-item={tech.id}>
                 <div className='bg-fg text-darker cursor-pointer py-0.5 text-center'>

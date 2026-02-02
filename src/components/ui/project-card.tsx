@@ -2,14 +2,14 @@ import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 import Chip from './chip';
 import { Image } from '@unpic/react';
 import { motion } from 'framer-motion';
-import { TechStack } from '../tech-stack-box';
 import { useMatchRoute } from '@tanstack/react-router';
+import { ProjectTechStack } from 'types';
 
 export interface ProjectCardProps {
   image: string;
   title: string;
   description: string;
-  tech_stack?: TechStack[];
+  tech_stack?: ProjectTechStack[];
   github_url: string;
   live_url: string;
   idx: number;

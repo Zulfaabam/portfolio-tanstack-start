@@ -18,3 +18,8 @@ export interface TechStack {
 export interface TechStack2 {
   name: string;
 }
+
+export interface ProjectTechStack {
+  id: number;
+  name: string;
+}

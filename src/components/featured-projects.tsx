@@ -1,15 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { getFeaturedProjects } from '@/lib/server/project';
 import { DirectionAwareHover } from './ui/direction-aware-hover';
-import { Project } from 'types';
+import { Project, ProjectTechStack } from 'types';
 import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
 type FeaturedProject = Omit<Project, 'tech_stack'> & {
-  tech_stack: {
-    id: number;
-    name: string;
-  }[];
+  tech_stack: ProjectTechStack[];
 };
 
 export default function FeaturedProjects() {
