@@ -56,6 +56,9 @@ importers:
       '@types/canvas-confetti':
         specifier: ^1.9.0
         version: 1.9.0
+      '@uidotdev/usehooks':
+        specifier: ^2.4.1
+        version: 2.4.1(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       '@unpic/react':
         specifier: ^1.0.1
         version: 1.0.1(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -2065,6 +2068,13 @@ packages:
   '@typescript-eslint/visitor-keys@8.48.1':
     resolution: {integrity: sha512-BmxxndzEWhE4TIEEMBs8lP3MBWN3jFPs/p6gPm/wkv02o41hI6cq9AuSmGAaTTHPtA1FTi2jBre4A9rm5ZmX+Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@uidotdev/usehooks@2.4.1':
+    resolution: {integrity: sha512-1I+RwWyS+kdv3Mv0Vmc+p0dPYH0DTRAo04HLyXReYBL9AeseDWUJyi4THuksBJcu9F0Pih69Ak150VDnqbVnXg==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
 
   '@unpic/core@1.0.2':
     resolution: {integrity: sha512-wZFg5K///uWutEKXS2PJeZZ1jpVj1Ao75pxBcDXbp5QVg7l347gUX/Q2w+cQdBBghHbJE+ndRaaVvnt8ACmiVQ==}
@@ -6785,6 +6795,11 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.48.1
       eslint-visitor-keys: 4.2.1
+
+  '@uidotdev/usehooks@2.4.1(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
+    dependencies:
+      react: 19.2.1
+      react-dom: 19.2.1(react@19.2.1)
 
   '@unpic/core@1.0.2':
     dependencies:

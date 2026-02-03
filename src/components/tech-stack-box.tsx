@@ -27,13 +27,6 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
     },
   });
 
-  const shuffle = () => {
-    console.log(
-      'shuffle',
-      techStack?.data?.sort(() => Math.random() - 0.5),
-    );
-  };
-
   const triggerConfetti = () => {
     const defaults = {
       spread: 360,
@@ -75,8 +68,6 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
     });
 
     swapy.onSwapEnd(({ data }) => {
-      console.log('data', data);
-
       const sortedStack = structuredClone(
         data.array.map((d) => d.itemId as string),
       ).sort((a, b) => {
@@ -94,13 +85,6 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
         data.array
           .map((d) => d.itemId)
           .every((element, index) => element === arr2[index]);
-
-      console.log(
-        data.array.map((d) => d.itemId),
-        'sorted',
-        sortedStack,
-      );
-      console.log('result', checkRightAnswer(sortedStack));
 
       if (checkRightAnswer(sortedStack)) {
         triggerConfetti();
@@ -122,7 +106,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
         className,
       )}
     >
-      <div className='flex w-full justify-end md:hidden'>
+      {/* <div className='flex w-full justify-end md:hidden'>
         <RippleButton>
           <RippleButton.Text>Shuffle</RippleButton.Text>
           <RippleButton.Icon>
@@ -134,7 +118,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
             />
           </RippleButton.Icon>
         </RippleButton>
-      </div>
+      </div> */}
       <div className='h-[244px] md:w-1/2 lg:h-full'>
         <div className='swapy-container flex h-full w-full flex-col justify-between border border-dashed p-1 lg:w-[218px]'>
           {techStack?.data?.map((tech, idx) => (
@@ -155,7 +139,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
             Try to reorder my tech stack for a surprise!
           </p>
         </div>
-        <RippleButton className='md:flex! hidden self-end' onClick={shuffle}>
+        {/* <RippleButton className='md:flex! hidden self-end' onClick={shuffle}>
           <RippleButton.Text>Shuffle</RippleButton.Text>
           <RippleButton.Icon>
             <Image
@@ -165,7 +149,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
               height={22}
             />
           </RippleButton.Icon>
-        </RippleButton>
+        </RippleButton> */}
       </div>
     </motion.div>
   );
