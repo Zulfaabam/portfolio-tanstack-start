@@ -15,31 +15,17 @@ export interface TechStackBoxProps {
 
 export default function TechStackBox({ className }: TechStackBoxProps) {
   const {
-    data,
+    data: techStack,
     error,
     isLoading: loadingTechStack,
   } = useQuery({
     queryKey: ['techStack'],
     queryFn: () => getTechStack(),
+    placeholderData: {
+      data: techStackBackup,
+      error: null,
+    },
   });
-
-  const techStack = data?.data ?? techStackBackup;
-
-  const sortedStackId = structuredClone(techStack)
-    .sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-      return 0;
-    })
-    .map((d) => d.id.toString());
-
-  const shuffle = () => {
-    console.log('shuffle');
-  };
 
   const triggerConfetti = () => {
     const defaults = {
@@ -75,18 +61,32 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
   useEffect(() => {
     const container = document.querySelector('.swapy-container');
 
-    const swapy = createSwapy(container, {
+    if (!container) return;
+
+    const swapy = createSwapy(container!, {
       swapMode: 'hover',
     });
 
     swapy.onSwapEnd(({ data }) => {
+      const sortedStack = structuredClone(
+        data.array.map((d) => d.itemId as string),
+      ).sort((a, b) => {
+        if (a < b) {
+          return -1;
+        }
+        if (a > b) {
+          return 1;
+        }
+        return 0;
+      });
+
       const checkRightAnswer = (arr2: (string | null)[]) =>
         data.array.map((d) => d.itemId).length === arr2.length &&
         data.array
           .map((d) => d.itemId)
           .every((element, index) => element === arr2[index]);
 
-      if (checkRightAnswer(sortedStackId)) {
+      if (checkRightAnswer(sortedStack)) {
         triggerConfetti();
       }
     });
@@ -106,7 +106,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
         className,
       )}
     >
-      <div className='flex w-full justify-end md:hidden'>
+      {/* <div className='flex w-full justify-end md:hidden'>
         <RippleButton>
           <RippleButton.Text>Shuffle</RippleButton.Text>
           <RippleButton.Icon>
@@ -118,12 +118,12 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
             />
           </RippleButton.Icon>
         </RippleButton>
-      </div>
+      </div> */}
       <div className='h-[244px] md:w-1/2 lg:h-full'>
-        <div className='swapy-container mx-auto flex size-40 h-full w-full flex-col justify-between border border-dashed p-1 lg:w-[218px]'>
-          {techStack?.map((tech, idx) => (
+        <div className='swapy-container flex h-full w-full flex-col justify-between border border-dashed p-1 lg:w-[218px]'>
+          {techStack?.data?.map((tech, idx) => (
             <div data-swapy-slot={idx + 1} key={tech.id}>
-              <div data-swapy-item={tech.id}>
+              <div data-swapy-item={tech.name}>
                 <div className='bg-fg text-darker cursor-pointer py-0.5 text-center'>
                   <p className='font-pixelify-sans text-[13px]'>{tech.name}</p>
                 </div>
@@ -139,7 +139,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
             Try to reorder my tech stack for a surprise!
           </p>
         </div>
-        <RippleButton className='md:flex! hidden self-end' onClick={shuffle}>
+        {/* <RippleButton className='md:flex! hidden self-end' onClick={shuffle}>
           <RippleButton.Text>Shuffle</RippleButton.Text>
           <RippleButton.Icon>
             <Image
@@ -149,7 +149,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
               height={22}
             />
           </RippleButton.Icon>
-        </RippleButton>
+        </RippleButton> */}
       </div>
     </motion.div>
   );

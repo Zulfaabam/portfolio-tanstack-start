@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { useWindowSize } from '@uidotdev/usehooks';
 
 export const DirectionAwareHover = ({
   imageUrl,
@@ -17,6 +17,8 @@ export const DirectionAwareHover = ({
   className?: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
+
+  const size = useWindowSize();
 
   const [direction, setDirection] = useState<
     'top' | 'bottom' | 'left' | 'right' | string
@@ -72,7 +74,7 @@ export const DirectionAwareHover = ({
           className='relative h-full w-full'
           initial='initial'
           whileHover={direction}
-          whileTap={direction}
+          whileInView={size?.width! < 768 ? direction : 'initial'}
           exit='exit'
         >
           <motion.div className='absolute inset-0 z-10 hidden h-full w-full bg-black/40 transition duration-500 group-hover/card:block' />
@@ -149,11 +151,11 @@ const textVariants = {
     opacity: 0,
   },
   top: {
-    y: -20,
+    y: 2,
     opacity: 1,
   },
   bottom: {
-    y: 2,
+    y: -2,
     opacity: 1,
   },
   left: {
@@ -161,7 +163,7 @@ const textVariants = {
     opacity: 1,
   },
   right: {
-    x: 20,
+    x: 2,
     opacity: 1,
   },
 };
