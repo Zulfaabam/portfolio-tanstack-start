@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { getFeaturedProjects } from '@/lib/server/project';
-import { DirectionAwareHover } from './ui/direction-aware-hover';
 import { Project, ProjectTechStack } from 'types';
 import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
+import ProjectCard from './ui/project-card';
 
 type FeaturedProject = Omit<Project, 'tech_stack'> & {
   tech_stack: ProjectTechStack[];
@@ -33,7 +33,8 @@ export default function FeaturedProjects() {
   const handleScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft } = scrollRef.current;
-      const itemWidth = 472 + 16;
+      const isMobile = window.innerWidth < 768;
+      const itemWidth = isMobile ? 280 + 16 : 364 + 16;
       const index = Math.round(scrollLeft / itemWidth);
       setActiveIndex(index);
     }
@@ -41,7 +42,8 @@ export default function FeaturedProjects() {
 
   const scrollToIndex = (index: number) => {
     if (scrollRef.current) {
-      const itemWidth = 472 + 16;
+      const isMobile = window.innerWidth < 768;
+      const itemWidth = isMobile ? 280 + 16 : 364 + 16;
       scrollRef.current.scrollTo({
         left: index * itemWidth,
         behavior: 'smooth',
@@ -51,11 +53,34 @@ export default function FeaturedProjects() {
   };
 
   return (
-    <div className='flex w-full flex-col gap-4'>
+    <div className='flex w-full flex-col gap-[23px]'>
+      <div className='flex items-center justify-between px-4'>
+        <h6 className='font-medium'>Featured Projects</h6>
+        <div className='flex justify-center gap-2'>
+          {projects?.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => scrollToIndex(idx)}
+              className={cn(
+                'h-2 cursor-pointer rounded-full transition-all duration-300',
+                activeIndex === idx
+                  ? 'bg-fg w-8'
+                  : 'bg-fg/20 hover:bg-fg/40 w-2',
+              )}
+              aria-label={`Go to project ${idx + 1}`}
+            />
+          ))}
+        </div>
+      </div>
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className='flex w-full snap-x snap-mandatory gap-3 overflow-x-scroll pl-1 scrollbar-hide *:snap-center lg:gap-4'
+        className={cn(
+          'flex w-full snap-x snap-mandatory gap-2 overflow-x-scroll py-px pr-4 scrollbar-hide *:snap-center lg:gap-4',
+          {
+            'pl-4': activeIndex === 0,
+          },
+        )}
       >
         {error ? (
           <p className='text-center text-red-400 sm:col-span-2'>
@@ -63,31 +88,15 @@ export default function FeaturedProjects() {
           </p>
         ) : (
           projects?.map((p) => (
-            <DirectionAwareHover
+            <ProjectCard
               key={p.id}
-              imageUrl={p.image}
-              className='h-[265px]! w-[472px]! shrink-0'
-              imageClassName='object-cover'
-            >
-              <p className='font-medium'>{p.title}</p>
-              <p className='max-w-[400px] text-sm'>{p.description}</p>
-            </DirectionAwareHover>
+              idx={p.id}
+              className='h-[355px] w-[280px] shrink-0 md:w-[364px]'
+              imageClassName='h-[180px]! md:h-[200px]!'
+              {...p}
+            />
           ))
         )}
-      </div>
-
-      <div className='flex justify-center gap-2'>
-        {projects?.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => scrollToIndex(idx)}
-            className={cn(
-              'h-2 cursor-pointer rounded-full transition-all duration-300',
-              activeIndex === idx ? 'bg-fg w-8' : 'bg-fg/20 hover:bg-fg/40 w-2',
-            )}
-            aria-label={`Go to project ${idx + 1}`}
-          />
-        ))}
       </div>
     </div>
   );

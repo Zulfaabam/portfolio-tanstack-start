@@ -75,7 +75,13 @@ function Projects() {
             </p>
           ) : (
             projects?.map((p, idx) => (
-              <ProjectCard key={p.id} idx={idx + 1} {...p} />
+              <ProjectCard
+                key={p.id}
+                idx={idx + 1}
+                {...p}
+                className='h-[350px] md:h-[400px]'
+                imageClassName='h-[180px]! md:h-[200px]!'
+              />
             ))
           )}
         </div>

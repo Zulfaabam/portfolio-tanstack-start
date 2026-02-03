@@ -110,19 +110,16 @@ export default function BentoGridSection() {
         {/* <BentoBox className='col-span-1 row-span-3 h-[276px] md:col-span-3'>
           <PixelPlayground />
         </BentoBox> */}
-        <BentoBox className='col-span-3 flex h-[492px] flex-col justify-between md:col-span-6 md:row-span-6'>
-          <div className='space-y-6'>
-            <h6 className='font-medium'>Featured Projects</h6>
-            <div className='w-full'>
-              <FeaturedProjects />
-            </div>
+        <BentoBox className='px-0! col-span-3 flex h-[492px] flex-col justify-between md:col-span-6 md:row-span-6'>
+          <FeaturedProjects />
+          <div className='w-fit self-end px-4'>
+            <RippleButton as={Link} to='/projects'>
+              <RippleButton.Text>Projects</RippleButton.Text>
+              <RippleButton.Icon>
+                <IconCircleArrowRight size={22} strokeWidth={1.5} />
+              </RippleButton.Icon>
+            </RippleButton>
           </div>
-          <RippleButton as={Link} to='/projects' className='self-end'>
-            <RippleButton.Text>Projects</RippleButton.Text>
-            <RippleButton.Icon>
-              <IconCircleArrowRight size={22} strokeWidth={1.5} />
-            </RippleButton.Icon>
-          </RippleButton>
         </BentoBox>
         <BentoBox className='col-span-3 row-span-4 h-[276px] space-y-4 md:col-span-6 lg:col-span-6'>
           <div className='relative h-full w-full'>
