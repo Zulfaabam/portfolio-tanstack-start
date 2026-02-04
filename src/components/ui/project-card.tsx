@@ -1,7 +1,7 @@
 import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 import Chip from './chip';
 import { Image } from '@unpic/react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useMatchRoute } from '@tanstack/react-router';
 import { ProjectTechStack } from 'types';
 import { cn } from '@/lib/utils';

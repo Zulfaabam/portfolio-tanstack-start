@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { IconArrowRight } from '@tabler/icons-react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Link } from '@tanstack/react-router';
 import { CSSProperties } from 'react';
 
@@ -11,7 +11,7 @@ export default function MyJourneyRing() {
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
       transition={{ delay: 0.4 }}
-      className='group relative rounded-2xl bg-secondary bg-opacity-30 p-4 lg:col-start-9 lg:col-end-13 lg:p-5 xl:col-start-10'
+      className='bg-secondary group relative rounded-2xl bg-opacity-30 p-4 lg:col-start-9 lg:col-end-13 lg:p-5 xl:col-start-10'
     >
       <Link
         to='/journey'
@@ -25,7 +25,7 @@ export default function MyJourneyRing() {
         <h6 className='text-2xl sm:hidden'>MY JOURNEY</h6>
         <IconArrowRight
           size={72}
-          className='animate-bounce-horizontal text-accent transition-all duration-300 sm:text-fg sm:group-hover:animate-bounce-horizontal sm:group-hover:text-accent'
+          className='text-accent sm:text-fg sm:group-hover:text-accent animate-bounce-horizontal transition-all duration-300 sm:group-hover:animate-bounce-horizontal'
         />
       </Link>
     </motion.div>
