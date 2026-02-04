@@ -160,7 +160,7 @@ export default function BentoGridSection() {
           transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box col-span-3 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'
         >
-          <p className='text-fg/80 text-sm'>Last update: 27 January 2026</p>
+          <p className='text-fg/80 text-sm'>Last update: 04 February 2026</p>
           <Signature className='*:fill-fg *:stroke-fg w-10' />
         </motion.div>
       </div>
