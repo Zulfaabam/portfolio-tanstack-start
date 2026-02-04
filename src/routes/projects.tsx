@@ -63,8 +63,7 @@ function Projects() {
                 key={p.id}
                 idx={idx + 1}
                 {...p}
-                className='h-[350px] md:h-[450px]'
-                // imageClassName='aspect-[16/10]'
+                className='h-[400px] md:h-[450px]'
               />
             ))
           )}

@@ -55,7 +55,7 @@ export default function ProjectCard({
         className,
       )}
     >
-      <div className='space-y-1 lg:space-y-2'>
+      <div className='space-y-2'>
         <motion.div
           // whileHover={{
           //   scale: 1.5,
@@ -80,7 +80,7 @@ export default function ProjectCard({
             {tech_stack?.map((tech, idx) => (
               <p
                 key={tech.id}
-                className='text-fg space-x-1 text-[10px] font-light uppercase'
+                className='text-fg space-x-1 text-[10px] uppercase'
               >
                 <span>{tech.name}</span>
                 {idx !== tech_stack.length - 1 && (
@@ -93,14 +93,10 @@ export default function ProjectCard({
         </div>
       </div>
       <div className='flex w-full flex-col justify-between gap-2 px-4 pb-4'>
-        <p className='text-fg/80 line-clamp-3 text-xs font-light md:text-sm'>
-          {description}
-        </p>
+        <p className='text-fg line-clamp-3 text-sm'>{description}</p>
         <div className='h-px w-full bg-[#d9d9d9]'></div>
-        <div className='flex items-center justify-between gap-1 text-xs font-light uppercase lg:gap-2'>
-          {!github_url && !live_url && (
-            <p className='text-fg font-light'>Privated</p>
-          )}
+        <div className='flex items-center justify-between gap-1 text-xs uppercase lg:gap-2'>
+          {!github_url && !live_url && <p className='text-fg'>Privated</p>}
           {github_url && (
             <motion.a
               whileHover={{ translateY: -2 }}
