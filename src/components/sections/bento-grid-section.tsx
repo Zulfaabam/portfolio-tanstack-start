@@ -116,18 +116,16 @@ export default function BentoGridSection() {
       <div className='text-fg grid w-full auto-cols-min grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
         <motion.div
           initial={{ filter: 'blur(10px)', opacity: 0 }}
-          whileInView={{ filter: 'blur(0px)', opacity: 1 }}
+          animate={{ filter: 'blur(0px)', opacity: 1 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          viewport={{ once: true }}
           className='bento-box col-span-3 row-span-3 flex h-full flex-col-reverse gap-4 md:col-span-6 md:h-[276px] md:flex-row md:gap-9 lg:justify-between'
         >
           <TechStackBox />
         </motion.div>
         <motion.div
           initial={{ filter: 'blur(10px)', opacity: 0 }}
-          whileInView={{ filter: 'blur(0px)', opacity: 1 }}
+          animate={{ filter: 'blur(0px)', opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          viewport={{ once: true }}
           className='bento-box px-0! col-span-3 flex h-[492px] flex-col justify-between md:col-span-6 md:row-span-6'
         >
           <FeaturedProjects />
@@ -142,9 +140,8 @@ export default function BentoGridSection() {
         </motion.div>
         <motion.div
           initial={{ filter: 'blur(10px)', opacity: 0 }}
-          whileInView={{ filter: 'blur(0px)', opacity: 1 }}
+          animate={{ filter: 'blur(0px)', opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-          viewport={{ once: true }}
           className='bento-box col-span-3 row-span-4 h-[276px] space-y-4 md:col-span-6 lg:col-span-6'
         >
           <div className='relative h-full w-full'>
@@ -159,9 +156,8 @@ export default function BentoGridSection() {
         </motion.div>
         <motion.div
           initial={{ filter: 'blur(10px)', opacity: 0 }}
-          whileInView={{ filter: 'blur(0px)', opacity: 1 }}
+          animate={{ filter: 'blur(0px)', opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          viewport={{ once: true }}
           className='bento-box col-span-3 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'
         >
           <p className='text-fg/80 text-sm'>Last update: 27 January 2026</p>
