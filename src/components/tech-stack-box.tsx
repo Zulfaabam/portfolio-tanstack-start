@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { createSwapy } from 'swapy';
 import { useEffect } from 'react';
 import confetti from 'canvas-confetti';

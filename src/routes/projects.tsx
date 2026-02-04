@@ -1,29 +1,13 @@
 import ErrorContent from '@/components/error-content';
 import Section from '@/components/section';
 import ProjectCard from '@/components/ui/project-card';
-import { getSupabaseServerClient } from '@/lib/supabase/server';
+import { getProjects } from '@/lib/server/project';
 import { createFileRoute } from '@tanstack/react-router';
-import { createServerFn } from '@tanstack/react-start';
 import { Project } from 'types';
 
 type ProjectData = Omit<Project, 'tech_stack'> & {
   tech_stack: { id: number; name: string }[];
 };
-
-export const getProjects = createServerFn({ method: 'GET' }).handler(
-  async (): Promise<{ data: Project[]; error: { message: string } | null }> => {
-    const supabase = getSupabaseServerClient();
-
-    const { data, error } = await supabase
-      .from('projects')
-      .select(
-        `*, tech_stack:project_tech_stack(id:tech_stack_id, tech_stack(name))`,
-      );
-
-    if (error) throw new Error(error.message);
-    return { data, error };
-  },
-);
 
 export const Route = createFileRoute('/projects')({
   errorComponent: ({ reset }) => (
@@ -79,8 +63,7 @@ function Projects() {
                 key={p.id}
                 idx={idx + 1}
                 {...p}
-                className='h-[350px] md:h-[400px]'
-                imageClassName='h-[180px]! md:h-[200px]!'
+                className='h-[400px] md:h-[450px]'
               />
             ))
           )}

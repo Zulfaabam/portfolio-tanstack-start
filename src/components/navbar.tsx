@@ -4,7 +4,7 @@ import {
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
-} from 'framer-motion';
+} from 'motion/react';
 import { Link, useMatchRoute } from '@tanstack/react-router';
 import { menu } from '@/lib/consts';
 import { cn } from '@/lib/utils';
@@ -82,7 +82,7 @@ const SlideNav = () => {
           opacity: 0,
         }));
       }}
-      className='relative mx-auto flex w-fit rounded-full border-2 border-dark bg-fg p-1'
+      className='border-dark bg-fg relative mx-auto flex w-fit rounded-full border-2 p-1'
     >
       {menu.map((m) => (
         <Menu key={m.id} setPosition={setPosition}>
@@ -125,7 +125,7 @@ const Menu = ({
           opacity: 1,
         });
       }}
-      className='relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-fg mix-blend-difference md:px-5 md:py-2.5 md:text-sm'
+      className='text-fg relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase mix-blend-difference md:px-5 md:py-2.5 md:text-sm'
     >
       {children}
     </li>
@@ -138,7 +138,7 @@ const Cursor = ({ position }: { position: Position }) => {
       animate={{
         ...position,
       }}
-      className='absolute z-0 h-7 rounded-full bg-dark md:h-10'
+      className='bg-dark absolute z-0 h-7 rounded-full md:h-10'
     />
   );
 };

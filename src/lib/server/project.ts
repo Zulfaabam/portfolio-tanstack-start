@@ -20,3 +20,18 @@ export const getFeaturedProjects = createServerFn({ method: 'GET' }).handler(
     return { data, error };
   },
 );
+
+export const getProjects = createServerFn({ method: 'GET' }).handler(
+  async (): Promise<{ data: Project[]; error: { message: string } | null }> => {
+    const supabase = getSupabaseServerClient();
+
+    const { data, error } = await supabase
+      .from('projects')
+      .select(
+        `*, tech_stack:project_tech_stack(id:tech_stack_id, tech_stack(name))`,
+      );
+
+    if (error) throw new Error(error.message);
+    return { data, error };
+  },
+);

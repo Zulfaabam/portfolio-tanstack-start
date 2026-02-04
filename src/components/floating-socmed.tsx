@@ -4,7 +4,7 @@ import {
   IconBrandLinkedin,
 } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 export default function FloatingSocmed() {
   const [isClient, setIsClient] = useState(false);
@@ -38,7 +38,7 @@ export default function FloatingSocmed() {
         if (width && width > 1280) return;
         setVisible(!visible);
       }}
-      className={`fixed top-1/4 z-20 flex h-32 w-10 -translate-y-1/4 flex-col items-center justify-evenly rounded-r-2xl bg-fg/90 xl:h-44 xl:w-12 ${visible ? 'left-0' : '-left-7'} transition-all duration-300 xl:left-0`}
+      className={`bg-fg/90 fixed top-1/4 z-20 flex h-32 w-10 -translate-y-1/4 flex-col items-center justify-evenly rounded-r-2xl xl:h-44 xl:w-12 ${visible ? 'left-0' : '-left-7'} transition-all duration-300 xl:left-0`}
     >
       <a
         href='https://github.com/Zulfaabam'

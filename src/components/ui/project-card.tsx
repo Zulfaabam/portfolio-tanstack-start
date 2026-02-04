@@ -1,7 +1,7 @@
 import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 import Chip from './chip';
 import { Image } from '@unpic/react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useMatchRoute } from '@tanstack/react-router';
 import { ProjectTechStack } from 'types';
 import { cn } from '@/lib/utils';
@@ -51,11 +51,11 @@ export default function ProjectCard({
       //         : 0.65,
       // }}
       className={cn(
-        'bg-dark-gray flex flex-col justify-between rounded-xl shadow-[0_0_4px_0px_rgba(234,240,245,0.6)]',
+        'bg-dark-gray flex flex-col justify-between rounded-lg shadow-[0_0_4px_0px_rgba(234,240,245,0.6)]',
         className,
       )}
     >
-      <div className='space-y-1 lg:space-y-2'>
+      <div className='space-y-2'>
         <motion.div
           // whileHover={{
           //   scale: 1.5,
@@ -75,30 +75,28 @@ export default function ProjectCard({
             className='h-full w-full rounded-t-lg object-cover'
           />
         </motion.div>
-        <div className='px-4'>
-          <h6 className='text-fg text-base'>{title}</h6>
-          <p className='text-fg/80 line-clamp-2 text-[11px] font-light md:text-sm'>
-            {description}
-          </p>
+        <div className='space-y-0.5 px-4'>
+          <div className='flex items-center'>
+            {tech_stack?.map((tech, idx) => (
+              <p
+                key={tech.id}
+                className='text-fg space-x-1 text-[10px] uppercase'
+              >
+                <span>{tech.name}</span>
+                {idx !== tech_stack.length - 1 && (
+                  <span className='mr-1'>/</span>
+                )}
+              </p>
+            ))}
+          </div>
+          <h6 className='text-fg text-xl'>{title}</h6>
         </div>
       </div>
       <div className='flex w-full flex-col justify-between gap-2 px-4 pb-4'>
-        <div className='flex items-center'>
-          {tech_stack?.map((tech, idx) => (
-            <p
-              key={tech.id}
-              className='text-fg space-x-1 text-[10px] font-light uppercase'
-            >
-              <span>{tech.name}</span>
-              {idx !== tech_stack.length - 1 && <span className='mr-1'>/</span>}
-            </p>
-          ))}
-        </div>
+        <p className='text-fg line-clamp-3 text-sm'>{description}</p>
         <div className='h-px w-full bg-[#d9d9d9]'></div>
-        <div className='flex items-center justify-between gap-1 text-[10px] font-light uppercase lg:gap-2'>
-          {!github_url && !live_url && (
-            <p className='text-fg font-light'>Privated</p>
-          )}
+        <div className='flex items-center justify-between gap-1 text-xs uppercase lg:gap-2'>
+          {!github_url && !live_url && <p className='text-fg'>Privated</p>}
           {github_url && (
             <motion.a
               whileHover={{ translateY: -2 }}

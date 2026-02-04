@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { cn } from '@/lib/utils';
-import { useWindowSize } from '@uidotdev/usehooks';
 
 export const DirectionAwareHover = ({
   imageUrl,
@@ -17,18 +16,15 @@ export const DirectionAwareHover = ({
   className?: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-
-  const size = useWindowSize();
-
+  const [isHovered, setIsHovered] = useState(false);
   const [direction, setDirection] = useState<
     'top' | 'bottom' | 'left' | 'right' | string
   >('left');
 
-  const handleMouseEnter = (
+  const updateDirection = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
     if (!ref.current) return;
-
     const direction = getDirection(event, ref.current);
     switch (direction) {
       case 0:
@@ -49,6 +45,26 @@ export const DirectionAwareHover = ({
     }
   };
 
+  const handleMouseEnter = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    updateDirection(event);
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (isHovered) {
+      setIsHovered(false);
+      return;
+    }
+    updateDirection(event);
+    setIsHovered(true);
+  };
+
   const getDirection = (
     ev: React.MouseEvent<HTMLDivElement, MouseEvent>,
     obj: HTMLElement,
@@ -63,6 +79,8 @@ export const DirectionAwareHover = ({
   return (
     <motion.div
       onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
       ref={ref}
       className={cn(
         'group/card relative h-full w-full overflow-hidden rounded-lg bg-transparent',
@@ -73,14 +91,18 @@ export const DirectionAwareHover = ({
         <motion.div
           className='relative h-full w-full'
           initial='initial'
-          whileHover={direction}
-          whileInView={size?.width! < 768 ? direction : 'initial'}
+          animate={isHovered ? direction : 'initial'}
           exit='exit'
         >
-          <motion.div className='absolute inset-0 z-10 hidden h-full w-full bg-black/40 transition duration-500 group-hover/card:block' />
+          <motion.div
+            className={cn(
+              'absolute inset-0 z-10 hidden h-full w-full bg-black/60 transition duration-500',
+              isHovered && 'block',
+            )}
+          />
           <motion.div
             variants={variants}
-            className='relative h-full w-full bg-gray-50 dark:bg-black'
+            className='relative h-full w-full select-none bg-gray-50 dark:bg-black'
             transition={{
               duration: 0.2,
               ease: 'easeOut',
@@ -89,7 +111,7 @@ export const DirectionAwareHover = ({
             <img
               alt='image'
               className={cn(
-                'h-full w-full scale-[1.15] object-cover',
+                'h-full w-full scale-[1.15] select-none object-cover',
                 imageClassName,
               )}
               width='1000'
