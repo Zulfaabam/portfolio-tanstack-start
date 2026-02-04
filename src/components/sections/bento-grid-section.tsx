@@ -1,6 +1,5 @@
 import Section from '../section';
 import TechStackBox from '../tech-stack-box';
-import BentoBox from '../bento-box';
 import { Image } from '@unpic/react';
 import {
   IconCircleArrowDown,
@@ -12,12 +11,19 @@ import { Link } from '@tanstack/react-router';
 import Signature from '../ui/signature';
 import { DirectionAwareHover } from '../ui/direction-aware-hover';
 import RippleButton from '../ui/ripple-btn';
+import { miniJourneys } from '@/lib/consts';
+import { motion } from 'motion/react';
 
 export default function BentoGridSection() {
   return (
     <Section id='about' className='py-0! space-y-4 xl:space-y-6'>
       <div className='text-fg grid w-full grid-flow-row grid-cols-1 grid-rows-4 gap-4 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-3 lg:grid-cols-12 lg:grid-rows-2 xl:gap-6'>
-        <BentoBox className='col-span-1 row-span-2 flex h-[568px] flex-col justify-between sm:col-span-2 lg:col-span-9 lg:h-[576px]'>
+        <motion.div
+          initial={{ filter: 'blur(10px)', opacity: 0 }}
+          animate={{ filter: 'blur(0px)', opacity: 1 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          className='bento-box col-span-1 row-span-2 flex h-[568px] flex-col justify-between sm:col-span-2 lg:col-span-9 lg:h-[576px]'
+        >
           <div className='space-y-4 lg:space-y-6'>
             <Image
               src='/abam-working.webp'
@@ -58,27 +64,26 @@ export default function BentoGridSection() {
               </RippleButton.Icon>
             </RippleButton>
           </div>
-        </BentoBox>
-        <BentoBox className='col-span-1 row-span-1 flex h-[276px] flex-col justify-between lg:col-span-3'>
+        </motion.div>
+        <motion.div
+          initial={{ filter: 'blur(10px)', opacity: 0 }}
+          animate={{ filter: 'blur(0px)', opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+          className='bento-box col-span-1 row-span-1 flex h-[276px] flex-col justify-between lg:col-span-3'
+        >
           <div className='space-y-6'>
             <h6 className='font-medium'>Journey</h6>
             <div className='space-y-4'>
-              <div className='space-y-0.5'>
-                <p className='text-sm'>Frontend Dev @ Eksad</p>
-                <div className='text-fg/80 flex items-center gap-2 text-xs'>
-                  <p>Jakarta, Indonesia</p>
-                  <span className='bg-fg/40 h-3 w-px'></span>
-                  <p>2025</p>
+              {miniJourneys.map((j) => (
+                <div className='space-y-0.5' key={j.id}>
+                  <p className='text-sm'>{j.job}</p>
+                  <div className='text-fg/80 flex items-center gap-2 text-xs'>
+                    <p>{j.place}</p>
+                    <span className='bg-fg/40 h-3 w-px'></span>
+                    <p>{j.year}</p>
+                  </div>
                 </div>
-              </div>
-              <div className='space-y-0.5'>
-                <p className='text-sm'>Frontend Dev @ Bukit Vista</p>
-                <div className='text-fg/80 flex h-full items-center gap-2 text-xs'>
-                  <p>Bali, Indonesia</p>
-                  <span className='bg-fg/40 h-3 w-px'></span>
-                  <p>2022 - 2024</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
           <RippleButton as={Link} to='/journey' className='self-end'>
@@ -87,8 +92,13 @@ export default function BentoGridSection() {
               <IconCircleArrowRight size={22} strokeWidth={1.5} />
             </RippleButton.Icon>
           </RippleButton>
-        </BentoBox>
-        <BentoBox className='col-span-1 row-span-1 h-[276px] space-y-6 lg:col-span-3'>
+        </motion.div>
+        <motion.div
+          initial={{ filter: 'blur(10px)', opacity: 0 }}
+          animate={{ filter: 'blur(0px)', opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          className='bento-box col-span-1 row-span-1 h-[276px] space-y-6 lg:col-span-3'
+        >
           <h6 className='font-medium'>What I'm Up to</h6>
           <div className='space-y-2'>
             <p className='text-fg flex gap-2 text-sm'>
@@ -101,16 +111,25 @@ export default function BentoGridSection() {
               <span>👨‍💻</span> Working on this portfolio
             </p>
           </div>
-        </BentoBox>
+        </motion.div>
       </div>
       <div className='text-fg grid w-full auto-cols-min grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
-        <BentoBox className='col-span-3 row-span-3 flex h-full flex-col-reverse gap-4 md:col-span-6 md:h-[276px] md:flex-row md:gap-[36px] lg:justify-between'>
+        <motion.div
+          initial={{ filter: 'blur(10px)', opacity: 0 }}
+          whileInView={{ filter: 'blur(0px)', opacity: 1 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+          className='bento-box col-span-3 row-span-3 flex h-full flex-col-reverse gap-4 md:col-span-6 md:h-[276px] md:flex-row md:gap-9 lg:justify-between'
+        >
           <TechStackBox />
-        </BentoBox>
-        {/* <BentoBox className='col-span-1 row-span-3 h-[276px] md:col-span-3'>
-          <PixelPlayground />
-        </BentoBox> */}
-        <BentoBox className='px-0! col-span-3 flex h-[492px] flex-col justify-between md:col-span-6 md:row-span-6'>
+        </motion.div>
+        <motion.div
+          initial={{ filter: 'blur(10px)', opacity: 0 }}
+          whileInView={{ filter: 'blur(0px)', opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+          className='bento-box px-0! col-span-3 flex h-[492px] flex-col justify-between md:col-span-6 md:row-span-6'
+        >
           <FeaturedProjects />
           <div className='w-fit self-end px-4'>
             <RippleButton as={Link} to='/projects'>
@@ -120,8 +139,14 @@ export default function BentoGridSection() {
               </RippleButton.Icon>
             </RippleButton>
           </div>
-        </BentoBox>
-        <BentoBox className='col-span-3 row-span-4 h-[276px] space-y-4 md:col-span-6 lg:col-span-6'>
+        </motion.div>
+        <motion.div
+          initial={{ filter: 'blur(10px)', opacity: 0 }}
+          whileInView={{ filter: 'blur(0px)', opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+          className='bento-box col-span-3 row-span-4 h-[276px] space-y-4 md:col-span-6 lg:col-span-6'
+        >
           <div className='relative h-full w-full'>
             <DirectionAwareHover imageUrl='/battlestation.webp'>
               <p className='mb-1 font-medium'>The Battlestation</p>
@@ -131,11 +156,17 @@ export default function BentoGridSection() {
               </p>
             </DirectionAwareHover>
           </div>
-        </BentoBox>
-        <BentoBox className='col-span-3 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'>
+        </motion.div>
+        <motion.div
+          initial={{ filter: 'blur(10px)', opacity: 0 }}
+          whileInView={{ filter: 'blur(0px)', opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+          className='bento-box col-span-3 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'
+        >
           <p className='text-fg/80 text-sm'>Last update: 27 January 2026</p>
           <Signature className='*:fill-fg *:stroke-fg w-10' />
-        </BentoBox>
+        </motion.div>
       </div>
     </Section>
   );
