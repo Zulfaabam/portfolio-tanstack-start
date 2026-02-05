@@ -28,11 +28,11 @@ const journeys = [
               Fulltime Frontend Developer
             </p>
           </div>
-          <p className='text-sm text-fg/80 md:text-base lg:max-w-36 lg:text-right'>
+          <p className='text-fg/80 text-sm md:text-base lg:max-w-36 lg:text-right'>
             January 2025 - Now
           </p>
         </div>
-        <p className='text-xs font-normal text-fg md:text-base'>
+        <p className='text-fg text-xs font-normal md:text-base'>
           ✅ Developed an auction platform for JBA Indonesia (
           <a
             href='https://lelang.jba.co.id/'
@@ -69,11 +69,11 @@ const journeys = [
               Fulltime Frontend Developer
             </p>
           </div>
-          <p className='text-sm text-fg/80 md:text-base lg:max-w-36 lg:text-right'>
+          <p className='text-fg/80 text-sm md:text-base lg:max-w-36 lg:text-right'>
             August 2023 - August 2024
           </p>
         </div>
-        <p className='text-xs font-normal text-fg md:text-base'>
+        <p className='text-fg text-xs font-normal md:text-base'>
           ✅ Responsible for designing and developing UI on the web app using
           React, Redux, Context, Material UI, and TailwindCSS <br />✅
           Maintaining and enhancing performance for the web apps <br />✅
@@ -105,11 +105,11 @@ const journeys = [
               Part-time Frontend Developer
             </p>
           </div>
-          <p className='text-sm text-fg/80 md:text-base lg:max-w-36 lg:text-right'>
+          <p className='text-fg/80 text-sm md:text-base lg:max-w-36 lg:text-right'>
             July 2022 - August 2023
           </p>
         </div>
-        <p className='text-xs font-normal text-fg md:text-base'>
+        <p className='text-fg text-xs font-normal md:text-base'>
           ✅ Responsible for creating UI on the web app using React, Redux,
           Material UI, and TailwindCSS <br />✅ Maintaining web apps <br />✅
           Solving many errors and bugs that occur on the web apps
@@ -132,11 +132,11 @@ const journeys = [
               Frontend Developer Intern
             </p>
           </div>
-          <p className='text-sm text-fg/80 md:text-base lg:max-w-36 lg:text-right'>
+          <p className='text-fg/80 text-sm md:text-base lg:max-w-36 lg:text-right'>
             February 2022 - June 2022
           </p>
         </div>
-        <p className='text-xs font-normal text-fg md:text-base'>
+        <p className='text-fg text-xs font-normal md:text-base'>
           ✅ Responsible for creating UI on the web app using React, Redux,
           Material UI, and TailwindCSS <br />✅ Solving errors and bugs that
           occur on the web apps
@@ -159,11 +159,11 @@ const journeys = [
               Frontend Developer Intern
             </p>
           </div>
-          <p className='text-sm text-fg/80 md:text-base lg:max-w-36 lg:text-right'>
+          <p className='text-fg/80 text-sm md:text-base lg:max-w-36 lg:text-right'>
             September 2021 - March 2022
           </p>
         </div>
-        <p className='text-xs font-normal text-fg md:text-base'>
+        <p className='text-fg text-xs font-normal md:text-base'>
           ✅ Responsible for building the UI for the English Learner ID official
           website using HTML, CSS, JavaScript, and Bootstrap
         </p>
@@ -178,7 +178,7 @@ const journeys = [
 
 export const Route = createFileRoute('/journey')({
   errorComponent: ({ reset }) => (
-    <div className='relative flex min-h-screen w-full items-center bg-dark'>
+    <div className='bg-dark relative flex min-h-screen w-full items-center'>
       <Section
         id='error-journey'
         className='flex flex-col items-center justify-center gap-2'
@@ -192,7 +192,7 @@ export const Route = createFileRoute('/journey')({
 
 function Journey() {
   return (
-    <div className='relative min-h-screen w-full overflow-hidden bg-dark'>
+    <div className='bg-dark relative min-h-screen w-full overflow-hidden'>
       <Section id='journey'>
         <Timeline data={journeys} />
       </Section>

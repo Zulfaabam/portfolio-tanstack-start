@@ -28,22 +28,19 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   return (
     <div className='bg-dark w-full' ref={containerRef}>
-      <div className='mx-auto max-w-7xl px-4 py-10 md:px-8 lg:px-10 lg:py-20'>
-        <h2 className='text-fg mb-4 max-w-4xl text-2xl md:text-4xl'>
+      <div className='mx-auto px-4 py-10 md:px-0 lg:py-20'>
+        <h2 className='text-fg mb-4 max-w-5xl text-2xl md:text-4xl'>
           My Journey So Far
         </h2>
-        <p className='text-fg max-w-sm text-sm md:text-base'>
+        <p className='text-fg max-w-md text-sm md:text-base'>
           Here&apos;s my timeline of 3+ years learning, growing, and working as
           a developer.
         </p>
       </div>
 
-      <div ref={ref} className='relative mx-auto max-w-7xl pb-20'>
+      <div ref={ref} className='px-0! relative max-w-5xl pb-20'>
         {data.map((item, index) => (
-          <div
-            key={index}
-            className='flex justify-start pt-10 md:gap-10 md:pt-40'
-          >
+          <div key={index} className='flex justify-start md:gap-10'>
             <div className='sticky top-40 z-40 flex max-w-xs flex-col items-center self-start md:w-full md:flex-row lg:max-w-sm'>
               <div className='bg-dark absolute left-3 flex h-10 w-10 items-center justify-center rounded-full md:left-3'>
                 <div className='h-4 w-4 rounded-full border border-neutral-700 bg-neutral-800 p-2' />
@@ -53,7 +50,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               </h3>
             </div>
 
-            <div className='relative w-full pl-20 pr-4 md:pl-4'>
+            <div className='relative w-full pl-20 md:pl-4'>
               <h3 className='mb-4 block text-left text-2xl font-bold text-neutral-500 md:hidden'>
                 {item.title}
               </h3>
