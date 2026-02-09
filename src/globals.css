@@ -1,6 +1,6 @@
-@import '@fontsource-variable/outfit' layer(base);
 @import '@fontsource/pacifico' layer(base);
 @import '@fontsource-variable/pixelify-sans' layer(base);
+@import '@fontsource-variable/jetbrains-mono' layer(base);
 
 @import 'tailwindcss';
 
@@ -18,9 +18,9 @@
 }
 
 @theme inline {
-  --font-outfit: 'Outfit Variable', sans-serif;
   --font-pacifico: 'Pacifico', cursive;
   --font-pixelify-sans: 'Pixelify Sans Variable', system-ui;
+  --font-jetbrains-mono: 'JetBrains Mono Variable', monospace;
 }
 
 @utility bg-earth-from-space {

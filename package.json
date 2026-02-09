@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/pixelify-sans": "^5.2.7",
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.86.0",
@@ -41,7 +42,6 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@fontsource-variable/outfit": "^5.2.8",
     "@fontsource/pacifico": "^5.2.7",
     "@netlify/vite-plugin-tanstack-start": "^1.2.6",
     "@tanstack/devtools-vite": "^0.3.11",

@@ -102,7 +102,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
       className={cn(
-        'mx-auto flex h-full w-full flex-col-reverse gap-4 md:flex-row md:gap-[36px] lg:justify-between',
+        'mx-auto flex h-full w-full flex-col-reverse gap-4 md:flex-row md:gap-9 lg:justify-between',
         className,
       )}
     >
@@ -134,7 +134,9 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
       </div>
       <div className='flex flex-col justify-between md:w-1/2'>
         <div className='space-y-6'>
-          <h6 className='font-pixelify-sans font-medium'>Play the Stack!</h6>
+          <h6 className='font-pixelify-sans text-lg font-medium'>
+            Play the Stack!
+          </h6>
           <p className='text-sm'>
             Try to reorder my tech stack for a surprise!
           </p>

@@ -93,7 +93,9 @@ export default function ProjectCard({
         </div>
       </div>
       <div className='flex w-full flex-col justify-between gap-2 px-4 pb-4'>
-        <p className='text-fg line-clamp-3 text-sm'>{description}</p>
+        <p className='text-fg line-clamp-2 text-sm sm:line-clamp-3'>
+          {description}
+        </p>
         <div className='h-px w-full bg-[#d9d9d9]'></div>
         <div className='flex items-center justify-between gap-1 text-xs uppercase lg:gap-2'>
           {!github_url && !live_url && <p className='text-fg'>Privated</p>}
