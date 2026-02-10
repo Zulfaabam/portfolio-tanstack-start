@@ -134,7 +134,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
       </div>
       <div className='flex flex-col justify-between md:w-1/2'>
         <div className='space-y-6'>
-          <h6 className='font-pixelify-sans text-lg font-medium'>
+          <h6 className='font-pixelify-sans text-lg font-medium leading-6'>
             Play the Stack!
           </h6>
           <p className='text-sm'>
