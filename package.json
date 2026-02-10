@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@fontsource-variable/caveat": "^5.2.8",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/pixelify-sans": "^5.2.7",
     "@supabase/ssr": "^0.5.2",
