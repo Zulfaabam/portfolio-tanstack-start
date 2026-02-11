@@ -362,7 +362,7 @@ function Journey() {
       className='bg-linear-to-b to-darkest relative min-h-screen w-full overflow-hidden from-black via-black'
     >
       <Section id='journey' className='z-10 w-full'>
-        <div className='z-10 mx-auto px-4 py-10 md:px-0 lg:py-20'>
+        <div className='relative z-10 mx-auto px-4 py-10 md:px-0 lg:py-20'>
           <h2 className='text-fg mb-4 max-w-5xl text-2xl md:text-4xl'>
             My Journey So Far
           </h2>
