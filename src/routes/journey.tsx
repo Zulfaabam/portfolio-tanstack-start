@@ -1,7 +1,6 @@
 import ErrorContent from '@/components/error-content';
 import Section from '@/components/section';
 import { StarsBackground } from '@/components/ui/stars-background';
-import { Timeline } from '@/components/ui/timeline';
 import { cn } from '@/lib/utils';
 import { createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
@@ -221,7 +220,7 @@ function Journey() {
       ref={containerRef}
       className='bg-linear-to-b to-darkest relative min-h-screen w-full overflow-hidden from-black via-black'
     >
-      <Section id='journey' className='z-10'>
+      <Section id='journey' className='z-10 w-full'>
         <div className='z-10 mx-auto px-4 py-10 md:px-0 lg:py-20'>
           <h2 className='text-fg mb-4 max-w-5xl text-2xl md:text-4xl'>
             My Journey So Far
@@ -231,7 +230,8 @@ function Journey() {
             as a developer.
           </p>
         </div>
-        <div className='relative z-10 mt-32 h-fit w-full'>
+
+        <div className='relative z-10 mt-32 h-fit w-full overflow-x-hidden'>
           <div className='star-anchor1 absolute left-[30px] top-[110px] size-fit'>
             <svg
               width='77'
@@ -248,48 +248,86 @@ function Journey() {
             </svg>
           </div>
           <p className='year-journey1 text-fg font-caveat text-4xl'>2025</p>
-          <div className='journey1 text-fg h-[500px] w-1/3'>
-            <div className='relative h-full w-full'>
-              <JourneyImage
-                src='https://res.cloudinary.com/dx34xih1p/image/upload/v1764379814/me_in_asl_fj6pef.jpg'
-                className='-rotate-10 absolute -left-6 top-0'
-              />
-              <JourneyImage
-                src='https://res.cloudinary.com/dx34xih1p/image/upload/v1764379814/me_in_asl_fj6pef.jpg'
-                className='absolute left-0 top-[150px] -rotate-2'
-              />
+          <div className='content1-journey1 flex items-start gap-8'>
+            <motion.div
+              initial={{ scale: 0, x: -100, y: 150 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+              className='-rotate-10'
+            >
+              <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1764379814/me_in_asl_fj6pef.jpg' />
+            </motion.div>
+            <motion.div
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='space-y-1'
+            >
+              <p className='text-fg font-medium'>
+                PT Tiga Daya Digital Indonesia
+              </p>
+              <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
+                Frontend Developer
+              </p>
+              <p className='text-fg/80 text-sm'>January 2025 - December 2025</p>
+            </motion.div>
+          </div>
+          <div className='content2-journey1 flex items-center gap-8'>
+            <motion.div
+              initial={{ scale: 0, x: -100, y: 0 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+              className='-rotate-2'
+            >
+              <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1764379814/me_in_asl_fj6pef.jpg' />
+            </motion.div>
+            <motion.div
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='text-fg w-md space-y-2'
+            >
+              <p>Contributed in 3 projects:</p>
+              <ul className='list-disc pl-6'>
+                <li>JBA Indonesia’s Electronic Auction platform</li>
+                <li>
+                  JAVIS - The internal team’s app to manage content for auction
+                </li>
+                <li>
+                  VISION - A new micro-frontend architectured app to replace
+                  JAVIS
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+          <div className='content3-journey1 flex items-end gap-7'>
+            <motion.div
+              initial={{ scale: 0, x: -100, y: -150 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+            >
               <JourneyImage
                 src='https://res.cloudinary.com/dx34xih1p/image/upload/v1764378195/Lelang-Elektronik-JBA-Indonesia_gqigjg.png'
-                className='rotate-15 absolute -left-5 top-[315px]'
+                className='rotate-15'
               />
-              <div className='ml-[200px] space-y-14'>
-                <div className='space-y-1'>
-                  <p className='text-fg font-medium'>
-                    PT Tiga Daya Digital Indonesia
-                  </p>
-                  <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
-                    Fulltime Frontend Developer
-                  </p>
-                  <p className='text-fg/80 text-sm'>
-                    January 2025 - December 2025
-                  </p>
-                </div>
-                <div className='space-y-6'>
-                  <p>
-                    This is my latest company on my journey. Contributed in 3
-                    projects: <br /> <br /> JBA Indonesia’s Electronic Auction
-                    platform
-                    <br /> JAVIS - The internal team’s app to manage content for
-                    auction <br /> VISION - A new micro-frontend architectured
-                    app to replace JAVIS
-                  </p>
-                  <div>
-                    <p>Tech / Tools:</p>
-                    <div></div>
+            </motion.div>
+            <motion.div
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='text-fg max-w-96 space-y-2'
+            >
+              <p>Tech / Tools:</p>
+              <div className='flex flex-wrap gap-2'>
+                {[
+                  'React',
+                  'Next.js',
+                  'TypeScript',
+                  'Tailwind CSS',
+                  'Storybook',
+                  'BitBucket',
+                  'Jira',
+                ].map((tech) => (
+                  <div key={tech} className='chip'>
+                    {tech}
                   </div>
-                </div>
+                ))}
               </div>
-            </div>
+            </motion.div>
           </div>
 
           <div className='star-anchor2 absolute right-32 top-[696px] size-fit'>
@@ -307,8 +345,92 @@ function Journey() {
               />
             </svg>
           </div>
-          <div className='journey2 border-fg/80 text-fg h-fit w-fit border'>
-            content 2
+          <p className='year-journey2 text-fg font-caveat max-w-24 text-4xl'>
+            2023 - 2024
+          </p>
+          <div className='content1-journey2 flex items-start gap-8'>
+            <motion.div
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='space-y-1'
+            >
+              <p className='text-fg font-medium'>PT Bukit Vista Nusantara</p>
+              <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
+                Fulltime Frontend Developer
+              </p>
+              <p className='text-fg/80 text-sm'>August 2023 - August 2024</p>
+            </motion.div>
+            <motion.div
+              initial={{ scale: 0, x: 100, y: 150 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+              className='rotate-12'
+            >
+              <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731677218/DSC08857_l4mkg9.jpg' />
+            </motion.div>
+          </div>
+          <div className='content2-journey2 flex items-center gap-8'>
+            <motion.div
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='text-fg max-w-xl space-y-2'
+            >
+              <ul className='list-disc pl-6'>
+                <li>
+                  Maintained BIGRR - Bukit Vista's internal app to manage
+                  properties, booking calendar, finance, and more
+                </li>
+                <li>
+                  Built Tinker - a debugging tool for Bukit Vista's AI called
+                  Gaia
+                </li>
+                <li>
+                  Small contribution in BVGO app using Flutter and Bukit Vista's
+                  Website using WordPress
+                </li>
+              </ul>
+            </motion.div>
+            <motion.div
+              initial={{ scale: 0, x: 100, y: 0 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+              className='rotate-2'
+            >
+              <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731678675/Screenshot_2024-06-29_160042_dq7ivp.png' />
+            </motion.div>
+          </div>
+          <div className='content3-journey2 flex gap-7'>
+            <motion.div
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='text-fg max-w-96 space-y-2'
+            >
+              <p>Tech / Tools:</p>
+              <div className='flex flex-wrap gap-2'>
+                {[
+                  'React',
+                  'JavaScript',
+                  'Tailwind CSS',
+                  'Material UI',
+                  'Redux',
+                  'WordPress',
+                  'Flutter',
+                  'GitHub',
+                  'Trello',
+                ].map((tech) => (
+                  <div key={tech} className='chip'>
+                    {tech}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ scale: 0, x: 100, y: -150 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+            >
+              <JourneyImage
+                src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731507569/tinker_lzjuyc.png'
+                className='-rotate-5'
+              />
+            </motion.div>
           </div>
 
           <div className='star-anchor3 absolute bottom-[1081px] left-[399px] size-fit'>
@@ -322,12 +444,91 @@ function Journey() {
               <path
                 d='M0.356745 32.5715C67.7718 6.82545 68.0459 3.85148 67.7718 6.82545C67.4977 9.79943 57.7117 80.1631 57.482 78.1779C57.2523 76.1927 28.116 0.0100949 29.4681 1.0103C30.8201 2.01051 88.538 36.7098 82.7353 35.3103C78.0931 34.1906 25.882 33.0179 0.356745 32.5715Z'
                 stroke='#76C1FF'
-                stroke-width='2'
+                strokeWidth='2'
               />
             </svg>
           </div>
-          <div className='journey3 border-fg/80 text-fg h-fit w-fit border'>
-            content 3
+          <p className='year-journey3 text-fg font-caveat text-4xl'>
+            2022 - 2023
+          </p>
+          <div className='content1-journey3 flex items-start gap-8'>
+            <motion.div
+              initial={{ scale: 0, x: 100, y: 150 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+              className='-rotate-9'
+            >
+              <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731679863/bigrr-bookings_weujrk.png' />
+            </motion.div>
+            <motion.div
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='space-y-1'
+            >
+              <p className='text-fg font-medium'>PT Bukit Vista Nusantara</p>
+              <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
+                Part-time Frontend Developer
+              </p>
+              <p className='text-fg/80 text-sm'>July 2022 - August 2023</p>
+            </motion.div>
+          </div>
+          <div className='content2-journey3 flex flex-col-reverse items-center gap-4'>
+            <motion.div
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='text-fg max-w-xl space-y-2'
+            >
+              <ul className='list-disc pl-6'>
+                <li>
+                  Maintained BIGRR - Bukit Vista's internal app to manage
+                  properties, booking calendar, finance, and more
+                </li>
+                <li>
+                  Refactored almost all of BIGRR's features using modern React
+                  best practices: lazy loading, code splitting, Context API, and
+                  more
+                </li>
+              </ul>
+            </motion.div>
+            <motion.div
+              initial={{ scale: 0, x: 100, y: 0 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+              className='rotate-4'
+            >
+              <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731680448/guest-portal-es_ymmjyi.png' />
+            </motion.div>
+          </div>
+          <div className='content3-journey3 flex items-end gap-7'>
+            <motion.div
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='text-fg max-w-60 space-y-2'
+            >
+              <p>Tech / Tools:</p>
+              <div className='flex flex-wrap gap-2'>
+                {[
+                  'React',
+                  'JavaScript',
+                  'Tailwind CSS',
+                  'Material UI',
+                  'Redux',
+                  'GitHub',
+                  'Trello',
+                ].map((tech) => (
+                  <div key={tech} className='chip'>
+                    {tech}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ scale: 0, x: 100, y: -150 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+            >
+              <JourneyImage
+                src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731678851/bvw-event-calendar_a3isgq.png'
+                className='-rotate-2'
+              />
+            </motion.div>
           </div>
 
           <div className='star-anchor4 absolute bottom-[386px] left-[54px] size-fit'>
@@ -341,12 +542,86 @@ function Journey() {
               <path
                 d='M0.787176 58.4891C45.2928 1.68328 43.995 -1.00662 45.2928 1.68328C46.5905 4.37318 74.4654 69.7169 73.2455 68.134C72.0256 66.551 7.79618 16.2789 9.47032 16.4393C11.1445 16.5997 78.4898 16.592 72.7957 18.383C68.2404 19.8158 22.892 45.7174 0.787176 58.4891Z'
                 stroke='#76C1FF'
-                stroke-width='2'
+                strokeWidth='2'
               />
             </svg>
           </div>
-          <div className='journey4 border-fg/80 text-fg h-fit w-fit border'>
-            content 4
+          <p className='year-journey4 text-fg font-caveat text-4xl'>2022</p>
+          <div className='content1-journey4 flex items-start gap-8'>
+            <motion.div
+              initial={{ scale: 0, x: -100, y: 150 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+              className='-rotate-10'
+            >
+              <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731679451/certif-intern-bv_mf1pyu.png' />
+            </motion.div>
+            <motion.div
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='space-y-1'
+            >
+              <p className='text-fg font-medium'>PT Bukit Vista Nusantara</p>
+              <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
+                Frontend Developer Intern
+              </p>
+              <p className='text-fg/80 text-sm'>February 2022 - June 2022</p>
+            </motion.div>
+          </div>
+          <div className='content2-journey4 flex items-center gap-8'>
+            <motion.div
+              initial={{ scale: 0, x: -100, y: 0 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+              className='-rotate-2'
+            >
+              <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731679594/ss_prop_list_new_2_bpnxlk.png' />
+            </motion.div>
+            <motion.div
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='text-fg w-md space-y-2'
+            >
+              <ul className='list-disc pl-6'>
+                <li>
+                  Refactored some of BIGRR's features by splitting code logic,
+                  create and use reusable components, better Redux state
+                  management
+                </li>
+                <li>Learning and implementing React best practices</li>
+              </ul>
+            </motion.div>
+          </div>
+          <div className='content3-journey4 flex items-start gap-7'>
+            <motion.div
+              initial={{ scale: 0, x: -100, y: -150 }}
+              whileInView={{ scale: 1, x: 0, y: 0 }}
+            >
+              <JourneyImage
+                src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731678390/Screenshot_2024-08-14_160727_eoxzxa.png'
+                className='rotate-15'
+              />
+            </motion.div>
+            <motion.div
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              className='text-fg max-w-52 space-y-2'
+            >
+              <p>Tech / Tools:</p>
+              <div className='flex flex-wrap gap-2'>
+                {[
+                  'React',
+                  'JavaScript',
+                  'Tailwind CSS',
+                  'Material UI',
+                  'Redux',
+                  'GitHub',
+                  'Trello',
+                ].map((tech) => (
+                  <div key={tech} className='chip'>
+                    {tech}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
 
           <svg
@@ -361,6 +636,7 @@ function Journey() {
               d='M13.7204 356.651L72.7204 135.651L375.72 29.6506L692.22 10.6506L845.72 223.651L863.72 721.651L671.72 1076.15L448.72 1295.65L172.72 1621.65L93.7204 2000.65L391.22 2204.65M391.22 2204.65L729.22 2229.15M391.22 2204.65L582.72 2341.15M391.22 2204.65L460.72 2423.15'
               stroke='#EAF0F5'
               strokeOpacity='0.8'
+              strokeDasharray='2 2'
               style={{ pathLength }}
             />
 
