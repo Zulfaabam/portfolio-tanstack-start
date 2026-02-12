@@ -50,125 +50,113 @@ function Journey() {
     ease: [0.7, 0, 0.3, 1],
   };
 
-  const image1Journey1Variants: Variants = {
-    hidden: { scale: 0, x: -100, y: 150 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
+  const journey1Variants = {
+    image1: {
+      hidden: { scale: 0, x: -100, y: 150 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text1: {
+      hidden: { x: -200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+    image2: {
+      hidden: { scale: 0, x: -100, y: 0 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text2: {
+      hidden: { x: -200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+    image3: {
+      hidden: { scale: 0, x: -100, y: -150 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text3: {
+      hidden: { x: -200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+  } as const satisfies Record<string, Variants>;
 
-  const text1Journey1Variants: Variants = {
-    hidden: { x: -200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
+  const journey2Variants = {
+    image1: {
+      hidden: { scale: 0, x: 100, y: 150 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text1: {
+      hidden: { x: 200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+    image2: {
+      hidden: { scale: 0, x: 100, y: 0 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text2: {
+      hidden: { x: 200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+    image3: {
+      hidden: { scale: 0, x: 100, y: -150 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text3: {
+      hidden: { x: 200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+  } as const satisfies Record<string, Variants>;
 
-  const image2Journey1Variants: Variants = {
-    hidden: { scale: 0, x: -100, y: 0 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
+  const journey3Variants = {
+    image1: {
+      hidden: { scale: 0, x: 100, y: 150 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text1: {
+      hidden: { x: 200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+    image2: {
+      hidden: { scale: 0, x: 100, y: 0 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text2: {
+      hidden: { x: 200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+    image3: {
+      hidden: { scale: 0, x: 100, y: -150 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text3: {
+      hidden: { x: 200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+  } as const satisfies Record<string, Variants>;
 
-  const text2Journey1Variants: Variants = {
-    hidden: { x: -200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
-
-  const image3Journey1Variants: Variants = {
-    hidden: { scale: 0, x: -100, y: -150 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
-
-  const text3Journey1Variants: Variants = {
-    hidden: { x: -200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
-
-  const text1Journey2Variants: Variants = {
-    hidden: { x: 200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
-
-  const image1Journey2Variants: Variants = {
-    hidden: { scale: 0, x: 100, y: 150 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
-
-  const text2Journey2Variants: Variants = {
-    hidden: { x: 200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
-
-  const image2Journey2Variants: Variants = {
-    hidden: { scale: 0, x: 100, y: 0 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
-
-  const text3Journey2Variants: Variants = {
-    hidden: { x: 200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
-
-  const image3Journey2Variants: Variants = {
-    hidden: { scale: 0, x: 100, y: -150 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
-
-  const image1Journey3Variants: Variants = {
-    hidden: { scale: 0, x: 100, y: 150 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
-
-  const text1Journey3Variants: Variants = {
-    hidden: { x: 200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
-
-  const text2Journey3Variants: Variants = {
-    hidden: { x: 200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
-
-  const image2Journey3Variants: Variants = {
-    hidden: { scale: 0, x: 100, y: 0 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
-
-  const text3Journey3Variants: Variants = {
-    hidden: { x: 200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
-
-  const image3Journey3Variants: Variants = {
-    hidden: { scale: 0, x: 100, y: -150 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
-
-  const image1Journey4Variants: Variants = {
-    hidden: { scale: 0, x: -100, y: 150 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
-
-  const text1Journey4Variants: Variants = {
-    hidden: { x: -200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
-
-  const image2Journey4Variants: Variants = {
-    hidden: { scale: 0, x: -100, y: 0 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
-
-  const text2Journey4Variants: Variants = {
-    hidden: { x: -200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
-
-  const image3Journey4Variants: Variants = {
-    hidden: { scale: 0, x: -100, y: -150 },
-    visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-  };
-
-  const text3Journey4Variants: Variants = {
-    hidden: { x: -200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: contentTransition },
-  };
+  const journey4Variants = {
+    image1: {
+      hidden: { scale: 0, x: -100, y: 150 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text1: {
+      hidden: { x: -200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+    image2: {
+      hidden: { scale: 0, x: -100, y: 0 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text2: {
+      hidden: { x: -200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+    image3: {
+      hidden: { scale: 0, x: -100, y: -150 },
+      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+    },
+    text3: {
+      hidden: { x: -200, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: contentTransition },
+    },
+  } as const satisfies Record<string, Variants>;
 
   return (
     <div
@@ -176,7 +164,7 @@ function Journey() {
       className='bg-linear-to-b to-darkest relative min-h-screen w-full overflow-hidden from-black via-black'
     >
       <Section id='journey' className='z-10 w-full'>
-        <div className='relative z-10 mx-auto px-4 py-10 md:px-0 lg:py-20'>
+        <div className='relative z-10 mx-auto py-10 md:px-0 lg:py-20'>
           <h2 className='text-fg mb-4 max-w-5xl text-2xl md:text-4xl'>
             My Journey So Far
           </h2>
@@ -189,7 +177,7 @@ function Journey() {
         <div className='relative z-10 mt-32 h-fit w-full overflow-x-hidden'>
           <div
             ref={star1Ref}
-            className='star-anchor1 absolute left-[30px] top-[110px] size-fit'
+            className='star-anchor1 absolut left-4 top-[110px] size-fit md:left-[30px]'
           >
             <svg
               width='77'
@@ -197,6 +185,7 @@ function Journey() {
               viewBox='0 0 77 71'
               fill='none'
               xmlns='http://www.w3.org/2000/svg'
+              className='w-8 md:w-[77px]'
             >
               <path
                 d='M0.741974 55.266C49.1226 1.72204 48.0168 -1.05226 49.1226 1.72204C50.2284 4.49634 73.4511 71.6344 72.3453 69.9698C71.2395 68.3052 10.6946 13.6515 12.3533 13.9289C14.0121 14.2063 81.192 18.9227 75.3864 20.3098C70.7418 21.4195 23.6882 44.0764 0.741974 55.266Z'
@@ -205,33 +194,40 @@ function Journey() {
               />
             </svg>
           </div>
-          <p className='year-journey1 text-fg font-caveat text-4xl'>2025</p>
+          <p className='year-journey1 text-fg font-caveat text-lg md:text-4xl'>
+            2025
+          </p>
           <motion.div
             initial='hidden'
             animate={isStar1Visible ? 'visible' : 'hidden'}
-            className='content1-journey1 flex items-start gap-8'
+            className='content1-journey1 flex items-start gap-4 lg:gap-8'
           >
             <motion.div
-              variants={image1Journey1Variants}
+              variants={journey1Variants.image1}
               className='-rotate-10'
             >
               <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1764379814/me_in_asl_fj6pef.jpg' />
             </motion.div>
-            <motion.div variants={text1Journey1Variants} className='space-y-1'>
-              <p className='text-fg font-medium'>
+            <motion.div
+              variants={journey1Variants.text1}
+              className='space-y-0.5 md:space-y-1'
+            >
+              <p className='text-fg text-xs font-medium md:text-base'>
                 PT Tiga Daya Digital Indonesia
               </p>
               <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
                 Frontend Developer
               </p>
-              <p className='text-fg/80 text-sm'>January 2025 - December 2025</p>
+              <p className='text-fg/80 text-[10px] md:text-sm'>
+                January 2025 - December 2025
+              </p>
             </motion.div>
           </motion.div>
-          <motion.div className='content2-journey1 flex items-center gap-8'>
+          <motion.div className='content2-journey1 flex items-start gap-2 md:items-center md:gap-8'>
             <motion.div
               initial='hidden'
               animate={isStar1Visible ? 'visible' : 'hidden'}
-              variants={image2Journey1Variants}
+              variants={journey1Variants.image2}
               className='-rotate-2'
             >
               <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1764379814/me_in_asl_fj6pef.jpg' />
@@ -239,8 +235,8 @@ function Journey() {
             <motion.div
               initial='hidden'
               animate={isStar1Visible ? 'visible' : 'hidden'}
-              variants={text2Journey1Variants}
-              className='text-fg w-md space-y-2'
+              variants={journey1Variants.text2}
+              className='text-fg max-w-44 space-y-2 text-xs md:max-w-md md:text-base'
             >
               <p>Contributed in 3 projects:</p>
               <ul className='list-disc pl-6'>
@@ -255,11 +251,11 @@ function Journey() {
               </ul>
             </motion.div>
           </motion.div>
-          <div className='content3-journey1 flex items-end gap-7'>
+          <div className='content3-journey1 flex flex-col gap-7 md:flex-row md:items-end'>
             <motion.div
               initial='hidden'
               animate={isStar1Visible ? 'visible' : 'hidden'}
-              variants={image3Journey1Variants}
+              variants={journey1Variants.image3}
             >
               <JourneyImage
                 src='https://res.cloudinary.com/dx34xih1p/image/upload/v1764378195/Lelang-Elektronik-JBA-Indonesia_gqigjg.png'
@@ -269,11 +265,11 @@ function Journey() {
             <motion.div
               initial='hidden'
               animate={isStar1Visible ? 'visible' : 'hidden'}
-              variants={text3Journey1Variants}
-              className='text-fg max-w-96 space-y-2'
+              variants={journey1Variants.text3}
+              className='text-fg max-w-40 space-y-2 text-xs md:max-w-md md:text-base'
             >
               <p>Tech / Tools:</p>
-              <div className='flex flex-wrap gap-2'>
+              <div className='flex flex-wrap gap-1 md:gap-2'>
                 {[
                   'React',
                   'Next.js',
@@ -317,14 +313,17 @@ function Journey() {
             animate={isStar2Visible ? 'visible' : 'hidden'}
             className='content1-journey2 flex items-start gap-8'
           >
-            <motion.div variants={text1Journey2Variants} className='space-y-1'>
+            <motion.div variants={journey2Variants.text1} className='space-y-1'>
               <p className='text-fg font-medium'>PT Bukit Vista Nusantara</p>
               <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
                 Fulltime Frontend Developer
               </p>
               <p className='text-fg/80 text-sm'>August 2023 - August 2024</p>
             </motion.div>
-            <motion.div variants={image1Journey2Variants} className='rotate-12'>
+            <motion.div
+              variants={journey2Variants.image1}
+              className='rotate-12'
+            >
               <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731677218/DSC08857_l4mkg9.jpg' />
             </motion.div>
           </motion.div>
@@ -334,7 +333,7 @@ function Journey() {
             className='content2-journey2 flex items-center gap-8'
           >
             <motion.div
-              variants={text2Journey2Variants}
+              variants={journey2Variants.text2}
               className='text-fg max-w-xl space-y-2'
             >
               <ul className='list-disc pl-6'>
@@ -352,7 +351,7 @@ function Journey() {
                 </li>
               </ul>
             </motion.div>
-            <motion.div variants={image2Journey2Variants} className='rotate-2'>
+            <motion.div variants={journey2Variants.image2} className='rotate-2'>
               <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731678675/Screenshot_2024-06-29_160042_dq7ivp.png' />
             </motion.div>
           </motion.div>
@@ -362,7 +361,7 @@ function Journey() {
             className='content3-journey2 flex gap-7'
           >
             <motion.div
-              variants={text3Journey2Variants}
+              variants={journey2Variants.text3}
               className='text-fg max-w-96 space-y-2'
             >
               <p>Tech / Tools:</p>
@@ -384,7 +383,7 @@ function Journey() {
                 ))}
               </div>
             </motion.div>
-            <motion.div variants={image3Journey2Variants}>
+            <motion.div variants={journey2Variants.image3}>
               <JourneyImage
                 src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731507569/tinker_lzjuyc.png'
                 className='-rotate-5'
@@ -418,10 +417,13 @@ function Journey() {
             animate={isStar3Visible ? 'visible' : 'hidden'}
             className='content1-journey3 flex items-start gap-8'
           >
-            <motion.div variants={image1Journey3Variants} className='-rotate-9'>
+            <motion.div
+              variants={journey3Variants.image1}
+              className='-rotate-9'
+            >
               <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731679863/bigrr-bookings_weujrk.png' />
             </motion.div>
-            <motion.div variants={text1Journey3Variants} className='space-y-1'>
+            <motion.div variants={journey3Variants.text1} className='space-y-1'>
               <p className='text-fg font-medium'>PT Bukit Vista Nusantara</p>
               <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
                 Part-time Frontend Developer
@@ -435,7 +437,7 @@ function Journey() {
             className='content2-journey3 flex flex-col-reverse items-center gap-4'
           >
             <motion.div
-              variants={text2Journey3Variants}
+              variants={journey3Variants.text2}
               className='text-fg max-w-xl space-y-2'
             >
               <ul className='list-disc pl-6'>
@@ -450,7 +452,7 @@ function Journey() {
                 </li>
               </ul>
             </motion.div>
-            <motion.div variants={image2Journey3Variants} className='rotate-4'>
+            <motion.div variants={journey3Variants.image2} className='rotate-4'>
               <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731680448/guest-portal-es_ymmjyi.png' />
             </motion.div>
           </motion.div>
@@ -460,7 +462,7 @@ function Journey() {
             className='content3-journey3 flex items-end gap-7'
           >
             <motion.div
-              variants={text3Journey3Variants}
+              variants={journey3Variants.text3}
               className='text-fg max-w-60 space-y-2'
             >
               <p>Tech / Tools:</p>
@@ -480,7 +482,7 @@ function Journey() {
                 ))}
               </div>
             </motion.div>
-            <motion.div variants={image3Journey3Variants}>
+            <motion.div variants={journey3Variants.image3}>
               <JourneyImage
                 src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731678851/bvw-event-calendar_a3isgq.png'
                 className='-rotate-2'
@@ -513,12 +515,12 @@ function Journey() {
             className='content1-journey4 flex items-start gap-8'
           >
             <motion.div
-              variants={image1Journey4Variants}
+              variants={journey4Variants.image1}
               className='-rotate-10'
             >
               <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731679451/certif-intern-bv_mf1pyu.png' />
             </motion.div>
-            <motion.div variants={text1Journey4Variants} className='space-y-1'>
+            <motion.div variants={journey4Variants.text1} className='space-y-1'>
               <p className='text-fg font-medium'>PT Bukit Vista Nusantara</p>
               <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
                 Frontend Developer Intern
@@ -531,11 +533,14 @@ function Journey() {
             animate={isStar4Visible ? 'visible' : 'hidden'}
             className='content2-journey4 flex items-center gap-8'
           >
-            <motion.div variants={image2Journey4Variants} className='-rotate-2'>
+            <motion.div
+              variants={journey4Variants.image2}
+              className='-rotate-2'
+            >
               <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731679594/ss_prop_list_new_2_bpnxlk.png' />
             </motion.div>
             <motion.div
-              variants={text2Journey4Variants}
+              variants={journey4Variants.text2}
               className='text-fg w-md space-y-2'
             >
               <ul className='list-disc pl-6'>
@@ -553,14 +558,14 @@ function Journey() {
             animate={isStar4Visible ? 'visible' : 'hidden'}
             className='content3-journey4 flex items-start gap-7'
           >
-            <motion.div variants={image3Journey4Variants}>
+            <motion.div variants={journey4Variants.image3}>
               <JourneyImage
                 src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731678390/Screenshot_2024-08-14_160727_eoxzxa.png'
                 className='rotate-15'
               />
             </motion.div>
             <motion.div
-              variants={text3Journey4Variants}
+              variants={journey4Variants.text3}
               className='text-fg max-w-52 space-y-2'
             >
               <p>Tech / Tools:</p>

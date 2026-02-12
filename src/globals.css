@@ -55,7 +55,7 @@
     @apply bg-darker border-fg/60 hover:border-fg z-10 h-fit w-full rounded-2xl border p-4 transition-all ease-in;
   }
   .chip {
-    @apply border-fg/80 text-fg bg-dark h-fit w-fit rounded-lg border px-2 py-1 text-sm;
+    @apply border-fg/80 text-fg bg-dark h-fit w-fit rounded-lg border px-1.5 py-1 text-[10px] md:px-2 md:text-sm;
   }
 }
 
@@ -87,22 +87,42 @@ html {
 
 .year-journey1 {
   bottom: anchor(--star-anchor1 top);
-  right: calc(anchor(--star-anchor1 left) + -2.2rem);
+  right: calc(anchor(--star-anchor1 left) - 2.2rem);
+
+  @media (max-width: 768px) {
+    bottom: calc(anchor(top) - 1rem);
+    right: calc(anchor(left) - 2rem);
+  }
 }
 
 .content1-journey1 {
   bottom: calc(anchor(top) + 4rem);
   left: anchor(right);
+
+  @media (max-width: 768px) {
+    bottom: calc(anchor(top) + 2rem);
+    left: calc(anchor(left) + 0.5rem);
+  }
 }
 
 .content2-journey1 {
   bottom: calc(anchor(center) - 5.5rem);
   left: calc(anchor(right) + 2rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(center) - 2.5rem);
+    left: calc(anchor(right) + 0.75rem);
+  }
 }
 
 .content3-journey1 {
   top: calc(anchor(bottom) + 4.5rem);
   left: calc(anchor(right) - 1rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) + 2rem);
+    left: calc(anchor(right) - 1rem);
+  }
 }
 
 .year-journey2,

@@ -42,7 +42,7 @@ function Projects() {
   return (
     <div className='bg-dark relative min-h-screen w-full'>
       <Section id='projects'>
-        <div className='px-4 py-10 md:px-0 lg:py-20'>
+        <div className='py-10 lg:py-20'>
           <h2 className='text-fg mb-4 max-w-4xl text-2xl md:text-4xl'>
             My Projects
           </h2>
@@ -52,7 +52,7 @@ function Projects() {
             during my office work. Please take a look.
           </p>
         </div>
-        <div className='grid grid-cols-1 gap-3 px-4 sm:grid-cols-2 md:gap-6 md:px-0'>
+        <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-6'>
           {error ? (
             <p className='text-center text-red-400 sm:col-span-2'>
               {error?.message ?? 'Something when wrong!'}
