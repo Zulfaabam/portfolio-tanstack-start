@@ -161,7 +161,7 @@ export default function BentoGridSection() {
           className='bento-box col-span-3 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'
         >
           <p className='text-fg/80 text-xs md:text-sm'>
-            Last update: 04 February 2026
+            Last update: 12 February 2026
           </p>
           <Signature className='*:fill-fg *:stroke-fg w-10' />
         </motion.div>
