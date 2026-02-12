@@ -1,7 +1,4 @@
-// import { Analytics } from '@vercel/analytics/next';
 import {
-  Outlet,
-  createRootRoute,
   HeadContent,
   Scripts,
   createRootRouteWithContext,
