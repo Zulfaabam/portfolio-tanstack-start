@@ -1,7 +1,4 @@
-// import { Analytics } from '@vercel/analytics/next';
 import {
-  Outlet,
-  createRootRoute,
   HeadContent,
   Scripts,
   createRootRouteWithContext,
@@ -69,7 +66,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body id='root' className='font-outfit relative'>
+      <body id='root' className='font-jetbrains-mono relative'>
         <Navbar />
         <FloatingSocmed />
         {children}

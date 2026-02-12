@@ -1,6 +1,7 @@
-@import '@fontsource-variable/outfit' layer(base);
 @import '@fontsource/pacifico' layer(base);
 @import '@fontsource-variable/pixelify-sans' layer(base);
+@import '@fontsource-variable/jetbrains-mono' layer(base);
+@import '@fontsource-variable/caveat' layer(base);
 
 @import 'tailwindcss';
 
@@ -18,9 +19,10 @@
 }
 
 @theme inline {
-  --font-outfit: 'Outfit Variable', sans-serif;
   --font-pacifico: 'Pacifico', cursive;
   --font-pixelify-sans: 'Pixelify Sans Variable', system-ui;
+  --font-jetbrains-mono: 'JetBrains Mono Variable', monospace;
+  --font-caveat: 'Caveat Variable', cursive;
 }
 
 @utility bg-earth-from-space {
@@ -52,27 +54,137 @@
   .bento-box {
     @apply bg-darker border-fg/60 hover:border-fg z-10 h-fit w-full rounded-2xl border p-4 transition-all ease-in;
   }
+  .chip {
+    @apply border-fg/80 text-fg bg-dark h-fit w-fit rounded-lg border px-2 py-1 text-sm;
+  }
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-.text-ring {
-  --character-width: 1.25; /* In "ch" units */
+/* JOURNEY */
+.star-anchor1 {
+  anchor-name: --star-anchor1;
+}
+.star-anchor2 {
+  anchor-name: --star-anchor2;
+}
+.star-anchor3 {
+  anchor-name: --star-anchor3;
+}
+.star-anchor4 {
+  anchor-name: --star-anchor4;
 }
 
-.text-ring [style*='--index'] {
-  --inner-angle: calc((360 / var(--total)) * 1deg);
-  --radius: calc((var(--character-width, 1) / sin(var(--inner-angle))) * -1ch);
-  font-weight: 500;
-  font-family: monospace;
-  text-transform: uppercase;
-  font-size: 2rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%)
-    rotate(calc(var(--inner-angle) * var(--index)))
-    translateY(var(--radius, -5ch));
+.year-journey1,
+.content1-journey1,
+.content2-journey1,
+.content3-journey1 {
+  position: fixed;
+  position-anchor: --star-anchor1;
+}
+
+.year-journey1 {
+  bottom: anchor(--star-anchor1 top);
+  right: calc(anchor(--star-anchor1 left) + -2.2rem);
+}
+
+.content1-journey1 {
+  bottom: calc(anchor(top) + 4rem);
+  left: anchor(right);
+}
+
+.content2-journey1 {
+  bottom: calc(anchor(center) - 5.5rem);
+  left: calc(anchor(right) + 2rem);
+}
+
+.content3-journey1 {
+  top: calc(anchor(bottom) + 4.5rem);
+  left: calc(anchor(right) - 1rem);
+}
+
+.year-journey2,
+.content1-journey2,
+.content2-journey2,
+.content3-journey2 {
+  position: fixed;
+  position-anchor: --star-anchor2;
+}
+
+.year-journey2 {
+  bottom: anchor(top);
+  left: anchor(right);
+}
+
+.content1-journey2 {
+  bottom: calc(anchor(top) + 3rem);
+  right: anchor(left);
+}
+
+.content2-journey2 {
+  bottom: calc(anchor(center) - 5.5rem);
+  right: calc(anchor(left) + 2rem);
+}
+
+.content3-journey2 {
+  top: calc(anchor(bottom) + 5rem);
+  right: calc(anchor(left) - 2rem);
+}
+
+.year-journey3,
+.content1-journey3,
+.content2-journey3,
+.content3-journey3 {
+  position: fixed;
+  position-anchor: --star-anchor3;
+}
+
+.year-journey3 {
+  top: anchor(center);
+  left: anchor(right);
+}
+
+.content1-journey3 {
+  bottom: anchor(top);
+  left: calc(anchor(right) + 1rem);
+}
+
+.content2-journey3 {
+  top: calc(anchor(center) - 1rem);
+  right: calc(anchor(left) - 11rem);
+}
+
+.content3-journey3 {
+  bottom: calc(anchor(top) + 1.5rem);
+  right: calc(anchor(left) - 2rem);
+}
+
+.year-journey4,
+.content1-journey4,
+.content2-journey4,
+.content3-journey4 {
+  position: fixed;
+  position-anchor: --star-anchor4;
+}
+
+.year-journey4 {
+  bottom: anchor(top);
+  right: calc(anchor(left) - 1rem);
+}
+
+.content1-journey4 {
+  bottom: calc(anchor(top) + 4rem);
+  left: anchor(right);
+}
+
+.content2-journey4 {
+  bottom: calc(anchor(center) - 5.5rem);
+  left: calc(anchor(right) + 2rem);
+}
+
+.content3-journey4 {
+  top: calc(anchor(bottom) + 4.5rem);
+  left: calc(anchor(right) - 5rem);
 }

@@ -24,13 +24,13 @@ export default function BentoGridSection() {
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box col-span-1 row-span-2 flex h-[568px] flex-col justify-between sm:col-span-2 lg:col-span-9 lg:h-[576px]'
         >
-          <div className='space-y-4 lg:space-y-6'>
+          <div className='space-y-2 lg:space-y-4'>
             <Image
               src='/abam-working.webp'
               layout='fullWidth'
-              className='max-h-[356px] w-[736px] rounded-xl object-cover object-[25%_75%]'
+              className='max-h-[300px] w-[736px] rounded-lg object-cover object-[25%_75%] lg:max-h-[356px]'
             />
-            <p className='text-justify text-[13px] leading-6 md:text-sm'>
+            <p className='text-justify text-[13px] leading-6 lg:text-sm'>
               Name’s Zulfa Fatah Akbar Ahmad. You can call me Abam, a Frontend
               Developer with 3+ years of experience building production-grade
               web applications using React, Next.js, TypeScript, TailwindCSS,
@@ -72,7 +72,7 @@ export default function BentoGridSection() {
           className='bento-box col-span-1 row-span-1 flex h-[276px] flex-col justify-between lg:col-span-3'
         >
           <div className='space-y-6'>
-            <h6 className='font-medium'>Journey</h6>
+            <h6 className='font-semibold'>Journey</h6>
             <div className='space-y-4'>
               {miniJourneys.map((j) => (
                 <div className='space-y-0.5' key={j.id}>
@@ -99,7 +99,7 @@ export default function BentoGridSection() {
           transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box col-span-1 row-span-1 h-[276px] space-y-6 lg:col-span-3'
         >
-          <h6 className='font-medium'>What I'm Up to</h6>
+          <h6 className='font-semibold'>What I'm Up to</h6>
           <div className='space-y-2'>
             <p className='text-fg flex gap-2 text-sm'>
               <span>🟢</span> Open to work
@@ -160,7 +160,9 @@ export default function BentoGridSection() {
           transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box col-span-3 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'
         >
-          <p className='text-fg/80 text-sm'>Last update: 04 February 2026</p>
+          <p className='text-fg/80 text-xs md:text-sm'>
+            Last update: 12 February 2026
+          </p>
           <Signature className='*:fill-fg *:stroke-fg w-10' />
         </motion.div>
       </div>

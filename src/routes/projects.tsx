@@ -52,7 +52,7 @@ function Projects() {
             during my office work. Please take a look.
           </p>
         </div>
-        <div className='grid grid-cols-1 gap-3 px-4 md:grid-cols-2 md:gap-6 md:px-0'>
+        <div className='grid grid-cols-1 gap-3 px-4 sm:grid-cols-2 md:gap-6 md:px-0'>
           {error ? (
             <p className='text-center text-red-400 sm:col-span-2'>
               {error?.message ?? 'Something when wrong!'}
@@ -62,7 +62,7 @@ function Projects() {
               <ProjectCard
                 key={p.id}
                 idx={idx + 1}
-                className='h-[380px] md:h-[450px]'
+                className='h-[380px] sm:h-[480px]'
                 imageClassName='max-[768px]:h-[200px]'
                 {...p}
               />

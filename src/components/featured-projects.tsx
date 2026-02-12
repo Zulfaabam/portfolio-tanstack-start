@@ -57,7 +57,7 @@ export default function FeaturedProjects() {
   return (
     <div className='flex w-full flex-col gap-[23px]'>
       <div className='flex items-center justify-between px-4'>
-        <h6 className='font-medium'>Featured Projects</h6>
+        <h6 className='font-semibold'>Featured Projects</h6>
         <div className='flex justify-center gap-2'>
           {projects?.map((_, idx) => (
             <button
