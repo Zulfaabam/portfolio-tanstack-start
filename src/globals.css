@@ -51,11 +51,29 @@
   .btn-rounded {
     @apply border-fg flex cursor-pointer items-center gap-0.5 rounded-full border py-1 pl-2 pr-1 text-xs md:text-sm;
   }
+
   .bento-box {
     @apply bg-darker border-fg/60 hover:border-fg z-10 h-fit w-full rounded-2xl border p-4 transition-all ease-in;
   }
+
   .chip {
     @apply border-fg/80 text-fg bg-dark h-fit w-fit rounded-lg border px-1.5 py-1 text-[10px] md:px-2 md:text-sm;
+  }
+
+  .company {
+    @apply text-fg text-xs font-medium md:text-base;
+  }
+
+  .job-title {
+    @apply bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl;
+  }
+
+  .job-duration {
+    @apply text-fg/80 text-[10px] md:text-sm;
+  }
+
+  .job-desc {
+    @apply text-fg max-w-44 space-y-2 text-xs md:max-w-md md:text-base;
   }
 }
 
@@ -136,21 +154,41 @@ html {
 .year-journey2 {
   bottom: anchor(top);
   left: anchor(right);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) - 1rem);
+    left: calc(anchor(right) - 1.5rem);
+  }
 }
 
 .content1-journey2 {
   bottom: calc(anchor(top) + 3rem);
   right: anchor(left);
+
+  @media (max-width: 768px) {
+    bottom: anchor(top);
+    right: calc(anchor(left) - 2rem);
+  }
 }
 
 .content2-journey2 {
   bottom: calc(anchor(center) - 5.5rem);
   right: calc(anchor(left) + 2rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(center) - 1rem);
+    right: calc(anchor(left) + 0.5rem);
+  }
 }
 
 .content3-journey2 {
   top: calc(anchor(bottom) + 5rem);
   right: calc(anchor(left) - 2rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) + 3.5rem);
+    right: calc(anchor(left) - 2rem);
+  }
 }
 
 .year-journey3,
@@ -169,6 +207,11 @@ html {
 .content1-journey3 {
   bottom: anchor(top);
   left: calc(anchor(right) + 1rem);
+
+  @media (max-width: 768px) {
+    bottom: anchor(top);
+    left: calc(anchor(left) + 1rem);
+  }
 }
 
 .content2-journey3 {

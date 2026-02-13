@@ -177,7 +177,7 @@ function Journey() {
         <div className='relative z-10 mt-32 h-fit w-full overflow-x-hidden'>
           <div
             ref={star1Ref}
-            className='star-anchor1 absolut left-4 top-[110px] size-fit md:left-[30px]'
+            className='star-anchor1 absolute left-4 top-[110px] size-fit md:left-[30px]'
           >
             <svg
               width='77'
@@ -212,15 +212,9 @@ function Journey() {
               variants={journey1Variants.text1}
               className='space-y-0.5 md:space-y-1'
             >
-              <p className='text-fg text-xs font-medium md:text-base'>
-                PT Tiga Daya Digital Indonesia
-              </p>
-              <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
-                Frontend Developer
-              </p>
-              <p className='text-fg/80 text-[10px] md:text-sm'>
-                January 2025 - December 2025
-              </p>
+              <p className='company'>PT Tiga Daya Digital Indonesia</p>
+              <p className='job-title'>Frontend Developer</p>
+              <p className='job-duration'>January 2025 - December 2025</p>
             </motion.div>
           </motion.div>
           <motion.div className='content2-journey1 flex items-start gap-2 md:items-center md:gap-8'>
@@ -230,13 +224,13 @@ function Journey() {
               variants={journey1Variants.image2}
               className='-rotate-2'
             >
-              <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1764379814/me_in_asl_fj6pef.jpg' />
+              <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1770965503/vision_customer_page_h029to.webp' />
             </motion.div>
             <motion.div
               initial='hidden'
               animate={isStar1Visible ? 'visible' : 'hidden'}
               variants={journey1Variants.text2}
-              className='text-fg max-w-44 space-y-2 text-xs md:max-w-md md:text-base'
+              className='job-desc'
             >
               <p>Contributed in 3 projects:</p>
               <ul className='list-disc pl-6'>
@@ -266,7 +260,7 @@ function Journey() {
               initial='hidden'
               animate={isStar1Visible ? 'visible' : 'hidden'}
               variants={journey1Variants.text3}
-              className='text-fg max-w-40 space-y-2 text-xs md:max-w-md md:text-base'
+              className='job-desc'
             >
               <p>Tech / Tools:</p>
               <div className='flex flex-wrap gap-1 md:gap-2'>
@@ -289,7 +283,7 @@ function Journey() {
 
           <div
             ref={star2Ref}
-            className='star-anchor2 absolute right-32 top-[696px] size-fit'
+            className='star-anchor2 absolute right-4 top-[696px] size-fit md:right-32'
           >
             <svg
               width='75'
@@ -297,6 +291,7 @@ function Journey() {
               viewBox='0 0 75 67'
               fill='none'
               xmlns='http://www.w3.org/2000/svg'
+              className='w-8 md:w-[75px]'
             >
               <path
                 d='M0.889862 65.7812C33.8197 1.56855 32.0356 -0.826563 33.8197 1.56855C35.6038 3.96366 75.3605 62.8382 73.8627 61.5152C72.3649 60.1923 -0.23006 23.0078 1.44413 22.8479C3.11831 22.688 69.241 9.91374 63.9897 12.7517C59.7886 15.022 20.1727 49.0507 0.889862 65.7812Z'
@@ -305,20 +300,21 @@ function Journey() {
               />
             </svg>
           </div>
-          <p className='year-journey2 text-fg font-caveat max-w-24 text-4xl'>
+          <p className='year-journey2 text-fg font-caveat max-w-12 text-lg md:max-w-24 md:text-4xl'>
             2023 - 2024
           </p>
           <motion.div
             initial='hidden'
             animate={isStar2Visible ? 'visible' : 'hidden'}
-            className='content1-journey2 flex items-start gap-8'
+            className='content1-journey2 flex items-start gap-2 md:gap-8'
           >
-            <motion.div variants={journey2Variants.text1} className='space-y-1'>
-              <p className='text-fg font-medium'>PT Bukit Vista Nusantara</p>
-              <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
-                Fulltime Frontend Developer
-              </p>
-              <p className='text-fg/80 text-sm'>August 2023 - August 2024</p>
+            <motion.div
+              variants={journey2Variants.text1}
+              className='space-y-0.5 md:space-y-1'
+            >
+              <p className='company'>PT Bukit Vista Nusantara</p>
+              <p className='job-title'>Frontend Developer</p>
+              <p className='job-duration'>August 2023 - August 2024</p>
             </motion.div>
             <motion.div
               variants={journey2Variants.image1}
@@ -330,12 +326,9 @@ function Journey() {
           <motion.div
             initial='hidden'
             animate={isStar2Visible ? 'visible' : 'hidden'}
-            className='content2-journey2 flex items-center gap-8'
+            className='content2-journey2 flex gap-2 md:items-center md:gap-8'
           >
-            <motion.div
-              variants={journey2Variants.text2}
-              className='text-fg max-w-xl space-y-2'
-            >
+            <motion.div variants={journey2Variants.text2} className='job-desc'>
               <ul className='list-disc pl-6'>
                 <li>
                   Maintained BIGRR - Bukit Vista's internal app to manage
@@ -358,14 +351,14 @@ function Journey() {
           <motion.div
             initial='hidden'
             animate={isStar2Visible ? 'visible' : 'hidden'}
-            className='content3-journey2 flex gap-7'
+            className='content3-journey2 flex flex-col-reverse items-end gap-3 md:flex-row md:items-start md:gap-7'
           >
             <motion.div
               variants={journey2Variants.text3}
-              className='text-fg max-w-96 space-y-2'
+              className='job-desc text-right md:text-left'
             >
               <p>Tech / Tools:</p>
-              <div className='flex flex-wrap gap-2'>
+              <div className='flex flex-row-reverse flex-wrap gap-1 md:flex-row md:gap-2'>
                 {[
                   'React',
                   'JavaScript',
@@ -393,7 +386,7 @@ function Journey() {
 
           <div
             ref={star3Ref}
-            className='star-anchor3 absolute bottom-[1081px] left-[399px] size-fit'
+            className='star-anchor3 absolute bottom-[1081px] left-1/2 size-fit -translate-x-1/2 md:left-[399px]'
           >
             <svg
               width='85'
@@ -401,6 +394,7 @@ function Journey() {
               viewBox='0 0 85 80'
               fill='none'
               xmlns='http://www.w3.org/2000/svg'
+              className='w-8 md:w-[85px]'
             >
               <path
                 d='M0.356745 32.5715C67.7718 6.82545 68.0459 3.85148 67.7718 6.82545C67.4977 9.79943 57.7117 80.1631 57.482 78.1779C57.2523 76.1927 28.116 0.0100949 29.4681 1.0103C30.8201 2.01051 88.538 36.7098 82.7353 35.3103C78.0931 34.1906 25.882 33.0179 0.356745 32.5715Z'
@@ -409,7 +403,7 @@ function Journey() {
               />
             </svg>
           </div>
-          <p className='year-journey3 text-fg font-caveat text-4xl'>
+          <p className='year-journey3 text-fg font-caveat text-lg md:text-4xl'>
             2022 - 2023
           </p>
           <motion.div
@@ -424,11 +418,9 @@ function Journey() {
               <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731679863/bigrr-bookings_weujrk.png' />
             </motion.div>
             <motion.div variants={journey3Variants.text1} className='space-y-1'>
-              <p className='text-fg font-medium'>PT Bukit Vista Nusantara</p>
-              <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
-                Part-time Frontend Developer
-              </p>
-              <p className='text-fg/80 text-sm'>July 2022 - August 2023</p>
+              <p className='company'>PT Bukit Vista Nusantara</p>
+              <p className='job-title'>Part-time Frontend Developer</p>
+              <p className='job-duration'>July 2022 - August 2023</p>
             </motion.div>
           </motion.div>
           <motion.div
@@ -436,10 +428,7 @@ function Journey() {
             animate={isStar3Visible ? 'visible' : 'hidden'}
             className='content2-journey3 flex flex-col-reverse items-center gap-4'
           >
-            <motion.div
-              variants={journey3Variants.text2}
-              className='text-fg max-w-xl space-y-2'
-            >
+            <motion.div variants={journey3Variants.text2} className='job-desc'>
               <ul className='list-disc pl-6'>
                 <li>
                   Maintained BIGRR - Bukit Vista's internal app to manage
@@ -461,12 +450,9 @@ function Journey() {
             animate={isStar3Visible ? 'visible' : 'hidden'}
             className='content3-journey3 flex items-end gap-7'
           >
-            <motion.div
-              variants={journey3Variants.text3}
-              className='text-fg max-w-60 space-y-2'
-            >
+            <motion.div variants={journey3Variants.text3} className='job-desc'>
               <p>Tech / Tools:</p>
-              <div className='flex flex-wrap gap-2'>
+              <div className='flex flex-wrap gap-1 md:gap-2'>
                 {[
                   'React',
                   'JavaScript',
