@@ -103,7 +103,7 @@ html {
 .content1-journey1,
 .content2-journey1,
 .content3-journey1 {
-  position: fixed;
+  position: absolute;
   position-anchor: --star-anchor1;
 }
 
@@ -159,7 +159,7 @@ html {
 .content1-journey2,
 .content2-journey2,
 .content3-journey2 {
-  position: fixed;
+  position: absolute;
   position-anchor: --star-anchor2;
 }
 
@@ -169,7 +169,7 @@ html {
 
   @media (max-width: 768px) {
     top: calc(anchor(bottom) - 1rem);
-    left: calc(anchor(right) - 1.5rem);
+    left: calc(anchor(right) - 1.75rem);
   }
 }
 
@@ -219,7 +219,7 @@ html {
 .content1-journey3,
 .content2-journey3,
 .content3-journey3 {
-  position: fixed;
+  position: absolute;
   position-anchor: --star-anchor3;
 }
 
@@ -229,7 +229,7 @@ html {
 
   @media (max-width: 768px) {
     top: calc(anchor(top) + 1rem);
-    left: calc(anchor(right) + 1rem);
+    left: calc(anchor(right));
   }
 }
 
@@ -282,7 +282,7 @@ html {
 .content1-journey4,
 .content2-journey4,
 .content3-journey4 {
-  position: fixed;
+  position: absolute;
   position-anchor: --star-anchor4;
 }
 

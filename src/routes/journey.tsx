@@ -196,7 +196,11 @@ function Journey() {
     () =>
       ({
         image1: {
-          hidden: { scale: 0, x: isMobile ? 50 : 100, y: isMobile ? 50 : 150 },
+          hidden: {
+            scale: 0,
+            x: isMobile ? 50 : -100,
+            y: isMobile ? 50 : 100,
+          },
           visible: {
             scale: 1,
             x: 0,
@@ -215,7 +219,11 @@ function Journey() {
           },
         },
         image2: {
-          hidden: { scale: 0, x: isMobile ? 50 : 100, y: isMobile ? -100 : 0 },
+          hidden: {
+            scale: 0,
+            x: isMobile ? 50 : 100,
+            y: isMobile ? -100 : -50,
+          },
           visible: {
             scale: 1,
             x: 0,
@@ -237,7 +245,7 @@ function Journey() {
           hidden: {
             scale: 0,
             x: isMobile ? 50 : 100,
-            y: isMobile ? -50 : -150,
+            y: isMobile ? -50 : 100,
           },
           visible: {
             scale: 1,
@@ -308,7 +316,7 @@ function Journey() {
         image3: {
           hidden: {
             scale: 0,
-            x: isMobile ? -50 : -100,
+            x: -50,
             y: isMobile ? -50 : -150,
           },
           visible: {
@@ -348,7 +356,7 @@ function Journey() {
           </p>
         </div>
 
-        <div className='relative z-10 mt-16 h-fit w-full overflow-x-hidden md:mt-32'>
+        <div className='relative z-10 mt-16 h-fit w-full md:mt-32'>
           <div
             ref={star1Ref}
             className='star-anchor1 absolute left-4 top-[110px] size-fit md:left-[30px]'
