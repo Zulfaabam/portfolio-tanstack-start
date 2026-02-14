@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <div className='relative z-10 flex h-60 w-full items-center pt-14 md:h-80 md:pt-16 lg:items-start lg:py-16'>
       <Section id='hero' className='py-0! w-full'>
-        <div className='space-y-2 px-4 py-10 md:px-0 lg:py-20'>
+        <div className='space-y-2 py-10 lg:py-20'>
           <motion.h1
             className='font-pacifico text-fg text-4xl md:text-5xl xl:text-6xl'
             initial={{ opacity: 0 }}

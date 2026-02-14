@@ -51,11 +51,33 @@
   .btn-rounded {
     @apply border-fg flex cursor-pointer items-center gap-0.5 rounded-full border py-1 pl-2 pr-1 text-xs md:text-sm;
   }
+
   .bento-box {
     @apply bg-darker border-fg/60 hover:border-fg z-10 h-fit w-full rounded-2xl border p-4 transition-all ease-in;
   }
+
   .chip {
-    @apply border-fg/80 text-fg bg-dark h-fit w-fit rounded-lg border px-2 py-1 text-sm;
+    @apply border-fg/80 text-fg bg-dark h-fit w-fit rounded-lg border px-1.5 py-1 text-[10px] md:px-2 md:text-xs lg:text-sm;
+  }
+
+  .company {
+    @apply text-fg text-xs font-medium md:text-sm lg:text-base;
+  }
+
+  .job-title {
+    @apply bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-lg lg:text-xl;
+  }
+
+  .job-duration {
+    @apply text-fg/80 text-[10px] md:text-xs lg:text-sm;
+  }
+
+  .job-desc {
+    @apply text-fg max-w-44 space-y-2 text-xs md:max-w-md md:text-sm lg:text-base;
+  }
+
+  .job-tech {
+    @apply text-fg max-w-40 space-y-2 text-xs md:max-w-52 md:text-sm lg:text-base;
   }
 }
 
@@ -87,22 +109,50 @@ html {
 
 .year-journey1 {
   bottom: anchor(--star-anchor1 top);
-  right: calc(anchor(--star-anchor1 left) + -2.2rem);
+  right: calc(anchor(--star-anchor1 left) - 2.2rem);
+
+  @media (max-width: 768px) {
+    bottom: calc(anchor(top) - 1rem);
+    right: calc(anchor(left) - 2rem);
+  }
 }
 
 .content1-journey1 {
   bottom: calc(anchor(top) + 4rem);
   left: anchor(right);
+
+  @media (max-width: 768px) {
+    bottom: calc(anchor(top) + 2rem);
+    left: calc(anchor(left) + 0.5rem);
+  }
 }
 
 .content2-journey1 {
   bottom: calc(anchor(center) - 5.5rem);
   left: calc(anchor(right) + 2rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(center) - 2.5rem);
+    left: calc(anchor(right) + 0.75rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(center) - 6rem);
+  }
 }
 
 .content3-journey1 {
   top: calc(anchor(bottom) + 4.5rem);
   left: calc(anchor(right) - 1rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) + 2rem);
+    left: calc(anchor(right) - 1rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(bottom) + 4rem);
+  }
 }
 
 .year-journey2,
@@ -116,21 +166,53 @@ html {
 .year-journey2 {
   bottom: anchor(top);
   left: anchor(right);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) - 1rem);
+    left: calc(anchor(right) - 1.5rem);
+  }
 }
 
 .content1-journey2 {
   bottom: calc(anchor(top) + 3rem);
   right: anchor(left);
+
+  @media (max-width: 768px) {
+    bottom: anchor(top);
+    right: calc(anchor(left) - 2rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    bottom: calc(anchor(top) + 4rem);
+  }
 }
 
 .content2-journey2 {
   bottom: calc(anchor(center) - 5.5rem);
   right: calc(anchor(left) + 2rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(center) - 1rem);
+    right: calc(anchor(left) + 0.5rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(center) - 6.5rem);
+  }
 }
 
 .content3-journey2 {
   top: calc(anchor(bottom) + 5rem);
   right: calc(anchor(left) - 2rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) + 3.5rem);
+    right: calc(anchor(left) - 2rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(bottom) + 3.5rem);
+  }
 }
 
 .year-journey3,
@@ -144,21 +226,56 @@ html {
 .year-journey3 {
   top: anchor(center);
   left: anchor(right);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(top) + 1rem);
+    left: calc(anchor(right) + 1rem);
+  }
 }
 
 .content1-journey3 {
   bottom: anchor(top);
   left: calc(anchor(right) + 1rem);
+
+  @media (max-width: 768px) {
+    bottom: calc(anchor(top) - 0.25rem);
+    left: calc(anchor(left) - 8rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    bottom: calc(anchor(top));
+    left: calc(anchor(right));
+  }
 }
 
 .content2-journey3 {
   top: calc(anchor(center) - 1rem);
-  right: calc(anchor(left) - 11rem);
+  right: calc(anchor(left) - 7.5rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) - 1rem);
+    right: calc(anchor(right) - 8rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(bottom) - 3.5rem);
+    right: calc(anchor(right) - 2rem);
+  }
 }
 
 .content3-journey3 {
   bottom: calc(anchor(top) + 1.5rem);
   right: calc(anchor(left) - 2rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) + 19rem);
+    right: calc(anchor(left) - 2rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    bottom: calc(anchor(top) + 1rem);
+    right: calc(anchor(left) - 2rem);
+  }
 }
 
 .year-journey4,
@@ -172,19 +289,42 @@ html {
 .year-journey4 {
   bottom: anchor(top);
   right: calc(anchor(left) - 1rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) - 1.5rem);
+  }
 }
 
 .content1-journey4 {
   bottom: calc(anchor(top) + 4rem);
   left: anchor(right);
+
+  @media (max-width: 768px) {
+    bottom: calc(anchor(top));
+    left: calc(anchor(left));
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    bottom: calc(anchor(top) + 2rem);
+  }
 }
 
 .content2-journey4 {
   bottom: calc(anchor(center) - 5.5rem);
   left: calc(anchor(right) + 2rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(center) - 1rem);
+    left: calc(anchor(right) + 0.5rem);
+  }
 }
 
 .content3-journey4 {
   top: calc(anchor(bottom) + 4.5rem);
   left: calc(anchor(right) - 5rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) + 3rem);
+    left: calc(anchor(right) - 2rem);
+  }
 }
