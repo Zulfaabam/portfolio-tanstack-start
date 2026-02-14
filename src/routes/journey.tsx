@@ -1,7 +1,6 @@
 import ErrorContent from '@/components/error-content';
 import JourneyImage from '@/components/journey-image';
 import Section from '@/components/section';
-import { StarsBackground } from '@/components/ui/stars-background';
 import { createFileRoute } from '@tanstack/react-router';
 import {
   motion,
@@ -11,9 +10,24 @@ import {
   useTransform,
   Variants,
 } from 'motion/react';
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
+import { useWindowSize } from '@uidotdev/usehooks';
 
 export const Route = createFileRoute('/journey')({
+  head: () => ({
+    meta: [
+      { charSet: 'utf-8' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+      { title: 'Abams Journey' },
+      {
+        name: 'description',
+        content: "Abam's journey as a developer so far",
+      },
+    ],
+  }),
   errorComponent: ({ reset }) => (
     <div className='bg-dark relative flex min-h-screen w-full items-center'>
       <Section
@@ -33,6 +47,8 @@ function Journey() {
   const star2Ref = useRef<HTMLDivElement>(null);
   const star3Ref = useRef<HTMLDivElement>(null);
   const star4Ref = useRef<HTMLDivElement>(null);
+  const { width } = useWindowSize();
+  const isMobile = width ? width < 768 : false;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -50,117 +66,292 @@ function Journey() {
     ease: [0.7, 0, 0.3, 1],
   };
 
-  const journey1Variants = {
-    image1: {
-      hidden: {
-        scale: 0,
-        x: -100,
-        y: 150,
-      },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-    },
-    text1: {
-      hidden: { x: -200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-    image2: {
-      hidden: { scale: 0, x: -100 },
-      visible: { scale: 1, x: 0, transition: contentTransition },
-    },
-    text2: {
-      hidden: { x: -200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-    image3: {
-      hidden: { scale: 0, x: -100, y: -150 },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-    },
-    text3: {
-      hidden: { x: -200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-  } as const satisfies Record<string, Variants>;
+  const journey1Variants = useMemo(
+    () =>
+      ({
+        image1: {
+          hidden: {
+            scale: 0,
+            x: isMobile ? -50 : -100,
+            y: isMobile ? 50 : 150,
+          },
+          visible: {
+            scale: 1,
+            x: 0,
+            y: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text1: {
+          hidden: { x: isMobile ? -50 : -200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        image2: {
+          hidden: { scale: 0, x: isMobile ? -50 : -100 },
+          visible: {
+            scale: 1,
+            x: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text2: {
+          hidden: { x: isMobile ? -50 : -200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        image3: {
+          hidden: {
+            scale: 0,
+            x: isMobile ? -50 : -100,
+            y: isMobile ? -50 : -150,
+          },
+          visible: {
+            scale: 1,
+            x: 0,
+            y: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text3: {
+          hidden: { x: isMobile ? -50 : -200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+      }) as const satisfies Record<string, Variants>,
+    [isMobile],
+  );
 
-  const journey2Variants = {
-    image1: {
-      hidden: { scale: 0, x: 100, y: 150 },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-    },
-    text1: {
-      hidden: { x: 200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-    image2: {
-      hidden: { scale: 0, x: 100, y: 0 },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-    },
-    text2: {
-      hidden: { x: 200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-    image3: {
-      hidden: { scale: 0, x: 100, y: -150 },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-    },
-    text3: {
-      hidden: { x: 200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-  } as const satisfies Record<string, Variants>;
+  const journey2Variants = useMemo(
+    () =>
+      ({
+        image1: {
+          hidden: { scale: 0, x: isMobile ? 50 : 100, y: isMobile ? 50 : 150 },
+          visible: {
+            scale: 1,
+            x: 0,
+            y: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text1: {
+          hidden: { x: isMobile ? 50 : 200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        image2: {
+          hidden: { scale: 0, x: isMobile ? 50 : 100, y: 0 },
+          visible: {
+            scale: 1,
+            x: 0,
+            y: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text2: {
+          hidden: { x: isMobile ? 50 : 200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        image3: {
+          hidden: {
+            scale: 0,
+            x: isMobile ? 50 : 100,
+            y: isMobile ? -50 : -150,
+          },
+          visible: {
+            scale: 1,
+            x: 0,
+            y: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text3: {
+          hidden: { x: isMobile ? 50 : 200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+      }) as const satisfies Record<string, Variants>,
+    [isMobile],
+  );
 
-  const journey3Variants = {
-    image1: {
-      hidden: { scale: 0, x: 100, y: 150 },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-    },
-    text1: {
-      hidden: { x: 200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-    image2: {
-      hidden: { scale: 0, x: 100, y: 0 },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-    },
-    text2: {
-      hidden: { x: 200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-    image3: {
-      hidden: { scale: 0, x: 100, y: -150 },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-    },
-    text3: {
-      hidden: { x: 200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-  } as const satisfies Record<string, Variants>;
+  const journey3Variants = useMemo(
+    () =>
+      ({
+        image1: {
+          hidden: {
+            scale: 0,
+            x: isMobile ? 50 : -100,
+            y: isMobile ? 50 : 100,
+          },
+          visible: {
+            scale: 1,
+            x: 0,
+            y: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text1: {
+          hidden: { x: isMobile ? 50 : 200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        image2: {
+          hidden: {
+            scale: 0,
+            x: isMobile ? 50 : 100,
+            y: isMobile ? -100 : -50,
+          },
+          visible: {
+            scale: 1,
+            x: 0,
+            y: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text2: {
+          hidden: { x: isMobile ? 50 : 200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        image3: {
+          hidden: {
+            scale: 0,
+            x: isMobile ? 50 : 100,
+            y: isMobile ? -50 : 100,
+          },
+          visible: {
+            scale: 1,
+            x: 0,
+            y: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text3: {
+          hidden: { x: isMobile ? 50 : 200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+      }) as const satisfies Record<string, Variants>,
+    [isMobile],
+  );
 
-  const journey4Variants = {
-    image1: {
-      hidden: { scale: 0, x: -100, y: 150 },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-    },
-    text1: {
-      hidden: { x: -200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-    image2: {
-      hidden: { scale: 0, x: -100, y: 0 },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-    },
-    text2: {
-      hidden: { x: -200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-    image3: {
-      hidden: { scale: 0, x: -100, y: -150 },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
-    },
-    text3: {
-      hidden: { x: -200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: contentTransition },
-    },
-  } as const satisfies Record<string, Variants>;
+  const journey4Variants = useMemo(
+    () =>
+      ({
+        image1: {
+          hidden: {
+            scale: 0,
+            x: isMobile ? -50 : -100,
+            y: isMobile ? 50 : 150,
+          },
+          visible: {
+            scale: 1,
+            x: 0,
+            y: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text1: {
+          hidden: { x: isMobile ? -50 : -200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        image2: {
+          hidden: { scale: 0, x: isMobile ? -50 : -100, y: 0 },
+          visible: {
+            scale: 1,
+            x: 0,
+            y: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text2: {
+          hidden: { x: isMobile ? -50 : -200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        image3: {
+          hidden: {
+            scale: 0,
+            x: -50,
+            y: isMobile ? -50 : -150,
+          },
+          visible: {
+            scale: 1,
+            x: 0,
+            y: 0,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+        text3: {
+          hidden: { x: isMobile ? -50 : -200, opacity: 0 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: contentTransition,
+            willChange: 'transform, opacity',
+          },
+        },
+      }) as const satisfies Record<string, Variants>,
+    [isMobile],
+  );
 
   return (
     <div
@@ -178,7 +369,7 @@ function Journey() {
           </p>
         </div>
 
-        <div className='relative z-10 mt-16 h-fit w-full overflow-x-hidden md:mt-32'>
+        <div className='relative z-10 mt-16 h-fit w-full md:mt-32'>
           <div
             ref={star1Ref}
             className='star-anchor1 absolute left-4 top-[110px] size-fit md:left-[30px]'
@@ -671,7 +862,6 @@ function Journey() {
           </svg>
         </div>
       </Section>
-      <StarsBackground />
     </div>
   );
 }

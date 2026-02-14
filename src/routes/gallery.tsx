@@ -8,6 +8,20 @@ import { Image } from '@unpic/react';
 import { galleryImages } from '@/lib/consts';
 
 export const Route = createFileRoute('/gallery')({
+  head: () => ({
+    meta: [
+      { charSet: 'utf-8' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+      { title: 'Abams Gallery' },
+      {
+        name: 'description',
+        content: "Abam's collection of photos",
+      },
+    ],
+  }),
   errorComponent: ({ reset }) => (
     <div className='bg-dark relative flex min-h-screen w-full items-center'>
       <Section
@@ -33,7 +47,7 @@ function Gallery() {
 
   return (
     <div
-      className='bg-dark relative h-screen w-full overflow-hidden'
+      className='bg-darkest relative h-screen w-full overflow-hidden'
       ref={constraintsRef}
     >
       {/* Instructions Overlay */}
@@ -42,7 +56,7 @@ function Gallery() {
       </div>
 
       <motion.div
-        className='relative h-fit w-fit cursor-grab px-4 py-12 active:cursor-grabbing'
+        className='relative z-10 h-fit w-fit cursor-grab px-4 py-12 active:cursor-grabbing'
         drag
         dragConstraints={constraintsRef}
         dragElastic={0.4}

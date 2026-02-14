@@ -13,8 +13,24 @@ import { DirectionAwareHover } from '../ui/direction-aware-hover';
 import RippleButton from '../ui/ripple-btn';
 import { miniJourneys } from '@/lib/consts';
 import { motion } from 'motion/react';
+import { getThisRepoCommits } from '@/lib/server/github';
+import { useQuery } from '@tanstack/react-query';
 
 export default function BentoGridSection() {
+  const { data } = useQuery({
+    queryKey: ['github-commits'],
+    queryFn: () => getThisRepoCommits(),
+  });
+
+  const commitDate = data?.data?.[0]?.commit?.committer?.date;
+  const lastUpdate = commitDate
+    ? new Date(commitDate).toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+      })
+    : '14 Feb 2026';
+
   return (
     <Section id='about' className='py-0! space-y-4 xl:space-y-6'>
       <div className='text-fg grid w-full grid-flow-row grid-cols-1 grid-rows-4 gap-4 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-3 lg:grid-cols-12 lg:grid-rows-2 xl:gap-6'>
@@ -161,7 +177,7 @@ export default function BentoGridSection() {
           className='bento-box col-span-3 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'
         >
           <p className='text-fg/80 text-xs md:text-sm'>
-            Last update: 12 February 2026
+            Last update: {lastUpdate}
           </p>
           <Signature className='*:fill-fg *:stroke-fg w-10' />
         </motion.div>

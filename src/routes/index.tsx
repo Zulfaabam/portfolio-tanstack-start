@@ -3,7 +3,6 @@ import Section from '@/components/section';
 import BentoGridSection from '@/components/sections/bento-grid-section';
 import HeroSection from '@/components/sections/hero-section';
 import { ShootingStars } from '@/components/ui/shooting-stars';
-import { StarsBackground } from '@/components/ui/stars-background';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
@@ -29,7 +28,6 @@ function Home() {
       </div>
       <div className='bg-earth-from-space bg-darkest/60 absolute bottom-0 h-96 w-full bg-cover bg-no-repeat bg-blend-hard-light'></div>
       <ShootingStars />
-      <StarsBackground starDensity={0.0003} />
     </div>
   );
 }
