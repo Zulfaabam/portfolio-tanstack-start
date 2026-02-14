@@ -174,7 +174,7 @@ function Journey() {
           </p>
         </div>
 
-        <div className='relative z-10 mt-32 h-fit w-full overflow-x-hidden'>
+        <div className='relative z-10 mt-16 h-fit w-full overflow-x-hidden md:mt-32'>
           <div
             ref={star1Ref}
             className='star-anchor1 absolute left-4 top-[110px] size-fit md:left-[30px]'
@@ -260,7 +260,7 @@ function Journey() {
               initial='hidden'
               animate={isStar1Visible ? 'visible' : 'hidden'}
               variants={journey1Variants.text3}
-              className='job-desc'
+              className='job-tech md:max-w-96!'
             >
               <p>Tech / Tools:</p>
               <div className='flex flex-wrap gap-1 md:gap-2'>
@@ -355,7 +355,7 @@ function Journey() {
           >
             <motion.div
               variants={journey2Variants.text3}
-              className='job-desc text-right md:text-left'
+              className='job-tech md:max-w-96! text-right md:text-left'
             >
               <p>Tech / Tools:</p>
               <div className='flex flex-row-reverse flex-wrap gap-1 md:flex-row md:gap-2'>
@@ -409,7 +409,7 @@ function Journey() {
           <motion.div
             initial='hidden'
             animate={isStar3Visible ? 'visible' : 'hidden'}
-            className='content1-journey3 flex items-start gap-8'
+            className='content1-journey3 flex gap-4 md:gap-8'
           >
             <motion.div
               variants={journey3Variants.image1}
@@ -448,9 +448,9 @@ function Journey() {
           <motion.div
             initial='hidden'
             animate={isStar3Visible ? 'visible' : 'hidden'}
-            className='content3-journey3 flex items-end gap-7'
+            className='content3-journey3 flex flex-col-reverse gap-3 md:flex-row md:items-end md:gap-1'
           >
-            <motion.div variants={journey3Variants.text3} className='job-desc'>
+            <motion.div variants={journey3Variants.text3} className='job-tech'>
               <p>Tech / Tools:</p>
               <div className='flex flex-wrap gap-1 md:gap-2'>
                 {[
@@ -478,7 +478,7 @@ function Journey() {
 
           <div
             ref={star4Ref}
-            className='star-anchor4 absolute bottom-[386px] left-[54px] size-fit'
+            className='star-anchor4 absolute bottom-[386px] left-4 size-fit md:left-[54px]'
           >
             <svg
               width='75'
@@ -486,6 +486,7 @@ function Journey() {
               viewBox='0 0 75 70'
               fill='none'
               xmlns='http://www.w3.org/2000/svg'
+              className='w-8 md:w-[75px]'
             >
               <path
                 d='M0.787176 58.4891C45.2928 1.68328 43.995 -1.00662 45.2928 1.68328C46.5905 4.37318 74.4654 69.7169 73.2455 68.134C72.0256 66.551 7.79618 16.2789 9.47032 16.4393C11.1445 16.5997 78.4898 16.592 72.7957 18.383C68.2404 19.8158 22.892 45.7174 0.787176 58.4891Z'
@@ -494,11 +495,13 @@ function Journey() {
               />
             </svg>
           </div>
-          <p className='year-journey4 text-fg font-caveat text-4xl'>2022</p>
+          <p className='year-journey4 text-fg font-caveat text-lg md:text-4xl'>
+            2022
+          </p>
           <motion.div
             initial='hidden'
             animate={isStar4Visible ? 'visible' : 'hidden'}
-            className='content1-journey4 flex items-start gap-8'
+            className='content1-journey4 flex items-start gap-3 md:gap-8'
           >
             <motion.div
               variants={journey4Variants.image1}
@@ -507,17 +510,15 @@ function Journey() {
               <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731679451/certif-intern-bv_mf1pyu.png' />
             </motion.div>
             <motion.div variants={journey4Variants.text1} className='space-y-1'>
-              <p className='text-fg font-medium'>PT Bukit Vista Nusantara</p>
-              <p className='bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl'>
-                Frontend Developer Intern
-              </p>
-              <p className='text-fg/80 text-sm'>February 2022 - June 2022</p>
+              <p className='company'>PT Bukit Vista Nusantara</p>
+              <p className='job-title'>Frontend Developer Intern</p>
+              <p className='job-duration'>February 2022 - June 2022</p>
             </motion.div>
           </motion.div>
           <motion.div
             initial='hidden'
             animate={isStar4Visible ? 'visible' : 'hidden'}
-            className='content2-journey4 flex items-center gap-8'
+            className='content2-journey4 flex gap-1 md:items-center md:gap-8'
           >
             <motion.div
               variants={journey4Variants.image2}
@@ -525,10 +526,7 @@ function Journey() {
             >
               <JourneyImage src='https://res.cloudinary.com/dx34xih1p/image/upload/v1731679594/ss_prop_list_new_2_bpnxlk.png' />
             </motion.div>
-            <motion.div
-              variants={journey4Variants.text2}
-              className='text-fg w-md space-y-2'
-            >
+            <motion.div variants={journey4Variants.text2} className='job-desc'>
               <ul className='list-disc pl-6'>
                 <li>
                   Refactored some of BIGRR's features by splitting code logic,
@@ -542,7 +540,7 @@ function Journey() {
           <motion.div
             initial='hidden'
             animate={isStar4Visible ? 'visible' : 'hidden'}
-            className='content3-journey4 flex items-start gap-7'
+            className='content3-journey4 flex flex-col items-start gap-4 md:flex-row md:gap-7'
           >
             <motion.div variants={journey4Variants.image3}>
               <JourneyImage
@@ -550,10 +548,7 @@ function Journey() {
                 className='rotate-15'
               />
             </motion.div>
-            <motion.div
-              variants={journey4Variants.text3}
-              className='text-fg max-w-52 space-y-2'
-            >
+            <motion.div variants={journey4Variants.text3} className='job-tech'>
               <p>Tech / Tools:</p>
               <div className='flex flex-wrap gap-2'>
                 {[

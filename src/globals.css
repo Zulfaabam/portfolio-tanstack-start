@@ -75,6 +75,10 @@
   .job-desc {
     @apply text-fg max-w-44 space-y-2 text-xs md:max-w-md md:text-base;
   }
+
+  .job-tech {
+    @apply text-fg max-w-40 space-y-2 text-xs md:max-w-52 md:text-base;
+  }
 }
 
 html {
@@ -202,6 +206,11 @@ html {
 .year-journey3 {
   top: anchor(center);
   left: anchor(right);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(top) + 1rem);
+    left: calc(anchor(right) + 1rem);
+  }
 }
 
 .content1-journey3 {
@@ -209,19 +218,29 @@ html {
   left: calc(anchor(right) + 1rem);
 
   @media (max-width: 768px) {
-    bottom: anchor(top);
-    left: calc(anchor(left) + 1rem);
+    bottom: calc(anchor(top) - 0.25rem);
+    left: calc(anchor(left) - 8rem);
   }
 }
 
 .content2-journey3 {
   top: calc(anchor(center) - 1rem);
   right: calc(anchor(left) - 11rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) - 1rem);
+    left: calc(anchor(right) - 1rem);
+  }
 }
 
 .content3-journey3 {
   bottom: calc(anchor(top) + 1.5rem);
   right: calc(anchor(left) - 2rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) + 11rem);
+    right: calc(anchor(left) - 2.25rem);
+  }
 }
 
 .year-journey4,
@@ -235,19 +254,38 @@ html {
 .year-journey4 {
   bottom: anchor(top);
   right: calc(anchor(left) - 1rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) - 1.5rem);
+  }
 }
 
 .content1-journey4 {
   bottom: calc(anchor(top) + 4rem);
   left: anchor(right);
+
+  @media (max-width: 768px) {
+    bottom: calc(anchor(top));
+    left: calc(anchor(left));
+  }
 }
 
 .content2-journey4 {
   bottom: calc(anchor(center) - 5.5rem);
   left: calc(anchor(right) + 2rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(center) - 1rem);
+    left: calc(anchor(right) + 0.5rem);
+  }
 }
 
 .content3-journey4 {
   top: calc(anchor(bottom) + 4.5rem);
   left: calc(anchor(right) - 5rem);
+
+  @media (max-width: 768px) {
+    top: calc(anchor(bottom) + 3rem);
+    left: calc(anchor(right) - 2rem);
+  }
 }
