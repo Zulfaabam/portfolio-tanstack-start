@@ -29,10 +29,10 @@ export const Route = createFileRoute('/journey')({
 
 function Journey() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const star1Ref = useRef(null);
-  const star2Ref = useRef(null);
-  const star3Ref = useRef(null);
-  const star4Ref = useRef(null);
+  const star1Ref = useRef<HTMLDivElement>(null);
+  const star2Ref = useRef<HTMLDivElement>(null);
+  const star3Ref = useRef<HTMLDivElement>(null);
+  const star4Ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -52,7 +52,11 @@ function Journey() {
 
   const journey1Variants = {
     image1: {
-      hidden: { scale: 0, x: -100, y: 150 },
+      hidden: {
+        scale: 0,
+        x: -100,
+        y: 150,
+      },
       visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
     },
     text1: {
@@ -60,8 +64,8 @@ function Journey() {
       visible: { x: 0, opacity: 1, transition: contentTransition },
     },
     image2: {
-      hidden: { scale: 0, x: -100, y: 0 },
-      visible: { scale: 1, x: 0, y: 0, transition: contentTransition },
+      hidden: { scale: 0, x: -100 },
+      visible: { scale: 1, x: 0, transition: contentTransition },
     },
     text2: {
       hidden: { x: -200, opacity: 0 },
@@ -260,7 +264,7 @@ function Journey() {
               initial='hidden'
               animate={isStar1Visible ? 'visible' : 'hidden'}
               variants={journey1Variants.text3}
-              className='job-tech md:max-w-96!'
+              className='job-tech md:max-w-68! lg:max-w-96!'
             >
               <p>Tech / Tools:</p>
               <div className='flex flex-wrap gap-1 md:gap-2'>
@@ -355,7 +359,7 @@ function Journey() {
           >
             <motion.div
               variants={journey2Variants.text3}
-              className='job-tech md:max-w-96! text-right md:text-left'
+              className='job-tech lg:max-w-96! md:max-w-68! text-right md:text-left'
             >
               <p>Tech / Tools:</p>
               <div className='flex flex-row-reverse flex-wrap gap-1 md:flex-row md:gap-2'>
@@ -386,7 +390,7 @@ function Journey() {
 
           <div
             ref={star3Ref}
-            className='star-anchor3 absolute bottom-[1081px] left-1/2 size-fit -translate-x-1/2 md:left-[399px]'
+            className='star-anchor3 absolute bottom-[1081px] left-1/2 size-fit -translate-x-1/2 md:left-[399px] md:translate-x-0'
           >
             <svg
               width='85'
@@ -409,7 +413,7 @@ function Journey() {
           <motion.div
             initial='hidden'
             animate={isStar3Visible ? 'visible' : 'hidden'}
-            className='content1-journey3 flex gap-4 md:gap-8'
+            className='content1-journey3 flex gap-4 md:flex-col-reverse lg:flex-row lg:gap-8'
           >
             <motion.div
               variants={journey3Variants.image1}
@@ -426,7 +430,7 @@ function Journey() {
           <motion.div
             initial='hidden'
             animate={isStar3Visible ? 'visible' : 'hidden'}
-            className='content2-journey3 flex flex-col-reverse items-center gap-4'
+            className='content2-journey3 flex flex-row-reverse gap-4 md:flex-col-reverse md:items-center'
           >
             <motion.div variants={journey3Variants.text2} className='job-desc'>
               <ul className='list-disc pl-6'>
@@ -448,9 +452,12 @@ function Journey() {
           <motion.div
             initial='hidden'
             animate={isStar3Visible ? 'visible' : 'hidden'}
-            className='content3-journey3 flex flex-col-reverse gap-3 md:flex-row md:items-end md:gap-1'
+            className='content3-journey3 flex flex-col-reverse gap-3 md:flex-row md:items-end lg:gap-1'
           >
-            <motion.div variants={journey3Variants.text3} className='job-tech'>
+            <motion.div
+              variants={journey3Variants.text3}
+              className='job-tech md:max-w-44! lg:max-w-52!'
+            >
               <p>Tech / Tools:</p>
               <div className='flex flex-wrap gap-1 md:gap-2'>
                 {[
@@ -501,7 +508,7 @@ function Journey() {
           <motion.div
             initial='hidden'
             animate={isStar4Visible ? 'visible' : 'hidden'}
-            className='content1-journey4 flex items-start gap-3 md:gap-8'
+            className='content1-journey4 flex items-start gap-3 md:gap-5 lg:gap-8'
           >
             <motion.div
               variants={journey4Variants.image1}
@@ -518,7 +525,7 @@ function Journey() {
           <motion.div
             initial='hidden'
             animate={isStar4Visible ? 'visible' : 'hidden'}
-            className='content2-journey4 flex gap-1 md:items-center md:gap-8'
+            className='content2-journey4 flex gap-1 md:items-center md:gap-3 lg:gap-8'
           >
             <motion.div
               variants={journey4Variants.image2}

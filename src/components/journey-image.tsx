@@ -14,7 +14,7 @@ const JourneyImage = ({
   className?: string;
 }) => {
   return (
-    <div className='w-[100px] md:w-40'>
+    <div className='w-[100px] md:w-32 lg:w-40'>
       <Image
         src={src}
         alt='journey image'

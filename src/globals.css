@@ -57,27 +57,27 @@
   }
 
   .chip {
-    @apply border-fg/80 text-fg bg-dark h-fit w-fit rounded-lg border px-1.5 py-1 text-[10px] md:px-2 md:text-sm;
+    @apply border-fg/80 text-fg bg-dark h-fit w-fit rounded-lg border px-1.5 py-1 text-[10px] md:px-2 md:text-xs lg:text-sm;
   }
 
   .company {
-    @apply text-fg text-xs font-medium md:text-base;
+    @apply text-fg text-xs font-medium md:text-sm lg:text-base;
   }
 
   .job-title {
-    @apply bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-xl;
+    @apply bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-lg lg:text-xl;
   }
 
   .job-duration {
-    @apply text-fg/80 text-[10px] md:text-sm;
+    @apply text-fg/80 text-[10px] md:text-xs lg:text-sm;
   }
 
   .job-desc {
-    @apply text-fg max-w-44 space-y-2 text-xs md:max-w-md md:text-base;
+    @apply text-fg max-w-44 space-y-2 text-xs md:max-w-md md:text-sm lg:text-base;
   }
 
   .job-tech {
-    @apply text-fg max-w-40 space-y-2 text-xs md:max-w-52 md:text-base;
+    @apply text-fg max-w-40 space-y-2 text-xs md:max-w-52 md:text-sm lg:text-base;
   }
 }
 
@@ -135,6 +135,10 @@ html {
     top: calc(anchor(center) - 2.5rem);
     left: calc(anchor(right) + 0.75rem);
   }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(center) - 6rem);
+  }
 }
 
 .content3-journey1 {
@@ -144,6 +148,10 @@ html {
   @media (max-width: 768px) {
     top: calc(anchor(bottom) + 2rem);
     left: calc(anchor(right) - 1rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(bottom) + 4rem);
   }
 }
 
@@ -173,6 +181,10 @@ html {
     bottom: anchor(top);
     right: calc(anchor(left) - 2rem);
   }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    bottom: calc(anchor(top) + 4rem);
+  }
 }
 
 .content2-journey2 {
@@ -183,6 +195,10 @@ html {
     top: calc(anchor(center) - 1rem);
     right: calc(anchor(left) + 0.5rem);
   }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(center) - 6.5rem);
+  }
 }
 
 .content3-journey2 {
@@ -192,6 +208,10 @@ html {
   @media (max-width: 768px) {
     top: calc(anchor(bottom) + 3.5rem);
     right: calc(anchor(left) - 2rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(bottom) + 3.5rem);
   }
 }
 
@@ -221,15 +241,25 @@ html {
     bottom: calc(anchor(top) - 0.25rem);
     left: calc(anchor(left) - 8rem);
   }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    bottom: calc(anchor(top));
+    left: calc(anchor(right));
+  }
 }
 
 .content2-journey3 {
   top: calc(anchor(center) - 1rem);
-  right: calc(anchor(left) - 11rem);
+  right: calc(anchor(left) - 7.5rem);
 
   @media (max-width: 768px) {
     top: calc(anchor(bottom) - 1rem);
-    left: calc(anchor(right) - 1rem);
+    right: calc(anchor(right) - 8rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(bottom) - 3.5rem);
+    right: calc(anchor(right) - 2rem);
   }
 }
 
@@ -238,8 +268,13 @@ html {
   right: calc(anchor(left) - 2rem);
 
   @media (max-width: 768px) {
-    top: calc(anchor(bottom) + 11rem);
-    right: calc(anchor(left) - 2.25rem);
+    top: calc(anchor(bottom) + 19rem);
+    right: calc(anchor(left) - 2rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    bottom: calc(anchor(top) + 1rem);
+    right: calc(anchor(left) - 2rem);
   }
 }
 
@@ -267,6 +302,10 @@ html {
   @media (max-width: 768px) {
     bottom: calc(anchor(top));
     left: calc(anchor(left));
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    bottom: calc(anchor(top) + 2rem);
   }
 }
 
