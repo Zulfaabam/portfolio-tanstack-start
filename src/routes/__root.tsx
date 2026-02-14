@@ -9,6 +9,7 @@ import Navbar from '@/components/navbar';
 import Section from '@/components/section';
 import ErrorContent from '@/components/error-content';
 import { QueryClient } from '@tanstack/react-query';
+import { StarsBackground } from '@/components/ui/stars-background';
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -28,7 +29,7 @@ export const Route = createRootRouteWithContext<{
       {
         property: 'og:image',
         content:
-          'https://res.cloudinary.com/dx34xih1p/image/upload/c_crop,w_1200,h_630/v1731747790/abams-home_pxrrjw.png',
+          'https://res.cloudinary.com/dx34xih1p/image/upload/v1771071465/abams-folio_zuogbn.webp',
       },
       {
         property: 'og:title',
@@ -70,7 +71,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <Navbar />
         <FloatingSocmed />
         {children}
-        {/* <Outlet /> */}
+        <StarsBackground starDensity={0.0003} />
         <Scripts />
       </body>
     </html>

@@ -10,6 +10,21 @@ type ProjectData = Omit<Project, 'tech_stack'> & {
 };
 
 export const Route = createFileRoute('/projects')({
+  head: () => ({
+    meta: [
+      { charSet: 'utf-8' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+      { title: 'Abams Projects' },
+      {
+        name: 'description',
+        content:
+          'Various projects I built, from day one I learn Frontend Development until now. Some I built it solo, some collaborated with other devs during my office work. Please take a look',
+      },
+    ],
+  }),
   errorComponent: ({ reset }) => (
     <div className='bg-dark relative flex min-h-screen w-full items-center'>
       <Section
@@ -40,8 +55,8 @@ function Projects() {
     }));
 
   return (
-    <div className='bg-dark relative min-h-screen w-full'>
-      <Section id='projects'>
+    <div className='bg-darkest relative min-h-screen w-full'>
+      <Section id='projects' className='relative z-10'>
         <div className='py-10 lg:py-20'>
           <h2 className='text-fg mb-4 max-w-4xl text-2xl md:text-4xl'>
             My Projects

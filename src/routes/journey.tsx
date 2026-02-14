@@ -1,7 +1,6 @@
 import ErrorContent from '@/components/error-content';
 import JourneyImage from '@/components/journey-image';
 import Section from '@/components/section';
-import { StarsBackground } from '@/components/ui/stars-background';
 import { createFileRoute } from '@tanstack/react-router';
 import {
   motion,
@@ -15,6 +14,20 @@ import { useRef, useMemo } from 'react';
 import { useWindowSize } from '@uidotdev/usehooks';
 
 export const Route = createFileRoute('/journey')({
+  head: () => ({
+    meta: [
+      { charSet: 'utf-8' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+      { title: 'Abams Journey' },
+      {
+        name: 'description',
+        content: "Abam's journey as a developer so far",
+      },
+    ],
+  }),
   errorComponent: ({ reset }) => (
     <div className='bg-dark relative flex min-h-screen w-full items-center'>
       <Section
@@ -849,7 +862,6 @@ function Journey() {
           </svg>
         </div>
       </Section>
-      <StarsBackground />
     </div>
   );
 }
