@@ -145,6 +145,114 @@ export const galleryImages = [
   },
 ];
 
+export const JOURNEY_2025 = {
+  year: '2025',
+  company: 'PT Tiga Daya Digital Indonesia',
+  jobTitle: 'Frontend Developer',
+  duration: 'January 2025 - December 2025',
+  image1:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1764379814/me_in_asl_fj6pef.jpg',
+  image2:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1770965503/vision_customer_page_h029to.webp',
+  image3:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1764378195/Lelang-Elektronik-JBA-Indonesia_gqigjg.png',
+  projects: [
+    'JBA Indonesia’s Electronic Auction platform',
+    'JAVIS - The internal team’s app to manage content for auction',
+    'VISION - A new micro-frontend architectured app to replace JAVIS',
+  ],
+  tech: [
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Tailwind CSS',
+    'Storybook',
+    'BitBucket',
+    'Jira',
+  ],
+};
+
+export const JOURNEY_2023_2024 = {
+  year: '2023 - 2024',
+  company: 'PT Bukit Vista Nusantara',
+  jobTitle: 'Frontend Developer',
+  duration: 'August 2023 - August 2024',
+  image1:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1731677218/DSC08857_l4mkg9.jpg',
+  image2:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1731678675/Screenshot_2024-06-29_160042_dq7ivp.png',
+  image3:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1731507569/tinker_lzjuyc.png',
+  projects: [
+    "Maintained BIGRR - Bukit Vista's internal app to manage properties, booking calendar, finance, and more",
+    "Built Tinker - a debugging tool for Bukit Vista's AI called Gaia",
+    "Small contribution in BVGO app using Flutter and Bukit Vista's Website using WordPress",
+  ],
+  tech: [
+    'React',
+    'JavaScript',
+    'Tailwind CSS',
+    'Material UI',
+    'Redux',
+    'WordPress',
+    'Flutter',
+    'GitHub',
+    'Trello',
+  ],
+};
+
+export const JOURNEY_2022_2023 = {
+  year: '2022 - 2023',
+  company: 'PT Bukit Vista Nusantara',
+  jobTitle: 'Part-time Frontend Developer',
+  duration: 'July 2022 - August 2023',
+  image1:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1731679863/bigrr-bookings_weujrk.png',
+  image2:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1731680448/guest-portal-es_ymmjyi.png',
+  image3:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1731678851/bvw-event-calendar_a3isgq.png',
+  projects: [
+    "Maintained BIGRR - Bukit Vista's internal app to manage properties, booking calendar, finance, and more",
+    "Refactored almost all of BIGRR's features using modern React best practices: lazy loading, code splitting, Context API, and more",
+  ],
+  tech: [
+    'React',
+    'JavaScript',
+    'Tailwind CSS',
+    'Material UI',
+    'Redux',
+    'GitHub',
+    'Trello',
+  ],
+};
+
+export const JOURNEY_2022 = {
+  year: '2022',
+  company: 'PT Bukit Vista Nusantara',
+  jobTitle: 'Frontend Developer Intern',
+  duration: 'February 2022 - June 2022',
+  image1:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1731679451/certif-intern-bv_mf1pyu.png',
+  image2:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1731679594/ss_prop_list_new_2_bpnxlk.png',
+  image3:
+    'https://res.cloudinary.com/dx34xih1p/image/upload/v1731678390/Screenshot_2024-08-14_160727_eoxzxa.png',
+  projects: [
+    "Refactored some of BIGRR's features by splitting code logic, create and use reusable components, better Redux state management",
+    'Learning and implementing React best practices',
+  ],
+  tech: [
+    'React',
+    'JavaScript',
+    'Tailwind CSS',
+    'Material UI',
+    'Redux',
+    'GitHub',
+    'Trello',
+  ],
+};
+
 // const journeys = [
 //   {
 //     title: '2025',

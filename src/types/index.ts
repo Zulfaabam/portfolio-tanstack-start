@@ -23,3 +23,15 @@ export interface ProjectTechStack {
   id: number;
   name: string;
 }
+
+export interface JourneyData {
+  year: string;
+  company: string;
+  jobTitle: string;
+  duration: string;
+  image1: string;
+  image2: string;
+  image3: string;
+  projects: string[];
+  tech: string[];
+}

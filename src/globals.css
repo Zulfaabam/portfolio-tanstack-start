@@ -64,6 +64,10 @@
     @apply text-fg text-xs font-medium md:text-sm lg:text-base;
   }
 
+  .job-year {
+    @apply text-fg font-caveat text-lg md:text-2xl lg:text-4xl;
+  }
+
   .job-title {
     @apply bg-linear-to-r from-primary to-accent bg-clip-text text-base font-bold text-transparent md:text-lg lg:text-xl;
   }
@@ -115,6 +119,10 @@ html {
     bottom: calc(anchor(top) - 1rem);
     right: calc(anchor(left) - 2rem);
   }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    bottom: calc(anchor(top) - 0.5rem);
+  }
 }
 
 .content1-journey1 {
@@ -124,6 +132,11 @@ html {
   @media (max-width: 768px) {
     bottom: calc(anchor(top) + 2rem);
     left: calc(anchor(left) + 0.5rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    bottom: calc(anchor(top) + 2.5rem);
+    left: calc(anchor(left) + 1rem);
   }
 }
 
@@ -170,6 +183,10 @@ html {
   @media (max-width: 768px) {
     top: calc(anchor(bottom) - 1rem);
     left: calc(anchor(right) - 1.75rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(bottom));
   }
 }
 
@@ -229,6 +246,11 @@ html {
 
   @media (max-width: 768px) {
     top: calc(anchor(top) + 1rem);
+    left: calc(anchor(right) + 0.5rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(center));
     left: calc(anchor(right));
   }
 }
@@ -239,7 +261,7 @@ html {
 
   @media (max-width: 768px) {
     bottom: calc(anchor(top) - 0.25rem);
-    left: calc(anchor(left) - 8rem);
+    left: calc(anchor(left) - 9rem);
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
@@ -254,7 +276,7 @@ html {
 
   @media (max-width: 768px) {
     top: calc(anchor(bottom) - 1rem);
-    right: calc(anchor(right) - 8rem);
+    right: calc(anchor(right) - 7rem);
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
@@ -267,9 +289,9 @@ html {
   bottom: calc(anchor(top) + 1.5rem);
   right: calc(anchor(left) - 2rem);
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     top: calc(anchor(bottom) + 19rem);
-    right: calc(anchor(left) - 2rem);
+    right: calc(anchor(left) - 1rem);
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
@@ -292,6 +314,10 @@ html {
 
   @media (max-width: 768px) {
     top: calc(anchor(bottom) - 1.5rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(bottom) - 0.5rem);
   }
 }
 
@@ -326,5 +352,10 @@ html {
   @media (max-width: 768px) {
     top: calc(anchor(bottom) + 3rem);
     left: calc(anchor(right) - 2rem);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: calc(anchor(bottom) + 5rem);
+    left: calc(anchor(left));
   }
 }
