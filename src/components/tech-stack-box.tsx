@@ -1,13 +1,11 @@
 import { cn } from '@/lib/utils';
-import { motion } from 'motion/react';
-import { createSwapy } from 'swapy';
-import { useEffect } from 'react';
+import { motion, Reorder } from 'motion/react';
+import { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 import RippleButton from './ui/ripple-btn';
 import { Image } from '@unpic/react';
 import { useQuery } from '@tanstack/react-query';
 import { getTechStack } from '@/lib/server/tech-stack';
-import { techStack as techStackBackup } from '@/lib/consts';
 
 export interface TechStackBoxProps {
   className?: string;
@@ -21,11 +19,10 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
   } = useQuery({
     queryKey: ['techStack'],
     queryFn: () => getTechStack(),
-    placeholderData: {
-      data: techStackBackup,
-      error: null,
-    },
   });
+
+  const [techStackOrder, setTechStackOrder] = useState<string[]>([]);
+  const [isShuffling, setIsShuffling] = useState(false);
 
   const triggerConfetti = () => {
     const defaults = {
@@ -58,43 +55,46 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
     setTimeout(shoot, 200);
   };
 
-  useEffect(() => {
-    const container = document.querySelector('.swapy-container');
+  const onReorder = (newOrder: string[]) => {
+    setTechStackOrder(newOrder);
 
-    if (!container) return;
+    const sortedStack = structuredClone(newOrder).sort((a, b) => {
+      if (a < b) return -1;
 
-    const swapy = createSwapy(container!, {
-      swapMode: 'hover',
+      if (a > b) return 1;
+
+      return 0;
     });
 
-    swapy.onSwapEnd(({ data }) => {
-      const sortedStack = structuredClone(
-        data.array.map((d) => d.itemId as string),
-      ).sort((a, b) => {
-        if (a < b) {
-          return -1;
-        }
-        if (a > b) {
-          return 1;
-        }
-        return 0;
-      });
+    const checkRightAnswer = (arr2: (string | null)[]) =>
+      newOrder.map((d) => d).length === arr2.length &&
+      newOrder.map((d) => d).every((element, index) => element === arr2[index]);
 
-      const checkRightAnswer = (arr2: (string | null)[]) =>
-        data.array.map((d) => d.itemId).length === arr2.length &&
-        data.array
-          .map((d) => d.itemId)
-          .every((element, index) => element === arr2[index]);
-
-      if (checkRightAnswer(sortedStack)) {
+    if (checkRightAnswer(sortedStack)) {
+      setTimeout(() => {
         triggerConfetti();
-      }
+      }, 500);
+    }
+  };
+
+  const onShuffle = () => {
+    setIsShuffling(true);
+    setTechStackOrder((prev) => {
+      const newOrder = structuredClone(prev);
+      newOrder.sort(() => Math.random() - 0.5);
+      return newOrder;
     });
 
-    return () => {
-      swapy.destroy();
-    };
-  }, []);
+    setTimeout(() => {
+      setIsShuffling(false);
+    }, 600);
+  };
+
+  useEffect(() => {
+    if (techStack?.data) {
+      setTechStackOrder(techStack.data.map((tech) => tech.name));
+    }
+  }, [techStack]);
 
   return (
     <motion.div
@@ -106,8 +106,8 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
         className,
       )}
     >
-      {/* <div className='flex w-full justify-end md:hidden'>
-        <RippleButton>
+      <div className='flex w-full justify-end md:hidden'>
+        <RippleButton onClick={onShuffle}>
           <RippleButton.Text>Shuffle</RippleButton.Text>
           <RippleButton.Icon>
             <Image
@@ -118,19 +118,34 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
             />
           </RippleButton.Icon>
         </RippleButton>
-      </div> */}
+      </div>
       <div className='h-[244px] md:w-1/2 lg:h-full'>
-        <div className='swapy-container flex h-full w-full flex-col justify-between border border-dashed p-1 lg:w-[218px]'>
-          {techStack?.data?.map((tech, idx) => (
-            <div data-swapy-slot={idx + 1} key={tech.id}>
-              <div data-swapy-item={tech.name}>
-                <div className='bg-fg text-darker cursor-pointer py-0.5 text-center'>
-                  <p className='font-pixelify-sans text-[13px]'>{tech.name}</p>
-                </div>
+        <Reorder.Group
+          values={techStackOrder ?? []}
+          onReorder={onReorder}
+          className='flex h-full w-full flex-col justify-between border border-dashed p-1 lg:w-[218px]'
+        >
+          {techStackOrder.map((tech) => (
+            <Reorder.Item
+              key={tech}
+              value={tech}
+              initial={{ y: -10, filter: 'blur(10px)', opacity: 0 }}
+              whileInView={{ y: 0, filter: 'blur(0px)', opacity: 1 }}
+              transition={{
+                duration: 0.6,
+                delay: !isShuffling
+                  ? 0.1 * (techStackOrder.length - techStackOrder.indexOf(tech))
+                  : 0,
+                ease: [0.4, 0, 0.2, 1],
+              }}
+              viewport={{ once: true }}
+            >
+              <div className='bg-fg text-darker cursor-pointer py-0.5 text-center'>
+                <p className='font-pixelify-sans text-[13px]'>{tech}</p>
               </div>
-            </div>
+            </Reorder.Item>
           ))}
-        </div>
+        </Reorder.Group>
       </div>
       <div className='flex flex-col justify-between md:w-1/2'>
         <div className='space-y-6'>
@@ -141,7 +156,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
             Try to reorder my tech stack for a surprise!
           </p>
         </div>
-        {/* <RippleButton className='md:flex! hidden self-end' onClick={shuffle}>
+        <RippleButton className='md:flex! hidden self-end' onClick={onShuffle}>
           <RippleButton.Text>Shuffle</RippleButton.Text>
           <RippleButton.Icon>
             <Image
@@ -151,7 +166,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
               height={22}
             />
           </RippleButton.Icon>
-        </RippleButton> */}
+        </RippleButton>
       </div>
     </motion.div>
   );
