@@ -22,7 +22,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
   });
 
   const [techStackOrder, setTechStackOrder] = useState<string[]>([]);
-  const [isShuffling, setIsShuffling] = useState(false);
+  const [disableTransition, setDisableTransition] = useState(false);
 
   const triggerConfetti = () => {
     const defaults = {
@@ -78,7 +78,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
   };
 
   const onShuffle = () => {
-    setIsShuffling(true);
+    setDisableTransition(true);
     setTechStackOrder((prev) => {
       const newOrder = structuredClone(prev);
       newOrder.sort(() => Math.random() - 0.5);
@@ -86,7 +86,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
     });
 
     setTimeout(() => {
-      setIsShuffling(false);
+      setDisableTransition(false);
     }, 600);
   };
 
@@ -131,14 +131,20 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
               value={tech}
               initial={{ y: -10, filter: 'blur(10px)', opacity: 0 }}
               whileInView={{ y: 0, filter: 'blur(0px)', opacity: 1 }}
-              transition={{
-                duration: 0.6,
-                delay: !isShuffling
-                  ? 0.1 * (techStackOrder.length - techStackOrder.indexOf(tech))
-                  : 0,
-                ease: [0.4, 0, 0.2, 1],
-              }}
+              transition={
+                disableTransition
+                  ? undefined
+                  : {
+                      duration: 0.6,
+                      delay:
+                        0.1 *
+                        (techStackOrder.length - techStackOrder.indexOf(tech)),
+                      ease: [0.4, 0, 0.2, 1],
+                    }
+              }
               viewport={{ once: true }}
+              onDragStart={() => setDisableTransition(true)}
+              onDragEnd={() => setDisableTransition(false)}
             >
               <div className='bg-fg text-darker cursor-pointer py-0.5 text-center'>
                 <p className='font-pixelify-sans text-[13px]'>{tech}</p>
