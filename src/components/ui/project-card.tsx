@@ -1,7 +1,6 @@
 import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 import { Image } from '@unpic/react';
 import { motion } from 'motion/react';
-import { useMatchRoute } from '@tanstack/react-router';
 import { ProjectTechStack } from 'types';
 import { cn } from '@/lib/utils';
 
@@ -28,27 +27,17 @@ export default function ProjectCard({
   className,
   imageClassName,
 }: ProjectCardProps) {
-  const matchRoute = useMatchRoute();
-
-  const isProjectsPage = matchRoute({ to: '/projects' });
-
   return (
     <motion.div
-      // initial={{ opacity: 0, y: -10 }}
-      // whileInView={{ opacity: 1, y: 0 }}
-      // transition={{
-      //   delay: isProjectsPage ? 0 : idx * 0.2,
-      //   duration: isProjectsPage ? 0.75 : 0.5,
-      // }}
-      // viewport={{
-      //   once: true,
-      //   amount:
-      //     typeof window !== 'undefined' && window.innerWidth < 1024
-      //       ? 0.1
-      //       : isProjectsPage
-      //         ? 0.2
-      //         : 0.65,
-      // }}
+      initial={{ opacity: 0, filter: 'blur(4px)', y: 10 }}
+      whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+      transition={{
+        duration: 0.5,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.5,
+      }}
       className={cn(
         'bg-dark-gray flex flex-col justify-between rounded-lg shadow-[0_0_4px_0px_rgba(234,240,245,0.6)]',
         className,
@@ -56,12 +45,16 @@ export default function ProjectCard({
     >
       <div className='space-y-2'>
         <motion.div
-          // whileHover={{
-          //   scale: 1.5,
-          //   zIndex: 10,
-          //   translateY: 60,
-          //   skewY: idx % 2 === 0 ? 2 : -2,
-          // }}
+          whileHover={{
+            scale: 1.2,
+            zIndex: 10,
+            translateY: 60,
+            skewY: idx % 2 === 0 ? 2 : -2,
+          }}
+          transition={{
+            duration: 0.25,
+            ease: [0.4, 0, 0.2, 1],
+          }}
           className={cn(
             'relative aspect-video w-full cursor-zoom-in rounded-lg hover:shadow-md hover:shadow-neutral-700',
             imageClassName,
