@@ -1,7 +1,7 @@
 import ErrorContent from '@/components/error-content';
 import Section from '@/components/section';
 import { createFileRoute } from '@tanstack/react-router';
-import { motion } from 'motion/react';
+import { motion, stagger, Variants } from 'motion/react';
 import { useRef } from 'react';
 import { useWindowSize } from '@uidotdev/usehooks';
 import { Image } from '@unpic/react';
@@ -45,6 +45,21 @@ function Gallery() {
   const itemWidth = size?.width! < 768 ? 224 : 368;
   const rowHeight = size?.width! < 768 ? 174 : 288;
 
+  const imgVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      filter: 'blur(10px)',
+    },
+    show: {
+      opacity: 1,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
+    },
+  };
+
   return (
     <div
       className='bg-darkest relative h-screen w-full overflow-hidden'
@@ -61,31 +76,35 @@ function Gallery() {
         dragConstraints={constraintsRef}
         dragElastic={0.4}
       >
-        <div
+        <motion.div
           className='relative'
           style={{
             // Manually set size to encompass all items so drag constraints work on the bounding box
             width: `${colCount * itemWidth}px`,
             height: `${Math.ceil(galleryImages.length / colCount) * rowHeight}px`,
           }}
+          initial='hidden'
+          animate='show'
+          transition={{ delayChildren: stagger(0.15, { from: 'first' }) }}
         >
           {galleryImages.map((item, index) => {
             const row = Math.floor(index / colCount);
             const col = index % colCount;
             return (
-              <div
+              <motion.div
                 key={index}
                 className='absolute transition-all duration-500'
                 style={{
                   left: col * itemWidth,
                   top: row * rowHeight,
                 }}
+                variants={imgVariants}
               >
                 <GalleryCard item={item} />
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );
