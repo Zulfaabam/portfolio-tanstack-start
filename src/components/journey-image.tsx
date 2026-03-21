@@ -31,7 +31,7 @@ const JourneyImage = ({
   }, [isZoomed]);
 
   const modalContent = (
-    <AnimatePresence>
+    <AnimatePresence mode='wait'>
       {isZoomed && (
         <div className='z-1000 fixed inset-0 flex items-center justify-center p-4 md:p-12'>
           <motion.div
