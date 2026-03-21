@@ -179,7 +179,7 @@ export default function BentoGridSection() {
           <p className='text-fg/80 text-xs md:text-sm'>
             Last update: {lastUpdate}
           </p>
-          <Signature className='*:fill-fg *:stroke-fg w-10' />
+          <Signature className='*:fill-fg *:stroke-fg size-10' />
         </motion.div>
       </div>
     </Section>
