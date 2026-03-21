@@ -24,6 +24,26 @@ const JourneySection2 = ({ data, isMobile }: JourneySectionProps) => {
   const isVisible = useInView(ref, { amount: 1, once: true });
   const prefersReducedMotion = useReducedMotion();
 
+  const yearVariants: Variants = {
+    hidden: { opacity: 0, filter: 'blur(10px)' },
+    visible: {
+      opacity: 1,
+      filter: 'blur(0px)',
+      transform: 'translateY(-5px)',
+      transition: {
+        opacity: contentTransition,
+        filter: contentTransition,
+        transform: {
+          duration: 3,
+          repeat: Infinity,
+          repeatType: 'reverse',
+          ease: 'easeInOut',
+          delay: 1,
+        },
+      },
+    },
+  };
+
   const variants = useMemo(
     () =>
       ({
@@ -115,22 +135,36 @@ const JourneySection2 = ({ data, isMobile }: JourneySectionProps) => {
         ref={ref}
         className='star-anchor2 absolute right-4 top-[696px] size-fit md:right-12 lg:right-32'
       >
-        <svg
+        <motion.svg
           width='75'
           height='67'
           viewBox='0 0 75 67'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
           className='w-8 md:w-[75px]'
+          animate={{ transform: 'translateY(-5px)' }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            repeatType: 'mirror',
+            ease: 'easeInOut',
+          }}
         >
           <path
             d='M0.889862 65.7812C33.8197 1.56855 32.0356 -0.826563 33.8197 1.56855C35.6038 3.96366 75.3605 62.8382 73.8627 61.5152C72.3649 60.1923 -0.23006 23.0078 1.44413 22.8479C3.11831 22.688 69.241 9.91374 63.9897 12.7517C59.7886 15.022 20.1727 49.0507 0.889862 65.7812Z'
             stroke='#76C1FF'
             strokeWidth='2'
           />
-        </svg>
+        </motion.svg>
       </div>
-      <p className='year-journey2 job-year max-w-12 md:max-w-24'>{data.year}</p>
+      <motion.p
+        variants={yearVariants}
+        initial='hidden'
+        animate={isVisible ? 'visible' : 'hidden'}
+        className='year-journey2 job-year max-w-12 md:max-w-24'
+      >
+        {data.year}
+      </motion.p>
       <motion.div
         initial='hidden'
         animate={isVisible ? 'visible' : 'hidden'}

@@ -24,6 +24,26 @@ const JourneySection3 = ({ data, isMobile }: JourneySectionProps) => {
   const isVisible = useInView(ref, { amount: 1, once: true });
   const prefersReducedMotion = useReducedMotion();
 
+  const yearVariants: Variants = {
+    hidden: { opacity: 0, filter: 'blur(10px)' },
+    visible: {
+      opacity: 1,
+      filter: 'blur(0px)',
+      transform: 'translateY(-5px)',
+      transition: {
+        opacity: contentTransition,
+        filter: contentTransition,
+        transform: {
+          duration: 3,
+          repeat: Infinity,
+          repeatType: 'reverse',
+          ease: 'easeInOut',
+          delay: 1,
+        },
+      },
+    },
+  };
+
   const variants = useMemo(
     () =>
       ({
@@ -115,22 +135,36 @@ const JourneySection3 = ({ data, isMobile }: JourneySectionProps) => {
         ref={ref}
         className='star-anchor3 absolute bottom-[1091px] left-1/2 size-fit md:bottom-[1081px] md:left-[399px] md:translate-x-0'
       >
-        <svg
+        <motion.svg
           width='85'
           height='80'
           viewBox='0 0 85 80'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
           className='w-8 md:w-[85px]'
+          animate={{ transform: 'translateY(-5px)' }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            repeatType: 'mirror',
+            ease: 'easeInOut',
+          }}
         >
           <path
             d='M0.356745 32.5715C67.7718 6.82545 68.0459 3.85148 67.7718 6.82545C67.4977 9.79943 57.7117 80.1631 57.482 78.1779C57.2523 76.1927 28.116 0.0100949 29.4681 1.0103C30.8201 2.01051 88.538 36.7098 82.7353 35.3103C78.0931 34.1906 25.882 33.0179 0.356745 32.5715Z'
             stroke='#76C1FF'
             strokeWidth='2'
           />
-        </svg>
+        </motion.svg>
       </div>
-      <p className='year-journey3 job-year'>{data.year}</p>
+      <motion.p
+        variants={yearVariants}
+        initial='hidden'
+        animate={isVisible ? 'visible' : 'hidden'}
+        className='year-journey3 job-year'
+      >
+        {data.year}
+      </motion.p>
       <motion.div
         initial='hidden'
         animate={isVisible ? 'visible' : 'hidden'}
