@@ -1,13 +1,15 @@
+import { useMediaQuery } from '@/hooks/use-media-query';
 import { motion, MotionValue } from 'motion/react';
 import React, { memo } from 'react';
 
 interface JourneyConstellationProps {
   pathLength: MotionValue<number>;
-  isMobile?: boolean;
 }
 
 const JourneyConstellation = memo(
-  ({ pathLength, isMobile }: JourneyConstellationProps) => {
+  ({ pathLength }: JourneyConstellationProps) => {
+    const isMobile = useMediaQuery('(max-width: 640px)');
+
     return isMobile ? (
       <svg
         width='385'

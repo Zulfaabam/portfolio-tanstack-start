@@ -47,7 +47,7 @@ export const Route = createFileRoute('/journey')({
 
 function Journey() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isMobile = !useMediaQuery('(min-width: 768px)');
+  const isMobile = useMediaQuery('(max-width: 640px)');
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -76,7 +76,7 @@ function Journey() {
           <JourneySection2 data={JOURNEY_2023_2024} isMobile={isMobile} />
           <JourneySection3 data={JOURNEY_2022_2023} isMobile={isMobile} />
           <JourneySection4 data={JOURNEY_2022} isMobile={isMobile} />
-          <JourneyConstellation pathLength={pathLength} isMobile={isMobile} />
+          <JourneyConstellation pathLength={pathLength} />
         </div>
       </Section>
     </div>

@@ -24,6 +24,26 @@ const JourneySection4 = ({ data, isMobile }: JourneySectionProps) => {
   const isVisible = useInView(ref, { amount: 1, once: true });
   const prefersReducedMotion = useReducedMotion();
 
+  const yearVariants: Variants = {
+    hidden: { opacity: 0, filter: 'blur(10px)' },
+    visible: {
+      opacity: 1,
+      filter: 'blur(0px)',
+      transform: 'translateY(-5px)',
+      transition: {
+        opacity: contentTransition,
+        filter: contentTransition,
+        transform: {
+          duration: 3,
+          repeat: Infinity,
+          repeatType: 'reverse',
+          ease: 'easeInOut',
+          delay: 1,
+        },
+      },
+    },
+  };
+
   const variants = useMemo(
     () =>
       ({
@@ -115,22 +135,36 @@ const JourneySection4 = ({ data, isMobile }: JourneySectionProps) => {
         ref={ref}
         className='star-anchor4 absolute bottom-[392px] left-6 size-fit md:bottom-[386px] md:left-[54px]'
       >
-        <svg
+        <motion.svg
           width='75'
           height='70'
           viewBox='0 0 75 70'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
           className='w-8 md:w-[75px]'
+          animate={{ transform: 'translateY(-5px)' }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            repeatType: 'mirror',
+            ease: 'easeInOut',
+          }}
         >
           <path
             d='M0.787176 58.4891C45.2928 1.68328 43.995 -1.00662 45.2928 1.68328C46.5905 4.37318 74.4654 69.7169 73.2455 68.134C72.0256 66.551 7.79618 16.2789 9.47032 16.4393C11.1445 16.5997 78.4898 16.592 72.7957 18.383C68.2404 19.8158 22.892 45.7174 0.787176 58.4891Z'
             stroke='#76C1FF'
             strokeWidth='2'
           />
-        </svg>
+        </motion.svg>
       </div>
-      <p className='year-journey4 job-year'>{data.year}</p>
+      <motion.p
+        variants={yearVariants}
+        initial='hidden'
+        animate={isVisible ? 'visible' : 'hidden'}
+        className='year-journey4 job-year'
+      >
+        {data.year}
+      </motion.p>
       <motion.div
         initial='hidden'
         animate={isVisible ? 'visible' : 'hidden'}
