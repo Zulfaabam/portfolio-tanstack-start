@@ -4,7 +4,6 @@ import JourneySection2 from '@/components/journey/journey-section-2';
 import JourneySection3 from '@/components/journey/journey-section-3';
 import JourneySection4 from '@/components/journey/journey-section-4';
 import JourneyConstellation from '@/components/journey-constellation';
-import { useMediaQuery } from '@/hooks/use-media-query';
 
 import ErrorContent from '@/components/error-content';
 import Section from '@/components/section';
@@ -47,7 +46,6 @@ export const Route = createFileRoute('/journey')({
 
 function Journey() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isMobile = useMediaQuery('(max-width: 640px)');
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -72,10 +70,10 @@ function Journey() {
         </div>
 
         <div className='relative z-10 mt-16 h-fit w-full md:mt-32'>
-          <JourneySection1 data={JOURNEY_2025} isMobile={isMobile} />
-          <JourneySection2 data={JOURNEY_2023_2024} isMobile={isMobile} />
-          <JourneySection3 data={JOURNEY_2022_2023} isMobile={isMobile} />
-          <JourneySection4 data={JOURNEY_2022} isMobile={isMobile} />
+          <JourneySection1 data={JOURNEY_2025} />
+          <JourneySection2 data={JOURNEY_2023_2024} />
+          <JourneySection3 data={JOURNEY_2022_2023} />
+          <JourneySection4 data={JOURNEY_2022} />
           <JourneyConstellation pathLength={pathLength} />
         </div>
       </Section>
