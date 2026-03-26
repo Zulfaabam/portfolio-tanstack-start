@@ -1,133 +1,59 @@
 import JourneyImage from '@/components/journey-image';
-import {
-  motion,
-  Transition,
-  useInView,
-  useReducedMotion,
-  Variants,
-} from 'motion/react';
-import React, { useMemo, useRef } from 'react';
+import { contentTransition, floatingTransition } from '@/lib/consts';
+import { motion, useInView, useReducedMotion, Variants } from 'motion/react';
+import React, { useRef } from 'react';
 import { JourneyData } from 'types';
 
 interface JourneySectionProps {
   data: JourneyData;
-  isMobile: boolean;
 }
 
-const contentTransition: Transition = {
-  duration: 1,
-  ease: [0.7, 0, 0.3, 1],
-};
-
-const JourneySection3 = ({ data, isMobile }: JourneySectionProps) => {
+const JourneySection3 = ({ data }: JourneySectionProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useInView(ref, { amount: 1, once: true });
   const prefersReducedMotion = useReducedMotion();
 
-  const yearVariants: Variants = {
-    hidden: { opacity: 0, filter: 'blur(10px)' },
+  const fadeInVariants: Variants = {
+    hidden: {
+      opacity: prefersReducedMotion ? 1 : 0,
+      filter: prefersReducedMotion ? 'blur(0px)' : 'blur(10px)',
+    },
     visible: {
       opacity: 1,
       filter: 'blur(0px)',
-      transform: 'translateY(-5px)',
-      transition: {
-        opacity: contentTransition,
-        filter: contentTransition,
-        transform: {
-          duration: 3,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          ease: 'easeInOut',
-          delay: 1,
-        },
-      },
+      transition: contentTransition,
+      willChange: 'opacity, filter',
     },
   };
 
-  const variants = useMemo(
-    () =>
-      ({
-        image1: {
-          hidden: {
-            scale: prefersReducedMotion ? 1 : 0,
-            x: prefersReducedMotion ? 0 : isMobile ? 50 : -100,
-            y: prefersReducedMotion ? 0 : isMobile ? 50 : 100,
-          },
-          visible: {
-            scale: 1,
-            x: 0,
-            y: 0,
-            transition: contentTransition,
-            willChange: 'transform, opacity',
-          },
-        },
-        text1: {
-          hidden: {
-            x: prefersReducedMotion ? 0 : isMobile ? 50 : 200,
-            opacity: 0,
-          },
-          visible: {
-            x: 0,
-            opacity: 1,
-            transition: contentTransition,
-            willChange: 'transform, opacity',
+  const fadeInFloatingVariants: (delay: number) => Variants = (
+    delay: number = 1,
+  ) => {
+    return {
+      hidden: {
+        opacity: prefersReducedMotion ? 1 : 0,
+        filter: prefersReducedMotion ? 'blur(0px)' : 'blur(10px)',
+      },
+      visible: {
+        opacity: 1,
+        filter: 'blur(0px)',
+        transform: 'translateY(-5px) rotate(4deg)',
+        transition: {
+          opacity: contentTransition,
+          filter: contentTransition,
+          transform: {
+            ...floatingTransition,
+            delay,
           },
         },
-        image2: {
-          hidden: {
-            scale: prefersReducedMotion ? 1 : 0,
-            x: prefersReducedMotion ? 0 : isMobile ? 50 : 100,
-            y: prefersReducedMotion ? 0 : isMobile ? -100 : -50,
-          },
-          visible: {
-            scale: 1,
-            x: 0,
-            y: 0,
-            transition: contentTransition,
-            willChange: 'transform, opacity',
-          },
-        },
-        text2: {
-          hidden: {
-            x: prefersReducedMotion ? 0 : isMobile ? 50 : 200,
-            opacity: 0,
-          },
-          visible: {
-            x: 0,
-            opacity: 1,
-            transition: contentTransition,
-            willChange: 'transform, opacity',
-          },
-        },
-        image3: {
-          hidden: {
-            scale: prefersReducedMotion ? 1 : 0,
-            x: prefersReducedMotion ? 0 : isMobile ? 50 : 100,
-            y: prefersReducedMotion ? 0 : isMobile ? -50 : 100,
-          },
-          visible: {
-            scale: 1,
-            x: 0,
-            y: 0,
-            transition: contentTransition,
-            willChange: 'transform, opacity',
-          },
-        },
-        text3: {
-          hidden: {
-            x: prefersReducedMotion ? 0 : isMobile ? 50 : 200,
-            opacity: 0,
-          },
-          visible: {
-            x: 0,
-            opacity: 1,
-            transition: contentTransition,
-            willChange: 'transform, opacity',
-          },
-        },
-      }) as const satisfies Record<string, Variants>,
-    [isMobile, prefersReducedMotion],
-  );
+        willChange: 'transform, opacity, filter',
+      },
+    };
+  };
+
+  const image1Variants = fadeInFloatingVariants(0.1);
+  const image2Variants = fadeInFloatingVariants(0.5);
+  const image3Variants = fadeInFloatingVariants(0.8);
 
   return (
     <>
@@ -142,13 +68,8 @@ const JourneySection3 = ({ data, isMobile }: JourneySectionProps) => {
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
           className='w-8 md:w-[85px]'
-          animate={{ transform: 'translateY(-5px)' }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            repeatType: 'mirror',
-            ease: 'easeInOut',
-          }}
+          animate={{ transform: 'translateY(-5px) rotate(-3deg)' }}
+          transition={floatingTransition}
         >
           <path
             d='M0.356745 32.5715C67.7718 6.82545 68.0459 3.85148 67.7718 6.82545C67.4977 9.79943 57.7117 80.1631 57.482 78.1779C57.2523 76.1927 28.116 0.0100949 29.4681 1.0103C30.8201 2.01051 88.538 36.7098 82.7353 35.3103C78.0931 34.1906 25.882 33.0179 0.356745 32.5715Z'
@@ -158,7 +79,7 @@ const JourneySection3 = ({ data, isMobile }: JourneySectionProps) => {
         </motion.svg>
       </div>
       <motion.p
-        variants={yearVariants}
+        variants={fadeInVariants}
         initial='hidden'
         animate={isVisible ? 'visible' : 'hidden'}
         className='year-journey3 job-year'
@@ -170,10 +91,10 @@ const JourneySection3 = ({ data, isMobile }: JourneySectionProps) => {
         animate={isVisible ? 'visible' : 'hidden'}
         className='content1-journey3 flex gap-4 md:flex-col-reverse lg:flex-row lg:gap-8'
       >
-        <motion.div variants={variants.image1} className='-rotate-9'>
+        <motion.div variants={image1Variants} className='-rotate-9'>
           <JourneyImage src={data.image1} />
         </motion.div>
-        <motion.div variants={variants.text1} className='space-y-1'>
+        <motion.div variants={fadeInVariants} className='space-y-1'>
           <p className='company'>{data.company}</p>
           <p className='job-title'>{data.jobTitle}</p>
           <p className='job-duration'>{data.duration}</p>
@@ -184,14 +105,14 @@ const JourneySection3 = ({ data, isMobile }: JourneySectionProps) => {
         animate={isVisible ? 'visible' : 'hidden'}
         className='content2-journey3 flex flex-row-reverse gap-4 md:flex-col-reverse md:items-center'
       >
-        <motion.div variants={variants.text2} className='job-desc'>
+        <motion.div variants={fadeInVariants} className='job-desc'>
           <ul className='list-disc pl-6'>
             {data.projects.map((project, idx) => (
               <li key={idx}>{project}</li>
             ))}
           </ul>
         </motion.div>
-        <motion.div variants={variants.image2} className='rotate-4'>
+        <motion.div variants={image2Variants} className='rotate-4'>
           <JourneyImage src={data.image2} />
         </motion.div>
       </motion.div>
@@ -201,7 +122,7 @@ const JourneySection3 = ({ data, isMobile }: JourneySectionProps) => {
         className='content3-journey3 flex flex-col-reverse gap-3 md:flex-row md:items-end lg:gap-1'
       >
         <motion.div
-          variants={variants.text3}
+          variants={fadeInVariants}
           className='job-tech md:max-w-44! lg:max-w-52!'
         >
           <p>Tech / Tools:</p>
@@ -213,7 +134,7 @@ const JourneySection3 = ({ data, isMobile }: JourneySectionProps) => {
             ))}
           </div>
         </motion.div>
-        <motion.div variants={variants.image3}>
+        <motion.div variants={image3Variants}>
           <JourneyImage src={data.image3} className='-rotate-2' />
         </motion.div>
       </motion.div>

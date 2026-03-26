@@ -1,3 +1,17 @@
+import { Transition } from 'motion/react';
+
+export const contentTransition: Transition = {
+  duration: 1,
+  ease: [0.7, 0, 0.3, 1], // cinematic
+};
+
+export const floatingTransition: Transition = {
+  duration: 3,
+  repeat: Infinity,
+  repeatType: 'mirror',
+  ease: 'easeInOut',
+};
+
 export const socmedList = [
   {
     id: 1,
