@@ -28,7 +28,7 @@ export const Route = createRootRouteWithContext<{
       {
         property: 'og:image',
         content:
-          'https://res.cloudinary.com/dx34xih1p/image/upload/v1771071465/abams-folio_zuogbn.webp',
+          'https://res.cloudinary.com/dx34xih1p/image/upload/v1774615959/abams-folio-new_ylorpg.webp',
       },
       {
         property: 'og:title',
