@@ -3,7 +3,7 @@ import Section from '../section';
 
 export default function HeroSection() {
   return (
-    <div className='relative z-10 flex h-60 w-full items-center pt-14 md:h-80 md:pt-16 lg:items-start lg:py-16'>
+    <div className='relative z-10 flex h-60 w-full items-center pt-16 md:h-80 lg:items-start lg:py-16'>
       <Section id='hero' className='py-0! w-full'>
         <div className='space-y-2 py-10 lg:py-20'>
           <motion.h1

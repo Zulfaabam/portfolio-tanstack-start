@@ -4,7 +4,6 @@ import {
   createRootRouteWithContext,
 } from '@tanstack/react-router';
 import appCss from '../globals.css?url';
-import FloatingSocmed from '@/components/floating-socmed';
 import Navbar from '@/components/navbar';
 import Section from '@/components/section';
 import ErrorContent from '@/components/error-content';
@@ -69,7 +68,6 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       </head>
       <body id='root' className='font-jetbrains-mono relative'>
         <Navbar />
-        <FloatingSocmed />
         {children}
         <StarsBackground starDensity={0.0003} />
         <Scripts />
