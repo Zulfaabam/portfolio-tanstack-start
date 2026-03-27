@@ -4,7 +4,6 @@ import {
   createRootRouteWithContext,
 } from '@tanstack/react-router';
 import appCss from '../globals.css?url';
-import FloatingSocmed from '@/components/floating-socmed';
 import Navbar from '@/components/navbar';
 import Section from '@/components/section';
 import ErrorContent from '@/components/error-content';
@@ -29,7 +28,7 @@ export const Route = createRootRouteWithContext<{
       {
         property: 'og:image',
         content:
-          'https://res.cloudinary.com/dx34xih1p/image/upload/v1771071465/abams-folio_zuogbn.webp',
+          'https://res.cloudinary.com/dx34xih1p/image/upload/v1774615959/abams-folio-new_ylorpg.webp',
       },
       {
         property: 'og:title',
@@ -69,7 +68,6 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       </head>
       <body id='root' className='font-jetbrains-mono relative'>
         <Navbar />
-        <FloatingSocmed />
         {children}
         <StarsBackground starDensity={0.0003} />
         <Scripts />

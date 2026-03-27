@@ -8,12 +8,35 @@ import {
 import { Link, useMatchRoute } from '@tanstack/react-router';
 import { menu } from '@/lib/consts';
 import { cn } from '@/lib/utils';
+import {
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+} from '@tabler/icons-react';
 
 export interface Position {
   left: number;
   width: number;
   opacity: number;
 }
+
+const SOCIALS = [
+  {
+    name: 'GitHub',
+    url: 'https://github.com/Zulfaabam',
+    icon: <IconBrandGithub className='social-icon' />,
+  },
+  {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/zfaabam/',
+    icon: <IconBrandInstagram className='social-icon' />,
+  },
+  {
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/zulfa-fatah-akbar-ahmad/',
+    icon: <IconBrandLinkedin className='social-icon' />,
+  },
+];
 
 export default function Navbar() {
   const { scrollYProgress } = useScroll();
@@ -82,7 +105,7 @@ const SlideNav = () => {
           opacity: 0,
         }));
       }}
-      className='border-dark bg-fg relative mx-auto flex w-fit rounded-full border-2 p-1'
+      className='bg-fg relative mx-auto flex w-fit rounded-2xl border-2 p-1'
     >
       {menu.map((m) => (
         <Menu key={m.id} setPosition={setPosition}>
@@ -98,6 +121,20 @@ const SlideNav = () => {
       ))}
 
       <Cursor position={position} />
+
+      <div className='bg-fg absolute -bottom-6 left-1/2 flex -translate-x-1/2 flex-row justify-center gap-4 rounded-b-2xl px-4 py-1 lg:-bottom-8'>
+        {SOCIALS.map((s) => (
+          <a
+            key={s.name}
+            href={s.url}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='transition-all duration-300 hover:-translate-y-0.5'
+          >
+            {s.icon}
+          </a>
+        ))}
+      </div>
     </ul>
   );
 };
@@ -138,7 +175,7 @@ const Cursor = ({ position }: { position: Position }) => {
       animate={{
         ...position,
       }}
-      className='bg-dark absolute z-0 h-7 rounded-full md:h-10'
+      className='bg-dark absolute z-0 h-7 rounded-xl md:h-10'
     />
   );
 };
