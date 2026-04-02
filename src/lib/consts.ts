@@ -57,6 +57,12 @@ export const menu = [
     path: '/gallery',
     title: 'Gallery',
   },
+  {
+    id: 5,
+    path: 'https://abams.hashnode.dev/',
+    title: 'Blog',
+    isOutsideLink: true,
+  },
 ];
 
 export const techStack = [

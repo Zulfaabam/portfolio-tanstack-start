@@ -111,6 +111,8 @@ const SlideNav = () => {
         <Menu key={m.id} setPosition={setPosition}>
           <Link
             to={m.path}
+            target={m?.isOutsideLink ? '_blank' : undefined}
+            rel={m?.isOutsideLink ? 'noopener noreferrer' : undefined}
             className={cn('transition-all duration-300', {
               'underline decoration-wavy': matchRoute({ to: m.path }),
             })}
@@ -162,7 +164,7 @@ const Menu = ({
           opacity: 1,
         });
       }}
-      className='text-fg relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase mix-blend-difference md:px-5 md:py-2.5 md:text-sm'
+      className='text-fg relative z-10 block cursor-pointer px-2 py-1.5 text-xs uppercase mix-blend-difference md:px-5 md:py-2.5 md:text-sm'
     >
       {children}
     </li>
