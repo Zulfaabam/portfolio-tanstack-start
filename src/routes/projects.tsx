@@ -1,6 +1,6 @@
 import ErrorContent from '@/components/error-content';
 import Section from '@/components/section';
-import ProjectCard from '@/components/ui/project-card';
+import ProjectItem from '@/components/ui/project-item';
 import { getProjects } from '@/lib/server/project';
 import { createFileRoute } from '@tanstack/react-router';
 import { Project } from 'types';
@@ -67,21 +67,13 @@ function Projects() {
             during my office work. Please take a look.
           </p>
         </div>
-        <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-6'>
+        <div className='flex flex-col'>
           {error ? (
-            <p className='text-center text-red-400 sm:col-span-2'>
+            <p className='text-center text-red-400'>
               {error?.message ?? 'Something when wrong!'}
             </p>
           ) : (
-            projects?.map((p, idx) => (
-              <ProjectCard
-                key={p.id}
-                idx={idx + 1}
-                className='h-[380px] sm:h-[480px]'
-                imageClassName='max-[768px]:h-[200px]'
-                {...p}
-              />
-            ))
+            projects?.map((p) => <ProjectItem key={p.id} {...p} />)
           )}
         </div>
       </Section>
