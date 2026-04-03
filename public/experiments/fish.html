@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pretext Fish Experiment</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        /* Light Ocean Theme */
+        background-color: #e0f7fa;
+        background-image: radial-gradient(
+          circle at 50% 0%,
+          #b2ebf2 0%,
+          #e0f7fa 80%
+        );
+        color: rgba(0, 105, 148, 0.6);
+        font-family:
+          'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+          monospace;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <script type="module">
+      // Importing Pretext via ESM
+      import {
+        prepareWithSegments,
+        layoutNextLine,
+      } from 'https://esm.sh/@chenglou/pretext';
+
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+
+      let width, height;
+      let mouseX = window.innerWidth / 2 || 300;
+      let mouseY = window.innerHeight / 2 || 300;
+
+      // Fish Physics State
+      let fishX = mouseX;
+      let fishY = mouseY;
+      let fishVX = 0;
+      let fishVY = 0;
+      let fishAngle = 0;
+
+      const rawText =
+        'The sea, once it casts its spell, holds one in its net of wonder forever. We are tied to the ocean. And when we go back to the sea, whether it is to sail or to watch, we are going back from whence we came. Water is the driving force of all nature. ';
+
+      // Repeat the text enough to fill a massive screen pool
+      const text = rawText.repeat(100);
+
+      const font =
+        "16px 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace";
+      const prepared = prepareWithSegments(text, font);
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener('resize', resize);
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      resize();
+
+      function draw() {
+        // --- PHYSICS UPDATE ---
+        const dx = mouseX - fishX;
+        const dy = mouseY - fishY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const mouthOffset = 70; // Distance from center of fish to its mouth
+
+        let targetX = mouseX;
+        let targetY = mouseY;
+
+        if (dist > 0.1) {
+          targetX = mouseX - (dx / dist) * mouthOffset;
+          targetY = mouseY - (dy / dist) * mouthOffset;
+        }
+
+        fishVX += (targetX - fishX) * 0.015;
+        fishVY += (targetY - fishY) * 0.015;
+        fishVX *= 0.92; // water friction
+        fishVY *= 0.92;
+        fishX += fishVX;
+        fishY += fishVY;
+
+        // --- DRAWING ---
+        ctx.clearRect(0, 0, width, height);
+        ctx.font = font;
+        ctx.fillStyle = 'rgba(0, 105, 148, 0.6)';
+        ctx.textBaseline = 'middle';
+
+        let cursor = { segmentIndex: 0, graphemeIndex: 0 };
+        let currentY = 30;
+        const lineHeight = 28;
+        const fishRadius = 50; // Invisible "repel" bubble size around the fish
+        const padding = 20;
+        const textPad = 40;
+
+        // --- LAYOUT ---
+        while (true) {
+          const dy = currentY - fishY;
+          let dx = 0;
+
+          // Calculate circle intersection to find horizontal bounds
+          if (Math.abs(dy) < fishRadius) {
+            dx = Math.sqrt(fishRadius * fishRadius - dy * dy);
+          }
+
+          if (dx > 0) {
+            // Fish intersects this line. Create two layout zones: left and right of the fish.
+            const leftSpace = fishX - dx - padding;
+            const rightStart = fishX + dx + padding;
+
+            // 1. Try rendering left segment
+            if (leftSpace > textPad + 30) {
+              const line = layoutNextLine(
+                prepared,
+                cursor,
+                leftSpace - textPad,
+              );
+              if (line) {
+                ctx.fillText(line.text, textPad, currentY);
+                cursor = line.end;
+              } else break;
+            }
+
+            // 2. Try rendering right segment
+            if (rightStart < width - textPad - 30) {
+              const line = layoutNextLine(
+                prepared,
+                cursor,
+                width - rightStart - textPad,
+              );
+              if (line) {
+                ctx.fillText(line.text, rightStart, currentY);
+                cursor = line.end;
+              } else break;
+            }
+          } else {
+            // Normal full line (no fish intersection)
+            const availWidth = width - textPad * 2;
+            const line = layoutNextLine(prepared, cursor, availWidth);
+            if (line) {
+              ctx.fillText(line.text, textPad, currentY);
+              cursor = line.end;
+            } else break;
+          }
+
+          currentY += lineHeight;
+          if (currentY > height) break;
+        }
+
+        // --- DRAW FISH ---
+        ctx.save();
+        ctx.translate(fishX, fishY);
+
+        let speed = Math.sqrt(fishVX * fishVX + fishVY * fishVY);
+        if (speed > 0.1) {
+          fishAngle = Math.atan2(fishVY, fishVX);
+        }
+
+        // Add a swimming sine wave wiggle based on speed
+        let wiggle = Math.sin(performance.now() * 0.01) * (speed * 0.015);
+
+        // Handle flipping so the left-facing emoji isn't upside down or backwards
+        if (Math.abs(fishAngle) > Math.PI / 2) {
+          ctx.rotate(fishAngle - Math.PI + wiggle);
+        } else {
+          ctx.scale(-1, 1);
+          ctx.rotate(-fishAngle - wiggle);
+        }
+
+        ctx.font = '100px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        // Give fish a slight glow
+        ctx.shadowColor = 'rgba(0, 150, 200, 0.4)';
+        ctx.shadowBlur = 20;
+        ctx.fillText('🐟', 0, 0);
+        ctx.restore();
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    </script>
+  </body>
+</html>

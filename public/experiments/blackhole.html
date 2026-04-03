@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pretext Gravity Well</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        overflow: hidden;
+        background: #000;
+        cursor: crosshair;
+        user-select: none;
+        position: relative;
+      }
+      canvas {
+        display: block;
+      }
+      .hint {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.3);
+        font-family: monospace;
+        font-size: 14px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <div class="hint" id="hint">Click and hold to activate black hole</div>
+
+    <script type="module">
+      import { prepareWithSegments } from 'https://esm.sh/@chenglou/pretext';
+
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      const hint = document.getElementById('hint');
+
+      let width, height;
+      let mouseX = 0;
+      let mouseY = 0;
+      let isActive = false;
+      let hasInteracted = false;
+
+      const spaceFacts = `The observable universe contains over two trillion galaxies, each with hundreds of billions of stars. Light from the farthest galaxies has traveled over thirteen billion years to reach our eyes. The largest known black hole, Phoenix A, has a mass equivalent to one hundred billion suns and devours roughly sixty Earth masses daily. Neutron stars are so extraordinarily dense that a single teaspoon of their material would weigh approximately six billion tons, surpassing the weight of every human on Earth combined. When massive stars collapse, they can create either neutron stars or, if sufficiently massive, black holes where gravity becomes so intense that not even light can escape. The event horizon of a black hole marks the point of no return, beyond which escape becomes physically impossible according to our current understanding of physics. Our Milky Way galaxy alone contains between one hundred and four hundred billion stars, with most harboring their own planetary systems. The nearest black hole to Earth, Cygnus X-1, sits approximately six thousand light-years away in the constellation Cygnus. Spaghettification, predicted by general relativity, describes how approaching a black hole would stretch matter into thin, pasta-like strands due to extreme tidal forces. Time itself dilates near massive objects, meaning clocks tick slower in stronger gravitational fields, a phenomenon confirmed by GPS satellites requiring constant adjustment. The universe's expansion is accelerating, driven by what we call dark energy, comprising approximately sixty-eight percent of the total energy content of the cosmos. Dark matter, invisible yet pervasive, accounts for roughly twenty-seven percent of the universe, holding galaxies together with its gravitational embrace. Ordinary matter, the stuff we see and touch, makes up less than five percent of everything that exists. Quasars, the brightest objects in the universe, are powered by supermassive black holes consuming matter at extraordinary rates, outshining entire galaxies combined. The cosmic microwave background radiation, the afterglow of the Big Bang, permeates all of space with a temperature of approximately 2.7 Kelvin. Gravitational waves, ripples in spacetime first predicted by Einstein in 1916, were directly detected for the first time in 2015 from two merging black holes. The Sun loses approximately four million tons of mass every second through nuclear fusion, converting hydrogen into helium at its core. Proxima Centauri, our nearest stellar neighbor after the Sun, hosts at least two confirmed planets, one residing in the habitable zone. The Voyager 1 spacecraft, humanity's most distant messenger, has traveled over fifteen billion miles from Earth and still transmits data. Saturn's density is so low that it would float if placed in a body of water large enough to contain it. Jupiter's Great Red Spot is a storm larger than Earth that has raged for at least four hundred years. Mars hosts the largest volcano in the solar system, Olympus Mons, standing nearly three times the height of Mount Everest. Europa, Jupiter's icy moon, harbors a subsurface ocean potentially containing more water than all of Earth's oceans combined. Titan, Saturn's largest moon, possesses lakes and rivers of liquid methane and ethane on its surface. The Andromeda galaxy approaches the Milky Way at approximately two hundred fifty thousand miles per hour and will collide with us in about four and a half billion years. Photons from the Sun's core take between ten thousand and one hundred seventy thousand years to reach the surface due to constant absorption and re-emission. Neutrinos, nearly massless particles, pass through the Earth by the trillions every second without interacting with any matter. The universe's first galaxies formed approximately two hundred million years after the Big Bang, seeding the cosmic structure we observe today. Black holes can grow by consuming matter or by merging with other black holes, sometimes creating objects billions of times more massive than our Sun. The entropy of a black hole is proportional to the area of its event horizon, not its volume, a profound insight connecting thermodynamics with gravity. Information that falls into a black hole may not be truly destroyed, leading to the famous black hole information paradox that remains partially unsolved. Hawking radiation, quantum effect predicted by Stephen Hawking, allows black holes to slowly evaporate over incomprehensible timescales. The universe underwent a rapid exponential expansion called inflation in its first fraction of a second, stretching quantum fluctuations into the large-scale structure we see today. The cosmic web, the largest structure in the universe, consists of filaments of dark matter and galaxies connecting galaxy clusters across billions of light-years. The most distant observed galaxy, JADES-GS-z14-0, existed when the universe was only about three hundred million years old. Every atom in your body was forged in the hearts of ancient stars, scattered across the cosmos by supernova explosions. The cosmic horizon limits how far we can see, not because the universe ends, but because light from beyond has not had enough time to reach us. The Planck length, approximately one sextillionth the size of a proton, may represent the fundamental granularity of spacetime itself. Empty space is not truly empty but seethes with virtual particles constantly popping in and out of existence. The proton, a fundamental particle in every atom's nucleus, has remained stable for over thirteen billion years despite having no known reason for its extraordinary longevity. Antimatter and matter were created in nearly equal amounts after the Big Bang, yet matter predominates in our observable universe, and we still do not fully understand why. The universe is flat, meaning parallel lines remain parallel, suggesting it extends infinitely in all directions. Dark energy's nature remains one of the greatest mysteries in modern physics, driving the accelerating expansion of space itself. The human brain contains roughly eighty-six billion neurons, comparable in number to the stars in the Milky Way. Light takes only eight minutes to travel from the Sun to Earth but over four years to reach the nearest star. The center of our galaxy emits radiation across the electromagnetic spectrum from the chaotic environment surrounding Sagittarius A*, our local supermassive black hole. The universe's average density is incredibly low, roughly one hydrogen atom per cubic meter, yet this slight imbalance of matter allowed galaxies to form. Stellar black holes, formed from collapsed massive stars, typically have masses between three and a dozen times that of our Sun. Intermediate-mass black holes, weighing hundreds to thousands of solar masses, remain mysterious and relatively rare in our cosmic neighborhood. Supermassive black holes, millions to billions of solar masses, lurk at the centers of most large galaxies, including our own Milky Way. The Event Horizon Telescope collaboration captured the first image of a black hole's shadow in 2019, located in the galaxy M87. The image showed a bright ring of superheated gas surrounding a dark central region, confirming predictions from general relativity. Tidal forces near a black hole become extreme, stretching everything vertically while compressing it horizontally, an effect called spaghettification. Time dilation near black holes becomes extreme, with one hour near a black hole potentially equating to years far away, though reaching such extremes remains beyond our technological reach. The fabric of spacetime curves in the presence of mass and energy, following Einstein's field equations that govern the geometry of the cosmos.`;
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        mouseX = width / 2;
+        mouseY = height / 2;
+      }
+
+      window.addEventListener('resize', resize);
+      window.addEventListener('mousedown', (e) => {
+        isActive = true;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!hasInteracted) {
+          hasInteracted = true;
+          hint.style.opacity = '0';
+        }
+      });
+      window.addEventListener('mouseup', () => {
+        isActive = false;
+        if (hasInteracted) {
+          hasInteracted = false;
+          hint.style.opacity = '1';
+        }
+      });
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      window.addEventListener('mouseleave', () => {
+        isActive = false;
+      });
+
+      resize();
+
+      const font = '16px Monospace';
+      const fontSmall = '14px Monospace';
+
+      const words = spaceFacts.split(/\s+/).filter((w) => w.length > 0);
+      const numWords = words.length;
+
+      const particles = [];
+
+      class WordParticle {
+        constructor(index) {
+          this.word = words[index % numWords];
+          this.measureWidth();
+          this.reset(true);
+        }
+
+        measureWidth() {
+          ctx.font = font;
+          this.width = ctx.measureText(this.word).width;
+        }
+
+        reset(initial = false) {
+          const cols = Math.ceil(width / 120);
+          const colWidth = width / cols;
+          const col = Math.floor(Math.random() * cols);
+
+          this.x =
+            col * colWidth + Math.random() * (colWidth - this.width - 20);
+          this.y = initial ? Math.random() * height : -50 - Math.random() * 100;
+
+          this.vx = (Math.random() - 0.5) * 0.3;
+          this.vy = 0.8 + Math.random() * 0.4;
+          this.baseVy = this.vy;
+
+          this.angle = Math.random() * Math.PI * 2;
+          this.spiralSpeed = (Math.random() - 0.5) * 0.02;
+        }
+
+        update(wellX, wellY, wellActive) {
+          const dx = wellX - this.x;
+          const dy = wellY - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (wellActive && dist > 30) {
+            const G = 800;
+            const force = G / (dist * dist);
+            const ax = (dx / dist) * force;
+            const ay = (dy / dist) * force;
+
+            this.angle += this.spiralSpeed * (1 + 200 / Math.max(dist, 50));
+            const tangentX = -dy / dist;
+            const tangentY = dx / dist;
+            const spiralStrength = force * 0.8;
+
+            this.vx += ax + tangentX * spiralStrength;
+            this.vy += ay + tangentY * spiralStrength;
+          }
+
+          this.vx *= 0.98;
+          this.vy *= 0.98;
+
+          if (!wellActive) {
+            this.vy += 0.01;
+            this.vy = Math.min(this.vy, this.baseVy * 2);
+            this.vx += (Math.random() - 0.5) * 0.05;
+          }
+
+          this.x += this.vx;
+          this.y += this.vy;
+
+          if (this.y > height + 100 || this.x < -200 || this.x > width + 200) {
+            this.reset();
+          }
+
+          return dist;
+        }
+
+        draw(glowIntensity) {
+          if (glowIntensity > 0.01) {
+            const r = Math.floor(255);
+            const g = Math.floor(180 * glowIntensity);
+            const b = Math.floor(0);
+            ctx.shadowColor = `rgba(${r}, ${g}, ${b}, ${glowIntensity * 0.9})`;
+            ctx.shadowBlur = 15 + glowIntensity * 25;
+            ctx.fillStyle = `rgba(255, ${255 - Math.floor(75 * glowIntensity)}, ${255 - Math.floor(255 * glowIntensity)}, 1)`;
+          } else {
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#fff';
+          }
+
+          ctx.fillText(this.word, this.x, this.y);
+        }
+      }
+
+      for (let i = 0; i < 250; i++) {
+        particles.push(new WordParticle(i));
+      }
+
+      function draw() {
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.font = font;
+        ctx.fillStyle = '#fff';
+        ctx.textBaseline = 'middle';
+
+        const wellRadius = 150;
+        let minDistToWell = Infinity;
+
+        for (const p of particles) {
+          const dist = p.update(mouseX, mouseY, isActive);
+          if (isActive && dist < minDistToWell) {
+            minDistToWell = dist;
+          }
+        }
+
+        const sortedByY = [...particles].sort((a, b) => a.y - b.y);
+
+        for (const p of sortedByY) {
+          let glowIntensity = 0;
+          if (isActive) {
+            const dist = Math.hypot(p.x - mouseX, p.y - mouseY);
+            glowIntensity = Math.max(0, 1 - dist / wellRadius);
+            glowIntensity = Math.pow(glowIntensity, 1.2);
+            glowIntensity = Math.min(1, glowIntensity * 1.5);
+          }
+          p.draw(glowIntensity);
+        }
+
+        if (isActive) {
+          const outerRadius = 250;
+          const midRadius = 100;
+          const innerRadius = 40;
+
+          const gradient = ctx.createRadialGradient(
+            mouseX,
+            mouseY,
+            0,
+            mouseX,
+            mouseY,
+            outerRadius,
+          );
+          gradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
+          gradient.addColorStop(0.15, 'rgba(0, 0, 0, 1)');
+          gradient.addColorStop(0.2, 'rgba(255, 100, 0, 0.4)');
+          gradient.addColorStop(0.35, 'rgba(255, 60, 0, 0.2)');
+          gradient.addColorStop(0.6, 'rgba(255, 30, 0, 0.05)');
+          gradient.addColorStop(1, 'rgba(255, 0, 0, 0)');
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.arc(mouseX, mouseY, outerRadius, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.strokeStyle = 'rgba(255, 100, 0, 0.6)';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(mouseX, mouseY, innerRadius, 0, Math.PI * 2);
+          ctx.stroke();
+
+          ctx.strokeStyle = 'rgba(255, 60, 0, 0.4)';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.arc(mouseX, mouseY, midRadius, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        ctx.shadowBlur = 0;
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    </script>
+  </body>
+</html>
