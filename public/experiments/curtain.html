@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pretext Curtain Experiment</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: #111;
+        color: white;
+        font-family: monospace;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <script type="module">
+      // Importing Pretext via ESM
+      import {
+        prepareWithSegments,
+        layoutNextLine,
+      } from 'https://esm.sh/@chenglou/pretext';
+
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+
+      let width, height;
+      let mouseX = window.innerWidth / 3 || 300;
+
+      const text =
+        "This is a demonstration of Pretext's incredible speed. Traditionally, recalculating line breaks 60 times per second would cause massive browser layout thrashing. But because Pretext does this purely with mathematical segments, we can change the width of every single line in real-time based on the physics of this interactive curtain. As you move your mouse, a Verlet integration string swings with weight and friction. Pretext seamlessly flows the typography around its undulating edge. Notice how the text constantly reflows frame-by-frame without a single dropped frame or DOM read. This opens up entirely new possibilities for editorial design and interactive typography that were previously impossible on the web.";
+
+      // 1. PREPARE (The "Heavy" lifting - done once)
+      const font = '20px Monospace';
+      const prepared = prepareWithSegments(text, font);
+
+      // Physics State
+      const numPoints = 10;
+      let points = [];
+      let segmentLength = 0;
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+
+        segmentLength = height / (numPoints - 1);
+        points = [];
+        for (let i = 0; i < numPoints; i++) {
+          points.push({
+            x: mouseX,
+            y: i * segmentLength,
+            oldX: mouseX,
+            oldY: i * segmentLength,
+          });
+        }
+      }
+
+      window.addEventListener('resize', resize);
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+      });
+      resize();
+
+      // Helper to calculate X constraint on the string
+      function getCurtainX(y) {
+        if (y <= points[0].y) return points[0].x;
+        if (y >= points[numPoints - 1].y) return points[numPoints - 1].x;
+
+        for (let i = 0; i < numPoints - 1; i++) {
+          if (y >= points[i].y && y <= points[i + 1].y) {
+            const t = (y - points[i].y) / (points[i + 1].y - points[i].y);
+            return points[i].x + t * (points[i + 1].x - points[i].x);
+          }
+        }
+        return points[0].x;
+      }
+
+      function draw() {
+        // --- PHYSICS UPDATE ---
+        // 1. Ease top point towards mouse (heavy feel)
+        points[0].x += (mouseX - points[0].x) * 0.05;
+
+        // 2. Verlet integration
+        for (let i = 1; i < numPoints; i++) {
+          const p = points[i];
+          const vx = (p.x - p.oldX) * 0.96; // friction
+          const vy = (p.y - p.oldY) * 0.96;
+          p.oldX = p.x;
+          p.oldY = p.y;
+          p.x += vx;
+          p.y += vy + 0.8; // gravity
+        }
+
+        // 3. Constraints (stick distance)
+        for (let iter = 0; iter < 5; iter++) {
+          points[0].y = 0; // Pin top Y
+          for (let i = 0; i < numPoints - 1; i++) {
+            const p1 = points[i];
+            const p2 = points[i + 1];
+            const dx = p2.x - p1.x;
+            const dy = p2.y - p1.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const diff = segmentLength - dist;
+            const percent = diff / dist / 2;
+            const offsetX = dx * percent;
+            const offsetY = dy * percent;
+
+            if (i === 0) {
+              p2.x += offsetX * 2;
+              p2.y += offsetY * 2;
+            } else {
+              p1.x -= offsetX;
+              p1.y -= offsetY;
+              p2.x += offsetX;
+              p2.y += offsetY;
+            }
+          }
+        }
+
+        // --- DRAWING ---
+        ctx.fillStyle = '#111';
+        ctx.fillRect(0, 0, width, height);
+
+        // Draw Curtain Shape
+        const maxCurtainX = Math.max(...points.map((p) => p.x));
+        const curtainGradient = ctx.createLinearGradient(0, 0, maxCurtainX, 0);
+        curtainGradient.addColorStop(0, '#0f0f0f');
+        curtainGradient.addColorStop(0.8, '#1f1f1f');
+        curtainGradient.addColorStop(1, '#333333');
+        ctx.fillStyle = curtainGradient;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        for (let i = 0; i < numPoints; i++) {
+          ctx.lineTo(points[i].x, points[i].y);
+        }
+        ctx.lineTo(0, height);
+        ctx.closePath();
+        ctx.fill();
+
+        // Draw Curtain Edge Line
+        ctx.strokeStyle = '#444';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < numPoints; i++) {
+          ctx.lineTo(points[i].x, points[i].y);
+        }
+        ctx.stroke();
+
+        ctx.font = font;
+        ctx.fillStyle = '#00ffcc';
+
+        let cursor = { segmentIndex: 0, graphemeIndex: 0 };
+        let currentY = 50;
+        const lineHeight = 26;
+
+        // 2. LAYOUT (The "Fast" part - done every frame)
+        while (true) {
+          // Calculate X-position of the curtain using the vertical center of the line text
+          const curtainEdgeX = getCurtainX(currentY - lineHeight / 2);
+          const padding = 20;
+          const startX = curtainEdgeX + padding;
+
+          // Determine the final width from curtain edge until right boundary
+          const currentLineWidth = Math.max(10, width - startX - padding);
+
+          const line = layoutNextLine(prepared, cursor, currentLineWidth);
+          if (!line) break;
+
+          ctx.fillText(line.text, startX, currentY);
+
+          cursor = line.end;
+          currentY += lineHeight;
+          if (currentY > height) break;
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    </script>
+  </body>
+</html>
