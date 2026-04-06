@@ -2,9 +2,36 @@ export interface LabCardProps {
   title: string;
   techs: string[];
   src: string;
+  searchQuery?: string;
 }
 
-export default function LabCard({ title, techs, src }: LabCardProps) {
+function HighlightText({ text, query }: { text: string; query?: string }) {
+  if (!query || !query.trim()) return <>{text}</>;
+  const parts = text.split(new RegExp(`(${query})`, 'gi'));
+  return (
+    <>
+      {parts.map((part, idx) =>
+        part.toLowerCase() === query.toLowerCase() ? (
+          <span
+            key={idx}
+            className='rounded-sm bg-yellow-500/30 text-yellow-200'
+          >
+            {part}
+          </span>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
+
+export default function LabCard({
+  title,
+  techs,
+  src,
+  searchQuery,
+}: LabCardProps) {
   return (
     <a
       href={src}
@@ -25,7 +52,7 @@ export default function LabCard({ title, techs, src }: LabCardProps) {
       <div className='flex flex-col justify-between border-t border-neutral-800 bg-neutral-900 p-4 transition-colors duration-300 group-hover:bg-neutral-800/50'>
         <div className='flex items-center justify-between'>
           <p className='text-sm font-medium text-neutral-300 transition-colors group-hover:text-white'>
-            {title}
+            <HighlightText text={title} query={searchQuery} />
           </p>
           <div className='flex gap-1.5'>
             {techs.map((tech, idx) => (
@@ -33,7 +60,7 @@ export default function LabCard({ title, techs, src }: LabCardProps) {
                 key={idx}
                 className='rounded bg-neutral-800 px-2 py-0.5 text-[10px] text-neutral-400'
               >
-                {tech}
+                <HighlightText text={tech} query={searchQuery} />
               </span>
             ))}
           </div>

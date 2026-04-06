@@ -2,32 +2,8 @@ import ErrorContent from '@/components/error-content';
 import Section from '@/components/section';
 import { createFileRoute } from '@tanstack/react-router';
 import LabCard from '@/components/lab-card';
-
-// A static list of your HTML experiments.
-// Place your HTML files inside the `public/experiments` folder.
-const EXPERIMENTS = [
-  {
-    id: 1,
-    title: 'Blackhole',
-    techs: ['Pretext', 'CSS'],
-    src: '/experiments/blackhole.html', // path relative to public folder
-    featured: true,
-  },
-  {
-    id: 2,
-    title: 'Fish',
-    techs: ['Pretext', 'Canvas'],
-    src: '/experiments/fish.html',
-    featured: true,
-  },
-  {
-    id: 3,
-    title: 'Curtain',
-    techs: ['JS', 'HTML', 'CSS'],
-    src: '/experiments/curtain.html',
-    featured: true,
-  },
-];
+import { EXPERIMENTS } from '@/lib/labs';
+import { useState, useMemo } from 'react';
 
 export const Route = createFileRoute('/labs')({
   head: () => ({
@@ -59,23 +35,97 @@ export const Route = createFileRoute('/labs')({
 });
 
 function Labs() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
+
+  const allTechs = useMemo(() => {
+    const techs = new Set<string>();
+    EXPERIMENTS.filter((exp) => exp.featured).forEach((exp) =>
+      exp.techs.forEach((t) => techs.add(t)),
+    );
+    return Array.from(techs).sort();
+  }, []);
+
+  const toggleTech = (tech: string) => {
+    setSelectedTechs((prev) =>
+      prev.includes(tech) ? prev.filter((t) => t !== tech) : [...prev, tech],
+    );
+  };
+
+  const displayedExperiments = useMemo(() => {
+    let result = EXPERIMENTS.filter((exp) => exp.featured);
+
+    if (selectedTechs.length > 0) {
+      result = result.filter((exp) =>
+        selectedTechs.every((tech) => exp.techs.includes(tech)),
+      );
+    }
+
+    if (searchQuery.trim() !== '') {
+      const query = searchQuery.toLowerCase();
+      result = [...result].sort((a, b) => {
+        const aMatch =
+          a.title.toLowerCase().includes(query) ||
+          a.techs.some((t) => t.toLowerCase().includes(query));
+        const bMatch =
+          b.title.toLowerCase().includes(query) ||
+          b.techs.some((t) => t.toLowerCase().includes(query));
+
+        if (aMatch && !bMatch) return -1;
+        if (!aMatch && bMatch) return 1;
+        return 0;
+      });
+    }
+
+    return result;
+  }, [searchQuery, selectedTechs]);
+
   return (
-    <div className='bg-darkest relative min-h-screen w-full'>
+    <div id='labs-div' className='bg-darkest relative min-h-screen w-full'>
       <Section id='labs' className='relative z-10'>
         <div className='py-10 lg:py-20'>
           <h2 className='text-fg mb-4 max-w-4xl text-2xl md:text-4xl'>Labs</h2>
           <p className='text-fg max-w-md text-sm md:text-base'>
-            A collection of my experiments, including CSS animations, UI
-            components, canvas sketches, and more.
+            A collection of my web experiments.
           </p>
         </div>
+        <div className='mb-8 flex flex-col items-center justify-between gap-4 md:flex-row'>
+          <input
+            type='text'
+            placeholder='Search experiments...'
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className='text-fg w-full max-w-md rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-2 text-sm placeholder-neutral-500 focus:border-neutral-600 focus:outline-none focus:ring-1 focus:ring-neutral-600'
+          />
+          {allTechs.length > 0 && (
+            <div className='flex flex-wrap gap-2'>
+              {allTechs.map((tech) => {
+                const isSelected = selectedTechs.includes(tech);
+                return (
+                  <button
+                    key={tech}
+                    onClick={() => toggleTech(tech)}
+                    className={`cursor-pointer rounded-full border px-3 py-1 text-xs transition-colors ${
+                      isSelected
+                        ? 'border-neutral-300 bg-neutral-300 text-neutral-900'
+                        : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:bg-neutral-800 hover:text-neutral-300'
+                    }`}
+                  >
+                    {tech}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
         <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-6'>
-          {EXPERIMENTS.filter((exp) => exp.featured).map((item) => (
+          {displayedExperiments.map((item) => (
             <LabCard
               key={item.id}
               title={item.title}
               techs={item.techs}
               src={item.src}
+              searchQuery={searchQuery}
             />
           ))}
         </div>
