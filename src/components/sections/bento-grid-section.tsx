@@ -118,13 +118,18 @@ export default function BentoGridSection() {
           <h6 className='font-semibold'>What I'm Up to</h6>
           <div className='space-y-2'>
             <p className='text-fg flex gap-2 text-sm'>
-              <span>🟢</span> Open to work
+              <span>⚙️</span> Building{' '}
+              <a
+                href='https://pokepinpoint.netlify.app/'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='underline decoration-dotted underline-offset-2 hover:underline-offset-4'
+              >
+                PokePinpoint
+              </a>
             </p>
             <p className='text-fg flex gap-2 text-sm'>
-              <span>🌱</span> Now learning: Node.js & Backend techs
-            </p>
-            <p className='text-fg flex gap-2 text-sm'>
-              <span>👨‍💻</span> Working on this portfolio
+              <span>🌱</span> Learning backend techs
             </p>
           </div>
         </motion.div>
