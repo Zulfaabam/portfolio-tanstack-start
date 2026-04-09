@@ -23,12 +23,13 @@ export const Route = createRootRouteWithContext<{
       { title: 'Abams' },
       {
         name: 'description',
-        content: "Abam's Portfolio created using Tanstack Start",
+        content:
+          "Abam's Projects, Skills, Experiments, and Contact Information",
       },
       {
         property: 'og:image',
         content:
-          'https://res.cloudinary.com/dx34xih1p/image/upload/v1774615959/abams-folio-new_ylorpg.webp',
+          'https://res.cloudinary.com/dx34xih1p/image/upload/v1775728964/abams_folio_og-image_pucby8.png',
       },
       {
         property: 'og:title',

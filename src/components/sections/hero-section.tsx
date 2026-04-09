@@ -29,14 +29,27 @@ export default function HeroSection() {
               </motion.span>
             ))}
           </motion.h1>
-          <motion.h2
-            className='text-fg/80 text-base lg:text-lg'
+          <motion.div
             initial={{ filter: 'blur(10px)', opacity: 0 }}
             animate={{ filter: 'blur(0px)', opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
+            transition={{
+              duration: 0.6,
+              delay: 0.8,
+              ease: [0.4, 0, 0.2, 1],
+            }}
+            className='flex items-center gap-2'
           >
-            Frontend Developer based in Indonesia
-          </motion.h2>
+            <h2 className='text-fg/80 text-base lg:text-lg'>
+              Frontend Engineer
+            </h2>
+            <div className='text-fg/80 flex w-fit min-w-[100px] items-center gap-1 rounded-full border border-neutral-800 bg-neutral-900 px-1.5 py-1 text-[10px] md:gap-2 md:px-2 md:text-xs'>
+              <div className='relative flex size-1.5 items-center justify-center md:size-2'>
+                <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75'></span>
+                <span className='relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500'></span>
+              </div>
+              <p>Open to work</p>
+            </div>
+          </motion.div>
         </div>
       </Section>
     </div>
