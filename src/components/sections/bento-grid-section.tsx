@@ -123,7 +123,7 @@ export default function BentoGridSection() {
                 href='https://pokepinpoint.netlify.app/'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='underline decoration-dotted underline-offset-2 hover:underline-offset-4'
+                className='hover:text-primary underline underline-offset-2 transition-all duration-300 hover:underline-offset-1'
               >
                 PokePinpoint
               </a>
