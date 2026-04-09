@@ -54,8 +54,8 @@ export const menu = [
   },
   {
     id: 4,
-    path: '/gallery',
-    title: 'Gallery',
+    path: '/labs',
+    title: 'Labs',
   },
   {
     id: 5,

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as LabsRouteImport } from './routes/labs'
 import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LabsRoute = LabsRouteImport.update({
+  id: '/labs',
+  path: '/labs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JourneyRoute = JourneyRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/gallery': typeof GalleryRoute
   '/journey': typeof JourneyRoute
+  '/labs': typeof LabsRoute
   '/projects': typeof ProjectsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/gallery': typeof GalleryRoute
   '/journey': typeof JourneyRoute
+  '/labs': typeof LabsRoute
   '/projects': typeof ProjectsRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/gallery': typeof GalleryRoute
   '/journey': typeof JourneyRoute
+  '/labs': typeof LabsRoute
   '/projects': typeof ProjectsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/gallery' | '/journey' | '/projects'
+  fullPaths: '/' | '/gallery' | '/journey' | '/labs' | '/projects'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gallery' | '/journey' | '/projects'
-  id: '__root__' | '/' | '/gallery' | '/journey' | '/projects'
+  to: '/' | '/gallery' | '/journey' | '/labs' | '/projects'
+  id: '__root__' | '/' | '/gallery' | '/journey' | '/labs' | '/projects'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GalleryRoute: typeof GalleryRoute
   JourneyRoute: typeof JourneyRoute
+  LabsRoute: typeof LabsRoute
   ProjectsRoute: typeof ProjectsRoute
 }
 
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/labs': {
+      id: '/labs'
+      path: '/labs'
+      fullPath: '/labs'
+      preLoaderRoute: typeof LabsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/journey': {
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GalleryRoute: GalleryRoute,
   JourneyRoute: JourneyRoute,
+  LabsRoute: LabsRoute,
   ProjectsRoute: ProjectsRoute,
 }
 export const routeTree = rootRouteImport
