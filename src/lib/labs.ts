@@ -27,4 +27,11 @@ export const EXPERIMENTS = [
     src: '/experiments/curtain.html',
     featured: true,
   },
+  {
+    id: 5,
+    title: 'View transitions',
+    techs: ['CSS', 'JS'],
+    src: '/experiments/view-transitions.html',
+    featured: true,
+  },
 ];

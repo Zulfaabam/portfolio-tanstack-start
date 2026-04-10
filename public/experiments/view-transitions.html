@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Transitions</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --bg: #e0f7fa;
+      }
+      .dark {
+        --bg: #111;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: var(--bg);
+        font-family:
+          'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+          monospace;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .switch-btn {
+        border: none;
+        padding: 0.5rem 1rem;
+        background-color: antiquewhite;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <button class="switch-btn">switch</button>
+    </div>
+    <script type="module">
+      const btn = document.querySelector('.switch-btn');
+      btn.addEventListener('click', () => {
+        if (!document.startViewTransition) switchTheme();
+        document.startViewTransition(switchTheme);
+      });
+
+      const switchTheme = () => {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      };
+    </script>
+  </body>
+</html>
