@@ -34,4 +34,11 @@ export const EXPERIMENTS = [
     src: '/experiments/view-transitions.html',
     featured: true,
   },
+  {
+    id: 6,
+    title: 'Components',
+    techs: ['CSS', 'HTML'],
+    src: '/components',
+    featured: true,
+  },
 ];

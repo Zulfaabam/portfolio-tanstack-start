@@ -41,11 +41,17 @@ export default function LabCard({
     >
       {/* Preview Area (iframe pointing to static html) */}
       <div className='relative flex flex-1 items-center justify-center overflow-hidden bg-neutral-950'>
-        <iframe
-          src={src}
-          title={title}
-          className='pointer-events-none absolute inset-0 h-full w-full border-none'
-        />
+        {src.includes('.html') ? (
+          <iframe
+            src={src}
+            title={title}
+            className='pointer-events-none absolute inset-0 h-full w-full border-none'
+          />
+        ) : (
+          <div className='flex h-full w-full items-center justify-center bg-neutral-950 text-sm text-neutral-600'>
+            {src.replace('/', '').toUpperCase()}
+          </div>
+        )}
       </div>
 
       {/* Title & Tech */}
