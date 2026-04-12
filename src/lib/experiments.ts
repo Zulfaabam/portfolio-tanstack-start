@@ -2,8 +2,8 @@ export const EXPERIMENTS = [
   {
     id: 1,
     title: 'Gallery',
-    techs: ['Motion'],
-    src: '/Gallery',
+    techs: ['Canvas'],
+    src: '/gallery',
     featured: true,
   },
   {

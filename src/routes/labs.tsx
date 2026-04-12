@@ -2,7 +2,7 @@ import ErrorContent from '@/components/error-content';
 import Section from '@/components/section';
 import { createFileRoute } from '@tanstack/react-router';
 import LabCard from '@/components/lab-card';
-import { EXPERIMENTS } from '@/lib/labs';
+import { EXPERIMENTS } from '@/lib/experiments';
 import { useState, useMemo } from 'react';
 
 export const Route = createFileRoute('/labs')({
