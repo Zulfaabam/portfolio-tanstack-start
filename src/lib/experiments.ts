@@ -2,8 +2,8 @@ export const EXPERIMENTS = [
   {
     id: 1,
     title: 'Gallery',
-    techs: ['Motion'],
-    src: '/Gallery',
+    techs: ['Canvas'],
+    src: '/gallery',
     featured: true,
   },
   {
@@ -25,6 +25,20 @@ export const EXPERIMENTS = [
     title: 'Curtain',
     techs: ['Pretext', 'Canvas'],
     src: '/experiments/curtain.html',
+    featured: true,
+  },
+  {
+    id: 5,
+    title: 'View transitions',
+    techs: ['CSS', 'JS'],
+    src: '/experiments/view-transitions.html',
+    featured: true,
+  },
+  {
+    id: 6,
+    title: 'Components',
+    techs: ['CSS', 'HTML'],
+    src: '/components',
     featured: true,
   },
 ];

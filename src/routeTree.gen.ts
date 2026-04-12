@@ -13,6 +13,7 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as LabsRouteImport } from './routes/labs'
 import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as ComponentsRouteImport } from './routes/components'
 import { Route as IndexRouteImport } from './routes/index'
 
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -35,6 +36,11 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComponentsRoute = ComponentsRouteImport.update({
+  id: '/components',
+  path: '/components',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,6 +49,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/components': typeof ComponentsRoute
   '/gallery': typeof GalleryRoute
   '/journey': typeof JourneyRoute
   '/labs': typeof LabsRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/components': typeof ComponentsRoute
   '/gallery': typeof GalleryRoute
   '/journey': typeof JourneyRoute
   '/labs': typeof LabsRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/components': typeof ComponentsRoute
   '/gallery': typeof GalleryRoute
   '/journey': typeof JourneyRoute
   '/labs': typeof LabsRoute
@@ -65,14 +74,28 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/gallery' | '/journey' | '/labs' | '/projects'
+  fullPaths:
+    | '/'
+    | '/components'
+    | '/gallery'
+    | '/journey'
+    | '/labs'
+    | '/projects'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gallery' | '/journey' | '/labs' | '/projects'
-  id: '__root__' | '/' | '/gallery' | '/journey' | '/labs' | '/projects'
+  to: '/' | '/components' | '/gallery' | '/journey' | '/labs' | '/projects'
+  id:
+    | '__root__'
+    | '/'
+    | '/components'
+    | '/gallery'
+    | '/journey'
+    | '/labs'
+    | '/projects'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ComponentsRoute: typeof ComponentsRoute
   GalleryRoute: typeof GalleryRoute
   JourneyRoute: typeof JourneyRoute
   LabsRoute: typeof LabsRoute
@@ -109,6 +132,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/components': {
+      id: '/components'
+      path: '/components'
+      fullPath: '/components'
+      preLoaderRoute: typeof ComponentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -121,6 +151,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ComponentsRoute: ComponentsRoute,
   GalleryRoute: GalleryRoute,
   JourneyRoute: JourneyRoute,
   LabsRoute: LabsRoute,
