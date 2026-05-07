@@ -5,7 +5,11 @@ import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { DirectionAwareHover } from './ui/direction-aware-hover';
 import { motion } from 'motion/react';
-import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
+import {
+  IconBrandGithub,
+  IconExternalLink,
+  IconCube,
+} from '@tabler/icons-react';
 
 type FeaturedProject = Omit<Project, 'tech_stack'> & {
   tech_stack: ProjectTechStack[];
@@ -57,7 +61,10 @@ export default function FeaturedProjects() {
   return (
     <div className='flex w-full flex-col gap-[23px]'>
       <div className='flex items-center justify-between px-4'>
-        <h6 className='font-semibold'>Featured Projects</h6>
+        <div className='text-text flex items-center gap-2'>
+          <IconCube size={20} />
+          <h6 className='text-lg font-semibold'>Featured Projects</h6>
+        </div>
         <div className='flex justify-center gap-2'>
           {projects?.map((_, idx) => (
             <button

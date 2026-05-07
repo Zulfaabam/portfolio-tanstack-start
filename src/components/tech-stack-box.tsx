@@ -6,6 +6,7 @@ import RippleButton from './ui/ripple-btn';
 import { Image } from '@unpic/react';
 import { useQuery } from '@tanstack/react-query';
 import { getTechStack } from '@/lib/server/tech-stack';
+import { IconStack2 } from '@tabler/icons-react';
 
 export interface TechStackBoxProps {
   className?: string;
@@ -155,9 +156,12 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
       </div>
       <div className='flex flex-col justify-between md:w-1/2'>
         <div className='space-y-6'>
-          <h6 className='font-pixelify-sans text-lg font-medium leading-6'>
-            Play the Stack!
-          </h6>
+          <div className='text-text flex items-center gap-2'>
+            <IconStack2 size={20} />
+            <h6 className='font-pixelify-sans text-lg font-medium leading-6'>
+              Play the Stack!
+            </h6>
+          </div>
           <p className='text-sm'>
             Try to reorder my tech stack for a surprise!
           </p>

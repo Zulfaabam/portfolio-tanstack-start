@@ -49,7 +49,7 @@ export const Route = createRootRouteWithContext<{
     ],
   }),
   errorComponent: ({ reset }) => (
-    <div className='bg-dark relative flex min-h-screen w-full items-center'>
+    <div className='bg-bg relative flex min-h-screen w-full items-center'>
       <Section
         id='error-root'
         className='flex flex-col items-center justify-center gap-2'

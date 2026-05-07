@@ -119,7 +119,7 @@
   }
 
   .job-duration {
-    @apply text-text text-[10px] md:text-xs lg:text-sm;
+    @apply text-muted text-[10px] md:text-xs lg:text-sm;
   }
 
   .job-desc {

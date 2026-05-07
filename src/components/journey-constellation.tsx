@@ -102,7 +102,7 @@ const JourneyConstellation = memo(
 
         {/* DESKTOP VERSION */}
         <svg
-          width='908'
+          width='1400'
           height='2429'
           viewBox='0 0 908 2429'
           fill='none'

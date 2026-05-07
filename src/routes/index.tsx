@@ -26,7 +26,7 @@ function Home() {
         {/* <HeroSection /> */}
         <BentoGridSection />
       </div>
-      {/* <div className='bg-earth-from-space bg-darkest/60 absolute bottom-0 h-96 w-full bg-cover bg-no-repeat bg-blend-hard-light'></div> */}
+      {/* <div className='bg-earth-from-space bg-bg/60 absolute bottom-0 h-96 w-full bg-cover bg-no-repeat bg-blend-hard-light'></div> */}
       {/* <ShootingStars /> */}
     </div>
   );

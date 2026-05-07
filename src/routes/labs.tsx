@@ -22,7 +22,7 @@ export const Route = createFileRoute('/labs')({
     ],
   }),
   errorComponent: ({ reset }) => (
-    <div className='bg-dark relative flex min-h-screen w-full items-center'>
+    <div className='bg-bg relative flex min-h-screen w-full items-center'>
       <Section
         id='error-labs'
         className='flex flex-col items-center justify-center gap-2'
@@ -81,11 +81,13 @@ function Labs() {
   }, [searchQuery, selectedTechs]);
 
   return (
-    <div id='labs-div' className='bg-darkest relative min-h-screen w-full'>
+    <div id='labs-div' className='bg-bg relative min-h-screen w-full'>
       <Section id='labs' className='relative z-10'>
         <div className='py-10 lg:py-20'>
-          <h2 className='text-fg mb-4 max-w-4xl text-2xl md:text-4xl'>Labs</h2>
-          <p className='text-fg max-w-md text-sm md:text-base'>
+          <h2 className='text-text mb-4 max-w-4xl text-2xl md:text-4xl'>
+            Labs
+          </h2>
+          <p className='text-muted max-w-md text-sm md:text-base'>
             A collection of my web experiments.
           </p>
         </div>
@@ -95,7 +97,7 @@ function Labs() {
             placeholder='Search experiments...'
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className='text-fg w-full max-w-md rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-2 text-sm placeholder-neutral-500 focus:border-neutral-600 focus:outline-none focus:ring-1 focus:ring-neutral-600'
+            className='text-text/80 w-full max-w-md rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-2 text-sm placeholder-neutral-500 focus:border-neutral-600 focus:outline-none focus:ring-1 focus:ring-neutral-600'
           />
           {allTechs.length > 0 && (
             <div className='flex flex-wrap gap-2'>
@@ -132,7 +134,7 @@ function Labs() {
 
         {/* Minimalist List View */}
         {/* <div className='mt-16 flex flex-col md:mt-24'>
-          <h3 className='text-fg mb-4 text-xl md:text-2xl'>
+          <h3 className='text-text/80 mb-4 text-xl md:text-2xl'>
             Other Experiments
           </h3>
           <div className='flex flex-col'>

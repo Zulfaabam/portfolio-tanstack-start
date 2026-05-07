@@ -27,7 +27,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <div className='bg-dark w-full' ref={containerRef}>
+    <div className='bg-bg w-full' ref={containerRef}>
       <div className='mx-auto px-4 py-10 md:px-0 lg:py-20'>
         <h2 className='text-fg mb-4 max-w-5xl text-2xl md:text-4xl'>
           My Journey So Far
@@ -45,7 +45,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         {data.map((item, index) => (
           <div key={index} className='flex justify-start md:gap-10'>
             <div className='sticky top-40 z-10 flex max-w-xs flex-col items-center self-start md:w-full md:flex-row lg:max-w-sm'>
-              <div className='bg-dark absolute left-3 flex h-10 w-10 items-center justify-center rounded-full md:left-3'>
+              <div className='bg-bg absolute left-3 flex h-10 w-10 items-center justify-center rounded-full md:left-3'>
                 <div className='h-4 w-4 rounded-full border border-neutral-700 bg-neutral-800 p-2' />
               </div>
               <h3 className='hidden text-xl font-bold text-neutral-500 md:block md:pl-20 md:text-5xl'>

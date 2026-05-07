@@ -21,7 +21,7 @@ export const Route = createFileRoute('/gallery')({
     ],
   }),
   errorComponent: ({ reset }) => (
-    <div className='bg-dark relative flex min-h-screen w-full items-center'>
+    <div className='bg-bg relative flex min-h-screen w-full items-center'>
       <Section
         id='error-gallery'
         className='flex flex-col items-center justify-center gap-2'
@@ -275,8 +275,8 @@ function Gallery() {
   }, [size.width, size.height]);
 
   return (
-    <div className='bg-darkest relative z-10 h-screen w-full overflow-hidden'>
-      <div className='text-fg/80 pointer-events-none absolute bottom-10 left-1/2 z-20 -translate-x-1/2 rounded-full bg-black/40 px-4 py-2 text-sm backdrop-blur-md'>
+    <div className='bg-bg relative z-10 h-screen w-full overflow-hidden'>
+      <div className='text-muted pointer-events-none absolute bottom-10 left-1/2 z-20 -translate-x-1/2 rounded-full bg-black/40 px-4 py-2 text-sm backdrop-blur-md'>
         Drag canvas to pan, drag photos to move
       </div>
       <canvas

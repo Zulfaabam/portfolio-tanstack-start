@@ -74,15 +74,15 @@ export default function ProjectItem({
       {/* Content */}
       <div className='flex w-full flex-col gap-2'>
         <div className='flex items-center justify-between'>
-          <h3 className='text-fg text-lg font-bold sm:text-xl'>{title}</h3>
+          <h3 className='text-text text-lg font-bold sm:text-xl'>{title}</h3>
           <div className='flex items-center gap-3'>
             {!github_url && !live_url && (
-              <span className='text-fg/50 text-xs'>Private Project</span>
+              <span className='text-muted text-xs'>Private Project</span>
             )}
             {github_url && (
               <a
                 href={github_url}
-                className='text-fg/50 hover:text-primary transition-all hover:scale-110'
+                className='text-muted hover:text-primary transition-all hover:scale-110'
                 target='_blank'
                 rel='noopener noreferrer'
                 title='GitHub Repository'
@@ -93,7 +93,7 @@ export default function ProjectItem({
             {live_url && (
               <a
                 href={live_url}
-                className='text-fg/50 hover:text-primary transition-all hover:scale-110'
+                className='text-muted hover:text-primary transition-all hover:scale-110'
                 target='_blank'
                 rel='noopener noreferrer'
                 title='Live Demo'
@@ -104,17 +104,17 @@ export default function ProjectItem({
           </div>
         </div>
 
-        <p className='text-fg/70 text-sm leading-relaxed'>{description}</p>
+        <p className='text-text/80 text-sm leading-relaxed'>{description}</p>
 
         <div className='flex flex-wrap items-center gap-2 pt-1 md:gap-3'>
           {tech_stack?.map((tech, idx) => (
             <div
               key={tech.id}
-              className='text-fg/50 flex items-center space-x-2 text-[10px] uppercase tracking-wider md:text-xs'
+              className='text-muted flex items-center space-x-2 text-[10px] uppercase tracking-wider md:text-xs'
             >
               <span>{tech.name}</span>
               {idx !== tech_stack.length - 1 && (
-                <span className='text-fg/30'>•</span>
+                <span className='text-muted/50'>•</span>
               )}
             </div>
           ))}
