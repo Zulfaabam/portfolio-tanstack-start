@@ -9,6 +9,7 @@ import Section from '@/components/section';
 import ErrorContent from '@/components/error-content';
 import { QueryClient } from '@tanstack/react-query';
 import { StarsBackground } from '@/components/ui/stars-background';
+import { ThemeProvider } from '@/components/ThemeContext';
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -67,11 +68,13 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body id='root' className='font-jetbrains-mono relative'>
-        <Navbar />
-        {children}
-        <StarsBackground starDensity={0.0003} />
-        <Scripts />
+      <body id='root' className='font-jetbrains-mono bg-bg relative'>
+        <ThemeProvider>
+          <Navbar />
+          {children}
+          {/* <StarsBackground starDensity={0.0003} /> */}
+          <Scripts />
+        </ThemeProvider>
       </body>
     </html>
   );

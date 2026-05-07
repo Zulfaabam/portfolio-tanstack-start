@@ -7,15 +7,64 @@
 
 @config '../tailwind.config.ts';
 
+@custom-variant dark (&:is(.dark *));
+
+/* 🌞 LIGHT MODE (default) */
+:root {
+  --color-bg: #f7f7f5;
+  --color-surface: #ffffff;
+  --color-border: #e5e5e5;
+  --color-muted: #737373;
+  --color-text: #0a0a0a;
+  --color-accent: #16a34a;
+
+  --shadow-card: 0 0 0 1px #e5e5e5;
+  --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.06);
+
+  --font-jetbrains-mono: 'JetBrains Mono', monospace;
+
+  /* --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px; */
+}
+
+/* 🌙 DARK MODE */
+.dark {
+  --color-bg: #0a0a0a;
+  --color-surface: #111111;
+  --color-border: #242424;
+  --color-muted: #a3a3a3;
+  --color-text: #ffffff;
+  --color-accent: #22c55e;
+
+  --shadow-card: 0 0 0 1px #242424;
+  --shadow-elevated: 0 8px 24px rgba(255, 255, 255, 0.04);
+}
+
 @theme {
-  --color-primary: #76c1ff;
+  /* --color-primary: #76c1ff;
   --color-secondary: #133d9e;
   --color-accent: #00f9e9;
   --color-fg: #eaf0f5;
   --color-dark-gray: hsl(0, 0%, 16%);
   --color-dark: #171717;
   --color-darker: #141414;
-  --color-darkest: #0c0c0c;
+  --color-darkest: #0c0c0c; */
+
+  --color-primary: #76c1ff;
+  --color-secondary: #133d9e;
+  /* --color-accent: #00f9e9; */
+
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-muted: var(--color-muted);
+  --color-text: var(--color-text);
+  --color-accent: var(--color-accent);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-elevated: var(--shadow-elevated);
 }
 
 @theme inline {
@@ -49,27 +98,27 @@
 
 @layer components {
   .social-icon {
-    @apply text-dark size-5 lg:size-6;
+    @apply text-text size-5 lg:size-6;
   }
 
   .btn-rounded {
-    @apply border-fg flex cursor-pointer items-center gap-0.5 rounded-full border py-1 pl-2 pr-1 text-xs md:text-sm;
+    @apply border-border flex cursor-pointer items-center gap-0.5 rounded-full border py-1 pl-2 pr-1 text-xs md:text-sm;
   }
 
   .bento-box {
-    @apply bg-darker border-fg/60 hover:border-fg z-10 h-fit w-full rounded-2xl border p-4 transition-all ease-in;
+    @apply bg-surface border-border z-10 h-fit w-full rounded-2xl border p-4 transition-all ease-in hover:border-white;
   }
 
   .chip {
-    @apply border-fg/80 text-fg bg-dark h-fit w-fit rounded-lg border px-1.5 py-1 text-[10px] md:px-2 md:text-xs lg:text-sm;
+    @apply border-border text-text bg-surface h-fit w-fit rounded-lg border px-1.5 py-1 text-[10px] md:px-2 md:text-xs lg:text-sm;
   }
 
   .company {
-    @apply text-fg text-xs font-medium md:text-sm lg:text-base;
+    @apply text-text text-xs font-medium md:text-sm lg:text-base;
   }
 
   .job-year {
-    @apply text-fg font-caveat text-lg md:text-2xl lg:text-4xl;
+    @apply text-text font-caveat text-lg md:text-2xl lg:text-4xl;
   }
 
   .job-title {
@@ -77,15 +126,15 @@
   }
 
   .job-duration {
-    @apply text-fg/80 text-[10px] md:text-xs lg:text-sm;
+    @apply text-text text-[10px] md:text-xs lg:text-sm;
   }
 
   .job-desc {
-    @apply text-fg max-w-44 space-y-2 text-xs md:max-w-md md:text-sm lg:text-base;
+    @apply text-text max-w-44 space-y-2 text-xs md:max-w-md md:text-sm lg:text-base;
   }
 
   .job-tech {
-    @apply text-fg max-w-40 space-y-2 text-xs md:max-w-52 md:text-sm lg:text-base;
+    @apply text-text max-w-40 space-y-2 text-xs md:max-w-52 md:text-sm lg:text-base;
   }
 }
 
