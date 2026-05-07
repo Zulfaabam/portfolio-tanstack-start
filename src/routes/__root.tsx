@@ -8,7 +8,6 @@ import Navbar from '@/components/navbar';
 import Section from '@/components/section';
 import ErrorContent from '@/components/error-content';
 import { QueryClient } from '@tanstack/react-query';
-import { StarsBackground } from '@/components/ui/stars-background';
 import { ThemeProvider } from '@/components/ThemeContext';
 
 export const Route = createRootRouteWithContext<{
@@ -72,7 +71,6 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <ThemeProvider>
           <Navbar />
           {children}
-          {/* <StarsBackground starDensity={0.0003} /> */}
           <Scripts />
         </ThemeProvider>
       </body>

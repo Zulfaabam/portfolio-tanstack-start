@@ -66,8 +66,8 @@ export default function FeaturedProjects() {
               className={cn(
                 'h-2 cursor-pointer rounded-full transition-all duration-300',
                 activeIndex === idx
-                  ? 'bg-fg w-8'
-                  : 'bg-fg/20 hover:bg-fg/40 w-2',
+                  ? 'bg-text/90 w-8'
+                  : 'bg-muted/70 hover:bg-fg/40 w-2',
               )}
               aria-label={`Go to project ${idx + 1}`}
             />

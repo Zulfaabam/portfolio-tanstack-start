@@ -123,7 +123,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
         <Reorder.Group
           values={techStackOrder ?? []}
           onReorder={onReorder}
-          className='flex h-full w-full flex-col justify-between border border-dashed p-1 lg:w-[218px]'
+          className='flex h-full w-full flex-col justify-between border border-dashed p-1'
         >
           {techStackOrder.map((tech) => (
             <Reorder.Item
@@ -146,7 +146,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
               onDragStart={() => setDisableTransition(true)}
               onDragEnd={() => setDisableTransition(false)}
             >
-              <div className='bg-fg text-darker cursor-pointer py-0.5 text-center'>
+              <div className='bg-text text-bg cursor-pointer py-1.5 text-center'>
                 <p className='font-pixelify-sans text-[13px]'>{tech}</p>
               </div>
             </Reorder.Item>
@@ -162,7 +162,10 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
             Try to reorder my tech stack for a surprise!
           </p>
         </div>
-        <RippleButton className='md:flex! hidden self-end' onClick={onShuffle}>
+        <RippleButton
+          className='border-border w-full justify-center self-start rounded-md border bg-transparent px-4 py-2 text-sm'
+          onClick={onShuffle}
+        >
           <RippleButton.Text>Shuffle</RippleButton.Text>
           <RippleButton.Icon>
             <Image

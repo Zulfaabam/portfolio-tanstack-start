@@ -80,7 +80,7 @@ export default function Navbar() {
         transition={{
           duration: 0.2,
         }}
-        className='fixed inset-x-0 top-4 z-20'
+        className='fixed inset-x-0 top-4 z-20 mx-auto max-w-7xl'
       >
         <SlideNav />
       </motion.div>
@@ -105,26 +105,31 @@ const SlideNav = () => {
           opacity: 0,
         }));
       }}
-      className='bg-fg relative mx-auto flex w-fit rounded-2xl border-2 p-1'
+      className='border-border bg-bg relative mx-auto flex w-full items-center justify-between rounded-xl border px-4 py-1'
     >
-      {menu.map((m) => (
-        <Menu key={m.id} setPosition={setPosition}>
-          <Link
-            to={m.path}
-            target={m?.isOutsideLink ? '_blank' : undefined}
-            rel={m?.isOutsideLink ? 'noopener noreferrer' : undefined}
-            className={cn('transition-all duration-300', {
-              'underline decoration-wavy': matchRoute({ to: m.path }),
-            })}
-          >
-            {m.title}
-          </Link>
-        </Menu>
-      ))}
+      <div className='text-text font-jetbrains-mono'>
+        <p>Abams-Folio</p>
+      </div>
+      <div className='flex items-center justify-center'>
+        {menu.map((m) => (
+          <Menu key={m.id} setPosition={setPosition}>
+            <Link
+              to={m.path}
+              target={m?.isOutsideLink ? '_blank' : undefined}
+              rel={m?.isOutsideLink ? 'noopener noreferrer' : undefined}
+              className={cn('transition-all duration-300', {
+                'underline decoration-wavy': matchRoute({ to: m.path }),
+              })}
+            >
+              {m.title}
+            </Link>
+          </Menu>
+        ))}
+      </div>
 
       <Cursor position={position} />
 
-      <div className='bg-fg absolute -bottom-6 left-1/2 flex -translate-x-1/2 flex-row justify-center gap-4 rounded-b-2xl px-4 py-1 lg:-bottom-8'>
+      <div className='flex items-center justify-center gap-4'>
         {SOCIALS.map((s) => (
           <a
             key={s.name}
@@ -164,7 +169,7 @@ const Menu = ({
           opacity: 1,
         });
       }}
-      className='text-fg relative z-10 block cursor-pointer px-2 py-1.5 text-xs uppercase mix-blend-difference md:px-5 md:py-2.5 md:text-sm'
+      className='text-text relative z-10 block cursor-pointer px-2 py-1.5 text-xs uppercase mix-blend-difference md:px-5 md:py-2.5 md:text-sm'
     >
       {children}
     </li>
@@ -177,7 +182,7 @@ const Cursor = ({ position }: { position: Position }) => {
       animate={{
         ...position,
       }}
-      className='bg-dark absolute z-0 h-7 rounded-xl md:h-10'
+      className='bg-text absolute z-0 h-7 rounded-xl md:h-10'
     />
   );
 };
