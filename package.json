@@ -4,10 +4,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@fontsource/pacifico": "^5.2.7",
-    "@fontsource-variable/caveat": "^5.2.8",
-    "@fontsource-variable/jetbrains-mono": "^5.2.8",
-    "@fontsource-variable/pixelify-sans": "^5.2.7",
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.86.0",
     "@tabler/icons-react": "^3.35.0",
