@@ -14,6 +14,7 @@ import {
   IconBrandTypescript,
   IconBrandJavascript,
   IconBrandFigma,
+  IconDownload,
 } from '@tabler/icons-react';
 import FeaturedProjects from '../featured-projects';
 import { Link } from '@tanstack/react-router';
@@ -41,8 +42,8 @@ export default function BentoGridSection() {
     : '14 Feb 2026';
 
   return (
-    <Section id='homepage' className='xl:py-32'>
-      <div className='text-text grid w-full grid-cols-12 gap-2 lg:gap-4 lg:gap-y-6'>
+    <Section id='homepage' className='py-28 xl:py-32'>
+      <div className='text-text grid w-full grid-cols-12 gap-4 lg:gap-x-4 lg:gap-y-6'>
         {/* Row 1: Left - Profile (Span 4) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,7 +69,9 @@ export default function BentoGridSection() {
             <h2 className='font-pacifico text-text text-4xl tracking-wide md:text-[52px]'>
               Hi, I am Abam
             </h2>
-            <h3 className='text-text/90 text-lg'>Frontend Engineer</h3>
+            <h3 className='text-text/90 text-base md:text-lg'>
+              Frontend Engineer
+            </h3>
           </div>
 
           <p className='text-muted max-w-sm text-sm leading-relaxed'>
@@ -80,11 +83,11 @@ export default function BentoGridSection() {
             <RippleButton
               as={Link}
               to='/projects'
-              className='rounded-lg border-0 bg-white px-4 py-2 font-medium text-black hover:bg-white/90'
+              className='bg-text rounded-lg border-0 px-4 py-2 font-medium text-black hover:bg-white/90'
             >
               <RippleButton.Text>View My Work</RippleButton.Text>
               <RippleButton.Icon>
-                <IconArrowRight size={18} />
+                <IconArrowRight size={16} />
               </RippleButton.Icon>
             </RippleButton>
 
@@ -92,16 +95,16 @@ export default function BentoGridSection() {
               as='a'
               href='/CV_ZULFA.pdf'
               download
-              className='border-border rounded-lg border bg-transparent px-4 py-2 text-white hover:bg-white/10'
+              className='border-border bg-surface hover:bg-text/10 text-text flex items-center gap-1 rounded-lg border px-4 py-2'
             >
               <RippleButton.Text>Download Resume</RippleButton.Text>
               <RippleButton.Icon>
-                <IconCircleArrowDown size={18} />
+                <IconDownload size={16} />
               </RippleButton.Icon>
             </RippleButton>
           </div>
 
-          <div className='space-y-3'>
+          <div className='space-y-2 md:space-y-3'>
             <p className='text-text/60 text-xs'>Tech I work with</p>
             <div className='text-text/80 flex items-center gap-4'>
               <IconBrandReact size={24} />
@@ -131,18 +134,16 @@ export default function BentoGridSection() {
 
           <div className='divide-border grid grid-cols-3 gap-2 divide-x py-3 text-center'>
             <div className='flex flex-col items-center justify-center gap-1'>
-              <span className='text-2xl font-semibold'>3+</span>
-              <span className='text-text/60 text-[10px]'>Years Experience</span>
+              <span className='text-xl font-semibold md:text-2xl'>3+</span>
+              <span className='text-muted text-[10px]'>Years Experience</span>
             </div>
             <div className='flex flex-col items-center justify-center gap-1'>
-              <span className='text-2xl font-semibold'>10+</span>
-              <span className='text-text/60 text-[10px]'>
-                Projects Completed
-              </span>
+              <span className='text-xl font-semibold md:text-2xl'>10+</span>
+              <span className='text-muted text-[10px]'>Projects Completed</span>
             </div>
             <div className='flex flex-col items-center justify-center gap-1'>
-              <span className='text-2xl font-semibold'>∞</span>
-              <span className='text-text/60 text-[10px]'>Joy of Learning</span>
+              <span className='text-xl font-semibold md:text-2xl'>∞</span>
+              <span className='text-muted text-[10px]'>Joy of Learning</span>
             </div>
           </div>
         </motion.div>
@@ -152,7 +153,7 @@ export default function BentoGridSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-12 flex h-full flex-col justify-between lg:col-span-3'
+          className='bento-box col-span-12 flex h-full flex-col justify-between gap-8 lg:col-span-3'
         >
           <div className='space-y-6'>
             <div className='flex items-center gap-2'>
@@ -189,7 +190,7 @@ export default function BentoGridSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-12 flex flex-col gap-6 lg:col-span-3 lg:h-80'
+          className='bento-box col-span-12 flex h-52 flex-col gap-6 lg:col-span-3 lg:h-80'
         >
           <div className='flex items-center gap-2'>
             <IconBolt size={20} className='text-text' />
@@ -228,7 +229,7 @@ export default function BentoGridSection() {
           <div className='h-full w-full'>
             <DirectionAwareHover imageUrl='/battlestation.webp'>
               <p className='mb-1 font-medium'>The Battlestation</p>
-              <p className='max-w-[350px] text-xs'>
+              <p className='max-w-[calc(100vw-75px)] text-xs md:max-w-[350px]'>
                 <span className='font-medium'>Specs</span>: AMD Ryzen 5 7500F,
                 AMD Radeon RX 6700 XT, 16GB RAM, 1TB Storage
               </p>
@@ -263,7 +264,7 @@ export default function BentoGridSection() {
           transition={{ duration: 0.6, delay: 0.7, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box col-span-12 flex flex-col items-center justify-between gap-4 md:flex-row'
         >
-          <p className='text-muted text-sm'>
+          <p className='text-muted hidden text-sm md:block'>
             Let's build something amazing together 🤟
           </p>
 

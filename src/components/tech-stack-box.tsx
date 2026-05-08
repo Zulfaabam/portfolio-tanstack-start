@@ -6,7 +6,7 @@ import RippleButton from './ui/ripple-btn';
 import { Image } from '@unpic/react';
 import { useQuery } from '@tanstack/react-query';
 import { getTechStack } from '@/lib/server/tech-stack';
-import { IconStack2 } from '@tabler/icons-react';
+import { IconReload, IconStack2 } from '@tabler/icons-react';
 
 export interface TechStackBoxProps {
   className?: string;
@@ -108,19 +108,17 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
       )}
     >
       <div className='flex w-full justify-end md:hidden'>
-        <RippleButton onClick={onShuffle}>
+        <RippleButton
+          onClick={onShuffle}
+          className='border-border mt-2 flex w-full justify-center gap-2 self-start rounded-md border bg-transparent px-4 py-2 text-sm md:hidden'
+        >
           <RippleButton.Text>Shuffle</RippleButton.Text>
           <RippleButton.Icon>
-            <Image
-              src='/icons/reload.svg'
-              alt='reload'
-              width={22}
-              height={22}
-            />
+            <IconReload size={16} />
           </RippleButton.Icon>
         </RippleButton>
       </div>
-      <div className='h-[244px] md:w-1/2 lg:h-full'>
+      <div className='h-[280px] md:w-1/2 lg:h-full'>
         <Reorder.Group
           values={techStackOrder ?? []}
           onReorder={onReorder}
@@ -167,17 +165,12 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
           </p>
         </div>
         <RippleButton
-          className='border-border w-full justify-center self-start rounded-md border bg-transparent px-4 py-2 text-sm'
+          className='border-border hidden w-full justify-center gap-2 self-start rounded-md border bg-transparent px-4 py-2 text-sm md:flex'
           onClick={onShuffle}
         >
           <RippleButton.Text>Shuffle</RippleButton.Text>
           <RippleButton.Icon>
-            <Image
-              src='/icons/reload.svg'
-              alt='reload'
-              width={22}
-              height={22}
-            />
+            <IconReload size={16} />
           </RippleButton.Icon>
         </RippleButton>
       </div>

@@ -105,9 +105,9 @@ const SlideNav = () => {
           opacity: 0,
         }));
       }}
-      className='border-border bg-bg relative mx-auto flex w-full items-center justify-between rounded-xl border px-4 py-1'
+      className='border-border bg-bg relative mx-auto flex w-full items-center justify-center gap-2 rounded-xl border px-4 py-1 sm:flex-nowrap sm:justify-between'
     >
-      <div className='text-text font-jetbrains-mono'>
+      <div className='text-text font-jetbrains-mono hidden sm:block'>
         <p>Abams-Folio</p>
       </div>
       <div className='flex items-center justify-center'>
