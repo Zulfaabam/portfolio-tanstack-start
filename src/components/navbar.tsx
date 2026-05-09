@@ -80,7 +80,7 @@ export default function Navbar() {
         transition={{
           duration: 0.2,
         }}
-        className='fixed inset-x-0 top-4 z-20 mx-auto max-w-7xl'
+        className='fixed inset-x-0 top-4 z-20 mx-auto max-w-[calc(100vw-1rem)] xl:max-w-7xl'
       >
         <SlideNav />
       </motion.div>
@@ -129,7 +129,7 @@ const SlideNav = () => {
 
       <Cursor position={position} />
 
-      <div className='flex items-center justify-center gap-4'>
+      <div className='hidden items-center justify-center gap-4 sm:flex'>
         {SOCIALS.map((s) => (
           <a
             key={s.name}

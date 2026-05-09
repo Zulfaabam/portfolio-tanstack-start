@@ -10,6 +10,7 @@ import {
   IconExternalLink,
   IconCube,
 } from '@tabler/icons-react';
+import { Image } from '@unpic/react';
 
 type FeaturedProject = Omit<Project, 'tech_stack'> & {
   tech_stack: ProjectTechStack[];
@@ -40,7 +41,7 @@ export default function FeaturedProjects() {
     if (scrollRef.current) {
       const { scrollLeft } = scrollRef.current;
       const isMobile = window.innerWidth < 768;
-      const itemWidth = isMobile ? 280 : 472;
+      const itemWidth = isMobile ? 280 : 1200;
       const index = Math.round(scrollLeft / itemWidth);
       setActiveIndex(index);
     }
@@ -49,7 +50,7 @@ export default function FeaturedProjects() {
   const scrollToIndex = (index: number) => {
     if (scrollRef.current) {
       const isMobile = window.innerWidth < 768;
-      const itemWidth = isMobile ? 280 : 472;
+      const itemWidth = isMobile ? 280 : 1200;
       scrollRef.current.scrollTo({
         left: index * itemWidth,
         behavior: 'smooth',
@@ -92,33 +93,56 @@ export default function FeaturedProjects() {
           </p>
         ) : (
           projects?.map((p) => (
-            <DirectionAwareHover
-              key={p.id}
-              imageUrl={p.image}
-              className='h-[340px] w-[280px] shrink-0 sm:h-[295px] sm:w-[472px]'
-              imageClassName='object-left sm:object-center'
-              childrenClassName='inset-0! p-4 flex flex-col justify-between'
-            >
-              <div className='space-y-0.5'>
-                <div className='flex items-center'>
-                  {p.tech_stack?.map((tech, idx) => (
-                    <p
-                      key={tech.id}
-                      className='text-fg space-x-1 text-[10px] uppercase'
-                    >
-                      <span>{tech.name}</span>
-                      {idx !== p.tech_stack.length - 1 && (
-                        <span className='mr-1'>/</span>
-                      )}
-                    </p>
-                  ))}
+            <div className='group flex h-full w-full shrink-0 gap-4 overflow-hidden rounded-lg'>
+              <div className='relative flex aspect-video w-full items-center justify-center gap-6 rounded-lg bg-neutral-900 p-4'>
+                <div className='mx-auto w-[90%]'>
+                  <Image
+                    alt='image'
+                    className='group-hover:scale-103 size-full select-none rounded-lg object-contain transition-transform duration-700'
+                    layout='fullWidth'
+                    src={p.image}
+                  />
                 </div>
-                <h6 className='text-fg text-xl'>{p.title}</h6>
+
+                {/* <div className='w-[20%]'>
+                  <div className='flex items-center'>
+                    {p.tech_stack?.map((tech, idx) => (
+                      <p
+                        key={tech.id}
+                        className='text-fg space-x-1 text-[10px] uppercase'
+                      >
+                        <span>{tech.name}</span>
+                        {idx !== p.tech_stack.length - 1 && (
+                          <span className='mr-1'>/</span>
+                        )}
+                      </p>
+                    ))}
+                  </div>
+                  <p className='font-semibold'>{p.title}</p>
+                </div> */}
               </div>
-              <div className='space-y-2'>
-                <p className='text-fg line-clamp-3 text-sm'>{p.description}</p>
-                <div className='h-px w-full bg-[#d9d9d9]'></div>
-                <div className='flex items-center justify-between gap-1 text-xs uppercase lg:gap-2'>
+
+              {/* <div className='flex h-full flex-col gap-6 rounded-md border pl-4'>
+                <div className='space-y-0.5'>
+                  <div className='flex items-center'>
+                    {p.tech_stack?.map((tech, idx) => (
+                      <p
+                        key={tech.id}
+                        className='text-fg space-x-1 text-[10px] uppercase'
+                      >
+                        <span>{tech.name}</span>
+                        {idx !== p.tech_stack.length - 1 && (
+                          <span className='mr-1'>/</span>
+                        )}
+                      </p>
+                    ))}
+                  </div>
+                  <p className='font-semibold'>{p.title}</p>
+                </div>
+                <p className='text-fg min-w-[300px] max-w-[300px] text-sm'>
+                  {p.description}
+                </p>
+                <div className='flex items-center justify-between gap-1 justify-self-end text-xs uppercase lg:gap-2'>
                   {!p.github_url && !p.live_url && (
                     <p className='text-fg'>Privated</p>
                   )}
@@ -150,8 +174,8 @@ export default function FeaturedProjects() {
                     </motion.a>
                   )}
                 </div>
-              </div>
-            </DirectionAwareHover>
+              </div> */}
+            </div>
           ))
         )}
       </div>
