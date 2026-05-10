@@ -42,14 +42,14 @@ export default function BentoGridSection() {
     : '14 Feb 2026';
 
   return (
-    <Section id='homepage' className='py-28 xl:py-32'>
+    <Section id='homepage' className='pb-0 pt-20 xl:pt-32'>
       <div className='text-text grid w-full grid-cols-12 gap-4 lg:gap-x-4 lg:gap-y-6'>
         {/* Row 1: Left - Profile (Span 4) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          className='col-span-12 flex flex-col gap-4 lg:col-span-4 lg:gap-6'
+          className='lg:col-span-6! xl:col-span-4! col-span-12 flex flex-col gap-4 lg:gap-6'
         >
           {/* Open to work badge */}
           <div className='flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5'>
@@ -122,7 +122,7 @@ export default function BentoGridSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-12 flex flex-col justify-between overflow-hidden p-2 lg:col-span-5'
+          className='bento-box lg:col-span-6! xl:col-span-5! col-span-12 flex h-full flex-col justify-between overflow-hidden p-2'
         >
           <div className='relative aspect-video w-full overflow-hidden rounded-sm'>
             <Image
@@ -153,7 +153,7 @@ export default function BentoGridSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-12 flex h-full flex-col justify-between gap-8 lg:col-span-3'
+          className='bento-box md:col-span-6! xl:col-span-3! col-span-12 flex h-full flex-col justify-between gap-8'
         >
           <div className='space-y-6'>
             <div className='flex items-center gap-2'>
@@ -190,7 +190,7 @@ export default function BentoGridSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-12 flex h-52 flex-col gap-6 lg:col-span-3 lg:h-80'
+          className='bento-box md:col-span-6! xl:col-span-3! md:h-full! col-span-12 flex h-52 flex-col gap-6 lg:h-80'
         >
           <div className='flex items-center gap-2'>
             <IconBolt size={20} className='text-text' />
@@ -224,7 +224,7 @@ export default function BentoGridSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box relative col-span-12 flex flex-col overflow-hidden p-2 lg:col-span-4 lg:h-80'
+          className='bento-box lg:col-span-6! xl:col-span-4! relative col-span-12 flex flex-col overflow-hidden p-2 lg:h-80'
         >
           <div className='h-full w-full'>
             <DirectionAwareHover imageUrl='/battlestation.webp'>
@@ -242,7 +242,7 @@ export default function BentoGridSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-12 flex flex-col lg:col-span-5 lg:h-80'
+          className='bento-box lg:col-span-6! xl:col-span-5! col-span-12 flex flex-col lg:h-80'
         >
           <TechStackBox className='h-full flex-1' />
         </motion.div>

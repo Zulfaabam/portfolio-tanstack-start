@@ -12,6 +12,9 @@ import {
   IconBrandGithub,
   IconBrandInstagram,
   IconBrandLinkedin,
+  IconMenu,
+  IconMenu2,
+  IconX,
 } from '@tabler/icons-react';
 
 export interface Position {
@@ -68,7 +71,7 @@ export default function Navbar() {
 
   return (
     <AnimatePresence mode='wait'>
-      <motion.div
+      <motion.nav
         initial={{
           opacity: 1,
           y: -100,
@@ -83,13 +86,14 @@ export default function Navbar() {
         className='fixed inset-x-0 top-4 z-20 mx-auto max-w-[calc(100vw-1rem)] xl:max-w-7xl'
       >
         <SlideNav />
-      </motion.div>
+      </motion.nav>
     </AnimatePresence>
   );
 }
 
 const SlideNav = () => {
   const matchRoute = useMatchRoute();
+  const [isOpen, setIsOpen] = useState(false);
 
   const [position, setPosition] = useState<Position>({
     left: 0,
@@ -98,19 +102,34 @@ const SlideNav = () => {
   });
 
   return (
-    <ul
+    <div
       onMouseLeave={() => {
         setPosition((pv) => ({
           ...pv,
           opacity: 0,
         }));
       }}
-      className='border-border bg-bg relative mx-auto flex w-full items-center justify-center gap-2 rounded-xl border px-4 py-1 sm:flex-nowrap sm:justify-between'
+      className='border-border bg-bg relative mx-auto flex w-full flex-col gap-2 rounded-xl border px-2 py-1 sm:flex-row sm:items-center sm:justify-between md:px-4'
     >
-      <div className='text-text font-jetbrains-mono hidden sm:block'>
-        <p>Abams-Folio</p>
+      <div className='flex w-full items-center justify-between sm:max-w-fit'>
+        <div className='text-text font-jetbrains-mono w-fit text-sm md:text-base'>
+          <p>Abams-Folio</p>
+        </div>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-label='Toggle menu'
+          className='transition-all duration-300 hover:-translate-y-0.5 sm:hidden'
+        >
+          {isOpen ? (
+            <IconX className='text-text' />
+          ) : (
+            <IconMenu2 className='text-text' />
+          )}
+        </button>
       </div>
-      <div className='flex items-center justify-center'>
+
+      <ul className='hidden items-center justify-center sm:flex'>
         {menu.map((m) => (
           <Menu key={m.id} setPosition={setPosition}>
             <Link
@@ -125,7 +144,7 @@ const SlideNav = () => {
             </Link>
           </Menu>
         ))}
-      </div>
+      </ul>
 
       <Cursor position={position} />
 
@@ -142,7 +161,52 @@ const SlideNav = () => {
           </a>
         ))}
       </div>
-    </ul>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className='flex flex-col overflow-hidden sm:hidden'
+          >
+            <ul className='flex flex-col items-center justify-center gap-2 py-2'>
+              {menu.map((m) => (
+                <li key={m.id} className='w-full'>
+                  <Link
+                    to={m.path}
+                    target={m?.isOutsideLink ? '_blank' : undefined}
+                    rel={m?.isOutsideLink ? 'noopener noreferrer' : undefined}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      'text-text block w-full py-2 text-center text-xs uppercase transition-all duration-300',
+                      {
+                        'underline decoration-wavy': matchRoute({ to: m.path }),
+                      },
+                    )}
+                  >
+                    {m.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className='border-border/50 flex items-center justify-center gap-4 border-t pb-2 pt-4'>
+              {SOCIALS.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='transition-all duration-300 hover:-translate-y-0.5'
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 
