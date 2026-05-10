@@ -93,7 +93,10 @@ export default function FeaturedProjects() {
           </p>
         ) : (
           projects?.map((p) => (
-            <div className='group flex h-full w-full shrink-0 gap-4 overflow-hidden rounded-lg'>
+            <div
+              key={p.id}
+              className='group flex h-full w-full shrink-0 gap-4 overflow-hidden rounded-lg'
+            >
               <div className='relative flex aspect-video w-full items-center justify-center gap-6 rounded-lg bg-neutral-900 p-4'>
                 <div className='mx-auto w-[90%]'>
                   <Image

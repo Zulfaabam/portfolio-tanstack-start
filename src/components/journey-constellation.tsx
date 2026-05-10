@@ -102,12 +102,12 @@ const JourneyConstellation = memo(
 
         {/* DESKTOP VERSION */}
         <svg
-          width='1400'
+          width='908'
           height='2429'
           viewBox='0 0 908 2429'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
-          className='pointer-events-none hidden sm:block'
+          className='pointer-events-none mx-auto hidden sm:block'
         >
           <motion.path
             id='constellation-line'

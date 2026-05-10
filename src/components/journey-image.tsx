@@ -32,32 +32,30 @@ const JourneyImage = ({
 
   const modalContent = (
     <AnimatePresence mode='wait'>
-      {isZoomed && (
-        <div className='z-1000 fixed inset-0 flex items-center justify-center p-4 md:p-12'>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className='fixed inset-0 bg-black/40 backdrop-blur-md'
-            onClick={() => setIsZoomed(false)}
-          />
+      <div className='z-1000 fixed inset-0 flex items-center justify-center p-4 md:p-12'>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className='fixed inset-0 bg-black/40 backdrop-blur-md'
+          onClick={() => setIsZoomed(false)}
+        />
 
-          <motion.div
-            layoutId={layoutId}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className='z-1001 relative max-h-full max-w-full cursor-zoom-out overflow-hidden rounded-2xl shadow-2xl'
-            onClick={() => setIsZoomed(false)}
-          >
-            <Image
-              src={src}
-              alt='journey image zoomed'
-              layout='fullWidth'
-              className='h-auto max-h-[85vh] w-auto max-w-[90vw] object-contain'
-            />
-          </motion.div>
-        </div>
-      )}
+        <motion.div
+          layoutId={layoutId}
+          transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+          className='z-1001 relative max-h-full max-w-full cursor-zoom-out overflow-hidden rounded-2xl shadow-2xl'
+          onClick={() => setIsZoomed(false)}
+        >
+          <Image
+            src={src}
+            alt='journey image zoomed'
+            layout='fullWidth'
+            className='h-auto max-h-[85vh] w-auto max-w-[90vw] object-contain'
+          />
+        </motion.div>
+      </div>
     </AnimatePresence>
   );
 
@@ -84,6 +82,7 @@ const JourneyImage = ({
       </motion.div>
 
       {typeof document !== 'undefined' &&
+        isZoomed &&
         createPortal(modalContent, document.body)}
     </>
   );

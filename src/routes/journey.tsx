@@ -15,6 +15,8 @@ import {
   JOURNEY_2023_2024,
   JOURNEY_2025,
 } from '@/lib/consts';
+import { StarsBackground } from '@/components/ui/stars-background';
+import { ShootingStars } from '@/components/ui/shooting-stars';
 
 export const Route = createFileRoute('/journey')({
   head: () => ({
@@ -77,6 +79,8 @@ function Journey() {
           <JourneyConstellation pathLength={pathLength} />
         </div>
       </Section>
+      <StarsBackground />
+      <ShootingStars />
     </div>
   );
 }
