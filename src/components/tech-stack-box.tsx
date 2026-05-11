@@ -129,7 +129,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
               key={tech}
               value={tech}
               initial={{ y: -10, filter: 'blur(10px)', opacity: 0 }}
-              whileInView={{ y: 0, filter: 'blur(0px)', opacity: 1 }}
+              animate={{ y: 0, filter: 'blur(0px)', opacity: 1 }}
               transition={
                 disableTransition
                   ? undefined

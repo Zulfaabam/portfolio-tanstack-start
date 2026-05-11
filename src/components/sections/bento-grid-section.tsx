@@ -26,6 +26,11 @@ import { useQuery } from '@tanstack/react-query';
 import { miniJourneys } from '@/lib/consts';
 import { DirectionAwareHover } from '../ui/direction-aware-hover';
 
+const blurFadeInAnimation = {
+  initial: { opacity: 0, filter: 'blur(40px)' },
+  animate: { opacity: 1, filter: 'blur(0px)' },
+};
+
 export default function BentoGridSection() {
   const { data } = useQuery({
     queryKey: ['github-commits'],
@@ -66,12 +71,32 @@ export default function BentoGridSection() {
           </div>
 
           <div className='space-y-2'>
-            <h2 className='font-pacifico text-text text-4xl tracking-wide md:text-[52px]'>
-              Hi, I am Abam
-            </h2>
-            <h3 className='text-text/90 text-base md:text-lg'>
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className='font-pacifico text-text text-4xl tracking-wide md:text-[52px]'
+            >
+              {'Hi, I am Abam'.split('').map((char, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ y: 50, rotateX: -90, opacity: 0 }}
+                  animate={{ y: 0, rotateX: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: index * 0.03,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className='inline-block'
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
+            </motion.h1>
+            <h2 className='text-text/90 text-base md:text-lg'>
               Frontend Engineer
-            </h3>
+            </h2>
           </div>
 
           <p className='text-muted max-w-sm text-sm leading-relaxed'>
@@ -83,7 +108,7 @@ export default function BentoGridSection() {
             <RippleButton
               as={Link}
               to='/projects'
-              className='bg-text rounded-lg border-0 px-4 py-2 font-medium text-black hover:bg-white/90'
+              className='bg-text flex items-center gap-1 rounded-lg border-0 px-2 py-2 font-medium text-black hover:bg-white/90 sm:px-4'
             >
               <RippleButton.Text>View My Work</RippleButton.Text>
               <RippleButton.Icon>
@@ -95,7 +120,7 @@ export default function BentoGridSection() {
               as='a'
               href='/CV_ZULFA.pdf'
               download
-              className='border-border bg-surface hover:bg-text/10 text-text flex items-center gap-1 rounded-lg border px-4 py-2'
+              className='border-border bg-surface hover:bg-text/10 text-text flex items-center gap-1 rounded-lg border px-2 py-2 sm:px-4'
             >
               <RippleButton.Text>Download Resume</RippleButton.Text>
               <RippleButton.Icon>
@@ -104,7 +129,7 @@ export default function BentoGridSection() {
             </RippleButton>
           </div>
 
-          <div className='space-y-2 md:space-y-3'>
+          {/* <div className='space-y-2 md:space-y-3'>
             <p className='text-text/60 text-xs'>Tech I work with</p>
             <div className='text-text/80 flex items-center gap-4'>
               <IconBrandReact size={24} />
@@ -114,13 +139,12 @@ export default function BentoGridSection() {
               <IconBrandJavascript size={24} />
               <IconBrandFigma size={24} />
             </div>
-          </div>
+          </div> */}
         </motion.div>
 
         {/* Row 1: Middle - Experience (Span 5) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          {...blurFadeInAnimation}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box lg:col-span-6! xl:col-span-5! col-span-12 flex h-full flex-col justify-between overflow-hidden p-2'
         >
@@ -150,8 +174,7 @@ export default function BentoGridSection() {
 
         {/* Row 1: Right - Journey (Span 3) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          {...blurFadeInAnimation}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box md:col-span-6! xl:col-span-3! col-span-12 flex h-full flex-col justify-between gap-8'
         >
@@ -187,8 +210,7 @@ export default function BentoGridSection() {
 
         {/* Row 2: Left - What I'm up to (Span 3) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          {...blurFadeInAnimation}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box md:col-span-6! xl:col-span-3! md:h-full! col-span-12 flex h-52 flex-col gap-6 lg:h-80'
         >
@@ -221,8 +243,7 @@ export default function BentoGridSection() {
 
         {/* Row 2: Middle - Gallery (Span 5) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          {...blurFadeInAnimation}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box lg:col-span-6! xl:col-span-4! relative col-span-12 flex flex-col overflow-hidden p-2 lg:h-80'
         >
@@ -239,8 +260,7 @@ export default function BentoGridSection() {
 
         {/* Row 2: Right - Play the Stack (Span 4) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          {...blurFadeInAnimation}
           transition={{ duration: 0.6, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box lg:col-span-6! xl:col-span-5! col-span-12 flex flex-col lg:h-80'
         >
@@ -249,8 +269,7 @@ export default function BentoGridSection() {
 
         {/* Row 3: Quote (Span 12) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          {...blurFadeInAnimation}
           transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box relative col-span-12 flex items-center justify-center overflow-hidden px-0'
         >
@@ -259,8 +278,7 @@ export default function BentoGridSection() {
 
         {/* Row 4: Footer (Span 12) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          {...blurFadeInAnimation}
           transition={{ duration: 0.6, delay: 0.7, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box col-span-12 flex flex-col items-center justify-between gap-4 md:flex-row'
         >
