@@ -247,7 +247,7 @@ export default function BentoGridSection() {
           transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
           className='bento-box lg:col-span-6! xl:col-span-4! relative col-span-12 flex flex-col overflow-hidden p-2 lg:h-80'
         >
-          <div className='h-full w-full'>
+          <div className='h-full w-full text-white'>
             <DirectionAwareHover imageUrl='/battlestation.webp'>
               <p className='mb-1 font-medium'>The Battlestation</p>
               <p className='max-w-[calc(100vw-75px)] text-xs md:max-w-[350px]'>
