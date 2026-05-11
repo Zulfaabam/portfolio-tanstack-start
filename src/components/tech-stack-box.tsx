@@ -3,7 +3,6 @@ import { motion, Reorder } from 'motion/react';
 import { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 import RippleButton from './ui/ripple-btn';
-import { Image } from '@unpic/react';
 import { useQuery } from '@tanstack/react-query';
 import { getTechStack } from '@/lib/server/tech-stack';
 import { IconReload, IconStack2 } from '@tabler/icons-react';
@@ -13,11 +12,7 @@ export interface TechStackBoxProps {
 }
 
 export default function TechStackBox({ className }: TechStackBoxProps) {
-  const {
-    data: techStack,
-    error,
-    isLoading: loadingTechStack,
-  } = useQuery({
+  const { data: techStack } = useQuery({
     queryKey: ['techStack'],
     queryFn: () => getTechStack(),
   });
@@ -122,7 +117,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
         <Reorder.Group
           values={techStackOrder ?? []}
           onReorder={onReorder}
-          className='flex h-full w-full flex-col justify-between border border-dashed p-1'
+          className='flex h-full w-full flex-col justify-between border border-dashed border-neutral-800 p-1 dark:border-white'
         >
           {techStackOrder.map((tech) => (
             <Reorder.Item
@@ -145,7 +140,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
               onDragStart={() => setDisableTransition(true)}
               onDragEnd={() => setDisableTransition(false)}
             >
-              <div className='bg-text text-bg cursor-pointer py-1.5 text-center'>
+              <div className='dark:bg-text text-bg cursor-pointer bg-neutral-800 py-1.5 text-center'>
                 <p className='font-pixelify-sans text-[13px]'>{tech}</p>
               </div>
             </Reorder.Item>

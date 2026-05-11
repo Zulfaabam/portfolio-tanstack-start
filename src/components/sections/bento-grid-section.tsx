@@ -57,7 +57,7 @@ export default function BentoGridSection() {
           className='lg:col-span-6! xl:col-span-4! col-span-12 flex flex-col gap-4 lg:gap-6'
         >
           {/* Open to work badge */}
-          <div className='flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5'>
+          <div className='border-border bg-surface flex w-fit items-center gap-2 rounded-full border px-3 py-1.5'>
             <motion.span
               animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
               transition={{
@@ -108,7 +108,7 @@ export default function BentoGridSection() {
             <RippleButton
               as={Link}
               to='/projects'
-              className='bg-text flex items-center gap-1 rounded-lg border-0 px-2 py-2 font-medium text-black hover:bg-white/90 sm:px-4'
+              className='bg-text text-bg hover:bg-text/90 flex items-center gap-1 rounded-lg border-0 px-2 py-2 font-medium sm:px-4'
             >
               <RippleButton.Text>View My Work</RippleButton.Text>
               <RippleButton.Icon>

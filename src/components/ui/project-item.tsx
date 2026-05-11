@@ -53,13 +53,13 @@ export default function ProjectItem({
       transition={{ duration: 0.4 }}
       viewport={{ once: true, amount: 0.2 }}
       className={cn(
-        'hover:bg-white/2 group relative flex flex-col items-start gap-4 border-b border-neutral-800 py-6 transition-colors last:border-b-0 sm:flex-row sm:gap-6 md:px-4 md:py-8',
+        'border-border hover:bg-surface group relative flex flex-col items-start gap-4 border-b py-6 transition-colors last:border-b-0 sm:flex-row sm:gap-6 md:px-4 md:py-8',
         className,
       )}
     >
       <div
         className={cn(
-          'relative w-full shrink-0 overflow-hidden rounded-lg bg-neutral-900 sm:w-40',
+          'bg-surface relative w-full shrink-0 overflow-hidden rounded-lg sm:w-40',
           imageClassName,
         )}
       >
@@ -123,21 +123,19 @@ export default function ProjectItem({
 
       {/* Floating Tooltip Image */}
       <AnimatePresence>
-        {isHovered && (
-          <motion.img
-            src={image ? image : '/no-image.svg'}
-            alt={`${title} preview`}
-            style={{ x: springX, y: springY }}
-            initial={{ opacity: 0, scale: 0.1 }}
-            animate={{
-              opacity: isHovered ? 1 : 0,
-              scale: isHovered ? 1 : 0.1,
-            }}
-            transition={{ ease: 'easeOut', duration: 0.3 }}
-            exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.1 } }}
-            className='z-100 pointer-events-none fixed left-0 top-0 hidden aspect-video w-80 rounded-xl border border-neutral-800 bg-neutral-900 object-cover shadow-2xl md:block'
-          />
-        )}
+        <motion.img
+          src={image ? image : '/no-image.svg'}
+          alt={`${title} preview`}
+          style={{ x: springX, y: springY }}
+          initial={{ opacity: 0, scale: 0.1 }}
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            scale: isHovered ? 1 : 0.1,
+          }}
+          transition={{ ease: 'easeOut', duration: 0.3 }}
+          exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.1 } }}
+          className='border-border z-100 bg-surface pointer-events-none fixed left-0 top-0 hidden aspect-video w-80 rounded-xl border object-cover shadow-2xl md:block'
+        />
       </AnimatePresence>
     </motion.div>
   );

@@ -97,7 +97,7 @@ function Labs() {
             placeholder='Search experiments...'
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className='text-text/80 w-full max-w-md rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-2 text-sm placeholder-neutral-500 focus:border-neutral-600 focus:outline-none focus:ring-1 focus:ring-neutral-600'
+            className='text-text/80 border-border bg-surface w-full max-w-md rounded-lg border px-4 py-2 text-sm placeholder-neutral-500 focus:border-neutral-600 focus:outline-none focus:ring-1 focus:ring-neutral-600'
           />
           {allTechs.length > 0 && (
             <div className='flex flex-wrap gap-2'>
@@ -109,8 +109,8 @@ function Labs() {
                     onClick={() => toggleTech(tech)}
                     className={`cursor-pointer rounded-full border px-3 py-1 text-xs transition-colors ${
                       isSelected
-                        ? 'border-neutral-300 bg-neutral-300 text-neutral-900'
-                        : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:bg-neutral-800 hover:text-neutral-300'
+                        ? 'border-border bg-surface2 text-text'
+                        : 'border-border bg-surface text-muted/90 hover:bg-surface2 hover:text-text'
                     }`}
                   >
                     {tech}

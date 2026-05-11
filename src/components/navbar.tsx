@@ -12,10 +12,12 @@ import {
   IconBrandGithub,
   IconBrandInstagram,
   IconBrandLinkedin,
-  IconMenu,
   IconMenu2,
+  IconMoon,
+  IconSun,
   IconX,
 } from '@tabler/icons-react';
+import { useTheme } from './ThemeContext';
 
 export interface Position {
   left: number;
@@ -92,6 +94,7 @@ export default function Navbar() {
 }
 
 const SlideNav = () => {
+  const { theme, setTheme } = useTheme();
   const matchRoute = useMatchRoute();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -160,6 +163,17 @@ const SlideNav = () => {
             {s.icon}
           </a>
         ))}
+        <div className='bg-muted h-4 w-px'></div>
+        <button
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          className='cursor-pointer transition-all duration-300'
+        >
+          {theme === 'dark' ? (
+            <IconSun size={20} className='text-text' />
+          ) : (
+            <IconMoon size={20} className='text-text' />
+          )}
+        </button>
       </div>
 
       <AnimatePresence>
@@ -202,6 +216,17 @@ const SlideNav = () => {
                   {s.icon}
                 </a>
               ))}
+              <div className='bg-muted h-4 w-px'></div>
+              <button
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className='cursor-pointer transition-all duration-300'
+              >
+                {theme === 'dark' ? (
+                  <IconSun size={18} className='text-text' />
+                ) : (
+                  <IconMoon size={18} className='text-text' />
+                )}
+              </button>
             </div>
           </motion.div>
         )}
@@ -233,7 +258,7 @@ const Menu = ({
           opacity: 1,
         });
       }}
-      className='text-text relative z-10 block cursor-pointer px-2 py-1.5 text-xs uppercase mix-blend-difference md:px-5 md:py-2.5 md:text-sm'
+      className='relative z-10 block cursor-pointer px-2 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-2.5 md:text-sm'
     >
       {children}
     </li>

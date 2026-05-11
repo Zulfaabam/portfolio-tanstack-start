@@ -8,28 +8,25 @@
 
 /* 🌞 LIGHT MODE (default) */
 :root {
-  --color-bg: #f7f7f5;
-  --color-surface: #ffffff;
+  --color-bg: #ffffff;
+  --color-surface: #f7f7f7;
+  --color-surface2: #ececec;
   --color-border: #e5e5e5;
-  --color-muted: #737373;
+  --color-muted: #666666;
   --color-text: #0a0a0a;
-  --color-primary: #76c1ff;
+  --color-primary: #3ea7fd;
   --color-secondary: #133d9e;
   --color-accent: #16a34a;
 
   --shadow-card: 0 0 0 1px #e5e5e5;
   --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.06);
-
-  /* --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px; */
 }
 
 /* 🌙 DARK MODE */
 .dark {
   --color-bg: #0a0a0a;
   --color-surface: #111111;
+  --color-surface2: #1a1a1a;
   --color-border: #242424;
   --color-muted: #a3a3a3;
   --color-text: #ffffff;
@@ -44,6 +41,7 @@
 @theme {
   --color-bg: var(--color-bg);
   --color-surface: var(--color-surface);
+  --color-surface2: var(--color-surface2);
   --color-border: var(--color-border);
   --color-muted: var(--color-muted);
   --color-text: var(--color-text);
