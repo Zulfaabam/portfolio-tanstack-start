@@ -129,6 +129,28 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* SCROLLBAR STYLING */
+html::-webkit-scrollbar,
+.thin-scrollbar::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+html::-webkit-scrollbar-track,
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb,
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-muted);
+  border-radius: 0.5rem;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text);
+}
+
 /* JOURNEY */
 .star-anchor1 {
   anchor-name: --star-anchor1;
