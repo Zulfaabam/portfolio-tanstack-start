@@ -276,7 +276,7 @@ function Gallery() {
 
   return (
     <div className='bg-bg relative z-10 h-screen w-full overflow-hidden'>
-      <div className='text-muted pointer-events-none absolute bottom-10 left-1/2 z-20 -translate-x-1/2 rounded-full bg-black/40 px-4 py-2 text-sm backdrop-blur-md'>
+      <div className='text-muted bg-surface pointer-events-none absolute bottom-10 left-1/2 z-20 -translate-x-1/2 rounded-full px-4 py-2 text-sm backdrop-blur-md'>
         Drag canvas to pan, drag photos to move
       </div>
       <canvas

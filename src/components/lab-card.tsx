@@ -37,7 +37,7 @@ export default function LabCard({
       href={src}
       target='_blank'
       rel='noopener noreferrer'
-      className='border-border bg-surface hover:border-muted hover:shadow-elevated group relative flex h-[260px] cursor-pointer flex-col overflow-hidden rounded-xl border transition-all duration-300 hover:-translate-y-1'
+      className='border-border bg-surface hover:border-muted/70 hover:shadow-elevated group relative flex h-[260px] cursor-pointer flex-col overflow-hidden rounded-xl border transition-all duration-300 hover:-translate-y-1'
     >
       {/* Preview Area (iframe pointing to static html) */}
       <div className='bg-surface relative flex flex-1 items-center justify-center overflow-hidden'>
@@ -57,7 +57,7 @@ export default function LabCard({
       {/* Title & Tech */}
       <div className='border-border bg-surface group-hover:bg-surface/80 flex flex-col justify-between border-t p-4 transition-colors duration-300'>
         <div className='flex items-center justify-between'>
-          <p className='text-text group-hover:text-text/80 text-sm font-medium transition-colors'>
+          <p className='text-text text-sm font-medium'>
             <HighlightText text={title} query={searchQuery} />
           </p>
           <div className='flex gap-1.5'>

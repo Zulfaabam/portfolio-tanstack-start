@@ -81,7 +81,10 @@ function Labs() {
   }, [searchQuery, selectedTechs]);
 
   return (
-    <div id='labs-div' className='bg-bg relative min-h-screen w-full'>
+    <main
+      id='labs-div'
+      className='bg-bg relative min-h-screen w-full transition-colors duration-700 ease-in-out'
+    >
       <Section id='labs' className='relative z-10'>
         <div className='py-10 lg:py-20'>
           <h2 className='text-text mb-4 max-w-4xl text-2xl md:text-4xl'>
@@ -107,7 +110,7 @@ function Labs() {
                   <button
                     key={tech}
                     onClick={() => toggleTech(tech)}
-                    className={`cursor-pointer rounded-full border px-3 py-1 text-xs transition-colors ${
+                    className={`cursor-pointer rounded-full border px-3 py-1 text-xs transition-colors duration-300 ease-in-out ${
                       isSelected
                         ? 'border-border bg-surface2 text-text'
                         : 'border-border bg-surface text-muted/90 hover:bg-surface2 hover:text-text'
@@ -184,6 +187,6 @@ function Labs() {
           </div>
         </div> */}
       </Section>
-    </div>
+    </main>
   );
 }

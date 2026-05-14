@@ -79,7 +79,7 @@ export default function FeaturedProjects() {
                 'h-2 cursor-pointer rounded-full transition-all duration-300',
                 activeIndex === idx
                   ? 'bg-text/90 w-8'
-                  : 'bg-muted/70 hover:bg-fg/40 w-2',
+                  : 'bg-muted/70 hover:bg-text/70 w-2',
               )}
               aria-label={`Go to project ${idx + 1}`}
             />
@@ -114,78 +114,7 @@ export default function FeaturedProjects() {
                     src={p.image}
                   />
                 </div>
-
-                {/* <div className='w-[20%]'>
-                  <div className='flex items-center'>
-                    {p.tech_stack?.map((tech, idx) => (
-                      <p
-                        key={tech.id}
-                        className='text-fg space-x-1 text-[10px] uppercase'
-                      >
-                        <span>{tech.name}</span>
-                        {idx !== p.tech_stack.length - 1 && (
-                          <span className='mr-1'>/</span>
-                        )}
-                      </p>
-                    ))}
-                  </div>
-                  <p className='font-semibold'>{p.title}</p>
-                </div> */}
               </div>
-
-              {/* <div className='flex h-full flex-col gap-6 rounded-md border pl-4'>
-                <div className='space-y-0.5'>
-                  <div className='flex items-center'>
-                    {p.tech_stack?.map((tech, idx) => (
-                      <p
-                        key={tech.id}
-                        className='text-fg space-x-1 text-[10px] uppercase'
-                      >
-                        <span>{tech.name}</span>
-                        {idx !== p.tech_stack.length - 1 && (
-                          <span className='mr-1'>/</span>
-                        )}
-                      </p>
-                    ))}
-                  </div>
-                  <p className='font-semibold'>{p.title}</p>
-                </div>
-                <p className='text-fg min-w-[300px] max-w-[300px] text-sm'>
-                  {p.description}
-                </p>
-                <div className='flex items-center justify-between gap-1 justify-self-end text-xs uppercase lg:gap-2'>
-                  {!p.github_url && !p.live_url && (
-                    <p className='text-fg'>Privated</p>
-                  )}
-                  {p.github_url && (
-                    <motion.a
-                      whileHover={{ translateY: -2 }}
-                      href={p.github_url}
-                      className='text-fg flex cursor-pointer items-center justify-center'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                    >
-                      <span className='flex items-center gap-1'>
-                        Github <IconBrandGithub strokeWidth={1.5} size={16} />
-                      </span>
-                    </motion.a>
-                  )}
-                  {p.live_url && (
-                    <motion.a
-                      whileHover={{ translateY: -2 }}
-                      href={p.live_url}
-                      className='text-fg flex cursor-pointer items-center justify-center'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                    >
-                      <span className='flex items-center gap-1'>
-                        Live Demo{' '}
-                        <IconExternalLink strokeWidth={1.5} size={16} />
-                      </span>
-                    </motion.a>
-                  )}
-                </div>
-              </div> */}
             </div>
           ))
         )}

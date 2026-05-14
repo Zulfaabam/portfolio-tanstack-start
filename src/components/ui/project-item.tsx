@@ -53,7 +53,7 @@ export default function ProjectItem({
       transition={{ duration: 0.4 }}
       viewport={{ once: true, amount: 0.2 }}
       className={cn(
-        'border-border hover:bg-surface group relative flex flex-col items-start gap-4 border-b py-6 transition-colors last:border-b-0 sm:flex-row sm:gap-6 md:px-4 md:py-8',
+        'border-border hover:bg-surface group relative flex flex-col items-start gap-4 border-b py-6 last:border-b-0 sm:flex-row sm:gap-6 md:px-4 md:py-8',
         className,
       )}
     >
@@ -82,7 +82,7 @@ export default function ProjectItem({
             {github_url && (
               <a
                 href={github_url}
-                className='text-muted hover:text-primary transition-all hover:scale-110'
+                className='text-muted hover:text-primary transition-all duration-300 will-change-transform hover:scale-110'
                 target='_blank'
                 rel='noopener noreferrer'
                 title='GitHub Repository'
@@ -93,7 +93,7 @@ export default function ProjectItem({
             {live_url && (
               <a
                 href={live_url}
-                className='text-muted hover:text-primary transition-all hover:scale-110'
+                className='text-muted hover:text-primary transition-all duration-300 will-change-transform hover:scale-110'
                 target='_blank'
                 rel='noopener noreferrer'
                 title='Live Demo'
