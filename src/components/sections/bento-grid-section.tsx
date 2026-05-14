@@ -44,7 +44,7 @@ export default function BentoGridSection() {
         month: 'short',
         year: 'numeric',
       })
-    : '14 Feb 2026';
+    : '-';
 
   return (
     <Section id='homepage' className='pb-0 pt-20 xl:pt-32'>

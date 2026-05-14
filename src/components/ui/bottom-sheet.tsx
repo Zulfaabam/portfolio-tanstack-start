@@ -63,12 +63,12 @@ export const BottomSheet = ({
             dragElastic={0.1}
             onDragEnd={handleDragEnd}
             className={cn(
-              'border-border bg-surface rounded-t-4xl fixed inset-x-0 bottom-0 z-50 flex h-[85vh] flex-col border-t shadow-2xl md:h-[90vh]',
+              'border-border bg-surface rounded-t-4xl fixed inset-x-0 bottom-0 z-50 flex h-[85vh] flex-col border-t shadow-2xl will-change-transform md:h-[90vh]',
               className,
             )}
           >
             {/* Handle bar */}
-            <div className='flex w-full justify-center py-4'>
+            <div className='flex w-full justify-center py-2'>
               <div className='bg-muted/30 h-1.5 w-12 rounded-full' />
             </div>
 

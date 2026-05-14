@@ -106,7 +106,7 @@ export default function FeaturedProjects() {
               className='group flex h-full w-full shrink-0 cursor-pointer gap-4 overflow-hidden rounded-lg'
             >
               <div className='bg-surface2 relative flex aspect-video w-full items-center justify-center gap-6 rounded-lg p-4'>
-                <div className='mx-auto w-[90%]'>
+                <div className='mx-auto w-full sm:w-[90%]'>
                   <Image
                     alt='image'
                     className='group-hover:scale-103 border-border size-full select-none rounded-lg border object-contain transition-transform duration-700'
@@ -123,7 +123,7 @@ export default function FeaturedProjects() {
       <BottomSheet
         isOpen={isBottomSheetOpen}
         onClose={() => setIsBottomSheetOpen(false)}
-        title={selectedProject?.title}
+        title='Project Details'
       >
         {selectedProject && (
           <div className='mx-auto flex max-w-6xl flex-col gap-6 py-4'>
