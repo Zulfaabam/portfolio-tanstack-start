@@ -94,7 +94,7 @@ export default function Navbar() {
 }
 
 const SlideNav = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { userTheme, setTheme } = useTheme();
   const matchRoute = useMatchRoute();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -103,6 +103,14 @@ const SlideNav = () => {
     width: 0,
     opacity: 0,
   });
+
+  const getNextTheme = () => {
+    if (userTheme.includes('dark')) {
+      return 'light';
+    } else {
+      return 'dark';
+    }
+  };
 
   return (
     <div
@@ -165,14 +173,15 @@ const SlideNav = () => {
         ))}
         <div className='bg-muted h-4 w-px'></div>
         <button
-          onClick={toggleTheme}
+          onClick={() => setTheme(getNextTheme())}
           className='cursor-pointer transition-all duration-300'
         >
-          {theme === 'dark' ? (
-            <IconSun size={20} className='text-text' />
-          ) : (
-            <IconMoon size={20} className='text-text' />
-          )}
+          <span className='inline dark:hidden'>
+            <IconMoon size={18} className='text-text' />
+          </span>
+          <span className='hidden dark:inline'>
+            <IconSun size={18} className='text-text' />
+          </span>
         </button>
       </div>
 
@@ -218,14 +227,15 @@ const SlideNav = () => {
               ))}
               <div className='bg-muted h-4 w-px'></div>
               <button
-                onClick={toggleTheme}
+                onClick={() => setTheme(getNextTheme())}
                 className='cursor-pointer transition-all duration-300'
               >
-                {theme === 'dark' ? (
-                  <IconSun size={18} className='text-text' />
-                ) : (
+                <span className='inline dark:hidden'>
                   <IconMoon size={18} className='text-text' />
-                )}
+                </span>
+                <span className='hidden dark:inline'>
+                  <IconSun size={18} className='text-text' />
+                </span>
               </button>
             </div>
           </motion.div>

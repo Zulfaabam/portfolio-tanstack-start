@@ -71,8 +71,8 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <ThemeProvider>
           <Navbar />
           {children}
-          <Scripts />
         </ThemeProvider>
+        <Scripts />
       </body>
     </html>
   );

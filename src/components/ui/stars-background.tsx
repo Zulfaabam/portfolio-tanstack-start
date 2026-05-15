@@ -33,7 +33,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
   maxTwinkleSpeed = 1,
   className,
 }) => {
-  const { theme } = useTheme();
+  const { appTheme } = useTheme();
 
   const [stars, setStars] = useState<StarProps[]>([]);
   const canvasRef: RefObject<HTMLCanvasElement | null> =
@@ -116,7 +116,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
       stars.forEach((star) => {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${theme === 'dark' ? '255, 255, 255' : '0, 0, 0'}, ${star.opacity})`;
+        ctx.fillStyle = `rgba(${appTheme === 'dark' ? '255, 255, 255' : '0, 0, 0'}, ${star.opacity})`;
         ctx.fill();
 
         if (star.twinkleSpeed !== null) {
@@ -134,7 +134,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [stars, theme]);
+  }, [stars, appTheme]);
 
   return (
     <canvas

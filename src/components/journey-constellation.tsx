@@ -8,9 +8,9 @@ interface JourneyConstellationProps {
 
 const JourneyConstellation = memo(
   ({ pathLength }: JourneyConstellationProps) => {
-    const { theme } = useTheme();
+    const { appTheme } = useTheme();
 
-    const themeStroke = theme === 'dark' ? '#EAF0F5' : '#222A35';
+    const themeStroke = appTheme === 'dark' ? '#EAF0F5' : '#222A35';
 
     return (
       <>
