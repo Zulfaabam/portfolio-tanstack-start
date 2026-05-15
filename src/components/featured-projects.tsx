@@ -3,8 +3,6 @@ import { getFeaturedProjects } from '@/lib/server/project';
 import { Project, ProjectTechStack } from 'types';
 import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { DirectionAwareHover } from './ui/direction-aware-hover';
-import { motion } from 'motion/react';
 import {
   IconBrandGithub,
   IconExternalLink,
@@ -43,18 +41,15 @@ export default function FeaturedProjects() {
 
   const handleScroll = () => {
     if (scrollRef.current) {
-      const { scrollLeft } = scrollRef.current;
-      const isMobile = window.innerWidth < 768;
-      const itemWidth = isMobile ? 280 : 1200;
-      const index = Math.round(scrollLeft / itemWidth);
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const index = Math.round(scrollLeft / clientWidth);
       setActiveIndex(index);
     }
   };
 
   const scrollToIndex = (index: number) => {
     if (scrollRef.current) {
-      const isMobile = window.innerWidth < 768;
-      const itemWidth = isMobile ? 280 : 1200;
+      const itemWidth = scrollRef.current.clientWidth;
       scrollRef.current.scrollTo({
         left: index * itemWidth,
         behavior: 'smooth',
