@@ -1,41 +1,48 @@
-import React, {
-  useState,
-  createContext,
-  useEffect,
-  SetStateAction,
-} from 'react';
+import React, { useState, createContext, SetStateAction, useMemo } from 'react';
+import { ScriptOnce } from '@tanstack/react-router';
 
+type Theme = 'light' | 'dark';
 export interface ThemeProviderProps {
   initialTheme?: string | null;
   children: React.ReactNode;
 }
 
-const getInitialTheme = () => {
-  if (typeof window !== 'undefined' && window.localStorage) {
-    const storedPrefs = window.localStorage.getItem('color-theme');
-    if (typeof storedPrefs === 'string') {
-      return storedPrefs;
-    }
+const themeScript = `(function() {
+  try {
+    const theme = localStorage.getItem('color-theme') || 'auto';
+    const resolved = theme === 'auto'
+      ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+      : theme;
+    document.documentElement.classList.add(resolved);
+    document.documentElement.dataset.theme = resolved;
+  } catch (e) {}
+})();`;
 
-    const userMedia = window.matchMedia('(prefers-color-scheme: dark)');
-    if (userMedia.matches) {
-      return 'dark';
-    }
+const getResolvedThemeFromDom = (): Theme => {
+  if (typeof document === 'undefined') {
+    return 'light';
   }
 
-  return 'light'; // light theme as the default;
+  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
 };
 
 export const ThemeContext = createContext<{
   theme: string;
   setTheme: React.Dispatch<SetStateAction<string>>;
+  toggleTheme: () => void;
 } | null>(null);
 
 export const ThemeProvider = ({
   initialTheme,
   children,
 }: ThemeProviderProps) => {
-  const [theme, setTheme] = useState<string>(getInitialTheme);
+  const [theme, setTheme] = useState<string>(() => {
+    if (initialTheme) {
+      return initialTheme;
+    }
+
+    return getResolvedThemeFromDom();
+  });
 
   const rawSetTheme = (rawTheme: string) => {
     const root = window.document.documentElement;
@@ -44,19 +51,34 @@ export const ThemeProvider = ({
     root.classList.remove(isDark ? 'light' : 'dark');
     root.classList.add(rawTheme);
 
+    root.dataset.theme = rawTheme;
     localStorage.setItem('color-theme', rawTheme);
+  };
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      rawSetTheme(newTheme);
+      return newTheme;
+    });
   };
 
   if (initialTheme) {
     rawSetTheme(initialTheme);
   }
 
-  useEffect(() => {
-    rawSetTheme(theme);
-  }, [theme]);
+  const value = useMemo(
+    () => ({
+      theme,
+      setTheme,
+      toggleTheme,
+    }),
+    [theme, setTheme, toggleTheme],
+  );
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={value}>
+      <ScriptOnce children={themeScript} />
       {children}
     </ThemeContext.Provider>
   );

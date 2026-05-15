@@ -1,7 +1,32 @@
+import ErrorContent from '@/components/error-content';
 import Section from '@/components/section';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/components')({
+  head: () => ({
+    meta: [
+      { charSet: 'utf-8' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+      { title: 'Abams Components' },
+      {
+        name: 'description',
+        content: "Abam's collection of experimental components",
+      },
+    ],
+  }),
+  errorComponent: ({ reset }) => (
+    <div className='bg-bg relative flex min-h-screen w-full items-center'>
+      <Section
+        id='error-gallery'
+        className='flex flex-col items-center justify-center gap-2'
+      >
+        <ErrorContent reset={() => reset()} />
+      </Section>
+    </div>
+  ),
   component: RouteComponent,
 });
 

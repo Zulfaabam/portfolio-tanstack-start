@@ -94,7 +94,7 @@ export default function Navbar() {
 }
 
 const SlideNav = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const matchRoute = useMatchRoute();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -165,7 +165,7 @@ const SlideNav = () => {
         ))}
         <div className='bg-muted h-4 w-px'></div>
         <button
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          onClick={toggleTheme}
           className='cursor-pointer transition-all duration-300'
         >
           {theme === 'dark' ? (
@@ -218,7 +218,7 @@ const SlideNav = () => {
               ))}
               <div className='bg-muted h-4 w-px'></div>
               <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                onClick={toggleTheme}
                 className='cursor-pointer transition-all duration-300'
               >
                 {theme === 'dark' ? (
