@@ -2,18 +2,12 @@ import Section from '../section';
 import TechStackBox from '../tech-stack-box';
 import { Image } from '@unpic/react';
 import {
-  IconCircleArrowDown,
   IconArrowRight,
   IconBriefcase,
   IconBolt,
   IconSettings,
   IconTool,
-  IconBrandReact,
-  IconBrandNextjs,
-  IconBrandTailwind,
-  IconBrandTypescript,
-  IconBrandJavascript,
-  IconBrandFigma,
+  IconInfinity,
   IconDownload,
 } from '@tabler/icons-react';
 import FeaturedProjects from '../featured-projects';
@@ -162,11 +156,13 @@ export default function BentoGridSection() {
               <span className='text-muted text-[10px]'>Years Experience</span>
             </div>
             <div className='flex flex-col items-center justify-center gap-1'>
-              <span className='text-xl font-semibold md:text-2xl'>10+</span>
+              <span className='text-xl font-semibold md:text-2xl'>5+</span>
               <span className='text-muted text-[10px]'>Projects Completed</span>
             </div>
             <div className='flex flex-col items-center justify-center gap-1'>
-              <span className='text-xl font-semibold md:text-2xl'>∞</span>
+              <span className=''>
+                <IconInfinity className='size-6 md:size-8' />
+              </span>
               <span className='text-muted text-[10px]'>Joy of Learning</span>
             </div>
           </div>
@@ -199,7 +195,7 @@ export default function BentoGridSection() {
           <RippleButton
             as={Link}
             to='/journey'
-            className='border-border w-full justify-center self-start rounded-md border bg-transparent px-4 py-2 text-sm'
+            className='border-border bg-surface2 w-full justify-center self-start rounded-md border px-4 py-2 text-sm'
           >
             <RippleButton.Text>View Full Journey</RippleButton.Text>
             <RippleButton.Icon>
@@ -271,9 +267,21 @@ export default function BentoGridSection() {
         <motion.div
           {...blurFadeInAnimation}
           transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box relative col-span-12 flex items-center justify-center overflow-hidden px-0'
+          className='bento-box relative col-span-12 flex flex-col gap-2 overflow-hidden px-0 sm:gap-4'
         >
           <FeaturedProjects />
+          <div className='self-end px-4'>
+            <RippleButton
+              as={Link}
+              to='/projects'
+              className='border-border bg-surface2 w-full justify-center self-start rounded-md border px-4 py-2 text-xs sm:text-sm'
+            >
+              <RippleButton.Text>All Projects</RippleButton.Text>
+              <RippleButton.Icon>
+                <IconArrowRight size={16} />
+              </RippleButton.Icon>
+            </RippleButton>
+          </div>
         </motion.div>
 
         {/* Row 4: Footer (Span 12) */}

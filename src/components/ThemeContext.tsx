@@ -56,7 +56,7 @@ const setupPreferredListener = createClientOnlyFn(() => {
 const themeScript = (function () {
   function themeFn() {
     try {
-      const storedTheme = localStorage.getItem('ui-theme') || 'system';
+      const storedTheme = localStorage.getItem('color-theme') || 'system';
       const validTheme = ['light', 'dark', 'system'].includes(storedTheme)
         ? storedTheme
         : 'system';

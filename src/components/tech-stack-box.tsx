@@ -160,7 +160,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
           </p>
         </div>
         <RippleButton
-          className='border-border hidden w-full justify-center gap-2 self-start rounded-md border bg-transparent px-4 py-2 text-sm md:flex'
+          className='border-border bg-surface2 hidden w-full justify-center gap-2 self-start rounded-md border px-4 py-2 text-sm md:flex'
           onClick={onShuffle}
         >
           <RippleButton.Text>Shuffle</RippleButton.Text>
