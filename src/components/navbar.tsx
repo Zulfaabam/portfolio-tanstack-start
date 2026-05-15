@@ -94,7 +94,7 @@ export default function Navbar() {
 }
 
 const SlideNav = () => {
-  const { userTheme, setTheme } = useTheme();
+  const { appTheme, setTheme } = useTheme();
   const matchRoute = useMatchRoute();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -105,7 +105,7 @@ const SlideNav = () => {
   });
 
   const getNextTheme = () => {
-    if (userTheme.includes('dark')) {
+    if (appTheme === 'dark') {
       return 'light';
     } else {
       return 'dark';

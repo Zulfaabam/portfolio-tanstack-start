@@ -111,7 +111,6 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   return (
     <ThemeContext value={{ userTheme, appTheme, setTheme }}>
       <ScriptOnce children={themeScript} />
-
       {children}
     </ThemeContext>
   );
