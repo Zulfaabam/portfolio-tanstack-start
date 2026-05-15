@@ -22,7 +22,7 @@ export const Route = createFileRoute('/labs')({
     ],
   }),
   errorComponent: ({ reset }) => (
-    <div className='bg-dark relative flex min-h-screen w-full items-center'>
+    <div className='bg-bg relative flex min-h-screen w-full items-center'>
       <Section
         id='error-labs'
         className='flex flex-col items-center justify-center gap-2'
@@ -81,11 +81,16 @@ function Labs() {
   }, [searchQuery, selectedTechs]);
 
   return (
-    <div id='labs-div' className='bg-darkest relative min-h-screen w-full'>
+    <main
+      id='labs-div'
+      className='bg-bg relative min-h-screen w-full transition-colors duration-700 ease-in-out'
+    >
       <Section id='labs' className='relative z-10'>
         <div className='py-10 lg:py-20'>
-          <h2 className='text-fg mb-4 max-w-4xl text-2xl md:text-4xl'>Labs</h2>
-          <p className='text-fg max-w-md text-sm md:text-base'>
+          <h2 className='text-text mb-4 max-w-4xl text-2xl md:text-4xl'>
+            Labs
+          </h2>
+          <p className='text-muted max-w-md text-sm md:text-base'>
             A collection of my web experiments.
           </p>
         </div>
@@ -95,7 +100,7 @@ function Labs() {
             placeholder='Search experiments...'
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className='text-fg w-full max-w-md rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-2 text-sm placeholder-neutral-500 focus:border-neutral-600 focus:outline-none focus:ring-1 focus:ring-neutral-600'
+            className='text-text/80 border-border bg-surface w-full max-w-md rounded-lg border px-4 py-2 text-sm placeholder-neutral-500 focus:border-neutral-600 focus:outline-none focus:ring-1 focus:ring-neutral-600'
           />
           {allTechs.length > 0 && (
             <div className='flex flex-wrap gap-2'>
@@ -105,10 +110,10 @@ function Labs() {
                   <button
                     key={tech}
                     onClick={() => toggleTech(tech)}
-                    className={`cursor-pointer rounded-full border px-3 py-1 text-xs transition-colors ${
+                    className={`cursor-pointer rounded-full border px-3 py-1 text-xs transition-colors duration-300 ease-in-out ${
                       isSelected
-                        ? 'border-neutral-300 bg-neutral-300 text-neutral-900'
-                        : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:bg-neutral-800 hover:text-neutral-300'
+                        ? 'border-border bg-surface2 text-text'
+                        : 'border-border bg-surface text-muted/90 hover:bg-surface2 hover:text-text'
                     }`}
                   >
                     {tech}
@@ -132,7 +137,7 @@ function Labs() {
 
         {/* Minimalist List View */}
         {/* <div className='mt-16 flex flex-col md:mt-24'>
-          <h3 className='text-fg mb-4 text-xl md:text-2xl'>
+          <h3 className='text-text/80 mb-4 text-xl md:text-2xl'>
             Other Experiments
           </h3>
           <div className='flex flex-col'>
@@ -182,6 +187,6 @@ function Labs() {
           </div>
         </div> */}
       </Section>
-    </div>
+    </main>
   );
 }

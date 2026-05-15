@@ -3,20 +3,16 @@ import { motion, Reorder } from 'motion/react';
 import { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 import RippleButton from './ui/ripple-btn';
-import { Image } from '@unpic/react';
 import { useQuery } from '@tanstack/react-query';
 import { getTechStack } from '@/lib/server/tech-stack';
+import { IconReload, IconStack2 } from '@tabler/icons-react';
 
 export interface TechStackBoxProps {
   className?: string;
 }
 
 export default function TechStackBox({ className }: TechStackBoxProps) {
-  const {
-    data: techStack,
-    error,
-    isLoading: loadingTechStack,
-  } = useQuery({
+  const { data: techStack } = useQuery({
     queryKey: ['techStack'],
     queryFn: () => getTechStack(),
   });
@@ -107,30 +103,28 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
       )}
     >
       <div className='flex w-full justify-end md:hidden'>
-        <RippleButton onClick={onShuffle}>
+        <RippleButton
+          onClick={onShuffle}
+          className='border-border mt-2 flex w-full justify-center gap-2 self-start rounded-md border bg-transparent px-4 py-2 text-sm md:hidden'
+        >
           <RippleButton.Text>Shuffle</RippleButton.Text>
           <RippleButton.Icon>
-            <Image
-              src='/icons/reload.svg'
-              alt='reload'
-              width={22}
-              height={22}
-            />
+            <IconReload size={16} />
           </RippleButton.Icon>
         </RippleButton>
       </div>
-      <div className='h-[244px] md:w-1/2 lg:h-full'>
+      <div className='h-[280px] md:w-1/2 lg:h-full'>
         <Reorder.Group
           values={techStackOrder ?? []}
           onReorder={onReorder}
-          className='flex h-full w-full flex-col justify-between border border-dashed p-1 lg:w-[218px]'
+          className='flex h-full w-full flex-col justify-between border border-dashed border-neutral-800 p-1 dark:border-white'
         >
           {techStackOrder.map((tech) => (
             <Reorder.Item
               key={tech}
               value={tech}
               initial={{ y: -10, filter: 'blur(10px)', opacity: 0 }}
-              whileInView={{ y: 0, filter: 'blur(0px)', opacity: 1 }}
+              animate={{ y: 0, filter: 'blur(0px)', opacity: 1 }}
               transition={
                 disableTransition
                   ? undefined
@@ -146,7 +140,7 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
               onDragStart={() => setDisableTransition(true)}
               onDragEnd={() => setDisableTransition(false)}
             >
-              <div className='bg-fg text-darker cursor-pointer py-0.5 text-center'>
+              <div className='dark:bg-text text-bg cursor-pointer bg-neutral-800 py-1.5 text-center'>
                 <p className='font-pixelify-sans text-[13px]'>{tech}</p>
               </div>
             </Reorder.Item>
@@ -155,22 +149,23 @@ export default function TechStackBox({ className }: TechStackBoxProps) {
       </div>
       <div className='flex flex-col justify-between md:w-1/2'>
         <div className='space-y-6'>
-          <h6 className='font-pixelify-sans text-lg font-medium leading-6'>
-            Play the Stack!
-          </h6>
+          <div className='text-text flex items-center gap-2'>
+            <IconStack2 size={20} />
+            <h6 className='font-pixelify-sans text-lg font-medium leading-6'>
+              Play the Stack!
+            </h6>
+          </div>
           <p className='text-sm'>
             Try to reorder my tech stack for a surprise!
           </p>
         </div>
-        <RippleButton className='md:flex! hidden self-end' onClick={onShuffle}>
+        <RippleButton
+          className='border-border bg-surface2 hidden w-full justify-center gap-2 self-start rounded-md border px-4 py-2 text-sm md:flex'
+          onClick={onShuffle}
+        >
           <RippleButton.Text>Shuffle</RippleButton.Text>
           <RippleButton.Icon>
-            <Image
-              src='/icons/reload.svg'
-              alt='reload'
-              width={22}
-              height={22}
-            />
+            <IconReload size={16} />
           </RippleButton.Icon>
         </RippleButton>
       </div>

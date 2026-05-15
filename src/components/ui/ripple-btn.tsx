@@ -18,7 +18,7 @@ function RippleButton<E extends React.ElementType = 'button'>({
   return (
     <Component
       className={cn(
-        'btn-rounded transition-all hover:-translate-y-px active:scale-[0.97]',
+        'btn-rounded transition-transform ease-out will-change-transform hover:-translate-y-px active:scale-[0.97]',
         className,
       )}
       {...props}

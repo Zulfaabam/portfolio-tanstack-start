@@ -1,5 +1,6 @@
 import { motion, MotionValue } from 'motion/react';
 import React, { memo } from 'react';
+import { useTheme } from './ThemeContext';
 
 interface JourneyConstellationProps {
   pathLength: MotionValue<number>;
@@ -7,6 +8,10 @@ interface JourneyConstellationProps {
 
 const JourneyConstellation = memo(
   ({ pathLength }: JourneyConstellationProps) => {
+    const { appTheme } = useTheme();
+
+    const themeStroke = appTheme === 'dark' ? '#EAF0F5' : '#222A35';
+
     return (
       <>
         {/* MOBILE VERSION */}
@@ -21,7 +26,7 @@ const JourneyConstellation = memo(
           <motion.path
             id='constellation-line-mobile'
             d='M7.3385 352.246L32.3267 131.2L160.656 25.1785L294.703 6.17456L359.715 219.219L367.339 717.322L286.021 1071.9L191.574 1291.44L74.6797 1617.51L41.2209 1996.59L167.221 2200.63M167.221 2200.63L310.374 2225.13M167.221 2200.63L248.327 2337.16M167.221 2200.63L196.656 2419.17'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.8'
             strokeDasharray='2 2'
             style={{ pathLength }}
@@ -29,52 +34,52 @@ const JourneyConstellation = memo(
 
           <path
             d='M188.339 2425.17L196.11 2413.17L204.339 2425.17L188.339 2417.97H204.339L188.339 2425.17Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M249.139 2344.17L243.539 2330.17L254.339 2339.51H238.339L254.339 2330.17L249.139 2344.17Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M305.64 2229.17L310.465 2219.17L314.021 2229.17L302.339 2222.59L318.339 2224.54L305.64 2229.17Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M163.112 2203.75L168.729 2194.17L171.043 2207.17C166.637 2204.55 158.155 2199.31 159.477 2199.31C160.799 2199.31 170.602 2197.71 175.339 2196.91L163.112 2203.75Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M66.3385 1620.21L77.2064 1615.17L79.0177 1623.17L69.3574 1615.17L82.3385 1617.84L66.3385 1620.21Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M283.458 1078.17C283.458 1076.96 279.929 1066.06 281.693 1067.27C283.105 1068.24 290.712 1073.13 294.339 1075.45C288.457 1074.54 277.047 1072.72 278.458 1072.72C279.87 1072.72 287.085 1070.1 290.515 1068.78L283.458 1078.17Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M355.201 224.952L359.063 212.175L367.339 227.175L351.339 217.73H367.339L355.201 224.952Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M287.339 10.0526L296.569 1.17456V14.1746L287.339 1.17456L303.339 6.24773L287.339 10.0526Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M156.023 30.1746L159.812 21.1746L168.339 30.1746L150.339 24.1746L168.339 21.1746L156.023 30.1746Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M0.338501 355.312L8.09869 348.175L11.6554 357.175L1.95521 349.726C7.34422 350.244 17.7343 351.34 16.1822 351.588C14.6302 351.837 4.97306 354.175 0.338501 355.312Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
 
@@ -107,12 +112,12 @@ const JourneyConstellation = memo(
           viewBox='0 0 908 2429'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
-          className='pointer-events-none hidden sm:block'
+          className='pointer-events-none mx-auto hidden sm:block'
         >
           <motion.path
             id='constellation-line'
             d='M13.7204 356.651L72.7204 135.651L375.72 29.6506L692.22 10.6506L845.72 223.651L863.72 721.651L671.72 1076.15L448.72 1295.65L172.72 1621.65L93.7204 2000.65L391.22 2204.65M391.22 2204.65L729.22 2229.15M391.22 2204.65L582.72 2341.15M391.22 2204.65L460.72 2423.15'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.8'
             strokeDasharray='2 2'
             style={{ pathLength }}
@@ -121,52 +126,52 @@ const JourneyConstellation = memo(
           {/* LITTLE STARS */}
           <path
             d='M452.72 2427.65L461.22 2415.15L470.22 2427.65L452.72 2420.15H470.22L452.72 2427.65Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M582.22 2347.15L575.22 2329.15L588.72 2341.15H568.72L588.72 2329.15L582.22 2347.15Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M717.72 2236.15L727.22 2215.65L734.22 2236.15L711.22 2222.65L742.72 2226.65L717.72 2236.15Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M386.22 2209.65L394.72 2195.65L398.22 2214.65C391.554 2210.82 378.72 2203.15 380.72 2203.15C382.72 2203.15 397.554 2200.82 404.72 2199.65L386.22 2209.65Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M159.72 1624.65L177.72 1616.15L180.72 1629.65L164.72 1616.15L186.22 1620.65L159.72 1624.65Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M669.72 1084.15C669.72 1082.15 663.72 1064.15 666.72 1066.15C669.12 1067.75 682.054 1075.82 688.22 1079.65C678.22 1078.15 658.82 1075.15 661.22 1075.15C663.62 1075.15 675.887 1070.82 681.72 1068.65L669.72 1084.15Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M839.807 229.984L844.393 214.651L854.22 232.651L835.22 221.317H854.22L839.807 229.984Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M680.72 15.1506L695.72 1.15063V21.6506L680.72 1.15063L706.72 9.15063L680.72 15.1506Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M368.72 38.1506L374.72 23.1506L388.22 38.1506L359.72 28.1506L388.22 23.1506L368.72 38.1506Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           <path
             d='M1.72043 361.651L13.7204 350.151L19.2204 364.651L4.22043 352.651C12.5538 353.484 28.6204 355.251 26.2204 355.651C23.8204 356.051 8.88709 359.817 1.72043 361.651Z'
-            stroke='#EAF0F5'
+            stroke={themeStroke}
             strokeOpacity='0.6'
           />
           {/* BIG STARS */}

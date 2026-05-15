@@ -8,7 +8,7 @@ import Navbar from '@/components/navbar';
 import Section from '@/components/section';
 import ErrorContent from '@/components/error-content';
 import { QueryClient } from '@tanstack/react-query';
-import { StarsBackground } from '@/components/ui/stars-background';
+import { ThemeProvider } from '@/components/ThemeContext';
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -49,7 +49,7 @@ export const Route = createRootRouteWithContext<{
     ],
   }),
   errorComponent: ({ reset }) => (
-    <div className='bg-dark relative flex min-h-screen w-full items-center'>
+    <div className='bg-bg relative flex min-h-screen w-full items-center'>
       <Section
         id='error-root'
         className='flex flex-col items-center justify-center gap-2'
@@ -67,10 +67,11 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body id='root' className='font-jetbrains-mono relative'>
-        <Navbar />
-        {children}
-        <StarsBackground starDensity={0.0003} />
+      <body id='root' className='font-jetbrains-mono bg-bg relative'>
+        <ThemeProvider>
+          <Navbar />
+          {children}
+        </ThemeProvider>
         <Scripts />
       </body>
     </html>

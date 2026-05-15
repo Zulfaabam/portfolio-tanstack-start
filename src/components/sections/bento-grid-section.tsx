@@ -2,19 +2,28 @@ import Section from '../section';
 import TechStackBox from '../tech-stack-box';
 import { Image } from '@unpic/react';
 import {
-  IconCircleArrowDown,
-  IconCircleArrowRight,
-  IconCircleArrowUpRight,
+  IconArrowRight,
+  IconBriefcase,
+  IconBolt,
+  IconSettings,
+  IconTool,
+  IconInfinity,
+  IconDownload,
 } from '@tabler/icons-react';
 import FeaturedProjects from '../featured-projects';
 import { Link } from '@tanstack/react-router';
 import Signature from '../ui/signature';
-import { DirectionAwareHover } from '../ui/direction-aware-hover';
 import RippleButton from '../ui/ripple-btn';
-import { miniJourneys } from '@/lib/consts';
 import { motion } from 'motion/react';
 import { getThisRepoCommits } from '@/lib/server/github';
 import { useQuery } from '@tanstack/react-query';
+import { miniJourneys } from '@/lib/consts';
+import { DirectionAwareHover } from '../ui/direction-aware-hover';
+
+const blurFadeInAnimation = {
+  initial: { opacity: 0, filter: 'blur(40px)' },
+  animate: { opacity: 1, filter: 'blur(0px)' },
+};
 
 export default function BentoGridSection() {
   const { data } = useQuery({
@@ -29,162 +38,266 @@ export default function BentoGridSection() {
         month: 'short',
         year: 'numeric',
       })
-    : '14 Feb 2026';
+    : '-';
 
   return (
-    <Section id='about' className='py-0! space-y-4 xl:space-y-6'>
-      <div className='text-fg grid w-full grid-flow-row grid-cols-1 grid-rows-4 gap-4 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-3 lg:grid-cols-12 lg:grid-rows-2 xl:gap-6'>
+    <Section id='homepage' className='pb-0 pt-20 xl:pt-32'>
+      <div className='text-text grid w-full grid-cols-12 gap-4 lg:gap-x-4 lg:gap-y-6'>
+        {/* Row 1: Left - Profile (Span 4) */}
         <motion.div
-          initial={{ filter: 'blur(10px)', opacity: 0 }}
-          animate={{ filter: 'blur(0px)', opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-1 row-span-2 flex h-[568px] flex-col justify-between sm:col-span-2 lg:col-span-9 lg:h-[576px]'
+          className='lg:col-span-6! xl:col-span-4! col-span-12 flex flex-col gap-4 lg:gap-6'
         >
-          <div className='space-y-2 lg:space-y-4'>
-            <Image
-              src='/abam-working.webp'
-              layout='fullWidth'
-              className='max-h-[300px] w-[736px] rounded-lg object-cover object-[25%_75%] lg:max-h-[356px]'
+          {/* Open to work badge */}
+          <div className='border-border bg-surface flex w-fit items-center gap-2 rounded-full border px-3 py-1.5'>
+            <motion.span
+              animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              className='block h-2 w-2 rounded-full bg-green-500'
             />
-            <p className='text-justify text-[13px] leading-6 lg:text-sm'>
-              Name’s Zulfa Fatah Akbar Ahmad. You can call me Abam, a Frontend
-              Developer with 3+ years of experience building production-grade
-              web applications using React, Next.js, TypeScript, TailwindCSS,
-              and other modern frontend technologies. Strong in problem-solving,
-              with a passion for crafting seamless user experiences and writing
-              clean, efficient, and maintainable code.
-            </p>
+            <span className='text-text/80 font-mono text-xs'>Open to work</span>
           </div>
-          <div className='ml-auto flex items-center gap-2'>
+
+          <div className='space-y-2'>
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className='font-pacifico text-text text-4xl tracking-wide md:text-[52px]'
+            >
+              {'Hi, I am Abam'.split('').map((char, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ y: 50, rotateX: -90, opacity: 0 }}
+                  animate={{ y: 0, rotateX: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: index * 0.03,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className='inline-block'
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
+            </motion.h1>
+            <h2 className='text-text/90 text-base md:text-lg'>
+              Frontend Engineer
+            </h2>
+          </div>
+
+          <p className='text-muted max-w-sm text-sm leading-relaxed'>
+            I build modern, performant, and accessible web applications with a
+            focus on clean code and seamless user experience.
+          </p>
+
+          <div className='flex flex-wrap gap-3'>
+            <RippleButton
+              as={Link}
+              to='/projects'
+              className='bg-text text-bg hover:bg-text/90 flex items-center gap-1 rounded-lg border-0 px-2 py-2 font-medium sm:px-4'
+            >
+              <RippleButton.Text>View My Work</RippleButton.Text>
+              <RippleButton.Icon>
+                <IconArrowRight size={16} />
+              </RippleButton.Icon>
+            </RippleButton>
+
             <RippleButton
               as='a'
               href='/CV_ZULFA.pdf'
-              target='_blank'
-              rel='noopener noreferrer'
               download
-              className='self-end'
+              className='border-border bg-surface hover:bg-text/10 text-text flex items-center gap-1 rounded-lg border px-2 py-2 sm:px-4'
             >
-              <RippleButton.Text>Resume</RippleButton.Text>
+              <RippleButton.Text>Download Resume</RippleButton.Text>
               <RippleButton.Icon>
-                <IconCircleArrowDown size={22} strokeWidth={1.5} />
-              </RippleButton.Icon>
-            </RippleButton>
-            <RippleButton
-              as='a'
-              href='mailto:zulfafatahakbar@gmail.com'
-              className='self-end'
-            >
-              <RippleButton.Text>Let's Talk</RippleButton.Text>
-              <RippleButton.Icon>
-                <IconCircleArrowUpRight size={22} strokeWidth={1.5} />
+                <IconDownload size={16} />
               </RippleButton.Icon>
             </RippleButton>
           </div>
+
+          {/* <div className='space-y-2 md:space-y-3'>
+            <p className='text-text/60 text-xs'>Tech I work with</p>
+            <div className='text-text/80 flex items-center gap-4'>
+              <IconBrandReact size={24} />
+              <IconBrandNextjs size={24} />
+              <IconBrandTypescript size={24} />
+              <IconBrandTailwind size={24} />
+              <IconBrandJavascript size={24} />
+              <IconBrandFigma size={24} />
+            </div>
+          </div> */}
         </motion.div>
+
+        {/* Row 1: Middle - Experience (Span 5) */}
         <motion.div
-          initial={{ filter: 'blur(10px)', opacity: 0 }}
-          animate={{ filter: 'blur(0px)', opacity: 1 }}
+          {...blurFadeInAnimation}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+          className='bento-box lg:col-span-6! xl:col-span-5! col-span-12 flex h-full flex-col justify-between overflow-hidden p-2'
+        >
+          <div className='relative aspect-video w-full overflow-hidden rounded-sm'>
+            <Image
+              src='/abam-working.webp'
+              layout='fullWidth'
+              className='h-full w-full object-cover object-center'
+            />
+          </div>
+
+          <div className='divide-border grid grid-cols-3 gap-2 divide-x py-3 text-center'>
+            <div className='flex flex-col items-center justify-center gap-1'>
+              <span className='text-xl font-semibold md:text-2xl'>3+</span>
+              <span className='text-muted text-[10px]'>Years Experience</span>
+            </div>
+            <div className='flex flex-col items-center justify-center gap-1'>
+              <span className='text-xl font-semibold md:text-2xl'>5+</span>
+              <span className='text-muted text-[10px]'>Projects Completed</span>
+            </div>
+            <div className='flex flex-col items-center justify-center gap-1'>
+              <span className=''>
+                <IconInfinity className='size-6 md:size-8' />
+              </span>
+              <span className='text-muted text-[10px]'>Joy of Learning</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Row 1: Right - Journey (Span 3) */}
+        <motion.div
+          {...blurFadeInAnimation}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-1 row-span-1 flex h-[276px] flex-col justify-between lg:col-span-3'
+          className='bento-box md:col-span-6! xl:col-span-3! col-span-12 flex h-full flex-col justify-between gap-8'
         >
           <div className='space-y-6'>
-            <h6 className='font-semibold'>Journey</h6>
-            <div className='space-y-4'>
+            <div className='flex items-center gap-2'>
+              <IconBriefcase size={20} className='text-text' />
+              <h6 className='text-lg font-semibold'>Journey</h6>
+            </div>
+
+            <div className='flex flex-col justify-center space-y-4'>
               {miniJourneys.map((j) => (
-                <div className='space-y-0.5' key={j.id}>
-                  <p className='text-sm'>{j.job}</p>
-                  <div className='text-fg/80 flex items-center gap-2 text-xs'>
-                    <p>{j.place}</p>
-                    <span className='bg-fg/40 h-3 w-px'></span>
-                    <p>{j.year}</p>
-                  </div>
+                <div className='space-y-1.5' key={j.id}>
+                  <p className='text-sm font-medium'>{j.job}</p>
+                  <p className='text-muted text-xs'>
+                    {j.place} • {j.year}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
-          <RippleButton as={Link} to='/journey' className='self-end'>
-            <RippleButton.Text>Full Journey</RippleButton.Text>
+
+          <RippleButton
+            as={Link}
+            to='/journey'
+            className='border-border bg-surface2 w-full justify-center self-start rounded-md border px-4 py-2 text-sm'
+          >
+            <RippleButton.Text>View Full Journey</RippleButton.Text>
             <RippleButton.Icon>
-              <IconCircleArrowRight size={22} strokeWidth={1.5} />
+              <IconArrowRight size={16} />
             </RippleButton.Icon>
           </RippleButton>
         </motion.div>
+
+        {/* Row 2: Left - What I'm up to (Span 3) */}
         <motion.div
-          initial={{ filter: 'blur(10px)', opacity: 0 }}
-          animate={{ filter: 'blur(0px)', opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-1 row-span-1 h-[276px] space-y-6 lg:col-span-3'
+          {...blurFadeInAnimation}
+          transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          className='bento-box md:col-span-6! xl:col-span-3! md:h-full! col-span-12 flex h-52 flex-col gap-6 lg:h-80'
         >
-          <h6 className='font-semibold'>What I'm Up to</h6>
-          <div className='space-y-2'>
-            <p className='text-fg flex gap-2 text-sm'>
-              <span>⚙️</span> Building{' '}
-              <a
-                href='https://pokepinpoint.netlify.app/'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='hover:text-primary underline underline-offset-2 transition-all duration-300 hover:underline-offset-1'
-              >
-                PokePinpoint
-              </a>
-            </p>
-            <p className='text-fg flex gap-2 text-sm'>
-              <span>🌱</span> Learning backend techs
-            </p>
+          <div className='flex items-center gap-2'>
+            <IconBolt size={20} className='text-text' />
+            <h6 className='text-lg font-semibold'>What I'm Up To</h6>
+          </div>
+
+          <div className='space-y-4'>
+            <div className='flex items-center gap-2 text-sm'>
+              <IconSettings size={18} className='text-muted' />
+              <span>
+                Building{' '}
+                <a
+                  href='https://pokepinpoint.netlify.app/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='decoration-muted underline underline-offset-4 transition-[font-weight] hover:font-semibold'
+                >
+                  PokePinpoint
+                </a>
+              </span>
+            </div>
+            <div className='flex items-center gap-2 text-sm'>
+              <IconTool size={18} className='text-muted' />
+              <span>Learning backend tech</span>
+            </div>
           </div>
         </motion.div>
-      </div>
-      <div className='text-fg grid w-full auto-cols-min grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-6'>
+
+        {/* Row 2: Middle - Gallery (Span 5) */}
         <motion.div
-          initial={{ filter: 'blur(10px)', opacity: 0 }}
-          animate={{ filter: 'blur(0px)', opacity: 1 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-3 row-span-3 flex h-full flex-col-reverse gap-4 md:col-span-6 md:h-[276px] md:flex-row md:gap-9 lg:justify-between'
-        >
-          <TechStackBox />
-        </motion.div>
-        <motion.div
-          initial={{ filter: 'blur(10px)', opacity: 0 }}
-          animate={{ filter: 'blur(0px)', opacity: 1 }}
+          {...blurFadeInAnimation}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box px-0! col-span-3 flex h-[492px] flex-col justify-between md:col-span-6 md:row-span-6'
+          className='bento-box lg:col-span-6! xl:col-span-4! relative col-span-12 flex flex-col overflow-hidden p-2 lg:h-80'
         >
-          <FeaturedProjects />
-          <div className='w-fit self-end px-4'>
-            <RippleButton as={Link} to='/projects'>
-              <RippleButton.Text>Projects</RippleButton.Text>
-              <RippleButton.Icon>
-                <IconCircleArrowRight size={22} strokeWidth={1.5} />
-              </RippleButton.Icon>
-            </RippleButton>
-          </div>
-        </motion.div>
-        <motion.div
-          initial={{ filter: 'blur(10px)', opacity: 0 }}
-          animate={{ filter: 'blur(0px)', opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-3 row-span-4 h-[276px] space-y-4 md:col-span-6 lg:col-span-6'
-        >
-          <div className='relative h-full w-full'>
+          <div className='h-full w-full text-white'>
             <DirectionAwareHover imageUrl='/battlestation.webp'>
               <p className='mb-1 font-medium'>The Battlestation</p>
-              <p className='max-w-[430px] text-xs'>
+              <p className='max-w-[calc(100vw-75px)] text-xs md:max-w-[350px]'>
                 <span className='font-medium'>Specs</span>: AMD Ryzen 5 7500F,
                 AMD Radeon RX 6700 XT, 16GB RAM, 1TB Storage
               </p>
             </DirectionAwareHover>
           </div>
         </motion.div>
+
+        {/* Row 2: Right - Play the Stack (Span 4) */}
         <motion.div
-          initial={{ filter: 'blur(10px)', opacity: 0 }}
-          animate={{ filter: 'blur(0px)', opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          className='bento-box col-span-3 row-span-1 flex h-[60px] items-center justify-between md:col-span-6'
+          {...blurFadeInAnimation}
+          transition={{ duration: 0.6, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          className='bento-box lg:col-span-6! xl:col-span-5! col-span-12 flex flex-col lg:h-80'
         >
-          <p className='text-fg/80 text-xs md:text-sm'>
-            Last update: {lastUpdate}
+          <TechStackBox className='h-full flex-1' />
+        </motion.div>
+
+        {/* Row 3: Quote (Span 12) */}
+        <motion.div
+          {...blurFadeInAnimation}
+          transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          className='bento-box relative col-span-12 flex flex-col gap-2 overflow-hidden px-0 sm:gap-4'
+        >
+          <FeaturedProjects />
+          <div className='self-end px-4'>
+            <RippleButton
+              as={Link}
+              to='/projects'
+              className='border-border bg-surface2 w-full justify-center self-start rounded-md border px-4 py-2 text-xs sm:text-sm'
+            >
+              <RippleButton.Text>All Projects</RippleButton.Text>
+              <RippleButton.Icon>
+                <IconArrowRight size={16} />
+              </RippleButton.Icon>
+            </RippleButton>
+          </div>
+        </motion.div>
+
+        {/* Row 4: Footer (Span 12) */}
+        <motion.div
+          {...blurFadeInAnimation}
+          transition={{ duration: 0.6, delay: 0.7, ease: [0.4, 0, 0.2, 1] }}
+          className='bento-box col-span-12 flex flex-col items-center justify-between gap-4 md:flex-row'
+        >
+          <p className='text-muted hidden text-sm md:block'>
+            Let's build something amazing together 🤟
           </p>
-          <Signature className='*:fill-fg *:stroke-fg size-10' />
+
+          <div className='flex items-center gap-6'>
+            <p className='text-muted text-xs'>Last update: {lastUpdate}</p>
+            <Signature className='*:fill-text *:stroke-text size-12' />
+          </div>
         </motion.div>
       </div>
     </Section>

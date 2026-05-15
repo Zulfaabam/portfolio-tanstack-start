@@ -59,7 +59,7 @@ const JourneySection1 = ({ data }: JourneySectionProps) => {
     <>
       <div
         ref={starRef}
-        className='star-anchor1 absolute left-4 top-[100px] size-fit md:left-[30px] md:top-[110px]'
+        className='star-anchor1 xl:left-54 lg:left-18 absolute left-4 top-[100px] size-fit md:left-8 md:top-[110px]'
       >
         <motion.svg
           width='77'

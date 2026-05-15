@@ -15,6 +15,8 @@ import {
   JOURNEY_2023_2024,
   JOURNEY_2025,
 } from '@/lib/consts';
+import { StarsBackground } from '@/components/ui/stars-background';
+import { ShootingStars } from '@/components/ui/shooting-stars';
 
 export const Route = createFileRoute('/journey')({
   head: () => ({
@@ -32,7 +34,7 @@ export const Route = createFileRoute('/journey')({
     ],
   }),
   errorComponent: ({ reset }) => (
-    <div className='bg-dark relative flex min-h-screen w-full items-center'>
+    <div className='bg-bg relative flex min-h-screen w-full items-center'>
       <Section
         id='error-journey'
         className='flex flex-col items-center justify-center gap-2'
@@ -56,14 +58,14 @@ function Journey() {
   return (
     <div
       ref={containerRef}
-      className='bg-linear-to-b to-darkest relative min-h-screen w-full overflow-hidden from-black via-black'
+      className='bg-bg relative min-h-screen w-full overflow-hidden'
     >
       <Section id='journey' className='z-10 w-full'>
         <div className='relative z-10 mx-auto py-10 md:px-0 lg:py-20'>
-          <h2 className='text-fg mb-4 max-w-5xl text-2xl md:text-4xl'>
+          <h2 className='text-text mb-4 max-w-5xl text-2xl md:text-4xl'>
             My Journey So Far
           </h2>
-          <p className='text-fg max-w-md text-sm md:text-base'>
+          <p className='text-muted max-w-md text-sm md:text-base'>
             Here&apos;s my timeline of 3+ years learning, growing, and working
             as a developer.
           </p>
@@ -77,6 +79,8 @@ function Journey() {
           <JourneyConstellation pathLength={pathLength} />
         </div>
       </Section>
+      <StarsBackground />
+      <ShootingStars />
     </div>
   );
 }
