@@ -85,7 +85,7 @@ export default function Navbar() {
         transition={{
           duration: 0.2,
         }}
-        className='fixed inset-x-0 top-4 z-20 mx-auto max-w-[calc(100vw-1rem)] xl:max-w-7xl'
+        className='fixed inset-x-0 top-4 z-20 mx-auto max-w-[calc(100vw-1rem)] min-[1300px]:max-w-7xl'
       >
         <SlideNav />
       </motion.nav>
