@@ -69,7 +69,7 @@ export default function BentoGridSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className='font-pacifico text-text text-4xl tracking-wide md:text-[52px]'
+              className='font-pacifico text-text text-4xl tracking-wide md:text-[52px] text-balance'
             >
               {'Hi, I am Abam'.split('').map((char, index) => (
                 <motion.span
@@ -88,12 +88,12 @@ export default function BentoGridSection() {
                 </motion.span>
               ))}
             </motion.h1>
-            <h2 className='text-text/90 text-base md:text-lg'>
+            <h2 className='text-text/90 text-base md:text-lg text-balance'>
               Frontend Engineer
             </h2>
           </div>
 
-          <p className='text-muted max-w-sm text-sm leading-relaxed'>
+          <p className='text-muted max-w-sm text-sm leading-relaxed text-pretty'>
             I build modern, performant, and accessible web applications with a
             focus on clean code and seamless user experience.
           </p>
@@ -146,7 +146,7 @@ export default function BentoGridSection() {
             <Image
               src='/abam-working.webp'
               layout='fullWidth'
-              className='h-full w-full object-cover object-center'
+              className='h-full w-full object-cover object-center ring-1 ring-black/10 dark:ring-white/10'
             />
           </div>
 
@@ -177,7 +177,7 @@ export default function BentoGridSection() {
           <div className='space-y-6'>
             <div className='flex items-center gap-2'>
               <IconBriefcase size={20} className='text-text' />
-              <h6 className='text-lg font-semibold'>Journey</h6>
+              <h3 className='text-lg font-semibold'>Journey</h3>
             </div>
 
             <div className='flex flex-col justify-center space-y-4'>
@@ -212,7 +212,7 @@ export default function BentoGridSection() {
         >
           <div className='flex items-center gap-2'>
             <IconBolt size={20} className='text-text' />
-            <h6 className='text-lg font-semibold'>What I'm Up To</h6>
+            <h3 className='text-lg font-semibold'>What I'm Up To</h3>
           </div>
 
           <div className='space-y-4'>
@@ -224,7 +224,7 @@ export default function BentoGridSection() {
                   href='https://pokepinpoint.netlify.app/'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='decoration-muted underline underline-offset-4 transition-[font-weight] hover:font-semibold'
+                  className='decoration-muted hover:decoration-text transition-colors underline underline-offset-4'
                 >
                   PokePinpoint
                 </a>

@@ -13,7 +13,9 @@ const JourneySection3 = ({ data }: JourneySectionProps) => {
   const isVisible = useInView(ref, { amount: 1, once: true });
   const prefersReducedMotion = useReducedMotion();
 
-  const fadeInVariants: Variants = {
+
+
+  const fadeTextVariants = (delay: number): Variants => ({
     hidden: {
       opacity: prefersReducedMotion ? 1 : 0,
       filter: prefersReducedMotion ? 'blur(0px)' : 'blur(10px)',
@@ -21,10 +23,10 @@ const JourneySection3 = ({ data }: JourneySectionProps) => {
     visible: {
       opacity: 1,
       filter: 'blur(0px)',
-      transition: contentTransition,
+      transition: { ...contentTransition, delay },
       willChange: 'opacity, filter',
     },
-  };
+  });
 
   const fadeInFloatingVariants: (delay: number) => Variants = (
     delay: number = 1,
@@ -78,14 +80,14 @@ const JourneySection3 = ({ data }: JourneySectionProps) => {
           />
         </motion.svg>
       </div>
-      <motion.p
-        variants={fadeInVariants}
+      <motion.h2
+        variants={fadeTextVariants(0.1)}
         initial='hidden'
         animate={isVisible ? 'visible' : 'hidden'}
-        className='year-journey3 job-year'
+        className='year-journey3 job-year tabular-nums'
       >
         {data.year}
-      </motion.p>
+      </motion.h2>
       <motion.div
         initial='hidden'
         animate={isVisible ? 'visible' : 'hidden'}
@@ -94,9 +96,9 @@ const JourneySection3 = ({ data }: JourneySectionProps) => {
         <motion.div variants={image1Variants} className='-rotate-9'>
           <JourneyImage src={data.image1} />
         </motion.div>
-        <motion.div variants={fadeInVariants} className='space-y-1'>
-          <p className='company'>{data.company}</p>
-          <p className='job-title'>{data.jobTitle}</p>
+        <motion.div variants={fadeTextVariants(0.2)} className='space-y-1'>
+          <h3 className='company text-balance'>{data.company}</h3>
+          <h4 className='job-title text-balance'>{data.jobTitle}</h4>
           <p className='job-duration'>{data.duration}</p>
         </motion.div>
       </motion.div>
@@ -105,10 +107,10 @@ const JourneySection3 = ({ data }: JourneySectionProps) => {
         animate={isVisible ? 'visible' : 'hidden'}
         className='content2-journey3 flex flex-row-reverse gap-4 md:flex-col-reverse md:items-center'
       >
-        <motion.div variants={fadeInVariants} className='job-desc'>
+        <motion.div variants={fadeTextVariants(0.3)} className='job-desc'>
           <ul className='list-disc pl-6'>
             {data.projects.map((project, idx) => (
-              <li key={idx}>{project}</li>
+              <li key={idx} className='text-pretty'>{project}</li>
             ))}
           </ul>
         </motion.div>
@@ -122,7 +124,7 @@ const JourneySection3 = ({ data }: JourneySectionProps) => {
         className='content3-journey3 flex flex-col-reverse gap-3 md:flex-row md:items-end lg:gap-1'
       >
         <motion.div
-          variants={fadeInVariants}
+          variants={fadeTextVariants(0.4)}
           className='job-tech md:max-w-44! lg:max-w-52!'
         >
           <p>Tech / Tools:</p>
