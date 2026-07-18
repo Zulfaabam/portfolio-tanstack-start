@@ -111,6 +111,30 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
 
     let animationFrameId: number;
 
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let prefersReduced = mediaQuery.matches;
+
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      prefersReduced = e.matches;
+      if (prefersReduced) {
+        cancelAnimationFrame(animationFrameId);
+        renderStatic();
+      } else {
+        render();
+      }
+    };
+    mediaQuery.addEventListener('change', handleMediaChange);
+
+    const renderStatic = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach((star) => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${appTheme === 'dark' ? '255, 255, 255' : '0, 0, 0'}, ${star.opacity})`;
+        ctx.fill();
+      });
+    };
+
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       stars.forEach((star) => {
@@ -126,13 +150,20 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
         }
       });
 
-      animationFrameId = requestAnimationFrame(render);
+      if (!prefersReduced) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
-    render();
+    if (prefersReduced) {
+      renderStatic();
+    } else {
+      render();
+    }
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      mediaQuery.removeEventListener('change', handleMediaChange);
     };
   }, [stars, appTheme]);
 

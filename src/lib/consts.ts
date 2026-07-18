@@ -1,8 +1,8 @@
 import { Transition } from 'motion/react';
 
 export const contentTransition: Transition = {
-  duration: 1,
-  ease: [0.7, 0, 0.3, 1], // cinematic
+  duration: 0.25,
+  ease: [0.23, 1, 0.32, 1], // strong ease-out for responsive UI
 };
 
 export const floatingTransition: Transition = {

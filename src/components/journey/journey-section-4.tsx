@@ -18,7 +18,7 @@ const JourneySection4 = ({ data }: JourneySectionProps) => {
   const fadeTextVariants = (delay: number): Variants => ({
     hidden: {
       opacity: prefersReducedMotion ? 1 : 0,
-      filter: prefersReducedMotion ? 'blur(0px)' : 'blur(10px)',
+      filter: prefersReducedMotion ? 'blur(0px)' : 'blur(4px)',
     },
     visible: {
       opacity: 1,
@@ -28,34 +28,28 @@ const JourneySection4 = ({ data }: JourneySectionProps) => {
     },
   });
 
-  const fadeInFloatingVariants: (delay: number) => Variants = (
-    delay: number = 1,
-  ) => {
-    return {
-      hidden: {
-        opacity: prefersReducedMotion ? 1 : 0,
-        filter: prefersReducedMotion ? 'blur(0px)' : 'blur(10px)',
+  const fadeInRotateVariants = (delay: number, targetRotate: number): Variants => ({
+    hidden: {
+      opacity: prefersReducedMotion ? 1 : 0,
+      filter: prefersReducedMotion ? 'blur(0px)' : 'blur(4px)',
+      transform: prefersReducedMotion ? 'translate(0px, 0px) rotate(0deg)' : 'translate(0px, 8px) rotate(0deg)',
+    },
+    visible: {
+      opacity: 1,
+      filter: 'blur(0px)',
+      transform: prefersReducedMotion ? 'translate(0px, 0px) rotate(0deg)' : `translate(0px, 0px) rotate(${targetRotate}deg)`,
+      transition: {
+        opacity: contentTransition,
+        filter: contentTransition,
+        transform: { ...contentTransition, delay },
       },
-      visible: {
-        opacity: 1,
-        filter: 'blur(0px)',
-        transform: 'translateY(-5px) rotate(-2deg)',
-        transition: {
-          opacity: contentTransition,
-          filter: contentTransition,
-          transform: {
-            ...floatingTransition,
-            delay,
-          },
-        },
-        willChange: 'transform, opacity, filter',
-      },
-    };
-  };
+      willChange: 'transform, opacity, filter',
+    },
+  });
 
-  const image1Variants = fadeInFloatingVariants(0.25);
-  const image2Variants = fadeInFloatingVariants(0.1);
-  const image3Variants = fadeInFloatingVariants(0.67);
+  const image1Variants = fadeInRotateVariants(0.25, -2);
+  const image2Variants = fadeInRotateVariants(0.1, -2);
+  const image3Variants = fadeInRotateVariants(0.67, -2);
 
   return (
     <>
@@ -63,22 +57,20 @@ const JourneySection4 = ({ data }: JourneySectionProps) => {
         ref={ref}
         className='star-anchor4 absolute bottom-[392px] left-6 size-fit md:bottom-[386px] md:left-14 lg:left-24 xl:left-60'
       >
-        <motion.svg
+        <svg
           width='75'
           height='70'
           viewBox='0 0 75 70'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
-          className='w-8 md:w-[75px]'
-          animate={{ transform: 'translateY(-5px) rotate(4deg)' }}
-          transition={floatingTransition}
+          className='w-8 md:w-[75px] animate-float-star-3'
         >
           <path
             d='M0.787176 58.4891C45.2928 1.68328 43.995 -1.00662 45.2928 1.68328C46.5905 4.37318 74.4654 69.7169 73.2455 68.134C72.0256 66.551 7.79618 16.2789 9.47032 16.4393C11.1445 16.5997 78.4898 16.592 72.7957 18.383C68.2404 19.8158 22.892 45.7174 0.787176 58.4891Z'
             stroke='#76C1FF'
             strokeWidth='2'
           />
-        </motion.svg>
+        </svg>
       </div>
       <motion.h2
         variants={fadeTextVariants(0.1)}

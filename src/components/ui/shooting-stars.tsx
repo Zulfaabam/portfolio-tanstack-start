@@ -54,7 +54,22 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
   const [star, setStar] = useState<ShootingStar | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const listener = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    mediaQuery.addEventListener('change', listener);
+    return () => mediaQuery.removeEventListener('change', listener);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const createStar = () => {
       const { x, y, angle } = getRandomStartPoint();
       const newStar: ShootingStar = {
@@ -69,49 +84,55 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
       setStar(newStar);
 
       const randomDelay = Math.random() * (maxDelay - minDelay) + minDelay;
-      setTimeout(createStar, randomDelay);
+      const timeoutId = setTimeout(createStar, randomDelay);
+      return timeoutId;
     };
 
-    createStar();
+    const timeoutId = createStar();
 
-    return () => {};
-  }, [minSpeed, maxSpeed, minDelay, maxDelay]);
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [minSpeed, maxSpeed, minDelay, maxDelay, prefersReducedMotion]);
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+    if (!star) return;
+
     const moveStar = () => {
-      if (star) {
-        setStar((prevStar) => {
-          if (!prevStar) return null;
-          const newX =
-            prevStar.x +
-            prevStar.speed * Math.cos((prevStar.angle * Math.PI) / 180);
-          const newY =
-            prevStar.y +
-            prevStar.speed * Math.sin((prevStar.angle * Math.PI) / 180);
-          const newDistance = prevStar.distance + prevStar.speed;
-          const newScale = 1 + newDistance / 100;
-          if (
-            newX < -20 ||
-            newX > window.innerWidth + 20 ||
-            newY < -20 ||
-            newY > window.innerHeight + 20
-          ) {
-            return null;
-          }
-          return {
-            ...prevStar,
-            x: newX,
-            y: newY,
-            distance: newDistance,
-            scale: newScale,
-          };
-        });
-      }
+      setStar((prevStar) => {
+        if (!prevStar) return null;
+        const newX =
+          prevStar.x +
+          prevStar.speed * Math.cos((prevStar.angle * Math.PI) / 180);
+        const newY =
+          prevStar.y +
+          prevStar.speed * Math.sin((prevStar.angle * Math.PI) / 180);
+        const newDistance = prevStar.distance + prevStar.speed;
+        const newScale = 1 + newDistance / 100;
+        if (
+          newX < -20 ||
+          newX > window.innerWidth + 20 ||
+          newY < -20 ||
+          newY > window.innerHeight + 20
+        ) {
+          return null;
+        }
+        return {
+          ...prevStar,
+          x: newX,
+          y: newY,
+          distance: newDistance,
+          scale: newScale,
+        };
+      });
     };
 
     const animationFrame = requestAnimationFrame(moveStar);
     return () => cancelAnimationFrame(animationFrame);
-  }, [star]);
+  }, [star, prefersReducedMotion]);
+
+  if (prefersReducedMotion) return null;
 
   return (
     <svg
