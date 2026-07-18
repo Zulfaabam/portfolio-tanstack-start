@@ -100,7 +100,7 @@ function Labs() {
             placeholder='Search experiments...'
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className='text-text/80 border-border bg-surface w-full max-w-md rounded-lg border px-4 py-2 text-sm placeholder-neutral-500 focus:border-neutral-600 focus:outline-none focus:ring-1 focus:ring-neutral-600'
+            className='text-text/80 border-border bg-surface placeholder-muted/80 focus:border-muted focus:ring-muted w-full max-w-md rounded-lg border px-4 py-2 text-sm focus:outline-none focus:ring-1'
           />
           {allTechs.length > 0 && (
             <div className='flex flex-wrap gap-2'>
@@ -147,13 +147,13 @@ function Labs() {
                 href={item.src}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='group flex items-center justify-between border-b border-neutral-800 py-5 transition-colors hover:border-neutral-600'
+                className='group flex items-center justify-between border-b border-border py-5 transition-colors hover:border-muted/80'
               >
                 <div className='flex items-center gap-6'>
-                  <span className='font-mono text-sm text-neutral-600 transition-colors group-hover:text-neutral-400'>
+                  <span className='font-mono text-sm text-muted/80 transition-colors group-hover:text-muted'>
                     0{item.id}
                   </span>
-                  <p className='text-sm text-neutral-300 transition-colors group-hover:text-white md:text-base'>
+                  <p className='text-sm text-text/80 transition-colors group-hover:text-text md:text-base'>
                     {item.title}
                   </p>
                 </div>
@@ -162,14 +162,14 @@ function Labs() {
                     {item.techs.map((tech, idx) => (
                       <span
                         key={idx}
-                        className='rounded bg-neutral-900 px-2 py-1 text-[10px] text-neutral-500 transition-colors group-hover:bg-neutral-800 group-hover:text-neutral-300'
+                        className='rounded bg-surface2 px-2 py-1 text-[10px] text-muted transition-colors group-hover:bg-border group-hover:text-text'
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
                   <svg
-                    className='h-4 w-4 text-neutral-600 transition-transform group-hover:-rotate-45 group-hover:text-white'
+                    className='h-4 w-4 text-muted transition-transform group-hover:-rotate-45 group-hover:text-text'
                     fill='none'
                     viewBox='0 0 24 24'
                     stroke='currentColor'

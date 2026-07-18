@@ -1,8 +1,6 @@
 import ErrorContent from '@/components/error-content';
 import Section from '@/components/section';
 import BentoGridSection from '@/components/sections/bento-grid-section';
-import HeroSection from '@/components/sections/hero-section';
-import { ShootingStars } from '@/components/ui/shooting-stars';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
