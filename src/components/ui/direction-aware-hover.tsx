@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 export const DirectionAwareHover = ({
@@ -20,6 +20,56 @@ export const DirectionAwareHover = ({
   const [direction, setDirection] = useState<
     'top' | 'bottom' | 'left' | 'right' | string
   >('left');
+
+  const shouldReduceMotion = useReducedMotion();
+
+  const variants = {
+    initial: {
+      transform: 'translate(0px, 0px)',
+    },
+    exit: {
+      transform: 'translate(0px, 0px)',
+    },
+    top: {
+      transform: shouldReduceMotion ? 'translate(0px, 0px)' : 'translate(0px, 12px)',
+    },
+    bottom: {
+      transform: shouldReduceMotion ? 'translate(0px, 0px)' : 'translate(0px, -12px)',
+    },
+    left: {
+      transform: shouldReduceMotion ? 'translate(0px, 0px)' : 'translate(12px, 0px)',
+    },
+    right: {
+      transform: shouldReduceMotion ? 'translate(0px, 0px)' : 'translate(-12px, 0px)',
+    },
+  };
+
+  const textVariants = {
+    initial: {
+      transform: 'translate(0px, 0px)',
+      opacity: 0,
+    },
+    exit: {
+      transform: 'translate(0px, 0px)',
+      opacity: 0,
+    },
+    top: {
+      transform: shouldReduceMotion ? 'translate(0px, 0px)' : 'translate(0px, 2px)',
+      opacity: 1,
+    },
+    bottom: {
+      transform: shouldReduceMotion ? 'translate(0px, 0px)' : 'translate(0px, -2px)',
+      opacity: 1,
+    },
+    left: {
+      transform: shouldReduceMotion ? 'translate(0px, 0px)' : 'translate(-2px, 0px)',
+      opacity: 1,
+    },
+    right: {
+      transform: shouldReduceMotion ? 'translate(0px, 0px)' : 'translate(2px, 0px)',
+      opacity: 1,
+    },
+  };
 
   const updateDirection = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -95,17 +145,17 @@ export const DirectionAwareHover = ({
           exit='exit'
         >
           <motion.div
-            className={cn(
-              'absolute inset-0 z-10 hidden h-full w-full bg-black/60 transition duration-500',
-              isHovered && 'block',
-            )}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered ? 1 : 0 }}
+            transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+            className='absolute inset-0 z-10 h-full w-full bg-black/60'
           />
           <motion.div
             variants={variants}
             className='relative h-full w-full select-none bg-gray-50 dark:bg-black'
             transition={{
-              duration: 0.2,
-              ease: 'easeOut',
+              duration: 0.25,
+              ease: [0.23, 1, 0.32, 1],
             }}
           >
             <img
@@ -122,8 +172,8 @@ export const DirectionAwareHover = ({
           <motion.div
             variants={textVariants}
             transition={{
-              duration: 0.5,
-              ease: 'easeOut',
+              duration: 0.25,
+              ease: [0.23, 1, 0.32, 1],
             }}
             className={cn(
               'text-text absolute bottom-4 left-4 z-40',
@@ -138,54 +188,4 @@ export const DirectionAwareHover = ({
   );
 };
 
-const variants = {
-  initial: {
-    x: 0,
-  },
 
-  exit: {
-    x: 0,
-    y: 0,
-  },
-  top: {
-    y: 20,
-  },
-  bottom: {
-    y: -20,
-  },
-  left: {
-    x: 20,
-  },
-  right: {
-    x: -20,
-  },
-};
-
-const textVariants = {
-  initial: {
-    y: 0,
-    x: 0,
-    opacity: 0,
-  },
-  exit: {
-    y: 0,
-    x: 0,
-    opacity: 0,
-  },
-  top: {
-    y: 2,
-    opacity: 1,
-  },
-  bottom: {
-    y: -2,
-    opacity: 1,
-  },
-  left: {
-    x: -2,
-    opacity: 1,
-  },
-  right: {
-    x: 2,
-    opacity: 1,
-  },
-};

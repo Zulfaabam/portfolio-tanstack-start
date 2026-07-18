@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { motion, AnimatePresence, PanInfo } from 'motion/react';
+import { motion, AnimatePresence, PanInfo, useReducedMotion } from 'motion/react';
 import { IconX } from '@tabler/icons-react';
 import { cn } from '@/lib/utils';
 import { createPortal } from 'react-dom';
@@ -19,6 +19,20 @@ export const BottomSheet = ({
   className,
   title,
 }: BottomSheetProps) => {
+  const shouldReduceMotion = useReducedMotion();
+
+  const sheetVariants = {
+    initial: shouldReduceMotion
+      ? { opacity: 0 }
+      : { transform: 'translateY(100%)', opacity: 1 },
+    animate: shouldReduceMotion
+      ? { opacity: 1 }
+      : { transform: 'translateY(0%)', opacity: 1, transition: { type: 'spring', damping: 28, stiffness: 250 } },
+    exit: shouldReduceMotion
+      ? { opacity: 0 }
+      : { transform: 'translateY(100%)', opacity: 0, transition: { duration: 0.25, ease: [0.23, 1, 0.32, 1] } }
+  };
+
   // Prevent scrolling when the bottom sheet is open
   useEffect(() => {
     if (isOpen) {
@@ -48,17 +62,18 @@ export const BottomSheet = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
             onClick={onClose}
             className='bg-bg/80 fixed inset-0 z-50 backdrop-blur-sm'
           />
 
           {/* Bottom Sheet */}
           <motion.div
-            initial={{ y: '100%' }}
-            animate={{ y: '0%' }}
-            exit={{ y: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            drag='y'
+            variants={sheetVariants}
+            initial='initial'
+            animate='animate'
+            exit='exit'
+            drag={shouldReduceMotion ? false : 'y'}
             dragConstraints={{ top: 0 }}
             dragElastic={0.1}
             onDragEnd={handleDragEnd}

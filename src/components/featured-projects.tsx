@@ -71,7 +71,7 @@ export default function FeaturedProjects() {
               key={idx}
               onClick={() => scrollToIndex(idx)}
               className={cn(
-                'h-2 cursor-pointer rounded-full transition-all duration-300',
+                'h-2 cursor-pointer rounded-full transition-[width,background-color] duration-200 ease-out',
                 activeIndex === idx
                   ? 'bg-text/90 w-8'
                   : 'bg-muted/70 hover:bg-text/70 w-2',
@@ -104,7 +104,7 @@ export default function FeaturedProjects() {
                 <div className='mx-auto w-full sm:w-[90%]'>
                   <Image
                     alt='image'
-                    className='group-hover:scale-103 border-border size-full select-none rounded-lg border object-contain transition-transform duration-700'
+                    className='group-hover-fine-scale border-border size-full select-none rounded-lg border object-contain transition-transform duration-250 ease-out'
                     layout='fullWidth'
                     src={p.image}
                   />

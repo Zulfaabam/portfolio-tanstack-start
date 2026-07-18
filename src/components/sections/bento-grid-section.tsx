@@ -14,18 +14,14 @@ import FeaturedProjects from '../featured-projects';
 import { Link } from '@tanstack/react-router';
 import Signature from '../ui/signature';
 import RippleButton from '../ui/ripple-btn';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { getThisRepoCommits } from '@/lib/server/github';
 import { useQuery } from '@tanstack/react-query';
 import { miniJourneys } from '@/lib/consts';
 import { DirectionAwareHover } from '../ui/direction-aware-hover';
 
-const blurFadeInAnimation = {
-  initial: { opacity: 0, filter: 'blur(40px)' },
-  animate: { opacity: 1, filter: 'blur(0px)' },
-};
-
 export default function BentoGridSection() {
+  const shouldReduceMotion = useReducedMotion();
   const { data } = useQuery({
     queryKey: ['github-commits'],
     queryFn: () => getThisRepoCommits(),
@@ -40,27 +36,28 @@ export default function BentoGridSection() {
       })
     : '-';
 
+  const blurFadeInVariants = {
+    initial: shouldReduceMotion
+      ? { opacity: 0 }
+      : { opacity: 0, transform: 'translateY(12px) scale(0.98)', filter: 'blur(12px)' },
+    animate: shouldReduceMotion
+      ? { opacity: 1 }
+      : { opacity: 1, transform: 'translateY(0px) scale(1)', filter: 'blur(0px)' },
+  };
+
   return (
     <Section id='homepage' className='pb-0 pt-20 xl:pt-32'>
       <div className='text-text grid w-full grid-cols-12 gap-4 lg:gap-x-4 lg:gap-y-6'>
         {/* Row 1: Left - Profile (Span 4) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, transform: 'translateY(15px)' }}
+          animate={{ opacity: 1, transform: 'translateY(0px)' }}
+          transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
           className='lg:col-span-6! xl:col-span-4! col-span-12 flex flex-col gap-4 lg:gap-6'
         >
           {/* Open to work badge */}
           <div className='border-border bg-surface flex w-fit items-center gap-2 rounded-full border px-3 py-1.5'>
-            <motion.span
-              animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className='block h-2 w-2 rounded-full bg-green-500'
-            />
+            <span className='animate-pulse block h-2 w-2 rounded-full bg-green-500' />
             <span className='text-text/80 font-mono text-xs'>Open to work</span>
           </div>
 
@@ -68,18 +65,18 @@ export default function BentoGridSection() {
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
               className='font-pacifico text-text text-4xl tracking-wide md:text-[52px] text-balance'
             >
               {'Hi, I am Abam'.split('').map((char, index) => (
                 <motion.span
                   key={index}
-                  initial={{ y: 50, rotateX: -90, opacity: 0 }}
-                  animate={{ y: 0, rotateX: 0, opacity: 1 }}
+                  initial={shouldReduceMotion ? { opacity: 0 } : { transform: 'translateY(15px) rotateX(-45deg)', opacity: 0 }}
+                  animate={{ transform: 'translateY(0px) rotateX(0deg)', opacity: 1 }}
                   transition={{
-                    duration: 0.8,
-                    delay: index * 0.03,
-                    ease: [0.16, 1, 0.3, 1],
+                    duration: 0.3,
+                    delay: shouldReduceMotion ? 0 : index * 0.015,
+                    ease: [0.23, 1, 0.32, 1],
                   }}
                   className='inline-block'
                   style={{ transformStyle: 'preserve-3d' }}
@@ -138,8 +135,10 @@ export default function BentoGridSection() {
 
         {/* Row 1: Middle - Experience (Span 5) */}
         <motion.div
-          {...blurFadeInAnimation}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+          variants={blurFadeInVariants}
+          initial='initial'
+          animate='animate'
+          transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 0.04, ease: [0.23, 1, 0.32, 1] }}
           className='bento-box lg:col-span-6! xl:col-span-5! col-span-12 flex h-full flex-col justify-between overflow-hidden p-2'
         >
           <div className='relative aspect-video w-full overflow-hidden rounded-sm'>
@@ -170,8 +169,10 @@ export default function BentoGridSection() {
 
         {/* Row 1: Right - Journey (Span 3) */}
         <motion.div
-          {...blurFadeInAnimation}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+          variants={blurFadeInVariants}
+          initial='initial'
+          animate='animate'
+          transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 0.08, ease: [0.23, 1, 0.32, 1] }}
           className='bento-box md:col-span-6! xl:col-span-3! col-span-12 flex h-full flex-col justify-between gap-8'
         >
           <div className='space-y-6'>
@@ -206,8 +207,10 @@ export default function BentoGridSection() {
 
         {/* Row 2: Left - What I'm up to (Span 3) */}
         <motion.div
-          {...blurFadeInAnimation}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          variants={blurFadeInVariants}
+          initial='initial'
+          animate='animate'
+          transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 0.12, ease: [0.23, 1, 0.32, 1] }}
           className='bento-box md:col-span-6! xl:col-span-3! md:h-full! col-span-12 flex h-52 flex-col gap-6 lg:h-80'
         >
           <div className='flex items-center gap-2'>
@@ -239,8 +242,10 @@ export default function BentoGridSection() {
 
         {/* Row 2: Middle - Gallery (Span 5) */}
         <motion.div
-          {...blurFadeInAnimation}
-          transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          variants={blurFadeInVariants}
+          initial='initial'
+          animate='animate'
+          transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 0.16, ease: [0.23, 1, 0.32, 1] }}
           className='bento-box lg:col-span-6! xl:col-span-4! relative col-span-12 flex flex-col overflow-hidden p-2 lg:h-80'
         >
           <div className='h-full w-full text-white'>
@@ -256,8 +261,10 @@ export default function BentoGridSection() {
 
         {/* Row 2: Right - Play the Stack (Span 4) */}
         <motion.div
-          {...blurFadeInAnimation}
-          transition={{ duration: 0.6, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          variants={blurFadeInVariants}
+          initial='initial'
+          animate='animate'
+          transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 0.20, ease: [0.23, 1, 0.32, 1] }}
           className='bento-box lg:col-span-6! xl:col-span-5! col-span-12 flex flex-col lg:h-80'
         >
           <TechStackBox className='h-full flex-1' />
@@ -265,8 +272,10 @@ export default function BentoGridSection() {
 
         {/* Row 3: Quote (Span 12) */}
         <motion.div
-          {...blurFadeInAnimation}
-          transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          variants={blurFadeInVariants}
+          initial='initial'
+          animate='animate'
+          transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 0.24, ease: [0.23, 1, 0.32, 1] }}
           className='bento-box relative col-span-12 flex flex-col gap-2 overflow-hidden px-0 sm:gap-4'
         >
           <FeaturedProjects />
@@ -286,8 +295,10 @@ export default function BentoGridSection() {
 
         {/* Row 4: Footer (Span 12) */}
         <motion.div
-          {...blurFadeInAnimation}
-          transition={{ duration: 0.6, delay: 0.7, ease: [0.4, 0, 0.2, 1] }}
+          variants={blurFadeInVariants}
+          initial='initial'
+          animate='animate'
+          transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 0.28, ease: [0.23, 1, 0.32, 1] }}
           className='bento-box col-span-12 flex flex-col items-center justify-between gap-4 md:flex-row'
         >
           <p className='text-muted hidden text-sm md:block'>
