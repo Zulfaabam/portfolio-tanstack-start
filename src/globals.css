@@ -60,10 +60,6 @@
   --font-caveat: 'Caveat', cursive;
 }
 
-@utility bg-earth-from-space {
-  background-image: url('/earth-from-space.webp');
-}
-
 @utility hover-btn-translate {
   @media (hover: hover) and (pointer: fine) {
     &:hover {

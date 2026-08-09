@@ -75,12 +75,18 @@ export const techStack = [
 export const miniJourneys = [
   {
     id: 1,
+    job: 'C# Software Engineer Bootcamp @ Formulatrix',
+    place: 'Salatiga, Indonesia',
+    year: 'June - July 2026 ',
+  },
+  {
+    id: 2,
     job: 'Frontend Dev @ Eksad',
     place: 'Jakarta, Indonesia',
     year: '2025',
   },
   {
-    id: 2,
+    id: 3,
     job: 'Frontend Dev @ Bukit Vista',
     place: 'Bali, Indonesia',
     year: '2022 - 2024',

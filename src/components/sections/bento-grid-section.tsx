@@ -86,7 +86,7 @@ export default function BentoGridSection() {
               ))}
             </motion.h1>
             <h2 className='text-text/90 text-base md:text-lg text-balance'>
-              Frontend Engineer
+              Software Engineer
             </h2>
           </div>
 
@@ -235,7 +235,7 @@ export default function BentoGridSection() {
             </div>
             <div className='flex items-center gap-2 text-sm'>
               <IconTool size={18} className='text-muted' />
-              <span>Learning backend tech</span>
+              <span>Learning C# and .NET techs</span>
             </div>
           </div>
         </motion.div>

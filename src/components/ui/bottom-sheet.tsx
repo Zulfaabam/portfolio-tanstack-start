@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { motion, AnimatePresence, PanInfo, useReducedMotion } from 'motion/react';
+import { motion, AnimatePresence, PanInfo, useReducedMotion, type Variants } from 'motion/react';
 import { IconX } from '@tabler/icons-react';
 import { cn } from '@/lib/utils';
 import { createPortal } from 'react-dom';
@@ -21,7 +21,7 @@ export const BottomSheet = ({
 }: BottomSheetProps) => {
   const shouldReduceMotion = useReducedMotion();
 
-  const sheetVariants = {
+  const sheetVariants: Variants = {
     initial: shouldReduceMotion
       ? { opacity: 0 }
       : { transform: 'translateY(100%)', opacity: 1 },

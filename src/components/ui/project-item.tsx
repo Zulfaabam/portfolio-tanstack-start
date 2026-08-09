@@ -20,6 +20,7 @@ export interface ProjectShowcaseCardProps {
   live_url: string;
   className?: string;
   imageClassName?: string;
+  onClick?: () => void;
 }
 
 export default function ProjectItem({
@@ -31,6 +32,7 @@ export default function ProjectItem({
   live_url,
   className,
   imageClassName,
+  onClick,
 }: ProjectShowcaseCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const shouldReduceMotion = useReducedMotion();
@@ -48,6 +50,7 @@ export default function ProjectItem({
 
   return (
     <motion.div
+      onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
@@ -56,7 +59,7 @@ export default function ProjectItem({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       className={cn(
-        'border-border hover:bg-surface group relative flex flex-col items-start gap-4 border-b py-6 last:border-b-0 sm:flex-row sm:gap-6 md:px-4 md:py-8',
+        'border-border hover:bg-surface group relative flex cursor-pointer flex-col items-start gap-4 border-b py-6 last:border-b-0 sm:flex-row sm:gap-6 md:px-4 md:py-8',
         className,
       )}
     >
@@ -87,6 +90,7 @@ export default function ProjectItem({
             {github_url && (
               <a
                 href={github_url}
+                onClick={(e) => e.stopPropagation()}
                 className='text-muted hover:text-primary link-action -m-2.5 p-2.5'
                 target='_blank'
                 rel='noopener noreferrer'
@@ -98,6 +102,7 @@ export default function ProjectItem({
             {live_url && (
               <a
                 href={live_url}
+                onClick={(e) => e.stopPropagation()}
                 className='text-muted hover:text-primary link-action -m-2.5 p-2.5'
                 target='_blank'
                 rel='noopener noreferrer'
