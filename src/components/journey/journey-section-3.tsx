@@ -13,47 +13,43 @@ const JourneySection3 = ({ data }: JourneySectionProps) => {
   const isVisible = useInView(ref, { amount: 1, once: true });
   const prefersReducedMotion = useReducedMotion();
 
-  const fadeInVariants: Variants = {
+
+
+  const fadeTextVariants = (delay: number): Variants => ({
     hidden: {
       opacity: prefersReducedMotion ? 1 : 0,
-      filter: prefersReducedMotion ? 'blur(0px)' : 'blur(10px)',
+      filter: prefersReducedMotion ? 'blur(0px)' : 'blur(4px)',
     },
     visible: {
       opacity: 1,
       filter: 'blur(0px)',
-      transition: contentTransition,
+      transition: { ...contentTransition, delay },
       willChange: 'opacity, filter',
     },
-  };
+  });
 
-  const fadeInFloatingVariants: (delay: number) => Variants = (
-    delay: number = 1,
-  ) => {
-    return {
-      hidden: {
-        opacity: prefersReducedMotion ? 1 : 0,
-        filter: prefersReducedMotion ? 'blur(0px)' : 'blur(10px)',
+  const fadeInRotateVariants = (delay: number, targetRotate: number): Variants => ({
+    hidden: {
+      opacity: prefersReducedMotion ? 1 : 0,
+      filter: prefersReducedMotion ? 'blur(0px)' : 'blur(4px)',
+      transform: prefersReducedMotion ? 'translate(0px, 0px) rotate(0deg)' : 'translate(0px, 8px) rotate(0deg)',
+    },
+    visible: {
+      opacity: 1,
+      filter: 'blur(0px)',
+      transform: prefersReducedMotion ? 'translate(0px, 0px) rotate(0deg)' : `translate(0px, 0px) rotate(${targetRotate}deg)`,
+      transition: {
+        opacity: contentTransition,
+        filter: contentTransition,
+        transform: { ...contentTransition, delay },
       },
-      visible: {
-        opacity: 1,
-        filter: 'blur(0px)',
-        transform: 'translateY(-5px) rotate(4deg)',
-        transition: {
-          opacity: contentTransition,
-          filter: contentTransition,
-          transform: {
-            ...floatingTransition,
-            delay,
-          },
-        },
-        willChange: 'transform, opacity, filter',
-      },
-    };
-  };
+      willChange: 'transform, opacity, filter',
+    },
+  });
 
-  const image1Variants = fadeInFloatingVariants(0.1);
-  const image2Variants = fadeInFloatingVariants(0.5);
-  const image3Variants = fadeInFloatingVariants(0.8);
+  const image1Variants = fadeInRotateVariants(0.1, 4);
+  const image2Variants = fadeInRotateVariants(0.5, 4);
+  const image3Variants = fadeInRotateVariants(0.8, 4);
 
   return (
     <>
@@ -61,31 +57,29 @@ const JourneySection3 = ({ data }: JourneySectionProps) => {
         ref={ref}
         className='star-anchor3 absolute bottom-[1091px] left-1/2 size-fit md:bottom-[1081px] md:translate-x-10 lg:-translate-x-12'
       >
-        <motion.svg
+        <svg
           width='85'
           height='80'
           viewBox='0 0 85 80'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
-          className='w-8 md:w-[85px]'
-          animate={{ transform: 'translateY(-5px) rotate(-3deg)' }}
-          transition={floatingTransition}
+          className='w-8 md:w-[85px] animate-float-star-2'
         >
           <path
             d='M0.356745 32.5715C67.7718 6.82545 68.0459 3.85148 67.7718 6.82545C67.4977 9.79943 57.7117 80.1631 57.482 78.1779C57.2523 76.1927 28.116 0.0100949 29.4681 1.0103C30.8201 2.01051 88.538 36.7098 82.7353 35.3103C78.0931 34.1906 25.882 33.0179 0.356745 32.5715Z'
             stroke='#76C1FF'
             strokeWidth='2'
           />
-        </motion.svg>
+        </svg>
       </div>
-      <motion.p
-        variants={fadeInVariants}
+      <motion.h2
+        variants={fadeTextVariants(0.1)}
         initial='hidden'
         animate={isVisible ? 'visible' : 'hidden'}
-        className='year-journey3 job-year'
+        className='year-journey3 job-year tabular-nums'
       >
         {data.year}
-      </motion.p>
+      </motion.h2>
       <motion.div
         initial='hidden'
         animate={isVisible ? 'visible' : 'hidden'}
@@ -94,9 +88,9 @@ const JourneySection3 = ({ data }: JourneySectionProps) => {
         <motion.div variants={image1Variants} className='-rotate-9'>
           <JourneyImage src={data.image1} />
         </motion.div>
-        <motion.div variants={fadeInVariants} className='space-y-1'>
-          <p className='company'>{data.company}</p>
-          <p className='job-title'>{data.jobTitle}</p>
+        <motion.div variants={fadeTextVariants(0.2)} className='space-y-1'>
+          <h3 className='company text-balance'>{data.company}</h3>
+          <h4 className='job-title text-balance'>{data.jobTitle}</h4>
           <p className='job-duration'>{data.duration}</p>
         </motion.div>
       </motion.div>
@@ -105,10 +99,10 @@ const JourneySection3 = ({ data }: JourneySectionProps) => {
         animate={isVisible ? 'visible' : 'hidden'}
         className='content2-journey3 flex flex-row-reverse gap-4 md:flex-col-reverse md:items-center'
       >
-        <motion.div variants={fadeInVariants} className='job-desc'>
+        <motion.div variants={fadeTextVariants(0.3)} className='job-desc'>
           <ul className='list-disc pl-6'>
             {data.projects.map((project, idx) => (
-              <li key={idx}>{project}</li>
+              <li key={idx} className='text-pretty'>{project}</li>
             ))}
           </ul>
         </motion.div>
@@ -122,7 +116,7 @@ const JourneySection3 = ({ data }: JourneySectionProps) => {
         className='content3-journey3 flex flex-col-reverse gap-3 md:flex-row md:items-end lg:gap-1'
       >
         <motion.div
-          variants={fadeInVariants}
+          variants={fadeTextVariants(0.4)}
           className='job-tech md:max-w-44! lg:max-w-52!'
         >
           <p>Tech / Tools:</p>

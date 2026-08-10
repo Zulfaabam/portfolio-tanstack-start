@@ -5,6 +5,7 @@ import {
   motion,
   useMotionValue,
   useSpring,
+  useReducedMotion,
 } from 'motion/react';
 import { useState } from 'react';
 import { ProjectTechStack } from 'types';
@@ -19,6 +20,7 @@ export interface ProjectShowcaseCardProps {
   live_url: string;
   className?: string;
   imageClassName?: string;
+  onClick?: () => void;
 }
 
 export default function ProjectItem({
@@ -30,8 +32,10 @@ export default function ProjectItem({
   live_url,
   className,
   imageClassName,
+  onClick,
 }: ProjectShowcaseCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -39,21 +43,23 @@ export default function ProjectItem({
   const springY = useSpring(y, { stiffness: 300, damping: 25 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (shouldReduceMotion) return;
     x.set(e.clientX + 20);
     y.set(e.clientY + 20);
   };
 
   return (
     <motion.div
+      onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
-      initial={{ opacity: 0, y: 20 }}
+      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 15 }}
+      transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
       viewport={{ once: true, amount: 0.2 }}
       className={cn(
-        'border-border hover:bg-surface group relative flex flex-col items-start gap-4 border-b py-6 last:border-b-0 sm:flex-row sm:gap-6 md:px-4 md:py-8',
+        'border-border hover:bg-surface group relative flex cursor-pointer flex-col items-start gap-4 border-b py-6 last:border-b-0 sm:flex-row sm:gap-6 md:px-4 md:py-8',
         className,
       )}
     >
@@ -67,14 +73,16 @@ export default function ProjectItem({
           src={image ? image : '/no-image.svg'}
           alt={title}
           layout='fullWidth'
-          className='aspect-video w-full object-cover'
+          className='aspect-video w-full object-cover ring-1 ring-black/10 dark:ring-white/10'
         />
       </div>
 
       {/* Content */}
       <div className='flex w-full flex-col gap-2'>
         <div className='flex items-center justify-between'>
-          <h3 className='text-text text-lg font-bold sm:text-xl'>{title}</h3>
+          <h3 className='text-text text-balance text-lg font-bold sm:text-xl'>
+            {title}
+          </h3>
           <div className='flex items-center gap-3'>
             {!github_url && !live_url && (
               <span className='text-muted text-xs'>Private Project</span>
@@ -82,7 +90,8 @@ export default function ProjectItem({
             {github_url && (
               <a
                 href={github_url}
-                className='text-muted hover:text-primary transition-all duration-300 will-change-transform hover:scale-110'
+                onClick={(e) => e.stopPropagation()}
+                className='text-muted hover:text-primary link-action -m-2.5 p-2.5'
                 target='_blank'
                 rel='noopener noreferrer'
                 title='GitHub Repository'
@@ -93,7 +102,8 @@ export default function ProjectItem({
             {live_url && (
               <a
                 href={live_url}
-                className='text-muted hover:text-primary transition-all duration-300 will-change-transform hover:scale-110'
+                onClick={(e) => e.stopPropagation()}
+                className='text-muted hover:text-primary link-action -m-2.5 p-2.5'
                 target='_blank'
                 rel='noopener noreferrer'
                 title='Live Demo'
@@ -104,13 +114,15 @@ export default function ProjectItem({
           </div>
         </div>
 
-        <p className='text-text/80 text-sm leading-relaxed'>{description}</p>
+        <p className='text-text/80 text-pretty text-sm leading-relaxed'>
+          {description}
+        </p>
 
         <div className='flex flex-wrap items-center gap-2 pt-1 md:gap-3'>
           {tech_stack?.map((tech, idx) => (
             <div
               key={tech.id}
-              className='text-muted flex items-center space-x-2 text-[10px] uppercase tracking-wider md:text-xs'
+              className='text-muted flex items-center space-x-2 text-xs uppercase tracking-wider'
             >
               <span>{tech.name}</span>
               {idx !== tech_stack.length - 1 && (
@@ -123,19 +135,21 @@ export default function ProjectItem({
 
       {/* Floating Tooltip Image */}
       <AnimatePresence>
-        <motion.img
-          src={image ? image : '/no-image.svg'}
-          alt={`${title} preview`}
-          style={{ x: springX, y: springY }}
-          initial={{ opacity: 0, scale: 0.1 }}
-          animate={{
-            opacity: isHovered ? 1 : 0,
-            scale: isHovered ? 1 : 0.1,
-          }}
-          transition={{ ease: 'easeOut', duration: 0.3 }}
-          exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.1 } }}
-          className='border-border z-100 bg-surface pointer-events-none fixed left-0 top-0 hidden aspect-video w-80 rounded-xl border object-cover shadow-2xl md:block'
-        />
+        {!shouldReduceMotion && (
+          <motion.img
+            src={image ? image : '/no-image.svg'}
+            alt={`${title} preview`}
+            style={{ x: springX, y: springY }}
+            initial={{ opacity: 0, scale: 0.1 }}
+            animate={{
+              opacity: isHovered ? 1 : 0,
+              scale: isHovered ? 1 : 0.1,
+            }}
+            transition={{ ease: [0.23, 1, 0.32, 1], duration: 0.25 }}
+            exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.15 } }}
+            className='z-100 bg-surface pointer-events-none fixed left-0 top-0 hidden aspect-video w-80 rounded-xl object-cover shadow-2xl ring-1 ring-black/10 dark:ring-white/10 md:block'
+          />
+        )}
       </AnimatePresence>
     </motion.div>
   );

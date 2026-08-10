@@ -29,10 +29,10 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   return (
     <div className='bg-bg w-full' ref={containerRef}>
       <div className='mx-auto px-4 py-10 md:px-0 lg:py-20'>
-        <h2 className='text-fg mb-4 max-w-5xl text-2xl md:text-4xl'>
+        <h2 className='text-text mb-4 max-w-5xl text-2xl md:text-4xl'>
           My Journey So Far
         </h2>
-        <p className='text-fg max-w-md text-sm md:text-base'>
+        <p className='text-text max-w-md text-sm md:text-base'>
           Here&apos;s my timeline of 3+ years learning, growing, and working as
           a developer.
         </p>
@@ -46,15 +46,15 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           <div key={index} className='flex justify-start md:gap-10'>
             <div className='sticky top-40 z-10 flex max-w-xs flex-col items-center self-start md:w-full md:flex-row lg:max-w-sm'>
               <div className='bg-bg absolute left-3 flex h-10 w-10 items-center justify-center rounded-full md:left-3'>
-                <div className='h-4 w-4 rounded-full border border-neutral-700 bg-neutral-800 p-2' />
+                <div className='h-4 w-4 rounded-full border border-border bg-surface2 p-2' />
               </div>
-              <h3 className='hidden text-xl font-bold text-neutral-500 md:block md:pl-20 md:text-5xl'>
+              <h3 className='hidden text-xl font-bold text-muted md:block md:pl-20 md:text-5xl'>
                 {item.title}
               </h3>
             </div>
 
             <div className='relative w-full pl-20 md:pl-4'>
-              <h3 className='my-1 block text-left text-2xl font-bold text-neutral-500 md:hidden'>
+              <h3 className='my-1 block text-left text-2xl font-bold text-muted md:hidden'>
                 {item.title}
               </h3>
               {item.content}{' '}
@@ -65,7 +65,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           style={{
             height: height + 'px',
           }}
-          className='to-99% mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] absolute left-8 top-0 w-0.5 overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-0% via-neutral-700 to-transparent md:left-8'
+          className='to-99% mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] absolute left-8 top-0 w-0.5 overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-0% via-border to-transparent md:left-8'
         >
           <motion.div
             style={{

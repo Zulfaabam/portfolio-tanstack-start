@@ -1,8 +1,8 @@
 import { Transition } from 'motion/react';
 
 export const contentTransition: Transition = {
-  duration: 1,
-  ease: [0.7, 0, 0.3, 1], // cinematic
+  duration: 0.25,
+  ease: [0.23, 1, 0.32, 1], // strong ease-out for responsive UI
 };
 
 export const floatingTransition: Transition = {
@@ -75,12 +75,18 @@ export const techStack = [
 export const miniJourneys = [
   {
     id: 1,
+    job: 'C# Software Engineer Bootcamp @ Formulatrix',
+    place: 'Salatiga, Indonesia',
+    year: 'June - July 2026 ',
+  },
+  {
+    id: 2,
     job: 'Frontend Dev @ Eksad',
     place: 'Jakarta, Indonesia',
     year: '2025',
   },
   {
-    id: 2,
+    id: 3,
     job: 'Frontend Dev @ Bukit Vista',
     place: 'Bali, Indonesia',
     year: '2022 - 2024',
@@ -174,7 +180,7 @@ export const JOURNEY_2025 = {
   projects: [
     'JBA Indonesia’s Electronic Auction platform',
     'JAVIS - The internal team’s app to manage content for auction',
-    'VISION - A new micro-frontend architectured app to replace JAVIS',
+    'VISION - The new internal team’s app to manage content for auction',
   ],
   tech: [
     'React',

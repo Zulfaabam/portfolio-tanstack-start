@@ -9,10 +9,10 @@ export default function PixelPlayground() {
   const handlePixelClick = (index: number) => {
     setPixels((prev) => {
       const newPixels = [...prev];
-      if (newPixels[index] === 'bg-fg') {
-        newPixels[index] = 'bg-zinc-800';
+      if (newPixels[index] === 'bg-bg') {
+        newPixels[index] = 'bg-text';
       } else {
-        newPixels[index] = 'bg-fg';
+        newPixels[index] = 'bg-bg';
       }
       return newPixels;
     });
@@ -21,14 +21,14 @@ export default function PixelPlayground() {
   useEffect(() => {
     const initialPixels = Array.from(
       { length: GRID_SIZE * GRID_COLS },
-      () => 'bg-fg',
+      () => 'bg-bg',
     );
     setPixels(initialPixels);
   }, []);
 
   return (
     <div className='flex h-full w-full flex-col'>
-      <h3 className='text-fg mb-6 font-medium'>Pixel Playground</h3>
+      <h3 className='text-text mb-6 font-medium'>Pixel Playground</h3>
 
       <div
         className='mx-auto mb-2 grid w-fit'
@@ -41,12 +41,12 @@ export default function PixelPlayground() {
           <div
             key={i}
             onClick={() => handlePixelClick(i)}
-            className={`${color} size-4 cursor-pointer border border-zinc-800 transition-colors duration-200 hover:opacity-80`}
+            className={`${color} size-4 cursor-pointer border border-border transition-colors duration-200 hover:opacity-80`}
           />
         ))}
       </div>
 
-      <p className='text-fg/80 text-center text-xs'>
+      <p className='text-text/80 text-center text-xs'>
         Click to paint, click again to remove
       </p>
     </div>
