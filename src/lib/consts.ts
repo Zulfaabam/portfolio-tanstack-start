@@ -180,7 +180,7 @@ export const JOURNEY_2025 = {
   projects: [
     'JBA Indonesia’s Electronic Auction platform',
     'JAVIS - The internal team’s app to manage content for auction',
-    'VISION - A new micro-frontend architectured app to replace JAVIS',
+    'VISION - The new internal team’s app to manage content for auction',
   ],
   tech: [
     'React',
