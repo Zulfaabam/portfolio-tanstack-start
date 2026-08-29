@@ -12,7 +12,13 @@ export const getFeaturedProjects = createServerFn({ method: 'GET' }).handler(
     const { data, error } = await supabase
       .from('projects')
       .select(
-        `*, tech_stack:project_tech_stack(id:tech_stack_id, tech_stack(name))`,
+        `*,
+        project_tech_stack (
+          tech_stack (
+            id,
+            name
+          )
+        )`,
       )
       .eq('is_featured', true);
 
@@ -25,11 +31,16 @@ export const getProjects = createServerFn({ method: 'GET' }).handler(
   async (): Promise<{ data: Project[]; error: { message: string } | null }> => {
     const supabase = getSupabaseServerClient();
 
-    const { data, error } = await supabase
-      .from('projects')
-      .select(
-        `*, tech_stack:project_tech_stack(id:tech_stack_id, tech_stack(name))`,
-      );
+    const { data, error } = await supabase.from('projects').select(
+      `*,
+        project_tech_stack (
+          tech_stack (
+            id,
+            name
+          )
+        )
+      `,
+    );
 
     if (error) throw new Error(error.message);
     return { data, error };

@@ -9,9 +9,7 @@ import { Project } from 'types';
 import { Image } from '@unpic/react';
 import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 
-type ProjectData = Omit<Project, 'tech_stack'> & {
-  tech_stack: { id: number; name: string }[];
-};
+type ProjectData = Project;
 
 export const Route = createFileRoute('/projects')({
   head: () => ({
@@ -45,20 +43,14 @@ export const Route = createFileRoute('/projects')({
 
 function Projects() {
   const { data, error } = Route.useLoaderData();
-  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(
+    null,
+  );
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
-  const projects: ProjectData[] = data
-    ?.sort((a, b) => {
-      return b.created_at!.localeCompare(a.created_at!);
-    })
-    ?.map((d: Project) => ({
-      ...d,
-      tech_stack: d.tech_stack.map((stack) => ({
-        id: stack.id,
-        name: stack.tech_stack.name,
-      })),
-    }));
+  const projects: ProjectData[] = data?.sort((a, b) => {
+    return b.created_at!.localeCompare(a.created_at!);
+  });
 
   return (
     <div className='bg-bg relative min-h-screen w-full'>
@@ -120,12 +112,12 @@ function Projects() {
                     {selectedProject.title}
                   </h2>
                   <div className='flex flex-wrap gap-2'>
-                    {selectedProject.tech_stack?.map((tech) => (
+                    {selectedProject.project_tech_stack?.map((tech) => (
                       <span
-                        key={tech.id}
+                        key={tech.tech_stack.id}
                         className='bg-surface2 text-muted rounded-full px-3 py-1 text-[10px] font-medium sm:text-xs'
                       >
-                        {tech.name}
+                        {tech.tech_stack.name}
                       </span>
                     ))}
                   </div>
