@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getFeaturedProjects } from '@/lib/server/project';
-import { Project, ProjectTechStack } from 'types';
+import { Project } from 'types';
 import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import {
@@ -11,9 +11,7 @@ import {
 import { Image } from '@unpic/react';
 import { BottomSheet } from './ui/bottom-sheet';
 
-type FeaturedProject = Omit<Project, 'tech_stack'> & {
-  tech_stack: ProjectTechStack[];
-};
+type FeaturedProject = Project;
 
 export default function FeaturedProjects() {
   const { data, error } = useQuery({
@@ -27,17 +25,11 @@ export default function FeaturedProjects() {
     useState<FeaturedProject | null>(null);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
-  const projects: FeaturedProject[] | undefined = data?.data
-    ?.sort((a, b) => {
-      return b.created_at!.localeCompare(a.created_at!);
-    })
-    .map((p) => ({
-      ...p,
-      tech_stack: p.tech_stack.map((ts) => ({
-        id: ts.id,
-        name: ts.tech_stack.name,
-      })),
-    }));
+  console.log('data', data?.data);
+
+  const projects: FeaturedProject[] | undefined = data?.data?.sort((a, b) => {
+    return b.created_at!.localeCompare(a.created_at!);
+  });
 
   const handleScroll = () => {
     if (scrollRef.current) {
@@ -104,7 +96,7 @@ export default function FeaturedProjects() {
                 <div className='mx-auto w-full sm:w-[90%]'>
                   <Image
                     alt='image'
-                    className='group-hover-fine-scale border-border size-full select-none rounded-lg border object-contain transition-transform duration-250 ease-out'
+                    className='group-hover-fine-scale border-border duration-250 size-full select-none rounded-lg border object-contain transition-transform ease-out'
                     layout='fullWidth'
                     src={p.image}
                   />
@@ -139,12 +131,12 @@ export default function FeaturedProjects() {
                   {selectedProject.title}
                 </h2>
                 <div className='flex flex-wrap gap-2'>
-                  {selectedProject.tech_stack.map((tech) => (
+                  {selectedProject.project_tech_stack.map((tech) => (
                     <span
-                      key={tech.id}
+                      key={tech.tech_stack.id}
                       className='bg-surface2 text-muted rounded-full px-3 py-1 text-[10px] font-medium sm:text-xs'
                     >
-                      {tech.name}
+                      {tech.tech_stack.name}
                     </span>
                   ))}
                 </div>

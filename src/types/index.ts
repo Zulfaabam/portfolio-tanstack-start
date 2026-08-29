@@ -7,21 +7,17 @@ export interface Project {
   github_url: string;
   live_url: string;
   is_featured: boolean;
-  tech_stack: TechStack[];
+  project_tech_stack: ProjectTechStack[];
+}
+
+export interface ProjectTechStack {
+  tech_stack: TechStack;
 }
 
 export interface TechStack {
   id: number;
-  tech_stack: TechStack2;
-}
-
-export interface TechStack2 {
   name: string;
-}
-
-export interface ProjectTechStack {
-  id: number;
-  name: string;
+  is_main_tech?: boolean;
 }
 
 export interface JourneyData {
